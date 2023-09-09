@@ -1,36 +1,29 @@
 import 'package:core/store/reduce.dart';
 
 class HomeState {
-  final String title;
+  final int value;
 
-  HomeState(this.title);
+  HomeState(this.value);
 }
 
 enum HomeAction {
-  none,
-  onAppear,
-  onClose,
-  newTitle,
+  add,
+  sub,
 }
 
 class HomeStore extends Reduce<HomeState, HomeAction> {
   HomeStore(super.initialState);
 
-  static HomeStore get builder => HomeStore(HomeState(""));
+  static HomeStore get builder => HomeStore(HomeState(0));
 
   @override
   void reduce(action, value) {
     switch (action) {
-      case HomeAction.newTitle:
-        state = HomeState(value);
-
+      case HomeAction.add:
+        state = HomeState(state.value + 1);
         break;
-      case HomeAction.none:
-        break;
-      case HomeAction.onAppear:
-        state = HomeState(value);
-        break;
-      case HomeAction.onClose:
+      case HomeAction.sub:
+        state = HomeState(state.value - 1);
         break;
     }
   }

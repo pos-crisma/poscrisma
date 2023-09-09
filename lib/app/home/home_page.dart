@@ -14,21 +14,57 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ReduceStore(
-            store: store,
-            builder: (HomeState viewStore) => Text(viewStore.title),
-            onError: (String viewStore) => const Text("Error"),
-            onLoading: () => Container(
-              height: 20,
-              color: Colors.amber,
-            ),
+          Row(
+            children: [
+              const Text(
+                "Valor calculavel: ",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              ReduceStore(
+                store: store,
+                builder: (HomeState viewStore) => Text(
+                  "${viewStore.value}",
+                  style: const TextStyle(
+                    fontSize: 40,
+                  ),
+                ),
+                onError: (String viewStore) => const Text("Error"),
+                onLoading: () => Container(
+                  height: 20,
+                  color: Colors.amber,
+                ),
+              ),
+            ],
           ),
-          InkWell(
-            child: const Text("Tap here"),
-            onTap: () {
-              store.send(HomeAction.newTitle, "324");
-            },
-          )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                child: const Text(
+                  "menos",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                onTap: () {
+                  store.send(HomeAction.sub, "324");
+                },
+              ),
+              InkWell(
+                child: const Text(
+                  "mais",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                onTap: () {
+                  store.send(HomeAction.add, "324");
+                },
+              )
+            ],
+          ),
         ],
       ),
     );
