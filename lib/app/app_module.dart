@@ -10,7 +10,7 @@ class AppModule extends Module {
   void routes(r) {
     r.child(
       '/',
-      child: (context) => const HomePage(),
+      child: (context) => HomePage(),
     );
   }
 }
