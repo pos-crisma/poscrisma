@@ -41,28 +41,34 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                child: const Text(
-                  "menos",
-                  style: TextStyle(
-                    fontSize: 25,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: InkWell(
+                  child: const Text(
+                    "Menos - ",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
+                  onTap: () {
+                    store.send(HomeAction.sub, null);
+                  },
                 ),
-                onTap: () {
-                  store.send(HomeAction.sub, "324");
-                },
               ),
-              InkWell(
-                child: const Text(
-                  "mais",
-                  style: TextStyle(
-                    fontSize: 25,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: InkWell(
+                  child: const Text(
+                    "Mais + ",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
+                  onTap: () {
+                    store.send(HomeAction.add, null);
+                  },
                 ),
-                onTap: () {
-                  store.send(HomeAction.add, "324");
-                },
-              )
+              ),
             ],
           ),
         ],
