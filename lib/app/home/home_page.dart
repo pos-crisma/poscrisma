@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 
-class HomeNotifier extends ValueNotifier<int> {
-  HomeNotifier() : super(0);
+import '../../core/reducer.dart';
 
-  add() {
-    value += 1;
-  }
+enum HomeAction { add, sub }
 
-  sub() {
-    value -= 1;
+interface class HomeState {
+  int number;
+
+  HomeState(this.number);
+}
+
+class HomeNotifier extends Reducer<HomeAction, HomeState> {
+  HomeNotifier() : super(HomeState(0));
+
+  @override
+  void reduce(HomeAction action, content) {
+    switch (action) {
+      case HomeAction.add:
+        value = HomeState(value.number + 1);
+        break;
+      case HomeAction.sub:
+        value = HomeState(value.number - 1);
+        break;
+    }
   }
 }
 
@@ -43,19 +57,13 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                value.toString(),
+                value.number.toString(),
                 style: const TextStyle(fontSize: 23),
               ),
             ],
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.add),
-      //   onPressed: () {
-      //     HomeProvider.of(context).add();
-      //   },
-      // ),
       bottomNavigationBar: Row(
         children: [
           Expanded(
@@ -63,7 +71,8 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.blue[200],
               child: const Text("Adicionar"),
-              onPressed: () => HomeProvider.of(context).add(),
+              onPressed: () =>
+                  HomeProvider.of(context).send(HomeAction.add, null),
             ),
           ),
           Expanded(
@@ -71,7 +80,8 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.orange[200],
               child: const Text("Subtrair"),
-              onPressed: () => HomeProvider.of(context).sub(),
+              onPressed: () =>
+                  HomeProvider.of(context).send(HomeAction.sub, null),
             ),
           ),
         ],
