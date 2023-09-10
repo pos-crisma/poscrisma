@@ -13,14 +13,14 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   HomeReducer() : super(HomeState(0, ""));
 
   @override
-  void reduce(HomeAction action, content) {
+  Effect reduce(HomeAction action, content) {
     switch (action) {
       case HomeAction.add:
-        value = HomeState(value.number + 1, content);
-        break;
+        value.number += 1;
+        return Effect.none;
       case HomeAction.sub:
-        value = HomeState(value.number - 1, content);
-        break;
+        value.number -= 1;
+        return Effect.none;
     }
   }
 }
