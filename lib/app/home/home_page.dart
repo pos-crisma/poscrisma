@@ -1,51 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/reducer.dart';
-
-enum HomeAction { add, sub }
-
-interface class HomeState {
-  int number;
-
-  HomeState(this.number);
-}
-
-class HomeNotifier extends Reducer<HomeAction, HomeState> {
-  HomeNotifier() : super(HomeState(0));
-
-  @override
-  void reduce(HomeAction action, content) {
-    switch (action) {
-      case HomeAction.add:
-        value = HomeState(value.number + 1);
-        break;
-      case HomeAction.sub:
-        value = HomeState(value.number - 1);
-        break;
-    }
-  }
-}
-
-class HomeProvider extends InheritedNotifier<HomeNotifier> {
-  const HomeProvider({
-    super.key,
-    required super.notifier,
-    required super.child,
-  });
-
-  static HomeNotifier of(BuildContext context) {
-    final ctx = context.dependOnInheritedWidgetOfExactType<HomeProvider>();
-
-    if (ctx is HomeProvider) {
-      final notifier = ctx.notifier;
-      if (notifier is HomeNotifier) {
-        return notifier;
-      }
-    }
-
-    return HomeNotifier();
-  }
-}
+import 'provider/home_provider.dart';
+import 'reducer/home_reducer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

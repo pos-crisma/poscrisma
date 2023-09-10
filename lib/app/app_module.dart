@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'home/home_page.dart';
+import 'home/provider/home_provider.dart';
 
 class AppModule extends Module {
   @override
@@ -10,10 +10,7 @@ class AppModule extends Module {
   void routes(r) {
     r.child(
       '/',
-      child: (context) => HomeProvider(
-        notifier: HomeNotifier(),
-        child: const HomePage(),
-      ),
+      child: (context) => viewProvider,
     );
   }
 }
