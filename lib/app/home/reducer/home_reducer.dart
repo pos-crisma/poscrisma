@@ -17,9 +17,11 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     switch (action) {
       case HomeAction.add:
         value.number += 1;
+        value.text = content;
         return Effect.none;
       case HomeAction.sub:
         value.number -= 1;
+        value.text = content;
         return Effect.none;
     }
   }

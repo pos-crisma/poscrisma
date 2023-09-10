@@ -7,7 +7,6 @@ abstract class Reducer<Action, State> extends ValueNotifier<State> {
 
   void send(Action action, dynamic content) {
     // TODO: High order function
-    // Pullback 
     effect(reduce(action, content));
   }
 
@@ -19,7 +18,6 @@ abstract class Reducer<Action, State> extends ValueNotifier<State> {
         notifyListeners();
         break;
       case Effect.fireAndForgot:
-        notifyListeners();
         break;
     }
   }
