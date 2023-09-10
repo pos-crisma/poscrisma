@@ -10,7 +10,10 @@ class AppModule extends Module {
   void routes(r) {
     r.child(
       '/',
-      child: (context) => const HomePage(),
+      child: (context) => HomeProvider(
+        notifier: HomeNotifier(),
+        child: const HomePage(),
+      ),
     );
   }
 }

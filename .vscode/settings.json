@@ -1,0 +1,28 @@
+{
+  // "workbench.colorTheme": "Xcode Default Dark",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "material-icon-theme.folders.associations": {
+    "di": "connection",
+    "network": "connection",
+    "dto": "interface",
+    "usecase": "tasks",
+    "usecases": "tasks",
+    "repositories": "content",
+    "infra": "project",
+    "domain": "context",
+    "state": "update",
+    "store": "hook",
+    "notifier": "event",
+    "rive": "animation",
+    "architecture": "terraform",
+    "delegate": "class",
+    "tracker": "log",
+    "logger": "log",
+    "bootstrap": "template",
+    "presenter": "pipe",
+    "features": "app",
+    "feature": "app"
+  }
+}
