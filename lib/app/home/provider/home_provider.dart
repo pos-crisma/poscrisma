@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import '../home_page.dart';
 import '../reducer/home_reducer.dart';
 
-Widget get viewProvider => HomeProvider(
-      notifier: HomeReducer(),
-      child: const HomePage(),
-    );
+Widget get viewProvider =>
+    HomeProvider(notifier: HomeReducer(), child: const HomePage());
 
 class HomeProvider extends InheritedNotifier<HomeReducer> {
   const HomeProvider({

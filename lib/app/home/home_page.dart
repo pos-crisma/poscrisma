@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'provider/home_provider.dart';
@@ -22,6 +24,10 @@ class HomePage extends StatelessWidget {
                 value.number.toString(),
                 style: const TextStyle(fontSize: 23),
               ),
+              Text(
+                value.text.toString(),
+                style: const TextStyle(fontSize: 23),
+              ),
             ],
           ),
         ),
@@ -33,8 +39,10 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.blue[200],
               child: const Text("Adicionar"),
-              onPressed: () =>
-                  HomeProvider.of(context).send(HomeAction.add, null),
+              onPressed: () {
+                HomeProvider.of(context).send(HomeAction.add,
+                    "Numero randomico: ${0 + Random().nextInt((10000 + 1) - 0)}");
+              },
             ),
           ),
           Expanded(
@@ -42,8 +50,8 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.orange[200],
               child: const Text("Subtrair"),
-              onPressed: () =>
-                  HomeProvider.of(context).send(HomeAction.sub, null),
+              onPressed: () => HomeProvider.of(context).send(HomeAction.sub,
+                  "Numero randomico: ${0 + Random().nextInt((10000 + 1) - 0)}"),
             ),
           ),
         ],
