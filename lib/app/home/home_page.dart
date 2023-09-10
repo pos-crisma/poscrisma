@@ -34,10 +34,16 @@ class HomeProvider extends InheritedNotifier<HomeNotifier> {
   });
 
   static HomeNotifier of(BuildContext context) {
-    return context
-            .dependOnInheritedWidgetOfExactType<HomeProvider>()!
-            .notifier ??
-        HomeNotifier();
+    final ctx = context.dependOnInheritedWidgetOfExactType<HomeProvider>();
+
+    if (ctx is HomeProvider) {
+      final notifier = ctx.notifier;
+      if (notifier is HomeNotifier) {
+        return notifier;
+      }
+    }
+
+    return HomeNotifier();
   }
 }
 
