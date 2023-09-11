@@ -1,4 +1,21 @@
-sealed class HomeAction {}
+import '../../../../core/core.dart';
+
+sealed class HomeAction with Action {
+  T fold<T>(
+    T Function(Added action) added,
+    T Function(Subtracted action) subtract,
+    T Function(Multied action) multiplay,
+    T Function(Divided action) divide,
+    T Function(WebService action) service,
+  ) =>
+      switch (this) {
+        Added action => added(action),
+        Subtracted action => subtract(action),
+        Multied action => multiplay(action),
+        Divided action => divide(action),
+        WebService action => service(action),
+      };
+}
 
 class Added extends HomeAction {
   final int value;
@@ -39,3 +56,5 @@ class Divided extends HomeAction {
     this.random = "",
   });
 }
+
+class WebService extends HomeAction {}

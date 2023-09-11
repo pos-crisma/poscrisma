@@ -1,5 +1,6 @@
 import 'package:poscrisma/core/core.dart';
 
+import '../../../core/network/base_fetch.dart';
 import 'action/home_action.dart';
 import 'state/home_state.dart';
 
@@ -8,38 +9,44 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
   @override
   Future<Effect> reduce(HomeAction action) async {
-    return switch (action) {
-      Added(value: var i, random: var content) => () {
-          value.number += i;
-          value.text = content;
-          return None();
-        },
-      Subtracted(value: var i, random: var content) => () {
-          value.number -= i;
-          value.text = content;
-          return None();
-        },
-      Multied(value: var i, random: var content) => () {
-          value.number *= i;
-          value.text = content;
-          return Send(
-            Added(
-              value: 2,
-              random: "$content with send Added Action",
-            ),
-          );
-        },
-      Divided(value: var i, random: var content) => () {
-          value.number = value.number ~/ i;
-          value.text = content;
-          return Run(
-            () async {
-              send(Added(random: "Send after run effects $i"));
-              send(Subtracted(random: "Send after run effects 2 - $i"));
-              send(Subtracted(random: "Send after run effects 2 - $i"));
-            },
-          );
-        },
-    }();
+    return action.fold(
+      (action) => _sun(),
+      (action) => _subtract(),
+      (action) => _result(action),
+      (action) => _divider(),
+      (action) => _service(),
+    );
+  }
+
+  _sun() {
+    value.number += 1;
+
+    return Effect.send(Multied());
+  }
+
+  _subtract() {
+    value.number -= 1;
+
+    return Effect.none();
+  }
+
+  _result(Multied state) {
+    value.number *= 2;
+    value.text = state.random;
+
+    return Effect.none();
+  }
+
+  _divider() {
+    return Effect.none();
+  }
+
+  _service() {
+    return Effect.run(
+      () async {
+        final album = await fetchAlbum();
+        send(Multied(random: "${album.title} + ${value.number}"));
+      },
+    );
   }
 }
