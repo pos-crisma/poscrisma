@@ -1,6 +1,26 @@
 import '../../../core/reducer.dart';
 
-enum HomeAction { add, sub }
+sealed class HomeAction {}
+
+class Added extends HomeAction {
+  final int value;
+  final String random;
+
+  Added({
+    this.value = 1,
+    this.random = "",
+  });
+}
+
+class Subtracted extends HomeAction {
+  final int value;
+  final String random;
+
+  Subtracted({
+    this.value = 1,
+    this.random = "",
+  });
+}
 
 interface class HomeState {
   int number;
@@ -13,16 +33,18 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   HomeReducer() : super(HomeState(0, ""));
 
   @override
-  Effect reduce(HomeAction action, content) {
-    switch (action) {
-      case HomeAction.add:
-        value.number += 1;
-        value.text = content;
-        return Effect.none;
-      case HomeAction.sub:
-        value.number -= 1;
-        value.text = content;
-        return Effect.none;
-    }
+  Effect reduce(HomeAction action) {
+    return switch (action) {
+      Added(value: var i, random: var content) => () {
+          value.number += i;
+          value.text = content;
+          return Effect.none;
+        },
+      Subtracted(value: var i, random: var content) => () {
+          value.number -= i;
+          value.text = content;
+          return Effect.none;
+        },
+    }();
   }
 }

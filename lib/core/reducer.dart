@@ -7,10 +7,10 @@ abstract class Reducer<Action, State> extends ChangeNotifier {
 
   State value;
 
-  Effect reduce(Action action, dynamic content);
+  Effect reduce(Action action);
 
-  void send<T>(Action action, T content) {
-    effect(reduce(action, content));
+  void send(Action action) {
+    effect(reduce(action));
   }
 
   void effect(Effect effect) {
