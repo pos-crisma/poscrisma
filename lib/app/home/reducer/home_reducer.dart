@@ -7,7 +7,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   HomeReducer() : super(HomeState(1, ""));
 
   @override
-  Effect reduce(HomeAction action) {
+  Future<Effect> reduce(HomeAction action) async {
     return switch (action) {
       Added(value: var i, random: var content) => () {
           value.number += i;
@@ -23,12 +23,22 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
           value.number *= i;
           value.text = content;
           return Send(
-              Added(value: 2, random: "$content with send Added Action"));
+            Added(
+              value: 2,
+              random: "$content with send Added Action",
+            ),
+          );
         },
       Divided(value: var i, random: var content) => () {
           value.number = value.number ~/ i;
           value.text = content;
-          return Run(() => send(Added(random: "Send after run effects")));
+          return Run(
+            () async {
+              send(Added(random: "Send after run effects $i"));
+              send(Subtracted(random: "Send after run effects 2 - $i"));
+              send(Subtracted(random: "Send after run effects 2 - $i"));
+            },
+          );
         },
     }();
   }

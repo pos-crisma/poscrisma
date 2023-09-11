@@ -7,13 +7,13 @@ abstract class Reducer<Action, State> extends ChangeNotifier {
 
   State value;
 
-  Effect reduce(Action action);
+  Future<Effect> reduce(Action action);
 
-  void send(Action action) {
-    effect(reduce(action));
+  Future<void> send(Action action) async {
+    _effect(await reduce(action));
   }
 
-  void effect(Effect effect) {
+  void _effect(Effect effect) async {
     return switch (effect) {
       None() => notifyListeners(),
       Run(function: var fun) => fun(),

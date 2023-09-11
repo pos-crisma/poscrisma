@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = HomeProvider.of(context).value;
+    final viewStore = HomeProvider.of(context);
 
     return Scaffold(
       body: Center(
@@ -19,11 +19,11 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                value.number.toString(),
+                viewStore.value.number.toString(),
                 style: const TextStyle(fontSize: 23),
               ),
               Text(
-                value.text.toString(),
+                viewStore.value.text.toString(),
                 style: const TextStyle(fontSize: 23),
               ),
             ],
@@ -38,8 +38,7 @@ class HomePage extends StatelessWidget {
               color: Colors.blue[200],
               child: const Text("Adicionar"),
               onPressed: () {
-                HomeProvider.of(context)
-                    .send(Multied(value: 3, random: "Multi action"));
+                viewStore.send(Added(value: 3, random: "Multi action"));
               },
             ),
           ),
@@ -48,8 +47,8 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.orange[200],
               child: const Text("Subtrair"),
-              onPressed: () => HomeProvider.of(context)
-                  .send(Divided(value: 2, random: "Divided action")),
+              onPressed: () =>
+                  viewStore.send(Divided(value: 2, random: "Divided action")),
             ),
           ),
         ],
