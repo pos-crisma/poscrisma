@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Change Effect to sealed class, for dart pattern type
-enum Effect { none, fireAndForgot }
+import 'effect/effect.dart';
 
 abstract class Reducer<Action, State> extends ChangeNotifier {
   Reducer(this.value);
@@ -15,12 +14,10 @@ abstract class Reducer<Action, State> extends ChangeNotifier {
   }
 
   void effect(Effect effect) {
-    switch (effect) {
-      case Effect.none:
-        notifyListeners();
-        break;
-      case Effect.fireAndForgot:
-        break;
-    }
+    return switch (effect) {
+      None() => notifyListeners(),
+      Run(function: var fun) => fun(),
+      Send(action: var ac) => send(ac),
+    };
   }
 }

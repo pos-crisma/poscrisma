@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               child: const Text("Adicionar"),
               onPressed: () {
                 HomeProvider.of(context)
-                    .send(Added(value: 2, random: "Added action"));
+                    .send(Multied(value: 3, random: "Multi action"));
               },
             ),
           ),
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               color: Colors.orange[200],
               child: const Text("Subtrair"),
               onPressed: () => HomeProvider.of(context)
-                  .send(Subtracted(value: 2, random: "Subtract action")),
+                  .send(Divided(value: 2, random: "Divided action")),
             ),
           ),
         ],

@@ -19,3 +19,23 @@ class Subtracted extends HomeAction {
     this.random = "",
   });
 }
+
+class Multied extends HomeAction {
+  final int value;
+  final String random;
+
+  Multied({
+    this.value = 1,
+    this.random = "",
+  });
+}
+
+class Divided extends HomeAction {
+  final int value;
+  final String random;
+
+  Divided({
+    this.value = 1,
+    this.random = "",
+  });
+}
