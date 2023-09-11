@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'provider/home_provider.dart';
-import 'reducer/home_reducer.dart';
+import 'reducer/action/home_action.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
