@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Change Effect to sealed class, for dart pattern type
 enum Effect { none, fireAndForgot }
 
 abstract class Reducer<Action, State> extends ChangeNotifier {
