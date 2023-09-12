@@ -1,6 +1,5 @@
 import 'package:poscrisma/core/core.dart';
 
-import '../../../core/network/base_fetch.dart';
 import 'action/home_action.dart';
 import 'state/home_state.dart';
 
@@ -34,18 +33,18 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     value.number *= 2;
     value.text = state.random;
 
-    return Effect.none();
+    return Effect.send(Divided());
   }
 
   _divider() {
+    value.number ~/ 2;
     return Effect.none();
   }
 
   _service() {
     return Effect.run(
       () async {
-        final album = await fetchAlbum();
-        send(Multied(random: "${album.title} + ${value.number}"));
+        send(Multied(random: ""));
       },
     );
   }

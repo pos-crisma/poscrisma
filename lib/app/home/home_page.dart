@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewStore = HomeProvider.of(context);
 
+    // final client = Modular.get<Network>();
+
     return Scaffold(
       body: Center(
         child: GestureDetector(
