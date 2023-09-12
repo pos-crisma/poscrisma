@@ -7,7 +7,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'My Smart App',
+      title: 'App Acampamento',
       theme: ThemeData(
         brightness: Brightness.light,
         useMaterial3: true,
