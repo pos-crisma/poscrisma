@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 mixin DarkTheme {
-  static final ThemeData darkTheme = ThemeData(
+  static final ThemeData theme = ThemeData(
     textTheme: const TextTheme(
       displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
       bodyLarge: TextStyle(fontSize: 18, color: Colors.white70),
