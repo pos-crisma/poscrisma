@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
-import '../../config/app_config.dart';
+import '../../config/config_config.dart';
 import '../interceptor/interceptor.dart';
 import '../interface/network.dart';
 
 class NetworkClient with Network {
   final Dio _dio = Dio();
-  final AppConfig _config;
+  final Config _config;
 
   NetworkClient(this._config) {
     _dio

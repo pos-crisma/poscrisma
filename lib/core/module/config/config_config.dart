@@ -1,8 +1,8 @@
 import '../environment/environment.dart';
 
-class AppConfig {
+class Config {
   final Environment _flavor;
-  AppConfig({required Environment flavor}) : _flavor = flavor;
+  Config({required Environment flavor}) : _flavor = flavor;
 
   Environment get env => _flavor;
   String get url => _flavor.url;

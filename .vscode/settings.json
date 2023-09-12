@@ -23,6 +23,8 @@
     "bootstrap": "template",
     "presenter": "pipe",
     "features": "app",
-    "feature": "app"
+    "feature": "app",
+    "effect": "event",
+    "reducer": "context",
   }
 }

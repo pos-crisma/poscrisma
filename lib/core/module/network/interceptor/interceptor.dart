@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
-import '../../config/app_config.dart';
+import '../../config/config_config.dart';
 import '../../environment/environment.dart';
 
 class NetworkInterceptor extends Interceptor {
-  final AppConfig config;
+  final Config config;
 
   int t1 = 0;
   int t2 = 0;

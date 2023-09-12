@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'effect/effect.dart';
+import '../effect/effect.dart';
 
 abstract class Reducer<Action, State> extends ChangeNotifier {
   Reducer(this.value);

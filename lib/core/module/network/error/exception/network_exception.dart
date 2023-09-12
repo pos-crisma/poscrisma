@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class NetworkingExceptions implements Exception {
+class NetworkExceptions implements Exception {
   late String message;
 
-  NetworkingExceptions.fromDioError(DioException dioError) {
+  NetworkExceptions.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.cancel:
         message = "Request to API server was cancelled";
