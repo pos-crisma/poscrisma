@@ -1,7 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poscrisma/core/container/container.dart';
-
-import 'home/provider/home_provider.dart';
+import 'package:poscrisma/app/home/module/home_module.dart';
 
 class AppModule extends Module {
   @override
@@ -11,9 +10,6 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.child(
-      '/',
-      child: (context) => viewProvider,
-    );
+    r.module('/', module: HomeModule());
   }
 }

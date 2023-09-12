@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poscrisma/core/module/config/config_module.dart';
 
+import '../config/config_module.dart';
 import 'client/client.dart';
 import 'interface/network.dart';
 

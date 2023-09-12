@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'provider/home_provider.dart';
-import 'reducer/action/home_action.dart';
+import '../provider/reducer/action/home_action.dart';
+import '../provider/store/home_store.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final viewStore = HomeProvider.of(context);
+    final viewStore = HomeStore.of(context);
 
     return Scaffold(
       body: Center(

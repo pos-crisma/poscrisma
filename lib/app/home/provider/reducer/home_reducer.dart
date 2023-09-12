@@ -1,4 +1,4 @@
-import 'package:poscrisma/core/manager/store.dart';
+import 'package:core/core.dart';
 
 import 'action/home_action.dart';
 import 'state/home_state.dart';
