@@ -8,6 +8,7 @@
     "network": "connection",
     "dto": "interface",
     "usecase": "tasks",
+    "action": "tasks",
     "usecases": "tasks",
     "repositories": "content",
     "infra": "project",
@@ -17,6 +18,7 @@
     "notifier": "event",
     "rive": "animation",
     "architecture": "terraform",
+    "interceptor": "template",
     "delegate": "class",
     "tracker": "log",
     "logger": "log",
@@ -25,6 +27,6 @@
     "features": "app",
     "feature": "app",
     "effect": "event",
-    "reducer": "context",
+    "reducer": "pipe",
   }
 }

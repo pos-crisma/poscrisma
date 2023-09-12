@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poscrisma/app/home/module/home_module.dart';
+import 'package:poscrisma/app/splash_screen/splash_screen_page.dart';
 
 class AppModule extends Module {
   @override
@@ -10,6 +10,9 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.module('/', module: HomeModule());
+    r.child('/', child: (_) => const SplashScreenPage());
+    r.module('/home', module: HomeModule());
+
+    r.redirect('/', to: '/home/');
   }
 }
