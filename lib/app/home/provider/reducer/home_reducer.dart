@@ -11,7 +11,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return action.fold(
       (action) => _sun(),
       (action) => _subtract(),
-      (action) => _result(action),
+      (action) => _result(action.random),
       (action) => _divider(),
       (action) => _service(),
     );
@@ -20,7 +20,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   _sun() {
     value.number += 1;
 
-    return Effect.send(Multied());
+    return Effect.send(HomeAction.multiplay());
   }
 
   _subtract() {
@@ -29,22 +29,22 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.none();
   }
 
-  _result(Multied state) {
-    value.number *= 2;
-    value.text = state.random;
+  _result(String random) {
+    value.number += 2;
+    value.text = random;
 
-    return Effect.send(Divided());
+    return Effect.send(HomeAction.divided());
   }
 
   _divider() {
-    value.number ~/ 2;
+    value.number -= 2;
     return Effect.none();
   }
 
   _service() {
     return Effect.run(
       () async {
-        send(Multied(random: ""));
+        send(HomeAction.multiplay());
       },
     );
   }

@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  viewStore.send(WebService());
+                  viewStore.send(HomeAction.webservice());
                 },
               )
             ],
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
               color: Colors.blue[200],
               child: const Text("Adicionar"),
               onPressed: () {
-                viewStore.send(Added(random: "Sum action"));
+                viewStore.send(HomeAction.sum(random: "Sum action"));
               },
             ),
           ),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
               color: Colors.orange[200],
               child: const Text("Subtrair"),
               onPressed: () =>
-                  viewStore.send(Subtracted(random: "Subtract action")),
+                  viewStore.send(HomeAction.subtract(random: "Subtract action")),
             ),
           ),
         ],

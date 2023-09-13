@@ -1,60 +1,68 @@
-import 'package:core/core.dart';
+sealed class HomeAction {
+  static HomeAction sum({int value = 1, String random = ""}) =>
+      _Added(random: random, value: value);
+  static HomeAction subtract({int value = 1, String random = ""}) =>
+      _Subtracted(random: random, value: value);
+  static HomeAction multiplay({int value = 1, String random = ""}) =>
+      _Multied(random: random, value: value);
+  static HomeAction divided({int value = 1, String random = ""}) =>
+      _Divided(random: random, value: value);
+  static HomeAction webservice() => _WebService();
 
-sealed class HomeAction with Action {
   T fold<T>(
-    T Function(Added action) added,
-    T Function(Subtracted action) subtract,
-    T Function(Multied action) multiplay,
-    T Function(Divided action) divide,
-    T Function(WebService action) service,
+    T Function(_Added action) added,
+    T Function(_Subtracted action) subtract,
+    T Function(_Multied action) multiplay,
+    T Function(_Divided action) divide,
+    T Function(_WebService action) service,
   ) =>
       switch (this) {
-        Added action => added(action),
-        Subtracted action => subtract(action),
-        Multied action => multiplay(action),
-        Divided action => divide(action),
-        WebService action => service(action),
+        _Added action => added(action),
+        _Subtracted action => subtract(action),
+        _Multied action => multiplay(action),
+        _Divided action => divide(action),
+        _WebService action => service(action),
       };
 }
 
-class Added extends HomeAction {
+class _Added extends HomeAction {
   final int value;
   final String random;
 
-  Added({
+  _Added({
     this.value = 1,
     this.random = "",
   });
 }
 
-class Subtracted extends HomeAction {
+class _Subtracted extends HomeAction {
   final int value;
   final String random;
 
-  Subtracted({
+  _Subtracted({
     this.value = 1,
     this.random = "",
   });
 }
 
-class Multied extends HomeAction {
+class _Multied extends HomeAction {
   final int value;
   final String random;
 
-  Multied({
+  _Multied({
     this.value = 1,
     this.random = "",
   });
 }
 
-class Divided extends HomeAction {
+class _Divided extends HomeAction {
   final int value;
   final String random;
 
-  Divided({
+  _Divided({
     this.value = 1,
     this.random = "",
   });
 }
 
-class WebService extends HomeAction {}
+class _WebService extends HomeAction {}
