@@ -38,6 +38,8 @@ dependencies:
 
   core:
    path: "./modules/core"
+  design:
+   path: "./modules/design"
 
 dev_dependencies:
   flutter_test:
