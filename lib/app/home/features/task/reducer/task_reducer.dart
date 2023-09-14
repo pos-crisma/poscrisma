@@ -14,6 +14,7 @@ class TaskReducer extends Reducer<TaskAction, TaskState> {
   Future<Effect> reduce(TaskAction action) async {
     return action.fold(
       (action) => _service(),
+      (action) => _back(),
       (action) => _receive(action.text),
     );
   }
@@ -28,6 +29,13 @@ class TaskReducer extends Reducer<TaskAction, TaskState> {
 
   _receive(String newText) {
     value.text = newText;
+
+    return Effect.none();
+  }
+
+  _back() {
+    Modular.to.pop();
+    value.text = "Back action";
 
     return Effect.none();
   }

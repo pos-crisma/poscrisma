@@ -14,7 +14,7 @@ class TaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          onPressed: () => Modular.to.pop(),
+          onPressed: () => viewStore.send(TaskAction.back()),
         ),
       ),
       body: Column(
