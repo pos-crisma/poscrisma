@@ -8,6 +8,7 @@ sealed class HomeAction {
   static HomeAction divided({int value = 1, String random = ""}) =>
       _Divided(random: random, value: value);
   static HomeAction webservice() => _WebService();
+  static HomeAction taskService() => _TaskService();
 
   T fold<T>(
     T Function(_Added action) added,
@@ -15,6 +16,7 @@ sealed class HomeAction {
     T Function(_Multied action) multiplay,
     T Function(_Divided action) divide,
     T Function(_WebService action) service,
+    T Function(_TaskService action) taskService,
   ) =>
       switch (this) {
         _Added action => added(action),
@@ -22,6 +24,7 @@ sealed class HomeAction {
         _Multied action => multiplay(action),
         _Divided action => divide(action),
         _WebService action => service(action),
+        _TaskService action => taskService(action),
       };
 }
 
@@ -66,3 +69,5 @@ class _Divided extends HomeAction {
 }
 
 class _WebService extends HomeAction {}
+
+class _TaskService extends HomeAction {}

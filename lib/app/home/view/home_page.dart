@@ -1,14 +1,15 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:poscrisma/app/home/provider/reducer/home_reducer.dart';
 
 import '../provider/reducer/action/home_action.dart';
-import '../provider/store/home_store.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final viewStore = HomeStore.of(context);
+    final viewStore = context.watch<HomeReducer>();
 
     return Scaffold(
       body: Center(
@@ -39,7 +40,21 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   viewStore.send(HomeAction.webservice());
                 },
-              )
+              ),
+              MaterialButton(
+                height: 50,
+                color: Colors.purple[700],
+                child: const Text(
+                  "page",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 23,
+                  ),
+                ),
+                onPressed: () {
+                  Modular.to.pushNamed("/home/task");
+                },
+              ),
             ],
           ),
         ),
@@ -61,8 +76,8 @@ class HomePage extends StatelessWidget {
               height: 100,
               color: Colors.orange[200],
               child: const Text("Subtrair"),
-              onPressed: () =>
-                  viewStore.send(HomeAction.subtract(random: "Subtract action")),
+              onPressed: () => viewStore
+                  .send(HomeAction.subtract(random: "Subtract action")),
             ),
           ),
         ],

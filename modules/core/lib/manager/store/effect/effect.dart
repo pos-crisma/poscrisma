@@ -1,10 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:flutter/foundation.dart';
-
 sealed class Effect {
   static Effect none() => _None();
-  static Effect run(AsyncCallback function) => _Run(function);
+  static Effect run<T>(Future<T> function) => _Run(function);
   static Effect send(action) => _Send(action);
 
   T fold<T>(
@@ -21,8 +19,8 @@ sealed class Effect {
 
 class _None extends Effect {}
 
-class _Run extends Effect {
-  final AsyncCallback function;
+class _Run<T> extends Effect {
+  final Future<T> function;
 
   _Run(this.function);
 }

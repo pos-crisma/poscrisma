@@ -6,6 +6,8 @@ import 'state/home_state.dart';
 class HomeReducer extends Reducer<HomeAction, HomeState> {
   HomeReducer() : super(HomeState(1, ""));
 
+  // final TaskReducer taskReducer;
+
   @override
   Future<Effect> reduce(HomeAction action) async {
     return action.fold(
@@ -14,6 +16,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       (action) => _result(action.random),
       (action) => _divider(),
       (action) => _service(),
+      (action) => _taskService(),
     );
   }
 
@@ -44,8 +47,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   _service() {
     return Effect.run(
       () async {
-        send(HomeAction.multiplay());
-      },
+        return "Home Reducer -> Action executed -> Task Reducer new State";
+      }(),
     );
+  }
+
+  _taskService() {
+    return Effect.none();
   }
 }
