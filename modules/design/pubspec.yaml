@@ -22,8 +22,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
-  # assets:
-  #   - assets/svg/
+  assets:
+    - assets/image/
   #   - assets/svg/solid/
   #   - assets/svg/outline/
   #   - assets/images/
@@ -42,4 +42,20 @@ flutter:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
           weight: 400
         - asset: assets/fonts/Roboto/Roboto-Thin.ttf
+          weight: 100
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope/Manrope-ExtraBold.ttf
+          weight: 900
+        - asset: assets/fonts/Manrope/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Manrope/Manrope-SemiBold.ttf
+          weight: 700
+        - asset: assets/fonts/Manrope/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Manrope/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Manrope/Manrope-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Manrope/Manrope-ExtraLight.ttf
           weight: 100
