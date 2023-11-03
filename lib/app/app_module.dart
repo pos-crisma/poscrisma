@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:poscrisma/app/home/module/home_module.dart';
+import 'package:feed/feed.dart';
 import 'package:poscrisma/app/splash_screen/splash_screen_page.dart';
 
 class AppModule extends Module {
@@ -11,8 +11,8 @@ class AppModule extends Module {
   @override
   void routes(r) {
     r.child('/', child: (_) => const SplashScreenPage());
-    r.module('/home', module: HomeModule());
+    r.module('/feed', module: FeedModule());
 
-    r.redirect('/', to: '/home/');
+    r.redirect('/', to: '/feed/');
   }
 }

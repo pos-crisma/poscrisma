@@ -5,8 +5,8 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeMobile extends StatelessWidget {
-  HomeMobile({super.key});
+class FeedMobile extends StatelessWidget {
+  FeedMobile({super.key});
 
   final ScrollController controller = ScrollController();
 

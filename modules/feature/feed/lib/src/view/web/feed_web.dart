@@ -2,8 +2,8 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeWeb extends StatelessWidget {
-  const HomeWeb({super.key});
+class FeedWeb extends StatelessWidget {
+  const FeedWeb({super.key});
 
   @override
   Widget build(BuildContext context) {
