@@ -12,6 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  core:
+    path: "../../core"
+  design:
+    path: "../../design"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

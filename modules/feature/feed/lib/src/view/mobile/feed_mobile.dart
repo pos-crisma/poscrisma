@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,10 +18,11 @@ class FeedMobile extends StatelessWidget {
         controller: controller,
         slivers: [
           SliverAppBar(
-            forceElevated: true,
+            forceElevated: false,
             pinned: true,
-            elevation: 1,
+            elevation: 0,
             stretch: true,
+            backgroundColor: darkBackground,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Stack(
@@ -55,7 +57,7 @@ class FeedMobile extends StatelessWidget {
                                 ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () => Modular.to.pushNamed('/invite/'),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
@@ -141,9 +143,7 @@ class FeedMobile extends StatelessWidget {
                   // * Center Viewer
                   Positioned.fill(
                     child: GestureDetector(
-                      onTap: () {
-                        print("object");
-                      },
+                      onTap: () => Modular.to.pushNamed('/logged/'),
                       child: Align(
                         alignment: Alignment.center,
                         child: ClipRRect(
@@ -171,7 +171,6 @@ class FeedMobile extends StatelessWidget {
             expandedHeight: Responsive.isSmallScreen(context) ? 250 : 500,
             collapsedHeight: 0,
             toolbarHeight: 0,
-            backgroundColor: Color.fromARGB(255, 15, 16, 19),
           ),
           SliverToBoxAdapter(
             child: Container(
