@@ -15,12 +15,10 @@ mixin LightTheme {
     brightness: Brightness.light,
     textTheme: CustomizeTextTheme.lightTextTheme,
     appBarTheme: const AppBarTheme(
-      color: Colors.blue,
+      backgroundColor: lightBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.purple,
-      brightness: Brightness.light,
+    colorScheme: const ColorScheme.light(
       background: lightBackground,
     ),
   );

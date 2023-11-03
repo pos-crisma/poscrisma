@@ -12,15 +12,15 @@ mixin DarkTheme {
     fontFamilyFallback: const [
       RobotoFont.roboto,
     ],
+    brightness: Brightness.dark,
     textTheme: CustomizeTextTheme.darkTextTheme,
     appBarTheme: const AppBarTheme(
-      // color: Colors.transparent,
+      backgroundColor: darkBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.deepPurple,
-      brightness: Brightness.dark,
+    colorScheme: const ColorScheme.dark(
       background: darkBackground,
     ),
+    scaffoldBackgroundColor: darkBackground,
   );
 }

@@ -19,10 +19,10 @@ class FeedMobile extends StatelessWidget {
         slivers: [
           SliverAppBar(
             forceElevated: false,
-            pinned: true,
+            pinned: false,
             elevation: 0,
             stretch: true,
-            backgroundColor: darkBackground,
+            backgroundColor: Colors.transparent,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Stack(
@@ -143,7 +143,7 @@ class FeedMobile extends StatelessWidget {
                   // * Center Viewer
                   Positioned.fill(
                     child: GestureDetector(
-                      onTap: () => Modular.to.pushNamed('/logged/'),
+                      onTap: () => Modular.to.pushNamed('/auth/'),
                       child: Align(
                         alignment: Alignment.center,
                         child: ClipRRect(
@@ -248,7 +248,7 @@ class FeedMobile extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: 100,
+              childCount: 10,
               (context, index) {
                 // TODO: Create card to show noticies
                 return ListTile(
@@ -260,6 +260,9 @@ class FeedMobile extends StatelessWidget {
               },
             ),
           ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 30),
+          )
         ],
       ),
     );
