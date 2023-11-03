@@ -51,6 +51,8 @@ dependencies:
   # Features Modules
   feed:
     path: "./modules/feature/feed"
+  game:
+    path: "./modules/feature/game"
   young:
     path: "./modules/feature/young"
   parish:
@@ -61,6 +63,8 @@ dependencies:
     path: "./modules/feature/godparent"
   authenticator:
     path: "./modules/feature/authenticator"
+  splash_screen:
+    path: "./modules/feature/splash_screen"
 
 dev_dependencies:
   flutter_test:
