@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,29 +13,26 @@ class HomeMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          SystemMode.isDark(context) ? Colors.grey.shade900 : Colors.white,
       body: CustomScrollView(
         controller: controller,
         slivers: [
           SliverAppBar(
-            backgroundColor: SystemMode.isDark(context)
-                ? Colors.deepPurple.shade700
-                : Colors.deepPurple.shade300,
-            forceElevated: false,
+            forceElevated: true,
             pinned: true,
-            elevation: 0,
+            elevation: 1,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Stack(
                 children: [
+                  // * Image background Viewer
                   const Positioned.fill(
                     child: Image(
-                      image: backgroundCastleTower,
+                      image: backgroundMountains,
                       fit: BoxFit.cover,
                     ),
                   ),
+                  // * Header Viewer
                   Positioned(
                     top: MediaQuery.of(context).padding.top,
                     width: MediaQuery.of(context).size.width,
@@ -47,103 +45,205 @@ class HomeMobile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Inicio",
+                            "Inicio", // TODO: Move to i18n
                             style: Theme.of(context)
                                 .textTheme
-                                .headlineLarge
-                                ?.copyWith(
+                                .titleLarge! //
+                                .copyWith(
                                   color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                           ),
-                          const Icon(
-                            CupertinoIcons.bell_fill,
-                            color: Colors.white,
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                color: Colors.grey.shade300.withOpacity(0.3),
+                                child: BackdropFilter(
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                                  child: const Icon(
+                                    CupertinoIcons.envelope_fill,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
+
+                  // * Bottom Viewer
+                  Positioned(
+                    bottom: 0,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: Responsive.isSmallScreen(context) //
+                            ? 8
+                            : 16,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade900,
+                              ),
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(
+                                  sigmaX: 30,
+                                  sigmaY: 30,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "2023", // TODO: Move to i18n
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge! //
+                                          .copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      "Acampamento poscrisma", // TODO: Move to i18n
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge! //
+                                          .copyWith(
+                                            color: Colors.white,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // * Center Viewer
+                  Positioned.fill(
+                    child: GestureDetector(
+                      onTap: () {
+                        print("object");
+                      },
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5,
+                              sigmaY: 5,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                CupertinoIcons.play_fill,
+                                size: 60,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
-            expandedHeight: Responsive.isSmallScreen(context) ? 250 : 300,
+            expandedHeight: Responsive.isSmallScreen(context) ? 250 : 500,
             collapsedHeight: 0,
             toolbarHeight: 0,
+            backgroundColor: Color.fromARGB(255, 15, 16, 19),
           ),
           SliverToBoxAdapter(
             child: Container(
-              padding: const EdgeInsets.all(8),
-              height: 70,
-              decoration: BoxDecoration(
-                color: SystemMode.isDark(context)
-                    ? Colors.deepPurple.shade700
-                    : Colors.deepPurple.shade300,
+              padding: EdgeInsets.symmetric(
+                horizontal: Responsive.isSmallScreen(context) ? 8 : 16,
+                vertical: 8,
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GlassMorphism(
-                    start: 0.3,
-                    end: 0.6,
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(
-                        CupertinoIcons.alt,
-                        size: 20,
-                        color: SystemMode.isDark(context)
-                            ? Colors.white
-                            : Colors.black,
-                      ),
+              child: Text(
+                "Principais", // TODO: Move to i18n
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge! //
+                    .copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
-                  ),
-                  GlassMorphism(
-                    start: 0.3,
-                    end: 0.6,
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(
-                        CupertinoIcons.alt,
-                        size: 20,
-                        color: SystemMode.isDark(context)
-                            ? Colors.white
-                            : Colors.black,
-                      ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  aspectRatio: 1.0,
+                  viewportFraction: 0.92,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  autoPlay: false,
+                  scrollDirection: Axis.horizontal,
+                ),
+                items: [1, 2, 3, 4, 5].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      // TODO: Create Card to Carousel
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                          color: SystemMode.isDark(context) //
+                              ? darkCardBackground
+                              : lightCardBackground,
+                        ),
+                        child: Text(
+                          'text $i',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+
+          // * Box Header
+          // [SliverToBoxAdapter]
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: Responsive.isSmallScreen(context) ? 8 : 16,
+                vertical: 8,
+              ),
+              child: Text(
+                "Noticias", // TODO: Move to i18n
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge! //
+                    .copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
-                  ),
-                  GlassMorphism(
-                    start: 0.3,
-                    end: 0.6,
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(
-                        CupertinoIcons.alt,
-                        size: 20,
-                        color: SystemMode.isDark(context)
-                            ? Colors.white
-                            : Colors.black,
-                      ),
-                    ),
-                  ),
-                  GlassMorphism(
-                    start: 0.3,
-                    end: 0.6,
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(
-                        CupertinoIcons.alt,
-                        size: 20,
-                        color: SystemMode.isDark(context)
-                            ? Colors.white
-                            : Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
@@ -151,68 +251,17 @@ class HomeMobile extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               childCount: 100,
               (context, index) {
+                // TODO: Create card to show noticies
                 return ListTile(
                   title: Text(
                     "Item $index",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: SystemMode.isDark(context)
-                              ? Colors.white
-                              : Colors.black,
-                        ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 );
               },
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class GlassMorphism extends StatelessWidget {
-  final Widget child;
-  final double start;
-  final double end;
-
-  const GlassMorphism({
-    Key? key,
-    required this.child,
-    required this.start,
-    required this.end,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                SystemMode.isDark(context)
-                    ? Colors.black.withOpacity(start)
-                    : Colors.white.withOpacity(start),
-                SystemMode.isDark(context)
-                    ? Colors.black.withOpacity(end)
-                    : Colors.white.withOpacity(end),
-              ],
-              begin: AlignmentDirectional.topStart,
-              end: AlignmentDirectional.bottomEnd,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
-            ),
-            border: Border.all(
-              width: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.black.withOpacity(0.7)
-                  : Colors.white.withOpacity(0.7),
-            ),
-          ),
-          child: child,
-        ),
       ),
     );
   }

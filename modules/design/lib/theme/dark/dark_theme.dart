@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../color/color.dart';
 import '../../font/manrope_font.dart';
 import '../../font/roboto_font.dart';
+import '../config/text/text.dart';
 
 mixin DarkTheme {
   static final ThemeData theme = ThemeData(
@@ -10,13 +12,15 @@ mixin DarkTheme {
     fontFamilyFallback: const [
       RobotoFont.roboto,
     ],
-    textTheme: const TextTheme(),
+    textTheme: CustomizeTextTheme.darkTextTheme,
     appBarTheme: const AppBarTheme(
-      color: Colors.transparent,
+      // color: Colors.transparent,
       iconTheme: IconThemeData(color: Colors.white),
     ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.deepPurple,
+      brightness: Brightness.dark,
+      background: darkBackground,
     ),
   );
 }
