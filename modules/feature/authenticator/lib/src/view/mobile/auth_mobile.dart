@@ -46,7 +46,7 @@ class AuthMobile extends StatelessWidget {
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 100,
-              child: Text("Abestaiado"),
+              child: Text('Auth'),
             ),
           ),
         ],
