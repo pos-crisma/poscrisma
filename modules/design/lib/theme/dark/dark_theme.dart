@@ -15,6 +15,7 @@ mixin DarkTheme {
     brightness: Brightness.dark,
     textTheme: CustomizeTextTheme.darkTextTheme,
     appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.transparent,
       backgroundColor: darkBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),

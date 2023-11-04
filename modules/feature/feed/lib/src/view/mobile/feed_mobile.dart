@@ -17,12 +17,12 @@ class FeedMobile extends StatelessWidget {
       body: CustomScrollView(
         controller: controller,
         slivers: [
+          // *
           SliverAppBar(
             forceElevated: false,
-            pinned: false,
+            pinned: true,
             elevation: 0,
             stretch: true,
-            backgroundColor: Colors.transparent,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Stack(
@@ -30,10 +30,11 @@ class FeedMobile extends StatelessWidget {
                   // * Image background Viewer
                   const Positioned.fill(
                     child: Image(
-                      image: backgroundMountains,
+                      image: backgroundCastleTower,
                       fit: BoxFit.cover,
                     ),
                   ),
+
                   // * Header Viewer
                   Positioned(
                     top: MediaQuery.of(context).padding.top,
@@ -56,13 +57,16 @@ class FeedMobile extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
-                          GestureDetector(
-                            onTap: () => Modular.to.pushNamed('/invite/'),
+                          CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () => Modular.to.pushNamed('/invite/'),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
                                 padding: const EdgeInsets.all(8),
-                                color: Colors.grey.shade300.withOpacity(0.3),
+                                color: SystemMode.isDark(context)
+                                    ? Colors.grey.shade900.withOpacity(0.3)
+                                    : Colors.grey.shade300.withOpacity(0.3),
                                 child: BackdropFilter(
                                   filter:
                                       ImageFilter.blur(sigmaX: 3, sigmaY: 3),
@@ -101,7 +105,9 @@ class FeedMobile extends StatelessWidget {
                                 horizontal: 8,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade900,
+                                color: SystemMode.isDark(context)
+                                    ? Colors.grey.shade900.withOpacity(0.3)
+                                    : Colors.grey.shade300.withOpacity(0.3),
                               ),
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
@@ -142,22 +148,30 @@ class FeedMobile extends StatelessWidget {
 
                   // * Center Viewer
                   Positioned.fill(
-                    child: GestureDetector(
-                      onTap: () => Modular.to.pushNamed('/auth/'),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 5,
-                              sigmaY: 5,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CupertinoButton(
+                          pressedOpacity: 0.8,
+                          padding: EdgeInsets.zero,
+                          onPressed: () => Modular.to.pushNamed('/auth/'),
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: SystemMode.isDark(context)
+                                  ? Colors.grey.shade900.withOpacity(0.3)
+                                  : Colors.grey.shade300.withOpacity(0.3),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 5,
+                                sigmaY: 5,
+                              ),
+                              child: const Icon(
                                 CupertinoIcons.play_fill,
                                 size: 60,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -172,6 +186,8 @@ class FeedMobile extends StatelessWidget {
             collapsedHeight: 0,
             toolbarHeight: 0,
           ),
+
+          // *
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.symmetric(
@@ -190,6 +206,8 @@ class FeedMobile extends StatelessWidget {
               ),
             ),
           ),
+
+          // *
           SliverToBoxAdapter(
             child: SizedBox(
               height: 200,
@@ -227,7 +245,6 @@ class FeedMobile extends StatelessWidget {
           ),
 
           // * Box Header
-          // [SliverToBoxAdapter]
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.symmetric(
@@ -246,6 +263,8 @@ class FeedMobile extends StatelessWidget {
               ),
             ),
           ),
+
+          // * Box List
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: 10,
@@ -260,6 +279,8 @@ class FeedMobile extends StatelessWidget {
               },
             ),
           ),
+
+          // * Bottom Space
           const SliverToBoxAdapter(
             child: SizedBox(height: 30),
           )

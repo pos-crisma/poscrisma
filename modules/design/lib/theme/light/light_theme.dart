@@ -15,6 +15,7 @@ mixin LightTheme {
     brightness: Brightness.light,
     textTheme: CustomizeTextTheme.lightTextTheme,
     appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.transparent,
       backgroundColor: lightBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),
