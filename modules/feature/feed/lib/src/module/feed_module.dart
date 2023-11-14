@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 
-import '../view/feed_page.dart';
+import '../feature/content/view/content_page.dart';
+import '../feature/feed/view/feed_page.dart';
 
 class FeedModule extends Module {
   @override
@@ -13,6 +14,10 @@ class FeedModule extends Module {
     r.child(
       "/",
       child: (_) => const FeedPage(),
+    );
+    r.child(
+      '/content',
+      child: (context) => const ContentPage(),
     );
   }
 }
