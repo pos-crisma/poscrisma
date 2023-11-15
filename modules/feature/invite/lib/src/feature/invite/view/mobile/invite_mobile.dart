@@ -55,9 +55,12 @@ class InviteMobile extends StatelessWidget {
             ),
           ),
           const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: CustomTextFormField(
               autoFocus: true,
+              boxDecorationColor: SystemMode.isDark(context)
+                  ? Colors.black
+                  : Colors.grey.shade200,
               labelText: 'Link do convite', // TODO: Move to i18n
             ),
           ),
@@ -121,7 +124,7 @@ class InviteMobile extends StatelessWidget {
                         color: Colors.white,
                       ),
                 ),
-                onPressed: () => Modular.to.pushNamed('user'),
+                onPressed: () => Modular.to.pushNamed('/parish/'),
               ),
             ),
           ),

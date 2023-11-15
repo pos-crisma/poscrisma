@@ -71,9 +71,12 @@ class UserEmailMobile extends StatelessWidget {
                 const SliverToBoxAdapter(
                   child: SizedBox(height: 24),
                 ),
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: CustomTextFormField(
                     autoFocus: true,
+                    boxDecorationColor: SystemMode.isDark(context)
+                        ? Colors.black
+                        : Colors.grey.shade200,
                     labelText: 'Email', // TODO: Move to i18n
                   ),
                 ),

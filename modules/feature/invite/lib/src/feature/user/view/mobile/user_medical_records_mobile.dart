@@ -74,9 +74,12 @@ class UserMedicalRecordsMobile extends StatelessWidget {
                 SliverList.builder(
                   itemCount: 1,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(bottom: 8),
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
                       child: CustomTextFormField(
+                        boxDecorationColor: SystemMode.isDark(context)
+                            ? Colors.black
+                            : Colors.grey.shade200,
                         labelText: 'Informação medica',
                       ),
                     );
