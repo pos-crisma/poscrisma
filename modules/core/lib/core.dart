@@ -11,5 +11,7 @@ export './module/network/error/model/error_info.dart';
 export './module/network/network_module.dart';
 
 export './firebase/config.dart';
+export './firebase/instance_firestore.dart';
+export './firebase/instance_analitycs.dart';
 
 export 'package:flutter_modular/flutter_modular.dart';
