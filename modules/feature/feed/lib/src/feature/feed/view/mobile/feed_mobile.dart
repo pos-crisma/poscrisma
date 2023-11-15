@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:core/core.dart';
-import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:feed/src/feature/feed/view/mobile/components/carousel_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +17,7 @@ class FeedMobile extends StatelessWidget {
       body: CustomScrollView(
         controller: controller,
         slivers: [
-          // *
+          // * Header
           SliverAppBar(
             forceElevated: false,
             pinned: true,

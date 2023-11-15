@@ -5,6 +5,9 @@ import 'app/app_module.dart';
 import 'app/app_widget.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  firebaseConfiguration();
+
   return runApp(
     ModularApp(
       module: AppModule(),
