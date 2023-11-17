@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class ParishMobile extends StatelessWidget {
               slivers: [
                 SliverAppBar(
                   backgroundColor: SystemMode.isDark(context)
-                      ? Colors.black
+                      ? darkBackground
                       : Colors.grey.shade200,
                   surfaceTintColor: Colors.transparent,
                   pinned: true,

@@ -37,6 +37,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 70,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.only(left: 16),
       decoration: BoxDecoration(
