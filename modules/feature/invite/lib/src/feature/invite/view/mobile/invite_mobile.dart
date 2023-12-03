@@ -2,12 +2,17 @@ import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:invite/src/feature/invite/provider/feature/action/invite_action.dart';
+
+import '../../provider/feature/store/invite_store.dart';
 
 class InviteMobile extends StatelessWidget {
   const InviteMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewStore = context.watch<InviteReducer>();
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -57,7 +62,9 @@ class InviteMobile extends StatelessWidget {
           const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
           SliverToBoxAdapter(
             child: CustomTextFormField(
+              focusNote: viewStore.value.onFocus,
               autoFocus: true,
+              controller: viewStore.value.textEditingController,
               boxDecorationColor: SystemMode.isDark(context)
                   ? Colors.black
                   : Colors.grey.shade200,
@@ -83,7 +90,9 @@ class InviteMobile extends StatelessWidget {
                         .labelMedium! //
                         .copyWith(
                           fontWeight: FontWeight.w300,
-                          color: Colors.grey.shade50,
+                          color: SystemMode.isDark(context)
+                              ? Colors.grey.shade50
+                              : Colors.grey.shade800,
                         ),
                   ),
                   Text(
@@ -93,7 +102,9 @@ class InviteMobile extends StatelessWidget {
                         .labelMedium! //
                         .copyWith(
                           fontWeight: FontWeight.w300,
-                          color: Colors.grey.shade50,
+                          color: SystemMode.isDark(context)
+                              ? Colors.grey.shade50
+                              : Colors.grey.shade800,
                         ),
                   ),
                 ],
@@ -110,10 +121,16 @@ class InviteMobile extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 200),
+              padding: viewStore.value.onFocus.hasFocus
+                  ? EdgeInsets.zero
+                  : const EdgeInsets.symmetric(horizontal: 8),
               child: CupertinoButton(
                 color: Colors.deepPurple.shade300,
+                borderRadius: viewStore.value.onFocus.hasFocus
+                    ? BorderRadius.zero
+                    : const BorderRadius.all(Radius.circular(8.0)),
                 child: Text(
                   'Verifica convite', // TODO: move to i18n
                   style: Theme.of(context)
@@ -124,7 +141,7 @@ class InviteMobile extends StatelessWidget {
                         color: Colors.white,
                       ),
                 ),
-                onPressed: () => Modular.to.pushNamed('/parish/'),
+                onPressed: () => viewStore.send(InviteAction.buttonTapped()),
               ),
             ),
           ),

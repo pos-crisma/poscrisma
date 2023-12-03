@@ -14,13 +14,18 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.textInputAction,
+    FocusNode? focusNote,
+    EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
         _autoFocus = autoFocus,
+        _edgeInsets = edgeInsets,
+        _focusNode = focusNote,
         super(
           key: key,
         );
 
+  final EdgeInsets _edgeInsets;
   final String labelText;
   final Color _boxDecorationColor;
   final BorderRadiusGeometry _borderRadiusGeometry;
@@ -34,37 +39,44 @@ class CustomTextFormField extends StatelessWidget {
   final TextCapitalization textCapitalization = TextCapitalization.none;
   final TextInputAction? textInputAction;
 
+  final FocusNode? _focusNode;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.only(left: 16),
-      decoration: BoxDecoration(
-        color: _boxDecorationColor,
+    return Padding(
+      padding: _edgeInsets,
+      child: ClipRRect(
         borderRadius: _borderRadiusGeometry,
-      ),
-      child: TextFormField(
-        autofocus: _autoFocus,
-        controller: controller,
-        keyboardType: keyboardType,
-        textCapitalization: textCapitalization,
-        textInputAction: textInputAction,
-        decoration: InputDecoration(
-          labelText: labelText,
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-          focusedErrorBorder: InputBorder.none,
-          suffixIcon: CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: suffixPress,
-            child: Icon(
-              CupertinoIcons.clear_circled_solid,
-              color: Colors.grey.shade600,
+        child: TextFormField(
+          focusNode: _focusNode,
+          autofocus: _autoFocus,
+          controller: controller,
+          keyboardType: keyboardType,
+          textCapitalization: textCapitalization,
+          textInputAction: textInputAction,
+          decoration: InputDecoration(
+            labelText: labelText,
+            filled: true,
+            fillColor: _boxDecorationColor,
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            focusedErrorBorder: InputBorder.none,
+            suffixIcon: CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: suffixPress,
+              child: Icon(
+                CupertinoIcons.clear_circled_solid,
+                color: Colors.grey.shade600,
+              ),
+            ),
+            contentPadding: const EdgeInsets.only(
+              top: 12,
+              left: 12,
+              right: 0,
+              bottom: 12,
             ),
           ),
         ),
