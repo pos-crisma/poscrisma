@@ -27,7 +27,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     print("State: ${value.textEditingController.text}");
     print("State: ${value.onFocus.hasFocus}");
 
-    return Effect.none();
+    return Effect.send(InviteAction.subtract());
   }
 
   _service() {
