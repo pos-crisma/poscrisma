@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../effect/effect.dart';
 
-abstract class Reducer<Action, State> extends ChangeNotifier {
-  Reducer(this.value);
+abstract class Reducer<Action, State> extends ValueNotifier<State> {
+  Reducer(this.state) : super(state);
 
-  State value;
+  State state;
 
   Future<Effect> reduce(Action action);
 

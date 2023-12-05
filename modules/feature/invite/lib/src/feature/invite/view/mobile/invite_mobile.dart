@@ -4,14 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:invite/src/feature/invite/provider/feature/action/invite_action.dart';
 
+import '../../provider/feature/state/invite_state.dart';
 import '../../provider/feature/store/invite_store.dart';
 
 class InviteMobile extends StatelessWidget {
-  const InviteMobile({super.key});
+  InviteMobile({super.key});
+
+  final InviteReducer viewStore = Modular.get();
 
   @override
   Widget build(BuildContext context) {
-    final viewStore = context.watch<InviteReducer>();
+    viewStore.send(InviteAction.onAppear());
 
     return Scaffold(
       body: CustomScrollView(
@@ -126,22 +129,38 @@ class InviteMobile extends StatelessWidget {
               padding: viewStore.value.onFocus.hasFocus
                   ? EdgeInsets.zero
                   : const EdgeInsets.symmetric(horizontal: 8),
-              child: CupertinoButton(
-                color: Colors.deepPurple.shade300,
-                borderRadius: viewStore.value.onFocus.hasFocus
-                    ? BorderRadius.zero
-                    : const BorderRadius.all(Radius.circular(8.0)),
-                child: Text(
-                  'Verifica convite', // TODO: move to i18n
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium! //
-                      .copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+              child: ValueListenableBuilder(
+                valueListenable: viewStore,
+                builder: (context, value, child) {
+                  return CupertinoButton(
+                    color: Colors.deepPurple.shade300,
+                    disabledColor: Colors.deepPurple.shade100,
+                    borderRadius: value.onFocus.hasFocus
+                        ? BorderRadius.zero
+                        : const BorderRadius.all(Radius.circular(8.0)),
+                    onPressed: value.status == InviteServiceStatus.loading
+                        ? null
+                        : () => viewStore.send(InviteAction.buttonTapped()),
+                    child: AnimatedCrossFade(
+                      crossFadeState:
+                          value.status == InviteServiceStatus.loading
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
+                      firstChild: Text(
+                        'Verifica convite',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium! //
+                            .copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                       ),
-                ),
-                onPressed: () => viewStore.send(InviteAction.buttonTapped()),
+                      secondChild: const CircularProgressIndicator.adaptive(),
+                      duration: Durations.short2,
+                    ),
+                  );
+                },
               ),
             ),
           ),

@@ -21,33 +21,33 @@ class UserMobileReducer extends Reducer<UserMobileAction, UserMobileState> {
     value.nickname = nickname;
     value.pageViewer = PageViewer.name;
 
-    return Effect.none();
+    return Effect.emit();
   }
 
   _nameButtonTapped(String name) {
     value.name = name;
     value.pageViewer = PageViewer.email;
 
-    return Effect.none();
+    return Effect.emit();
   }
 
   _phoneButtonTapped(String phone) {
     value.phone = phone;
     value.pageViewer = PageViewer.medicalRecords;
 
-    return Effect.none();
+    return Effect.emit();
   }
 
   _emailButtonTapped(String email) {
     value.email = email;
     value.pageViewer = PageViewer.phone;
 
-    return Effect.none();
+    return Effect.emit();
   }
 
   _medicalRecordsButtonTapped(String medicalRecords) {
     value.medicalRecords = medicalRecords;
 
-    return Effect.none();
+    return Effect.emit();
   }
 }

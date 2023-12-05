@@ -16,9 +16,9 @@ class InvitePage extends StatelessWidget {
       ),
     );
 
-    return const Responsive(
+    return Responsive(
       mobile: InviteMobile(),
-      desktop: InviteWeb(),
+      desktop: const InviteWeb(),
     );
   }
 }

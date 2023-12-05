@@ -5,11 +5,23 @@ import '../feature/invite/provider/feature/store/invite_store.dart';
 import '../feature/invite/view/invite_page.dart';
 import '../feature/user/view/user_page.dart';
 
+BindConfig<T> storeConfig<T extends Reducer>() {
+  return BindConfig(
+    onDispose: (store) => store.dispose(),
+  );
+}
+
 class InviteModule extends Module {
   @override
   void binds(Injector i) {
-    i.addSingleton(UserMobileReducer.new);
-    i.addSingleton(InviteReducer.new);
+    i.add<UserMobileReducer>(
+      UserMobileReducer.new,
+      config: storeConfig(),
+    );
+    i.add<InviteReducer>(
+      InviteReducer.new,
+      config: storeConfig(),
+    );
   }
 
   @override
