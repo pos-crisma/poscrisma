@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../api/invite_api.dart';
 import '../action/invite_action.dart';
 import '../state/invite_state.dart';
 
@@ -29,8 +30,9 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   }
 
   _onAppear() {
-    value.onFocus.requestFocus();
+    // value.onFocus.requestFocus();
     value.status = InviteServiceStatus.idle;
+
     return Effect.emit();
   }
 
@@ -41,8 +43,15 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _service() {
     return Effect.run<void>(() async {
       await send(InviteAction.loadingInviteService());
-      await Future.delayed(const Duration(seconds: 1));
-      await send(InviteAction.successInviteService());
+      final result = await InviteApi.invite(state.textEditingController.text);
+
+      result //
+          .map((success) => ())
+          .mapError((error) => error)
+          .fold(
+            (success) => send(InviteAction.successInviteService()),
+            (failure) => send(InviteAction.failureInviteService()),
+          );
     });
   }
 
@@ -54,8 +63,6 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _success() {
     return Effect.run<void>(() async {
       await Modular.to.pushNamed('/invite/user');
-
-      await send(InviteAction.onAppear());
     });
   }
 

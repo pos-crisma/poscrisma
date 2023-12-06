@@ -15,3 +15,5 @@ export './firebase/instance_firestore.dart';
 export './firebase/instance_analitycs.dart';
 
 export 'package:flutter_modular/flutter_modular.dart';
+export 'package:result_dart/result_dart.dart';
+export 'package:dio/dio.dart';
