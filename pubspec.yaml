@@ -49,6 +49,8 @@ dependencies:
     path: "./modules/design"
   
   # Features Modules
+  create_user:
+    path: "./modules/feature/create_user"
   feed:
     path: "./modules/feature/feed"
   game:

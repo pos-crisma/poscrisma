@@ -103,6 +103,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  create_user:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/create_user"
+      relative: true
+    source: path
+    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -473,5 +480,5 @@ packages:
     source: path
     version: "0.0.1"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
+  dart: ">=3.2.2 <4.0.0"
   flutter: ">=3.3.0"

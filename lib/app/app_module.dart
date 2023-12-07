@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 
 ///
 import 'package:authenticator/authenticator.dart';
+import 'package:create_user/create_user.dart';
 import 'package:feed/feed.dart';
 import 'package:game/game.dart';
 import 'package:godparent/godparent.dart';
@@ -26,6 +27,7 @@ class AppModule extends Module {
     r.module('/godparent', module: GodParentModule());
     r.module('/game', module: GameModule());
     r.module('/splash_screen', module: SplashScreenModule());
+    r.module('/create_user', module: CreateUserModule());
 
     r.redirect('/', to: '/splash_screen/');
   }

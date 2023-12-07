@@ -9,6 +9,8 @@ export './manager/store/state/action.dart';
 export './module/network/interface/network.dart';
 export './module/network/error/model/error_info.dart';
 export './module/network/network_module.dart';
+export 'module/network/model/network_error.dart';
+export 'module/network/client/base_request.dart';
 
 export './firebase/config.dart';
 export './firebase/instance_firestore.dart';

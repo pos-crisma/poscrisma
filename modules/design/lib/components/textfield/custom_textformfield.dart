@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
         const BorderRadius.all(Radius.circular(12)),
     Color boxDecorationColor = Colors.black,
     bool autoFocus = false,
+    bool enabled = true,
     required this.labelText,
     this.suffixPress,
     this.controller,
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
         _autoFocus = autoFocus,
+        _enabled = enabled,
         _edgeInsets = edgeInsets,
         _focusNode = focusNote,
         super(
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
 
   final bool _autoFocus;
+  final bool _enabled;
 
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization = TextCapitalization.none;
@@ -48,6 +51,7 @@ class CustomTextFormField extends StatelessWidget {
       child: ClipRRect(
         borderRadius: _borderRadiusGeometry,
         child: TextFormField(
+          enabled: _enabled,
           focusNode: _focusNode,
           autofocus: _autoFocus,
           controller: controller,
