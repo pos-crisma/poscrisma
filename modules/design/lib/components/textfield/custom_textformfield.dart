@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
+    super.key,
     BorderRadiusGeometry borderRadiusGeometry =
         const BorderRadius.all(Radius.circular(12)),
     Color boxDecorationColor = Colors.black,
@@ -22,10 +22,7 @@ class CustomTextFormField extends StatelessWidget {
         _autoFocus = autoFocus,
         _enabled = enabled,
         _edgeInsets = edgeInsets,
-        _focusNode = focusNote,
-        super(
-          key: key,
-        );
+        _focusNode = focusNote;
 
   final EdgeInsets _edgeInsets;
   final String labelText;

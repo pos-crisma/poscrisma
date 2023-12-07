@@ -20,7 +20,7 @@ class GlassMorphism extends StatelessWidget {
   final Alignment gradientAlignEnd;
 
   const GlassMorphism({
-    Key? key,
+    super.key,
     this.colors = const [Colors.blue, Colors.transparent],
     required this.child,
     required this.start,
@@ -30,7 +30,7 @@ class GlassMorphism extends StatelessWidget {
     this.gradientAlignStart = Alignment.topLeft,
     this.gradientAlignEnd = Alignment.bottomRight,
     this.borderWidth = 1.5,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

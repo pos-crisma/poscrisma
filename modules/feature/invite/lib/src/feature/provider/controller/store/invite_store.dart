@@ -79,8 +79,6 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _failure(NetworkError error) {
     value.status = InviteServiceStatus.failure;
 
-    print(error.toString());
-
     return Effect.emit();
   }
 }
