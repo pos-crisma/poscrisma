@@ -7,8 +7,16 @@ import 'package:parish/src/feature/provider/controller/action/parish_action.dart
 import 'package:parish/src/feature/provider/controller/store/parish_store.dart';
 
 class ParishMobile extends StatefulWidget {
+  final String type;
   final String parishId;
-  const ParishMobile({super.key, required this.parishId});
+  final String senderId;
+
+  const ParishMobile({
+    super.key,
+    required this.parishId,
+    required this.senderId,
+    required this.type,
+  });
 
   @override
   State<ParishMobile> createState() => _ParishMobileState();
@@ -150,21 +158,25 @@ class _ParishMobileState extends State<ParishMobile> {
               bottom: MediaQuery.of(context).padding.bottom,
             ),
             width: MediaQuery.of(context).size.width,
-            child: CupertinoButton(
-              color: Colors.deepPurple.shade300,
-              borderRadius: BorderRadius.zero,
-              pressedOpacity: 0.9,
+            child: AnimatedButton(
+              onPress: () => Modular.to.pushNamed('/create_user/', arguments: {
+                "parishId": widget.parishId,
+                "senderId": widget.senderId,
+                "type": widget.type,
+              }),
+              enableColor: Colors.deepPurple.shade300,
+              disableColor: Colors.deepPurple.shade100,
+              disabledChild: const CircularProgressIndicator.adaptive(),
               child: Text(
-                'Proximo', // TODO: move to i18n
+                'Proximo',
                 style: Theme.of(context)
                     .textTheme
-                    .bodyLarge! //
+                    .bodyMedium! //
                     .copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
               ),
-              onPressed: () => Modular.to.pushNamed('/create_user/'),
             ),
           )
         ],

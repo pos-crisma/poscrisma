@@ -1,79 +1,26 @@
 {
   "project_info": {
-    "project_number": "604903944147",
-    "project_id": "poscrisma-77128",
-    "storage_bucket": "poscrisma-77128.appspot.com"
+    "project_number": "626405922633",
+    "project_id": "poscrisma-be163",
+    "storage_bucket": "poscrisma-be163.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604903944147:android:597cedec919ff952738926",
-        "android_client_info": {
-          "package_name": "com.example.app_poscrisma"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "604903944147-60r6d2bkfr67hc8as9bsp770ismaija5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDhPJS7OXF3tEJHmYKynBkA8mue4neMwM8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "604903944147-60r6d2bkfr67hc8as9bsp770ismaija5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "604903944147-7o6eqn7shk0gu0hvj4puslgoq39ukbug.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.appPoscrisma"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:604903944147:android:7b980585a587b918738926",
+        "mobilesdk_app_id": "1:626405922633:android:2adc355b0ce04a32c7ac98",
         "android_client_info": {
           "package_name": "org.poscrisma.poscrisma"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "604903944147-60r6d2bkfr67hc8as9bsp770ismaija5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDhPJS7OXF3tEJHmYKynBkA8mue4neMwM8"
+          "current_key": "AIzaSyCpWAZnLJbGgp8jat1hO0H1fMdCfUSji44"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "604903944147-60r6d2bkfr67hc8as9bsp770ismaija5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "604903944147-7o6eqn7shk0gu0hvj4puslgoq39ukbug.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.appPoscrisma"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

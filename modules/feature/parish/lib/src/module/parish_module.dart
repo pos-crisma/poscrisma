@@ -16,7 +16,11 @@ class ParishModule extends Module {
   void routes(RouteManager r) {
     r.child(
       "/",
-      child: (_) => ParishPage(parishId: r.args.data["parishId"]),
+      child: (_) => ParishPage(
+        parishId: r.args.data["parishId"],
+        senderId: r.args.data["senderId"],
+        type: r.args.data["type"],
+      ),
       transition: TransitionType.leftToRightWithFade,
     );
   }

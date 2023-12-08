@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
+import 'package:create_user/src/feature/controller/model/user_type.dart';
 
-import '../feature/store/user_mobile_reducer.dart';
+import '../feature/controller/store/user_mobile_reducer.dart';
 import '../feature/view/user_page.dart';
 
 class CreateUserModule extends Module {
@@ -16,7 +17,11 @@ class CreateUserModule extends Module {
   void routes(RouteManager r) {
     r.child(
       "/",
-      child: (_) => const UserPage(),
+      child: (_) => UserPage(
+        parishId: r.args.data["parishId"],
+        spenderId: r.args.data["senderId"],
+        type: UserType.values.byName(r.args.data["type"]),
+      ),
     );
   }
 }

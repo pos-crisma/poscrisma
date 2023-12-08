@@ -63,6 +63,8 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
       if (invite.type == InviteType.CreateParish) {
         Modular.to.popAndPushNamed('/parish/', arguments: {
           "parishId": invite.parishId,
+          "senderId": invite.senderId,
+          "type": invite.typeUser?.name ?? UserType.GodParent.name,
         });
       }
 
@@ -70,7 +72,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         await Modular.to.popAndPushNamed('/create_user/', arguments: {
           "parishId": invite.parishId,
           "senderId": invite.senderId,
-          "typeUser": invite.typeUser,
+          "type": invite.typeUser?.name,
         });
       }
     });

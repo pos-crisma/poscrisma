@@ -6,10 +6,15 @@ import 'mobile/parish_mobile.dart';
 import 'web/parish_web.dart';
 
 class ParishPage extends StatelessWidget {
+  final String type;
   final String parishId;
+  final String senderId;
+
   const ParishPage({
     super.key,
     required this.parishId,
+    required this.type,
+    required this.senderId,
   });
 
   @override
@@ -21,7 +26,11 @@ class ParishPage extends StatelessWidget {
     );
 
     return Responsive(
-      mobile: ParishMobile(parishId: parishId),
+      mobile: ParishMobile(
+        parishId: parishId,
+        senderId: senderId,
+        type: type,
+      ),
       desktop: const ParishWeb(),
     );
   }
