@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:create_user/src/feature/controller/model/user_type.dart';
 
-import '../feature/controller/store/user_mobile_reducer.dart';
+import '../feature/provider/controller/store/user_mobile_reducer.dart';
+import '../feature/provider/model/user_type.dart';
 import '../feature/view/user_page.dart';
 
 class CreateUserModule extends Module {

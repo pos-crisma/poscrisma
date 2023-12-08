@@ -2,7 +2,7 @@ import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../controller/model/user_type.dart';
+import '../provider/model/user_type.dart';
 import 'mobile/user_mobile.dart';
 import 'web/user_web.dart';
 

@@ -1,11 +1,12 @@
 import 'package:core/core.dart';
+import 'package:create_user/src/feature/provider/controller/state/user_mobile_state.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../controller/action/user_mobile_action.dart';
-import '../../controller/store/user_mobile_reducer.dart';
-import '../../controller/model/user_type.dart';
+import '../../provider/controller/action/user_mobile_action.dart';
+import '../../provider/controller/store/user_mobile_reducer.dart';
+import '../../provider/model/user_type.dart';
 
 class UserMobile extends StatefulWidget {
   final UserType type;
@@ -61,7 +62,8 @@ class _UserMobileState extends State<UserMobile> {
                   leading: CupertinoButton(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    onPressed: () => Modular.to.pop(),
+                    onPressed: () =>
+                        viewStore.send(UserMobileAction.backTapped()),
                     child: Icon(
                       CupertinoIcons.arrow_left,
                       color: SystemMode.isDark(context)
@@ -131,6 +133,20 @@ class _UserMobileState extends State<UserMobile> {
                     builder: (context, value, child) => CustomTextFormField(
                       focusNote: value.onFocus,
                       controller: value.textEditingController,
+                      keyboardType: switch (value.pageViewer) {
+                        PageViewer.email => TextInputType.emailAddress,
+                        PageViewer.name => TextInputType.name,
+                        PageViewer.nickname => TextInputType.text,
+                        PageViewer.phone => TextInputType.phone,
+                        PageViewer.medicalRecords => TextInputType.multiline,
+                      },
+                      maxLine: switch (value.pageViewer) {
+                        PageViewer.email => 1,
+                        PageViewer.name => 1,
+                        PageViewer.nickname => 1,
+                        PageViewer.phone => 1,
+                        PageViewer.medicalRecords => null,
+                      },
                       boxDecorationColor: SystemMode.isDark(context)
                           ? Colors.black
                           : Colors.grey.shade200,
@@ -139,8 +155,50 @@ class _UserMobileState extends State<UserMobile> {
                   ),
                 ),
                 const SliverPadding(
-                    padding: EdgeInsets.symmetric(vertical: 24)),
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            value.pageViewer.tipTitle,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          const SizedBox(height: 8),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12),
+                            child: Text(
+                              value.pageViewer.tipContent,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium! //
+                                  .copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    color: SystemMode.isDark(context)
+                                        ? Colors.grey.shade50
+                                        : Colors.grey.shade800,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
+            ),
+          ),
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) => AnimatedOpacity(
+              opacity: value.onFocus.hasFocus ? 0 : 1,
+              duration: Durations.medium1,
+              child: const Divider(thickness: 0.2),
             ),
           ),
           LayoutBuilder(
@@ -155,7 +213,8 @@ class _UserMobileState extends State<UserMobile> {
                   return AnimatedButton(
                     isFocus: value.onFocus.hasFocus,
                     // isDisabled: value.status == InviteServiceStatus.loading,
-                    onPress: () {},
+                    onPress: () =>
+                        viewStore.send(UserMobileAction.handlerTapped()),
                     enableColor: Colors.deepPurple.shade300,
                     disableColor: SystemMode.isDark(context)
                         ? Colors.deepPurple.shade500

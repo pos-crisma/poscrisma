@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import '../model/user_type.dart';
+import '../../model/user_type.dart';
 
 sealed class UserMobileAction {
   static UserMobileAction onAppear(

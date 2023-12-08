@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/user_type.dart';
+import '../../model/user_type.dart';
 
 interface class UserMobileState {
   UserMobileState({
@@ -31,7 +31,8 @@ enum PageViewer {
   nickname(
     text: 'Vamos começar pelo o seu nome de usuario',
     inputText: 'Nome de usuario',
-    tipTitle: 'Aqui voce pode criar seu nome de usuario unico',
+    tipTitle:
+        'Aqui voce pode criar seu nome de usuario unico\nPode seguir no exemplo abaixo:',
     tipContent: 'usuario.123\nusuario_123',
   ),
   name(
@@ -49,8 +50,10 @@ enum PageViewer {
   medicalRecords(
     text: 'Preencha seus dados medicos',
     inputText: 'Preencha seus dados medicos',
-    tipTitle: '',
-    tipContent: '',
+    tipTitle:
+        'Preenche seus dados medicos.\nPode ser preenchido nesse exemplo:',
+    tipContent:
+        '- Problema X\n- Problema Y\n- Problema Z\n\n- Remedio A\n- Remedio B\n- Remedio C',
   ),
   email(
     text: 'Agora seu email',

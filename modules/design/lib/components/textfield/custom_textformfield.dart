@@ -10,19 +10,22 @@ class CustomTextFormField extends StatelessWidget {
     Color boxDecorationColor = Colors.black,
     bool autoFocus = false,
     bool enabled = true,
+    int? maxLine = 1,
     required this.labelText,
     this.suffixPress,
     this.controller,
     this.keyboardType,
     this.textInputAction,
     FocusNode? focusNote,
+
     EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
         _autoFocus = autoFocus,
         _enabled = enabled,
         _edgeInsets = edgeInsets,
-        _focusNode = focusNote;
+        _focusNode = focusNote,
+        _maxLine = maxLine;
 
   final EdgeInsets _edgeInsets;
   final String labelText;
@@ -41,6 +44,8 @@ class CustomTextFormField extends StatelessWidget {
 
   final FocusNode? _focusNode;
 
+  final int? _maxLine;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -55,6 +60,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: keyboardType,
           textCapitalization: textCapitalization,
           textInputAction: textInputAction,
+          maxLines: _maxLine,
           decoration: InputDecoration(
             labelText: labelText,
             filled: true,

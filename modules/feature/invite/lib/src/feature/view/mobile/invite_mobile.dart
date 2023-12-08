@@ -136,8 +136,13 @@ class _InviteMobileState extends State<InviteMobile> {
               ],
             ),
           ),
-          const Divider(
-            thickness: 0.2,
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) => AnimatedOpacity(
+              opacity: value.onFocus.hasFocus ? 0 : 1,
+              duration: Durations.medium1,
+              child: const Divider(thickness: 0.2),
+            ),
           ),
           LayoutBuilder(
             builder: (context, constraints) => Container(
