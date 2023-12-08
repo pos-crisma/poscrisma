@@ -36,10 +36,37 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+
+  # Core Modules
   core:
-   path: "./modules/core"
+    path: "./modules/core"
   design:
-   path: "./modules/design"
+    path: "./modules/design"
+  
+  # Features Modules
+  create_user:
+    path: "./modules/feature/create_user"
+  feed:
+    path: "./modules/feature/feed"
+  game:
+    path: "./modules/feature/game"
+  young:
+    path: "./modules/feature/young"
+  parish:
+    path: "./modules/feature/parish"
+  invite:
+    path: "./modules/feature/invite"
+  godparent:
+    path: "./modules/feature/godparent"
+  authenticator:
+    path: "./modules/feature/authenticator"
+  splash_screen:
+    path: "./modules/feature/splash_screen"
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +77,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

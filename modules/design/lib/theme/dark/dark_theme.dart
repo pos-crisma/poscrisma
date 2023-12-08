@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../../color/color.dart';
+import '../../font/manrope_font.dart';
+import '../../font/roboto_font.dart';
+import '../config/text/text.dart';
+
 mixin DarkTheme {
   static final ThemeData theme = ThemeData(
-    textTheme: const TextTheme(
-      displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-      bodyLarge: TextStyle(fontSize: 18, color: Colors.white70),
-    ),
+    useMaterial3: true,
+    fontFamily: ManropeFont.manrope,
+    fontFamilyFallback: const [
+      RobotoFont.roboto,
+    ],
+    brightness: Brightness.dark,
+    textTheme: CustomizeTextTheme.darkTextTheme,
     appBarTheme: const AppBarTheme(
-      color: Colors.red,
+      surfaceTintColor: Colors.transparent,
+      backgroundColor: darkBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.red,
-      brightness: Brightness.dark,
+    colorScheme: const ColorScheme.dark(
+      background: darkBackground,
     ),
+    scaffoldBackgroundColor: darkBackground,
   );
 }

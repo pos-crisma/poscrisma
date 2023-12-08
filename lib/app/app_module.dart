@@ -1,6 +1,15 @@
 import 'package:core/core.dart';
-import 'package:poscrisma/app/home/module/home_module.dart';
-import 'package:poscrisma/app/splash_screen/splash_screen_page.dart';
+
+///
+import 'package:authenticator/authenticator.dart';
+import 'package:create_user/create_user.dart';
+import 'package:feed/feed.dart';
+import 'package:game/game.dart';
+import 'package:godparent/godparent.dart';
+import 'package:invite/invite.dart';
+import 'package:parish/parish.dart';
+import 'package:splash_screen/splash_screen.dart';
+import 'package:young/young.dart';
 
 class AppModule extends Module {
   @override
@@ -10,9 +19,16 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/', child: (_) => const SplashScreenPage());
-    r.module('/home', module: HomeModule());
+    r.module('/feed', module: FeedModule());
+    r.module('/invite', module: InviteModule());
+    r.module('/auth', module: AuthModule());
+    r.module('/parish', module: ParishModule());
+    r.module('/young', module: YoungModule());
+    r.module('/godparent', module: GodParentModule());
+    r.module('/game', module: GameModule());
+    r.module('/splash_screen', module: SplashScreenModule());
+    r.module('/create_user', module: CreateUserModule());
 
-    r.redirect('/', to: '/home/');
+    r.redirect('/', to: '/splash_screen/');
   }
 }

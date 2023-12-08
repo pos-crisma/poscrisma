@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 sealed class Effect {
-  static Effect none() => _None();
-  static Effect run<T>(Future<T> function) => _Run(function);
+  static Effect emit() => _None();
+  static Effect run<T>(Future<T> Function() function) => _Run(function());
   static Effect send(action) => _Send(action);
 
   T fold<T>(

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626405922633",
+    "project_id": "poscrisma-be163",
+    "storage_bucket": "poscrisma-be163.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626405922633:android:2adc355b0ce04a32c7ac98",
+        "android_client_info": {
+          "package_name": "org.poscrisma.poscrisma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpWAZnLJbGgp8jat1hO0H1fMdCfUSji44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

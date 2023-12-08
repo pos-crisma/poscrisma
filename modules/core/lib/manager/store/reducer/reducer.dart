@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../effect/effect.dart';
 
-abstract class Reducer<Action, State> extends ChangeNotifier {
-  Reducer(this.value);
+abstract class Reducer<Action, State> extends ValueNotifier<State> {
+  Reducer(this.state) : super(state);
 
-  State value;
+  State state;
 
   Future<Effect> reduce(Action action);
 
@@ -16,4 +17,10 @@ abstract class Reducer<Action, State> extends ChangeNotifier {
         (e) => e.function,
         (e) => send(e.action),
       );
+}
+
+BindConfig<T> storeConfig<T extends Reducer>() {
+  return BindConfig(
+    onDispose: (store) => store.dispose(),
+  );
 }
