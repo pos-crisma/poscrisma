@@ -12,12 +12,14 @@ class UserMobile extends StatefulWidget {
   final UserType type;
   final String parishId;
   final String spenderId;
+  final String invite;
 
   const UserMobile({
     super.key,
     required this.type,
     required this.parishId,
     required this.spenderId,
+    required this.invite,
   });
 
   @override
@@ -36,6 +38,7 @@ class _UserMobileState extends State<UserMobile> {
         widget.parishId,
         widget.spenderId,
         widget.type,
+        widget.invite,
       ),
     );
   }
@@ -243,7 +246,7 @@ class _UserMobileState extends State<UserMobile> {
                   isFocus: View.of(context).viewInsets.bottom > 0.0,
                   isDisabled: value.isLoading,
                   onPress: () =>
-                      viewStore.send(UserMobileAction.handlerTapped()),
+                      viewStore.send(UserMobileAction.handlerTapped(context)),
                   enableColor: Colors.deepPurple.shade300,
                   disableColor: SystemMode.isDark(context)
                       ? Colors.deepPurple.shade500

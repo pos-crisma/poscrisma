@@ -20,6 +20,7 @@ class ParishModule extends Module {
         parishId: r.args.data["parishId"],
         senderId: r.args.data["senderId"],
         type: r.args.data["type"],
+        invite: r.args.data["invite"],
       ),
       transition: TransitionType.leftToRightWithFade,
     );

@@ -35,7 +35,7 @@ class BaseRequest {
           );
         }
       } else {
-        return Failure(response.error as ErrorInfo);
+        return Failure(response.error!);
       }
     } on DioException catch (error) {
       return Failure(ErrorInfo.fromJson(error.response?.data));

@@ -9,12 +9,14 @@ class ParishPage extends StatelessWidget {
   final String type;
   final String parishId;
   final String senderId;
+  final String invite;
 
   const ParishPage({
     super.key,
     required this.parishId,
     required this.type,
     required this.senderId,
+    required this.invite,
   });
 
   @override
@@ -30,6 +32,7 @@ class ParishPage extends StatelessWidget {
         parishId: parishId,
         senderId: senderId,
         type: type,
+        invite: invite,
       ),
       desktop: const ParishWeb(),
     );

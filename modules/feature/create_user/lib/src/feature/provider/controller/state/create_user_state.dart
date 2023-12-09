@@ -23,7 +23,8 @@ interface class CreateUserState {
 
   UserType? type;
   String? parishId;
-  String? spenderId;
+  String? senderId;
+  String? invite;
 
   CreateUserState({
     this.contentOnPage = ContentOnPage.person,
@@ -79,8 +80,8 @@ enum CreateUserType {
   phone(
     text: 'Agora seu telefone',
     inputText: 'Telefone Celular',
-    tipTitle: '',
-    tipContent: '',
+    tipTitle: 'Exemplo de preenchimento do telefone:',
+    tipContent: '- 61911112222',
   ),
   medicalRecords(
     text: 'Preencha seus dados medicos',
@@ -92,9 +93,10 @@ enum CreateUserType {
   ),
   password(
     text: 'Preencha sua senha',
-    inputText: 'Preencha seus dados medicos',
-    tipTitle: '',
-    tipContent: '',
+    inputText: 'Preencha sua senha',
+    tipTitle: 'Recomendação de senha:',
+    tipContent:
+        '- Pelo menos uma letra maiuscula\n- Minimo 8 caracteres\n- Recomendação de caracteres especiais',
   ),
   email(
     text: 'Agora seu email',

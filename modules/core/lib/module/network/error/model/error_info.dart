@@ -51,12 +51,12 @@ class ErrorData {
 
   final String type;
   final int statusCode;
-  final String message;
+  final dynamic message;
 
   ErrorData copyWith({
     String? type,
     int? statusCode,
-    String? message,
+    dynamic message,
   }) =>
       ErrorData(
         type: type ?? this.type,

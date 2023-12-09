@@ -1,9 +1,11 @@
 import 'package:core/core.dart';
-import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
-import 'package:create_user/src/feature/provider/dto/create_user_response_dto.dart';
+import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../api/create_user_api.dart';
+import '../../dto/create_user_request_dto.dart';
+import '../../dto/create_user_response_dto.dart';
 import '../../model/user_type.dart';
 import '../action/user_mobile_action.dart';
 import '../state/create_user_state.dart';
@@ -33,31 +35,34 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     return action.fold(
       (action) => _onAppear(
         parishId: action.parishId,
-        spenderId: action.spenderId,
+        senderId: action.senderId,
+        invite: action.invite,
         type: action.type,
       ),
-      (action) => _handlerTapped(),
+      (action) => _handlerTapped(action.context),
       (action) => _backButton(),
-      (action) => _service(),
+      (action) => _service(action.context),
       (action) => _success(action.createUserResponseDTO),
-      (action) => _failure(action.errorInfo),
+      (action) => _failure(action.errorInfo, action.context),
       (action) => _loading(),
     );
   }
 
   _onAppear({
     required String parishId,
-    required String spenderId,
+    required String senderId,
+    required String invite,
     required UserType type,
   }) {
     state.parishId = parishId;
-    state.spenderId = spenderId;
+    state.senderId = senderId;
+    state.invite = invite;
     state.type = type;
 
     return Effect.emit();
   }
 
-  _handlerTapped() {
+  _handlerTapped(BuildContext context) {
     return switch (state.contentOnPage) {
       ContentOnPage.person => () {
           state.contentOnPage = ContentOnPage.password;
@@ -67,7 +72,9 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
           state.contentOnPage = ContentOnPage.medical;
           return Effect.emit();
         },
-      ContentOnPage.medical => () => Effect.send(UserMobileAction.service()),
+      ContentOnPage.medical => () => Effect.send(
+            UserMobileAction.service(context),
+          ),
     }();
   }
 
@@ -87,7 +94,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     }();
   }
 
-  _service() {
+  _service(BuildContext context) {
     return Effect.run(() async {
       send(UserMobileAction.loadingService());
 
@@ -105,6 +112,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
             parishId: parishId,
             medicalRecord: state.medicalController.text,
           ),
+          state.invite ?? "",
         ).fold(
           (success) {
             send(UserMobileAction.loadingService());
@@ -112,7 +120,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
           },
           (error) {
             send(UserMobileAction.loadingService());
-            send(UserMobileAction.failureService(error));
+            send(UserMobileAction.failureService(error, context));
           },
         );
       } else {
@@ -127,10 +135,18 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     });
   }
 
-  _failure(ErrorInfo errorInfo) {
-    return Effect.run(() async {
-      print('Create User error Flow $errorInfo');
-    });
+  _failure(ErrorInfo errorInfo, BuildContext context) {
+    return Effect.run(
+      () async {
+        showCupertinoDialog(
+          context: context,
+          builder: (context) => Container(
+            height: 100,
+            color: Colors.grey.shade300,
+          ),
+        );
+      },
+    );
   }
 
   _loading() {
