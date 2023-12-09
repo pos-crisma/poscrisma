@@ -78,7 +78,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     });
   }
 
-  _failure(NetworkError error) {
+  _failure(ErrorInfo error) {
     value.status = InviteServiceStatus.failure;
 
     return Effect.emit();

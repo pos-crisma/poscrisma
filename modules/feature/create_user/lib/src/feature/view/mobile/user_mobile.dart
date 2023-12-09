@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:create_user/src/feature/provider/controller/state/user_mobile_state.dart';
+import 'package:create_user/src/feature/provider/controller/state/create_user_state.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,133 +106,161 @@ class _UserMobileState extends State<UserMobile> {
                             }
                           },
                         ),
-                        const SizedBox(height: 16),
-                        ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) {
-                            return Text(
-                              value.pageViewer.text,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium! //
-                                  .copyWith(
-                                      // fontWeight: FontWeight.bold,
-                                      ),
-                            );
-                          },
-                        ),
                       ],
                     ),
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
-                SliverToBoxAdapter(
-                  child: ValueListenableBuilder(
-                    valueListenable: viewStore,
-                    builder: (context, value, child) => CustomTextFormField(
-                      focusNote: value.onFocus,
-                      controller: value.textEditingController,
-                      keyboardType: switch (value.pageViewer) {
-                        PageViewer.email => TextInputType.emailAddress,
-                        PageViewer.name => TextInputType.name,
-                        PageViewer.nickname => TextInputType.text,
-                        PageViewer.phone => TextInputType.phone,
-                        PageViewer.medicalRecords => TextInputType.multiline,
-                      },
-                      maxLine: switch (value.pageViewer) {
-                        PageViewer.email => 1,
-                        PageViewer.name => 1,
-                        PageViewer.nickname => 1,
-                        PageViewer.phone => 1,
-                        PageViewer.medicalRecords => null,
-                      },
-                      boxDecorationColor: SystemMode.isDark(context)
-                          ? Colors.black
-                          : Colors.grey.shade200,
-                      labelText: value.pageViewer.inputText,
-                    ),
-                  ),
-                ),
-                const SliverPadding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ValueListenableBuilder(
-                      valueListenable: viewStore,
-                      builder: (context, value, child) => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            value.pageViewer.tipTitle,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          const SizedBox(height: 8),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12),
-                            child: Text(
-                              value.pageViewer.tipContent,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium! //
-                                  .copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    color: SystemMode.isDark(context)
-                                        ? Colors.grey.shade50
-                                        : Colors.grey.shade800,
-                                  ),
-                            ),
-                          ),
-                        ],
+                ValueListenableBuilder(
+                  valueListenable: viewStore,
+                  builder: (context, value, child) {
+                    return SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      sliver: SliverList.builder(
+                        itemCount: value.contentOnPage.list.length,
+                        itemBuilder: (context, index) {
+                          final contentOnPage = value.contentOnPage.list[index];
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                contentOnPage.text,
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                        // fontWeight: FontWeight.bold,
+                                        ),
+                              ),
+                              const SizedBox(height: 8),
+                              CustomTextFormField(
+                                edgeInsets: EdgeInsets.zero,
+                                focusNote: switch (contentOnPage) {
+                                  CreateUserType.email => value.emailFocus,
+                                  CreateUserType.name => value.nameFocus,
+                                  CreateUserType.nickname =>
+                                    value.nicknameFocus,
+                                  CreateUserType.phone => value.phoneFocus,
+                                  CreateUserType.password =>
+                                    value.passwordFocus,
+                                  CreateUserType.medicalRecords =>
+                                    value.medicalFocus,
+                                },
+                                controller: switch (contentOnPage) {
+                                  CreateUserType.email => value.emailController,
+                                  CreateUserType.name => value.nameController,
+                                  CreateUserType.nickname =>
+                                    value.nicknameController,
+                                  CreateUserType.phone => value.phoneController,
+                                  CreateUserType.password =>
+                                    value.passwordController,
+                                  CreateUserType.medicalRecords =>
+                                    value.medicalController,
+                                },
+                                keyboardType: switch (contentOnPage) {
+                                  CreateUserType.email =>
+                                    TextInputType.emailAddress,
+                                  CreateUserType.name => TextInputType.name,
+                                  CreateUserType.nickname => TextInputType.text,
+                                  CreateUserType.phone => TextInputType.phone,
+                                  CreateUserType.password =>
+                                    TextInputType.visiblePassword,
+                                  CreateUserType.medicalRecords =>
+                                    TextInputType.multiline,
+                                },
+                                maxLine: switch (contentOnPage) {
+                                  CreateUserType.email => 1,
+                                  CreateUserType.name => 1,
+                                  CreateUserType.nickname => 1,
+                                  CreateUserType.phone => 1,
+                                  CreateUserType.password => 1,
+                                  CreateUserType.medicalRecords => null,
+                                },
+                                boxDecorationColor: SystemMode.isDark(context)
+                                    ? Colors.black
+                                    : Colors.grey.shade200,
+                                labelText: contentOnPage.inputText,
+                              ),
+                              SizedBox(
+                                  height: (contentOnPage.tipTitle != '' ||
+                                          contentOnPage.tipContent != '')
+                                      ? 16
+                                      : 0),
+                              contentOnPage.tipTitle == ''
+                                  ? const SizedBox(height: 0)
+                                  : Text(
+                                      contentOnPage.tipTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge,
+                                    ),
+                              contentOnPage.tipContent == ''
+                                  ? const SizedBox(height: 0)
+                                  : Text(
+                                      contentOnPage.tipContent,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium! //
+                                          .copyWith(
+                                            fontWeight: FontWeight.w300,
+                                            color: SystemMode.isDark(context)
+                                                ? Colors.grey.shade50
+                                                : Colors.grey.shade800,
+                                          ),
+                                    ),
+                              const SizedBox(height: 16),
+                            ],
+                          );
+                        },
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
           ),
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) => AnimatedOpacity(
-              opacity: value.onFocus.hasFocus ? 0 : 1,
-              duration: Durations.medium1,
-              child: const Divider(thickness: 0.2),
+          AnimatedOpacity(
+            opacity: View.of(context).viewInsets.bottom > 0.0 ? 0 : 1,
+            duration: Durations.medium1,
+            child: const Divider(
+              thickness: 0.2,
+              height: 1,
             ),
           ),
-          LayoutBuilder(
-            builder: (context, constraints) => Container(
-              width: constraints.maxWidth,
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).padding.bottom,
-              ),
-              child: ValueListenableBuilder(
-                valueListenable: viewStore,
-                builder: (context, value, child) {
-                  return AnimatedButton(
-                    isFocus: value.onFocus.hasFocus,
-                    // isDisabled: value.status == InviteServiceStatus.loading,
-                    onPress: () =>
-                        viewStore.send(UserMobileAction.handlerTapped()),
-                    enableColor: Colors.deepPurple.shade300,
-                    disableColor: SystemMode.isDark(context)
-                        ? Colors.deepPurple.shade500
-                        : Colors.deepPurple.shade100,
-                    disabledChild: const CircularProgressIndicator.adaptive(),
-                    child: Text(
-                      'Proximo',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium! //
-                          .copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                    ),
-                  );
-                },
-              ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(
+              top: 8,
+              bottom: MediaQuery.of(context).padding.bottom,
+            ),
+            child: ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return AnimatedButton(
+                  isFocus: View.of(context).viewInsets.bottom > 0.0,
+                  isDisabled: value.isLoading,
+                  onPress: () =>
+                      viewStore.send(UserMobileAction.handlerTapped()),
+                  enableColor: Colors.deepPurple.shade300,
+                  disableColor: SystemMode.isDark(context)
+                      ? Colors.deepPurple.shade500
+                      : Colors.deepPurple.shade100,
+                  disabledChild: const CircularProgressIndicator.adaptive(),
+                  child: Text(
+                    'Proximo',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium! //
+                        .copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                  ),
+                );
+              },
             ),
           ),
         ],

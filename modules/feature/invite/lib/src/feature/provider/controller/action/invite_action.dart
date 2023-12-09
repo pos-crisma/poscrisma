@@ -11,7 +11,7 @@ sealed class InviteAction {
   static InviteAction loadingInviteService() => _LoadingInviteService();
   static InviteAction successInviteService(Invite invite) =>
       _SuccessInviteService(invite: invite);
-  static InviteAction failureInviteService(NetworkError error) =>
+  static InviteAction failureInviteService(ErrorInfo error) =>
       _FailureInviteService(error: error);
 
   T fold<T>(
@@ -47,7 +47,7 @@ class _SuccessInviteService extends InviteAction {
 }
 
 class _FailureInviteService extends InviteAction {
-  final NetworkError error;
+  final ErrorInfo error;
 
   _FailureInviteService({required this.error});
 }

@@ -1,17 +1,32 @@
 import 'package:core/core.dart';
+import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
+import 'package:create_user/src/feature/provider/dto/create_user_response_dto.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../api/create_user_api.dart';
 import '../../model/user_type.dart';
 import '../action/user_mobile_action.dart';
-import '../state/user_mobile_state.dart';
+import '../state/create_user_state.dart';
 
-class UserMobileReducer extends Reducer<UserMobileAction, UserMobileState> {
+class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
   UserMobileReducer()
-      : super(UserMobileState(
-          pageViewer: PageViewer.nickname,
-          textEditingController: TextEditingController(text: ''),
-          onFocus: FocusNode(),
-        ));
+      : super(
+          CreateUserState(
+            emailController: TextEditingController(text: ''),
+            emailFocus: FocusNode(),
+            nameController: TextEditingController(text: ''),
+            nameFocus: FocusNode(),
+            passwordController: TextEditingController(text: ''),
+            passwordFocus: FocusNode(),
+            nicknameController: TextEditingController(text: ''),
+            nicknameFocus: FocusNode(),
+            phoneController: TextEditingController(text: ''),
+            phoneFocus: FocusNode(),
+            medicalController: TextEditingController(text: ''),
+            medicalFocus: FocusNode(),
+            contentOnPage: ContentOnPage.person,
+          ),
+        );
 
   @override
   Future<Effect> reduce(UserMobileAction action) async {
@@ -23,6 +38,10 @@ class UserMobileReducer extends Reducer<UserMobileAction, UserMobileState> {
       ),
       (action) => _handlerTapped(),
       (action) => _backButton(),
+      (action) => _service(),
+      (action) => _success(action.createUserResponseDTO),
+      (action) => _failure(action.errorInfo),
+      (action) => _loading(),
     );
   }
 
@@ -39,93 +58,84 @@ class UserMobileReducer extends Reducer<UserMobileAction, UserMobileState> {
   }
 
   _handlerTapped() {
-    return switch (state.pageViewer) {
-      PageViewer.nickname => () {
-          state.nickname = state.textEditingController.text;
-          state.textEditingController = TextEditingController(text: '');
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.name;
+    return switch (state.contentOnPage) {
+      ContentOnPage.person => () {
+          state.contentOnPage = ContentOnPage.password;
           return Effect.emit();
         },
-      PageViewer.name => () {
-          state.name = state.textEditingController.text;
-          state.textEditingController = TextEditingController(text: '');
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.email;
+      ContentOnPage.password => () {
+          state.contentOnPage = ContentOnPage.medical;
           return Effect.emit();
         },
-      PageViewer.email => () {
-          state.email = state.textEditingController.text;
-          state.textEditingController = TextEditingController(text: '');
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.phone;
-          return Effect.emit();
-        },
-      PageViewer.phone => () {
-          state.phone = state.textEditingController.text;
-          state.textEditingController = TextEditingController(text: '');
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.medicalRecords;
-          return Effect.emit();
-        },
-      PageViewer.medicalRecords => () {
-          state.medicalRecords = state.textEditingController.text;
-
-          return Effect.run(() async {
-            print(state.nickname);
-            print(state.email);
-            print(state.name);
-            print(state.phone);
-            print(state.medicalRecords);
-          });
-        },
+      ContentOnPage.medical => () => Effect.send(UserMobileAction.service()),
     }();
   }
 
   _backButton() {
-    return switch (state.pageViewer) {
-      PageViewer.nickname => () {
-          state.onFocus.unfocus();
-          return Effect.run(() async {
-            Modular.to.pop();
-          });
+    return switch (state.contentOnPage) {
+      ContentOnPage.person => () {
+          return Effect.run(() async => Modular.to.pop());
         },
-      PageViewer.name => () {
-          state.textEditingController =
-              TextEditingController(text: state.nickname ?? "");
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.nickname;
+      ContentOnPage.password => () {
+          state.contentOnPage = ContentOnPage.person;
           return Effect.emit();
         },
-      PageViewer.email => () {
-          state.textEditingController =
-              TextEditingController(text: state.name ?? "");
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.name;
-          return Effect.emit();
-        },
-      PageViewer.phone => () {
-          state.textEditingController =
-              TextEditingController(text: state.email ?? "");
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.email;
-          return Effect.emit();
-        },
-      PageViewer.medicalRecords => () {
-          state.textEditingController =
-              TextEditingController(text: state.phone ?? "");
-          state.onFocus.unfocus();
-
-          state.pageViewer = PageViewer.phone;
+      ContentOnPage.medical => () {
+          state.contentOnPage = ContentOnPage.password;
           return Effect.emit();
         },
     }();
+  }
+
+  _service() {
+    return Effect.run(() async {
+      send(UserMobileAction.loadingService());
+
+      if (state.type != null && state.parishId != null) {
+        final type = state.type?.name ?? '';
+        final parishId = state.parishId ?? '';
+        await CreateUserApi.send(
+          CreateUserRequestDTO(
+            name: state.nameController.text,
+            nickName: state.nicknameController.text,
+            phone: state.phoneController.text,
+            email: state.emailController.text,
+            type: type,
+            password: state.passwordController.text,
+            parishId: parishId,
+            medicalRecord: state.medicalController.text,
+          ),
+        ).fold(
+          (success) {
+            send(UserMobileAction.loadingService());
+            send(UserMobileAction.successService(success));
+          },
+          (error) {
+            send(UserMobileAction.loadingService());
+            send(UserMobileAction.failureService(error));
+          },
+        );
+      } else {
+        send(UserMobileAction.loadingService());
+      }
+    });
+  }
+
+  _success(CreateUserResponseDTO createUserResponseDTO) {
+    return Effect.run(() async {
+      print('Go to login flow');
+    });
+  }
+
+  _failure(ErrorInfo errorInfo) {
+    return Effect.run(() async {
+      print('Create User error Flow $errorInfo');
+    });
+  }
+
+  _loading() {
+    state.isLoading = !state.isLoading;
+
+    return Effect.emit();
   }
 }

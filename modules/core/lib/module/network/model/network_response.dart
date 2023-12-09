@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'network_error.dart';
+import '../error/model/error_info.dart';
 
 typedef Entity = Map<String, dynamic>;
 
 class NetworkResponse<T> {
   final bool ok;
-  final NetworkError? error;
+  final ErrorInfo? error;
   final T? data;
   final T? value;
 
@@ -19,7 +19,7 @@ class NetworkResponse<T> {
 
   NetworkResponse copyWith({
     bool? ok,
-    NetworkError? error,
+    ErrorInfo? error,
     T? data,
     T? value,
   }) =>
@@ -36,8 +36,7 @@ class NetworkResponse<T> {
   factory NetworkResponse.fromJson(Map<String, dynamic> json) =>
       NetworkResponse(
         ok: json["ok"],
-        error:
-            json["error"] == null ? null : NetworkError.fromJson(json["error"]),
+        error: json["error"] == null ? null : ErrorInfo.fromJson(json["error"]),
         data: json["data"],
         value: json["value"],
       );

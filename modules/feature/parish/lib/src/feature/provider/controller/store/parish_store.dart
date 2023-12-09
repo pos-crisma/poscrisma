@@ -58,7 +58,7 @@ class ParishReducer extends Reducer<ParishAction, ParishState> {
     return Effect.emit();
   }
 
-  _failure(NetworkError error) {
+  _failure(ErrorInfo error) {
     value.status = ParishServiceStatus.failure;
 
     return Effect.emit();
