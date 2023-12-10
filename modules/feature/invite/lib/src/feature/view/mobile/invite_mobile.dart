@@ -136,45 +136,44 @@ class _InviteMobileState extends State<InviteMobile> {
               ],
             ),
           ),
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) => AnimatedOpacity(
-              opacity: value.onFocus.hasFocus ? 0 : 1,
-              duration: Durations.medium1,
-              child: const Divider(thickness: 0.2),
+          AnimatedOpacity(
+            opacity: View.of(context).viewInsets.bottom > 0.0 ? 0 : 1,
+            duration: Durations.medium1,
+            child: const Divider(
+              thickness: 0.2,
+              height: 1,
             ),
           ),
-          LayoutBuilder(
-            builder: (context, constraints) => Container(
-              width: constraints.maxWidth,
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).padding.bottom,
-              ),
-              child: ValueListenableBuilder(
-                valueListenable: viewStore,
-                builder: (context, value, child) {
-                  return AnimatedButton(
-                    isFocus: viewStore.value.onFocus.hasFocus,
-                    isDisabled: value.status == InviteServiceStatus.loading,
-                    onPress: () => viewStore.send(InviteAction.buttonTapped()),
-                    enableColor: Colors.deepPurple.shade300,
-                    disableColor: SystemMode.isDark(context)
-                        ? Colors.deepPurple.shade500
-                        : Colors.deepPurple.shade100,
-                    disabledChild: const CircularProgressIndicator.adaptive(),
-                    child: Text(
-                      'Verifica convite',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium! //
-                          .copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                    ),
-                  );
-                },
-              ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(
+              top: 8,
+              bottom: MediaQuery.of(context).padding.bottom,
+            ),
+            child: ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return AnimatedButton(
+                  isFocus: View.of(context).viewInsets.bottom > 0.0,
+                  isDisabled: value.status == InviteServiceStatus.loading,
+                  onPress: () => viewStore.send(InviteAction.buttonTapped()),
+                  enableColor: Colors.deepPurple.shade300,
+                  disableColor: SystemMode.isDark(context)
+                      ? Colors.deepPurple.shade500
+                      : Colors.deepPurple.shade100,
+                  disabledChild: const CircularProgressIndicator.adaptive(),
+                  child: Text(
+                    'Verifica convite',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium! //
+                        .copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                  ),
+                );
+              },
             ),
           ),
         ],

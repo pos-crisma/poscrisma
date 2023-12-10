@@ -21,6 +21,7 @@ class CreateUserModule extends Module {
         parishId: r.args.data["parishId"],
         spenderId: r.args.data["senderId"],
         type: UserType.values.byName(r.args.data["type"]),
+        invite: r.args.data["invite"],
       ),
     );
   }

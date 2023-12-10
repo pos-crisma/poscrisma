@@ -12,7 +12,7 @@ class AnimatedButton extends StatelessWidget {
     required this.child,
     required this.disabledChild,
     required this.enableColor,
-    required this.disableColor,
+    this.disableColor,
   })  : _isDisabled = isDisabled,
         _isFocus = isFocus,
         _pressOpacity = pressOpacity,
@@ -26,7 +26,7 @@ class AnimatedButton extends StatelessWidget {
   final Function() onPress;
 
   final Color enableColor;
-  final Color disableColor;
+  final Color? disableColor;
 
   final Widget child;
   final Widget disabledChild;
@@ -41,7 +41,7 @@ class AnimatedButton extends StatelessWidget {
       child: CupertinoButton(
         pressedOpacity: _pressOpacity,
         color: enableColor,
-        disabledColor: disableColor,
+        disabledColor: disableColor ?? CupertinoColors.quaternarySystemFill,
         borderRadius: _isFocus
             ? BorderRadius.zero
             : const BorderRadius.all(Radius.circular(8.0)),

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class CreateUserDTO {
+class CreateUserRequestDTO {
   final String name;
   final String nickName;
   final String phone;
@@ -10,7 +10,7 @@ class CreateUserDTO {
   final String parishId;
   final String medicalRecord;
 
-  CreateUserDTO({
+  CreateUserRequestDTO({
     required this.name,
     required this.nickName,
     required this.phone,
@@ -21,7 +21,7 @@ class CreateUserDTO {
     required this.medicalRecord,
   });
 
-  CreateUserDTO copyWith({
+  CreateUserRequestDTO copyWith({
     String? name,
     String? nickName,
     String? phone,
@@ -31,7 +31,7 @@ class CreateUserDTO {
     String? parishId,
     String? medicalRecord,
   }) =>
-      CreateUserDTO(
+      CreateUserRequestDTO(
         name: name ?? this.name,
         nickName: nickName ?? this.nickName,
         phone: phone ?? this.phone,
@@ -42,12 +42,13 @@ class CreateUserDTO {
         medicalRecord: medicalRecord ?? this.medicalRecord,
       );
 
-  factory CreateUserDTO.fromRawJson(String str) =>
-      CreateUserDTO.fromJson(json.decode(str));
+  factory CreateUserRequestDTO.fromRawJson(String str) =>
+      CreateUserRequestDTO.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory CreateUserDTO.fromJson(Map<String, dynamic> json) => CreateUserDTO(
+  factory CreateUserRequestDTO.fromJson(Map<String, dynamic> json) =>
+      CreateUserRequestDTO(
         name: json["name"],
         nickName: json["nickName"],
         phone: json["phone"],

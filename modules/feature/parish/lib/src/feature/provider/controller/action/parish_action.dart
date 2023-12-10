@@ -12,7 +12,7 @@ sealed class ParishAction {
   static ParishAction loadingService() => _LoadingService();
   static ParishAction successService(Parish parish) =>
       _SuccessService(parish: parish);
-  static ParishAction failureService(NetworkError error) =>
+  static ParishAction failureService(ErrorInfo error) =>
       _FailureService(error: error);
 
   T fold<T>(
@@ -56,7 +56,7 @@ class _SuccessService extends ParishAction {
 }
 
 class _FailureService extends ParishAction {
-  final NetworkError error;
+  final ErrorInfo error;
 
   _FailureService({required this.error});
 }

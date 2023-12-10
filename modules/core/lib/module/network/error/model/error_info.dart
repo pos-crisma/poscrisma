@@ -28,9 +28,11 @@ class ErrorInfo {
   String toRawJson() => json.encode(toJson());
 
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
-        code: json["code"],
-        response: json["response"],
-        error: ErrorData.fromJson(json["error"]),
+        code: json["code"] ?? 0,
+        response: json["response"] ?? '',
+        error: json["error"] is String
+            ? ErrorData(type: '', statusCode: 0, message: json["error"])
+            : ErrorData.fromJson(json["error"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,12 +51,12 @@ class ErrorData {
 
   final String type;
   final int statusCode;
-  final String message;
+  final dynamic message;
 
   ErrorData copyWith({
     String? type,
     int? statusCode,
-    String? message,
+    dynamic message,
   }) =>
       ErrorData(
         type: type ?? this.type,

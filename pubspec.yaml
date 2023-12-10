@@ -67,6 +67,8 @@ dependencies:
     path: "./modules/feature/authenticator"
   splash_screen:
     path: "./modules/feature/splash_screen"
+  error:
+    path: "./modules/feature/error"
 
 dev_dependencies:
   flutter_test:

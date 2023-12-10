@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import '../model/parish_model.dart';
 
 mixin ParishApi {
-  static AsyncResult<Parish, NetworkError> getParishById(String parish) async {
+  static AsyncResult<Parish, ErrorInfo> getParishById(String parish) async {
     final BaseRequest client = Modular.get();
 
     return client

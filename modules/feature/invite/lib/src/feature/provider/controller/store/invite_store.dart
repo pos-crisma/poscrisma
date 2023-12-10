@@ -65,6 +65,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           "parishId": invite.parishId,
           "senderId": invite.senderId,
           "type": invite.typeUser?.name ?? UserType.GodParent.name,
+          "invite": state.textEditingController.text,
         });
       }
 
@@ -73,12 +74,13 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           "parishId": invite.parishId,
           "senderId": invite.senderId,
           "type": invite.typeUser?.name,
+          "invite": state.textEditingController.text,
         });
       }
     });
   }
 
-  _failure(NetworkError error) {
+  _failure(ErrorInfo error) {
     value.status = InviteServiceStatus.failure;
 
     return Effect.emit();

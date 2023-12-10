@@ -10,12 +10,14 @@ class ParishMobile extends StatefulWidget {
   final String type;
   final String parishId;
   final String senderId;
+  final String invite;
 
   const ParishMobile({
     super.key,
     required this.parishId,
     required this.senderId,
     required this.type,
+    required this.invite,
   });
 
   @override
@@ -163,6 +165,7 @@ class _ParishMobileState extends State<ParishMobile> {
                 "parishId": widget.parishId,
                 "senderId": widget.senderId,
                 "type": widget.type,
+                "invite": widget.invite,
               }),
               enableColor: Colors.deepPurple.shade300,
               disableColor: Colors.deepPurple.shade100,
