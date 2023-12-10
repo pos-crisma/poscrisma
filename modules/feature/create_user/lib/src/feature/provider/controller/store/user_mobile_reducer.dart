@@ -137,15 +137,15 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
   _failure(ErrorInfo errorInfo, BuildContext context) {
     return Effect.run(
-      () async {
-        showCupertinoDialog(
-          context: context,
-          builder: (context) => Container(
-            height: 100,
-            color: Colors.grey.shade300,
-          ),
-        );
-      },
+      () async => Modular.to.pushNamed(
+        '/error/',
+        arguments: {
+          'title': errorInfo.response,
+          'content': errorInfo.error.message,
+          'backButton': () => Modular.to.pop(),
+          'onPress': () => UserMobileAction.service(context),
+        },
+      ),
     );
   }
 
