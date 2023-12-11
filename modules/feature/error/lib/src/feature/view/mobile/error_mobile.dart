@@ -63,11 +63,17 @@ class ErrorMobile extends StatelessWidget {
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: SizedBox(
                     height: 200,
+                    child: Image(
+                      image:
+                          SystemMode.isDark(context) ? noDataDark : noDataLight,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
+                const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
                 SliverToBoxAdapter(
                   child: Align(
                     alignment: Alignment.topCenter,
