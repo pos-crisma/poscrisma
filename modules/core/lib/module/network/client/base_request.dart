@@ -1,17 +1,27 @@
 import 'package:core/core.dart';
+import 'package:locale_plus/locale_plus.dart';
 
 import '../model/network_response.dart';
 
 class BaseRequest {
   AsyncResult<Entity, ErrorInfo> get(String path) async {
     final Network client = Modular.get();
+    final languageCode = await LocalePlus().getLanguageCode();
 
     // final obj = await getInfo("@token");
     // final token = obj[0] as String;
 
+    final options = Options(
+      headers: {
+        "token": null,
+        "accept-language": languageCode,
+      },
+    );
+
     try {
       final result = await client.get(
         path,
+        options: options,
       );
 
       final response = NetworkResponse.fromJson(result.data);
@@ -38,7 +48,21 @@ class BaseRequest {
         return Failure(response.error!);
       }
     } on DioException catch (error) {
-      return Failure(ErrorInfo.fromJson(error.response?.data));
+      if (error.response?.data is String) {
+        return Failure(
+          ErrorInfo(
+            code: 0,
+            response: error.response?.data,
+            error: ErrorData(
+              type: 'type',
+              statusCode: -1,
+              message: error.response?.data,
+            ),
+          ),
+        );
+      } else {
+        return Failure(ErrorInfo.fromJson(error.response?.data));
+      }
     } catch (error) {
       return Failure(
         ErrorInfo(
@@ -59,12 +83,24 @@ class BaseRequest {
     dynamic data,
   }) async {
     final Network client = Modular.get();
+    final languageCode = await LocalePlus().getLanguageCode();
 
     // final obj = await getInfo("@token");
     // final token = obj[0] as String;
 
+    final options = Options(
+      headers: {
+        "token": null,
+        "accept-language": languageCode,
+      },
+    );
+
     try {
-      final result = await client.post(path, data: data);
+      final result = await client.post(
+        path,
+        data: data,
+        options: options,
+      );
 
       final response = NetworkResponse.fromJson(result.data);
 
@@ -90,7 +126,21 @@ class BaseRequest {
         return Failure(response.error as ErrorInfo);
       }
     } on DioException catch (error) {
-      return Failure(ErrorInfo.fromJson(error.response?.data));
+      if (error.response?.data is String) {
+        return Failure(
+          ErrorInfo(
+            code: 0,
+            response: error.response?.data,
+            error: ErrorData(
+              type: 'type',
+              statusCode: -1,
+              message: error.response?.data,
+            ),
+          ),
+        );
+      } else {
+        return Failure(ErrorInfo.fromJson(error.response?.data));
+      }
     } catch (error) {
       return Failure(
         ErrorInfo(

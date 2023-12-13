@@ -12,6 +12,9 @@ class ErrorModule extends Module {
         content: r.args.data["content"],
         backButton: r.args.data["backButton"],
         onPress: r.args.data["onPress"],
+        isShowButton: r.args.data["isShowButton"],
+        titleButton: r.args.data["titleButton"],
+        enableColor: r.args.data["enableColor"],
       ),
       transition: TransitionType.downToUp,
     );

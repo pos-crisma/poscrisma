@@ -24,6 +24,21 @@ class DefaultFirebaseOptions {
         return android;
       case TargetPlatform.iOS:
         return ios;
+      case TargetPlatform.macOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -32,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBss6AxNLV3qtA_PheGF6ZvXBZYzYN1hIQ',
-    appId: '1:604903944147:web:6fd21a8c02089000738926',
-    messagingSenderId: '604903944147',
-    projectId: 'poscrisma-77128',
-    authDomain: 'poscrisma-77128.firebaseapp.com',
-    storageBucket: 'poscrisma-77128.appspot.com',
-    measurementId: 'G-CDN36KDYY8',
+    apiKey: 'AIzaSyDIOCACjm5V4JnxYKHZTdMTFkaOqNje72I',
+    appId: '1:626405922633:web:0daf506acf58c8e3c7ac98',
+    messagingSenderId: '626405922633',
+    projectId: 'poscrisma-be163',
+    authDomain: 'poscrisma-be163.firebaseapp.com',
+    storageBucket: 'poscrisma-be163.appspot.com',
+    measurementId: 'G-22MPKTN0NN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDhPJS7OXF3tEJHmYKynBkA8mue4neMwM8',
-    appId: '1:604903944147:android:7b980585a587b918738926',
-    messagingSenderId: '604903944147',
-    projectId: 'poscrisma-77128',
-    storageBucket: 'poscrisma-77128.appspot.com',
+    apiKey: 'AIzaSyCpWAZnLJbGgp8jat1hO0H1fMdCfUSji44',
+    appId: '1:626405922633:android:2adc355b0ce04a32c7ac98',
+    messagingSenderId: '626405922633',
+    projectId: 'poscrisma-be163',
+    storageBucket: 'poscrisma-be163.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB0ZJPZ-b9Jv4R5pm3GFNCykgqtKTT2sDY',
-    appId: '1:604903944147:ios:13625d6057384b59738926',
-    messagingSenderId: '604903944147',
-    projectId: 'poscrisma-77128',
-    storageBucket: 'poscrisma-77128.appspot.com',
+    apiKey: 'AIzaSyABc5It4OariH9IbQmNi_4jC4qrbMgO-aQ',
+    appId: '1:626405922633:ios:1c43b121d11fdf89c7ac98',
+    messagingSenderId: '626405922633',
+    projectId: 'poscrisma-be163',
+    storageBucket: 'poscrisma-be163.appspot.com',
     iosBundleId: 'org.poscrisma.poscrisma',
   );
 }

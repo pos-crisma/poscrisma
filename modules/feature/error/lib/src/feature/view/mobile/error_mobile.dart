@@ -10,6 +10,8 @@ class ErrorMobile extends StatelessWidget {
     required this.content,
     required this.backButton,
     required this.onPress,
+    required this.isShowButton,
+    required this.titleButton,
   });
 
   final String title;
@@ -18,6 +20,9 @@ class ErrorMobile extends StatelessWidget {
   final Color? enableColor;
 
   final Function() backButton;
+
+  final bool isShowButton;
+  final String titleButton;
   final Function() onPress;
 
   @override
@@ -63,11 +68,17 @@ class ErrorMobile extends StatelessWidget {
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: SizedBox(
                     height: 200,
+                    child: Image(
+                      image:
+                          SystemMode.isDark(context) ? noDataDark : noDataLight,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
+                const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
                 SliverToBoxAdapter(
                   child: Align(
                     alignment: Alignment.topCenter,
@@ -105,36 +116,40 @@ class ErrorMobile extends StatelessWidget {
               ],
             ),
           ),
-          AnimatedOpacity(
-            opacity: View.of(context).viewInsets.bottom > 0.0 ? 0 : 1,
-            duration: Durations.medium1,
-            child: const Divider(
-              thickness: 0.2,
-              height: 1,
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(
-              top: 8,
-              bottom: MediaQuery.of(context).padding.bottom,
-            ),
-            child: AnimatedButton(
-              onPress: onPress(),
-              enableColor: enableColor ?? Colors.deepPurple.shade300,
-              disabledChild: const CircularProgressIndicator.adaptive(),
-              child: Text(
-                'Tentar novamente',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium! //
-                    .copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+          isShowButton
+              ? AnimatedOpacity(
+                  opacity: View.of(context).viewInsets.bottom > 0.0 ? 0 : 1,
+                  duration: Durations.medium1,
+                  child: const Divider(
+                    thickness: 0.2,
+                    height: 1,
+                  ),
+                )
+              : const SizedBox(),
+          isShowButton
+              ? Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(
+                    top: 8,
+                    bottom: MediaQuery.of(context).padding.bottom,
+                  ),
+                  child: AnimatedButton(
+                    onPress: onPress(),
+                    enableColor: enableColor ?? Colors.deepPurple.shade300,
+                    disabledChild: const CircularProgressIndicator.adaptive(),
+                    child: Text(
+                      titleButton,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium! //
+                          .copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                     ),
-              ),
-            ),
-          ),
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
     );

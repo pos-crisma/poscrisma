@@ -143,7 +143,13 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
           'title': errorInfo.response,
           'content': errorInfo.error.message,
           'backButton': () => Modular.to.pop(),
-          'onPress': () => UserMobileAction.service(context),
+          'onPress': () {
+            Modular.to.pop();
+            UserMobileAction.service(context);
+          },
+          'titleButton': 'Tentar novamente',
+          'isShowButton': true,
+          'enableColor': Colors.amber,
         },
       ),
     );

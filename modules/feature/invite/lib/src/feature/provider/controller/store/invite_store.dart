@@ -80,9 +80,25 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     });
   }
 
-  _failure(ErrorInfo error) {
+  _failure(ErrorInfo errorInfo) {
     value.status = InviteServiceStatus.failure;
 
-    return Effect.emit();
+    return Effect.run(() async {
+      Modular.to.pushNamed(
+        '/error/',
+        arguments: {
+          'title': errorInfo.response,
+          'content': errorInfo.error.message,
+          'backButton': () => Modular.to.pop(),
+          'onPress': () {
+            Modular.to.pop();
+            InviteAction.inviteService();
+          },
+          'titleButton': 'Tentar novamente',
+          'isShowButton': false,
+          'enableColor': Colors.amber,
+        },
+      );
+    });
   }
 }

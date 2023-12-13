@@ -19,3 +19,13 @@ const backgroundCastleTower = AssetImage(
   'assets/image/castle_tower.png',
   package: 'design',
 );
+
+const noDataLight = AssetImage(
+  'assets/image/no-data.light.png',
+  package: 'design',
+);
+
+const noDataDark = AssetImage(
+  'assets/image/no-data.dark.png',
+  package: 'design',
+);
