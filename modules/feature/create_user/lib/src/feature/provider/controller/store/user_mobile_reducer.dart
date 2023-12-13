@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -153,7 +154,6 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
       ),
     );
   }
-
 
   _loading() {
     state.isLoading = !state.isLoading;

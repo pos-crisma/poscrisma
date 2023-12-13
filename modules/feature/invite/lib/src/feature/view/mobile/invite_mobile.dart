@@ -156,12 +156,6 @@ class _InviteMobileState extends State<InviteMobile> {
                 return ValueListenableBuilder(
                   valueListenable: value.textEditingController,
                   builder: (context, textController, child) {
-                    print(textController.text);
-                    print(textController.text.length);
-                    print(textController.text.length > 3);
-                    print(textController.text.length > 3
-                        ? value.status == InviteServiceStatus.loading
-                        : false);
                     return AnimatedButton(
                       isFocus: View.of(context).viewInsets.bottom > 0.0,
                       isDisabled: textController.text.length > 3
