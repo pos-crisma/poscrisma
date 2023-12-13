@@ -9,7 +9,7 @@ mixin CreateUserApi {
     final BaseRequest client = Modular.get();
 
     return client
-        .post('/invite/accept/${invite}', data: dto.toJson())
+        .post('/invite/accept/$invite', data: dto.toJson())
         .map(CreateUserResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
   }
