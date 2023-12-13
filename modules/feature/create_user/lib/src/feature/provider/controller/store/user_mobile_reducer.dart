@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -143,11 +142,18 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
           'title': errorInfo.response,
           'content': errorInfo.error.message,
           'backButton': () => Modular.to.pop(),
-          'onPress': () => UserMobileAction.service(context),
+          'onPress': () {
+            Modular.to.pop();
+            UserMobileAction.service(context);
+          },
+          'titleButton': 'Tentar novamente',
+          'isShowButton': true,
+          'enableColor': Colors.amber,
         },
       ),
     );
   }
+
 
   _loading() {
     state.isLoading = !state.isLoading;

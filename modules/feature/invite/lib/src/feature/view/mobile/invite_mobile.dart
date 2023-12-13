@@ -153,25 +153,50 @@ class _InviteMobileState extends State<InviteMobile> {
             child: ValueListenableBuilder(
               valueListenable: viewStore,
               builder: (context, value, child) {
-                return AnimatedButton(
-                  isFocus: View.of(context).viewInsets.bottom > 0.0,
-                  isDisabled: value.status == InviteServiceStatus.loading,
-                  onPress: () => viewStore.send(InviteAction.buttonTapped()),
-                  enableColor: Colors.deepPurple.shade300,
-                  disableColor: SystemMode.isDark(context)
-                      ? Colors.deepPurple.shade500
-                      : Colors.deepPurple.shade100,
-                  disabledChild: const CircularProgressIndicator.adaptive(),
-                  child: Text(
-                    'Verifica convite',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium! //
-                        .copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                  ),
+                return ValueListenableBuilder(
+                  valueListenable: value.textEditingController,
+                  builder: (context, textController, child) {
+                    print(textController.text);
+                    print(textController.text.length);
+                    print(textController.text.length > 3);
+                    print(textController.text.length > 3
+                        ? value.status == InviteServiceStatus.loading
+                        : false);
+                    return AnimatedButton(
+                      isFocus: View.of(context).viewInsets.bottom > 0.0,
+                      isDisabled: textController.text.length > 3
+                          ? value.status == InviteServiceStatus.loading
+                          : true,
+                      onPress: () =>
+                          viewStore.send(InviteAction.buttonTapped()),
+                      enableColor: Colors.deepPurple.shade500,
+                      disableColor: SystemMode.isDark(context)
+                          ? Colors.deepPurple.shade300
+                          : Colors.deepPurple.shade100,
+                      disabledChild: value.status == InviteServiceStatus.loading
+                          ? const CircularProgressIndicator.adaptive()
+                          : Text(
+                              'Verifica convite',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium! //
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                            ),
+                      child: Text(
+                        'Verifica convite',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium! //
+                            .copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                      ),
+                    );
+                  },
                 );
               },
             ),

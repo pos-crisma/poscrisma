@@ -13,6 +13,8 @@ class ErrorPage extends StatelessWidget {
     required this.content,
     required this.backButton,
     required this.onPress,
+    this.isShowButton = true,
+    this.titleButton = 'Tentar novamente',
   });
 
   final String title;
@@ -21,7 +23,10 @@ class ErrorPage extends StatelessWidget {
   final Color? enableColor;
 
   final Function() backButton;
-  final Function() onPress;
+
+  final bool isShowButton;
+  final String titleButton;
+  final Function()? onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +42,8 @@ class ErrorPage extends StatelessWidget {
         onPress: () => onPress,
         title: title,
         content: content,
+        isShowButton: isShowButton,
+        titleButton: titleButton,
       ),
       desktop: const ErrorWeb(),
     );
