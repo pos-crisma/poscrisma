@@ -22,7 +22,7 @@ class AppModule extends Module {
   @override
   void routes(r) {
     r.module('/error', module: ErrorModule());
-    
+
     r.module('/splash_screen', module: SplashScreenModule());
     r.module('/feed', module: FeedModule());
     r.module('/invite', module: InviteModule());
@@ -30,7 +30,6 @@ class AppModule extends Module {
     r.module('/parish', module: ParishModule());
     r.module('/create_user', module: CreateUserModule());
 
-    
     r.module('/home', module: HomeModule(), guards: [AuthGuard()]);
     r.module('/young', module: YoungModule());
     r.module('/godparent', module: GodParentModule());
