@@ -147,7 +147,11 @@ class _AuthMobileState extends State<AuthMobile> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(
               top: 8,
-              bottom: MediaQuery.of(context).padding.bottom,
+              bottom: MediaQuery.of(context).padding.bottom == 0
+                  ? View.of(context).viewInsets.bottom > 0.0
+                      ? 0
+                      : 8
+                  : MediaQuery.of(context).padding.bottom,
             ),
             child: ValueListenableBuilder(
               valueListenable: viewStore,
