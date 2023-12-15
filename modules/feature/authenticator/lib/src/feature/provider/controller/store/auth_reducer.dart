@@ -32,12 +32,10 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
   }
 
   _onAppear() {
-    print('_onAppear?');
     return Effect.emit();
   }
 
   _handlerTapped() {
-    print('chego aqui?');
     return Effect.send(AuthAction.service());
   }
 
@@ -66,10 +64,9 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
   }
 
   _success(AuthResponseDTO dto) {
-    print(dto.accessToken);
-
     return Effect.run(() async {
-      // save token in local storage
+      final LocalStorage storage = Modular.get();
+      storage.addAccess(accessToken: dto.accessToken);
 
       Modular.to.navigate('/home/');
     });

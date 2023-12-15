@@ -21,18 +21,19 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.module('/home', module: HomeModule());
+    r.module('/error', module: ErrorModule());
+
+    r.module('/splash_screen', module: SplashScreenModule());
     r.module('/feed', module: FeedModule());
     r.module('/invite', module: InviteModule());
     r.module('/auth', module: AuthModule());
     r.module('/parish', module: ParishModule());
+    r.module('/create_user', module: CreateUserModule());
+
+    r.module('/home', module: HomeModule(), guards: [AuthGuard()]);
     r.module('/young', module: YoungModule());
     r.module('/godparent', module: GodParentModule());
     r.module('/game', module: GameModule());
-    r.module('/splash_screen', module: SplashScreenModule());
-    r.module('/create_user', module: CreateUserModule());
-
-    r.module('/error', module: ErrorModule());
 
     r.redirect('/', to: '/splash_screen/');
   }

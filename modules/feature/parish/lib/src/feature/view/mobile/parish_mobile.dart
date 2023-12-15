@@ -157,7 +157,11 @@ class _ParishMobileState extends State<ParishMobile> {
           ),
           Container(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).padding.bottom,
+              bottom: MediaQuery.of(context).padding.bottom == 0
+                  ? View.of(context).viewInsets.bottom > 0.0
+                      ? 0
+                      : 8
+                  : MediaQuery.of(context).padding.bottom,
             ),
             width: MediaQuery.of(context).size.width,
             child: AnimatedButton(
@@ -169,7 +173,7 @@ class _ParishMobileState extends State<ParishMobile> {
               }),
               enableColor: Colors.deepPurple.shade300,
               disableColor: Colors.deepPurple.shade100,
-              disabledChild: const CircularProgressIndicator.adaptive(),
+              disabledChild: const CupertinoActivityIndicator(),
               child: Text(
                 'Proximo',
                 style: Theme.of(context)

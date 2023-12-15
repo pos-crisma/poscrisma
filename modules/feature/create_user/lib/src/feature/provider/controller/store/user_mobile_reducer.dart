@@ -1,6 +1,4 @@
 import 'package:core/core.dart';
-import 'package:design/design.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/create_user_api.dart';

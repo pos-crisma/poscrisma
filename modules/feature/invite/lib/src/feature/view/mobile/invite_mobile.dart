@@ -148,7 +148,11 @@ class _InviteMobileState extends State<InviteMobile> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(
               top: 8,
-              bottom: MediaQuery.of(context).padding.bottom,
+              bottom: MediaQuery.of(context).padding.bottom == 0
+                  ? View.of(context).viewInsets.bottom > 0.0
+                      ? 0
+                      : 8
+                  : MediaQuery.of(context).padding.bottom,
             ),
             child: ValueListenableBuilder(
               valueListenable: viewStore,
@@ -168,7 +172,7 @@ class _InviteMobileState extends State<InviteMobile> {
                           ? Colors.deepPurple.shade300
                           : Colors.deepPurple.shade100,
                       disabledChild: value.status == InviteServiceStatus.loading
-                          ? const CircularProgressIndicator.adaptive()
+                          ? const CupertinoActivityIndicator()
                           : Text(
                               'Verifica convite',
                               style: Theme.of(context)

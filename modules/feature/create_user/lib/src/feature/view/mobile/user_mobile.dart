@@ -237,7 +237,11 @@ class _UserMobileState extends State<UserMobile> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(
               top: 8,
-              bottom: MediaQuery.of(context).padding.bottom,
+              bottom: MediaQuery.of(context).padding.bottom == 0
+                  ? View.of(context).viewInsets.bottom > 0.0
+                      ? 0
+                      : 8
+                  : MediaQuery.of(context).padding.bottom,
             ),
             child: ValueListenableBuilder(
               valueListenable: viewStore,
@@ -251,7 +255,7 @@ class _UserMobileState extends State<UserMobile> {
                   disableColor: SystemMode.isDark(context)
                       ? Colors.deepPurple.shade500
                       : Colors.deepPurple.shade100,
-                  disabledChild: const CircularProgressIndicator.adaptive(),
+                  disabledChild: const CupertinoActivityIndicator(),
                   child: Text(
                     'Proximo',
                     style: Theme.of(context)
