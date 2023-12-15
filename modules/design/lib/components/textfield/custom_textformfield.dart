@@ -17,7 +17,6 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     FocusNode? focusNote,
-
     EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
@@ -50,43 +49,51 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: _edgeInsets,
-      child: ClipRRect(
-        borderRadius: _borderRadiusGeometry,
-        child: TextFormField(
-          enabled: _enabled,
-          focusNode: _focusNode,
-          autofocus: _autoFocus,
-          controller: controller,
-          keyboardType: keyboardType,
-          textCapitalization: textCapitalization,
-          textInputAction: textInputAction,
-          maxLines: _maxLine,
-          decoration: InputDecoration(
-            labelText: labelText,
-            filled: true,
-            fillColor: _boxDecorationColor,
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            focusedErrorBorder: InputBorder.none,
-            suffixIcon: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: suffixPress,
-              child: Icon(
-                CupertinoIcons.clear_circled_solid,
-                color: Colors.grey.shade600,
-              ),
-            ),
-            contentPadding: const EdgeInsets.only(
-              top: 12,
-              left: 12,
-              right: 0,
-              bottom: 12,
-            ),
+      child: CupertinoTextField(
+        enabled: _enabled,
+        focusNode: _focusNode,
+        autofocus: _autoFocus,
+        controller: controller,
+        keyboardType: keyboardType,
+        textCapitalization: textCapitalization,
+        textInputAction: textInputAction,
+        maxLines: _maxLine,
+        expands: false,
+        decoration: BoxDecoration(
+          color: _boxDecorationColor,
+          borderRadius: _borderRadiusGeometry,
+        ),
+        placeholder: labelText,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+        suffix: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: suffixPress,
+          child: Icon(
+            CupertinoIcons.clear_circled_solid,
+            color: Colors.grey.shade600,
           ),
         ),
+        // decoration: InputDecoration(
+        //   labelText: labelText,
+        //   filled: true,
+        //   fillColor: _boxDecorationColor,
+        //   border: InputBorder.none,
+        //   focusedBorder: InputBorder.none,
+        //   enabledBorder: InputBorder.none,
+        //   errorBorder: InputBorder.none,
+        //   disabledBorder: InputBorder.none,
+        //   focusedErrorBorder: InputBorder.none,
+
+        //   // contentPadding: const EdgeInsets.only(
+        //   //   top: 12,
+        //   //   left: 12,
+        //   //   right: 0,
+        //   //   bottom: 12,
+        //   // ),
+        // ),
       ),
     );
   }
