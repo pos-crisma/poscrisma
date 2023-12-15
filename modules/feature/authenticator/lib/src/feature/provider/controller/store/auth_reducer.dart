@@ -32,12 +32,10 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
   }
 
   _onAppear() {
-    print('_onAppear?');
     return Effect.emit();
   }
 
   _handlerTapped() {
-    print('chego aqui?');
     return Effect.send(AuthAction.service());
   }
 
