@@ -70,6 +70,8 @@ dependencies:
     path: "./modules/feature/splash_screen"
   error:
     path: "./modules/feature/error"
+  home:
+    path: "./modules/feature/home"
 
 dev_dependencies:
   flutter_test:

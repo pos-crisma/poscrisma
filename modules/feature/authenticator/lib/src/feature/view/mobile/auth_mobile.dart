@@ -3,10 +3,32 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AuthMobile extends StatelessWidget {
-  AuthMobile({super.key});
+import '../../provider/controller/action/auth_action.dart';
+import '../../provider/controller/store/auth_reducer.dart';
 
-  final ScrollController controller = ScrollController();
+class AuthMobile extends StatefulWidget {
+  const AuthMobile({super.key});
+
+  @override
+  State<AuthMobile> createState() => _AuthMobileState();
+}
+
+class _AuthMobileState extends State<AuthMobile> {
+  final AuthReducer viewStore = Modular.get();
+  bool obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    viewStore.send(AuthAction.onAppear());
+  }
+
+  @override
+  void dispose() {
+    viewStore.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +100,7 @@ class AuthMobile extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium! //
-                              .copyWith(
-                                  // fontWeight: FontWeight.bold,
-                                  ),
+                              .copyWith(),
                         ),
                       ],
                     ),
@@ -89,8 +109,8 @@ class AuthMobile extends StatelessWidget {
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
                 SliverToBoxAdapter(
                   child: CustomTextFormField(
-                    // focusNote: viewStore.value.onFocus,
-                    // controller: viewStore.value.textEditingController,
+                    focusNote: viewStore.value.nicknameFocus,
+                    controller: viewStore.value.nicknameController,
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
@@ -100,8 +120,12 @@ class AuthMobile extends StatelessWidget {
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
                 SliverToBoxAdapter(
                   child: CustomTextFormField(
-                    // focusNote: viewStore.value.onFocus,
-                    // controller: viewStore.value.textEditingController,
+                    isSecurity: true,
+                    obscureText: obscureText,
+                    obscureOnPress: () =>
+                        setState(() => obscureText = !obscureText),
+                    focusNote: viewStore.value.passwordFocus,
+                    controller: viewStore.value.passwordController,
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
@@ -125,24 +149,27 @@ class AuthMobile extends StatelessWidget {
               top: 8,
               bottom: MediaQuery.of(context).padding.bottom,
             ),
-            child: AnimatedButton(
-              isFocus: View.of(context).viewInsets.bottom > 0.0,
-              // isDisabled: value.isLoading,
-              onPress: () {},
-              enableColor: Colors.deepPurple.shade300,
-              disableColor: SystemMode.isDark(context)
-                  ? Colors.deepPurple.shade500
-                  : Colors.deepPurple.shade100,
-              disabledChild: const CircularProgressIndicator.adaptive(),
-              child: Text(
-                'Proximo',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium! //
-                    .copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+            child: ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, _) => AnimatedButton(
+                isFocus: View.of(context).viewInsets.bottom > 0.0,
+                isDisabled: value.isLoading,
+                onPress: () => viewStore.send(AuthAction.handlerTapped()),
+                enableColor: Colors.deepPurple.shade300,
+                disableColor: SystemMode.isDark(context)
+                    ? Colors.deepPurple.shade500
+                    : Colors.deepPurple.shade100,
+                disabledChild: const CircularProgressIndicator.adaptive(),
+                child: Text(
+                  'Entrar',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge! //
+                      .copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                ),
               ),
             ),
           ),
