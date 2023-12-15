@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 
-import '../view/auth_page.dart';
+import '../feature/view/auth_page.dart';
+
 
 class AuthModule extends Module {
   @override
