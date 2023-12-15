@@ -255,7 +255,7 @@ class _UserMobileState extends State<UserMobile> {
                   disableColor: SystemMode.isDark(context)
                       ? Colors.deepPurple.shade500
                       : Colors.deepPurple.shade100,
-                  disabledChild: const CircularProgressIndicator.adaptive(),
+                  disabledChild: const CupertinoActivityIndicator(),
                   child: Text(
                     'Proximo',
                     style: Theme.of(context)

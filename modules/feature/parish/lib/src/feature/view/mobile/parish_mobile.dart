@@ -173,7 +173,7 @@ class _ParishMobileState extends State<ParishMobile> {
               }),
               enableColor: Colors.deepPurple.shade300,
               disableColor: Colors.deepPurple.shade100,
-              disabledChild: const CircularProgressIndicator.adaptive(),
+              disabledChild: const CupertinoActivityIndicator(),
               child: Text(
                 'Proximo',
                 style: Theme.of(context)

@@ -172,7 +172,7 @@ class _InviteMobileState extends State<InviteMobile> {
                           ? Colors.deepPurple.shade300
                           : Colors.deepPurple.shade100,
                       disabledChild: value.status == InviteServiceStatus.loading
-                          ? const CircularProgressIndicator.adaptive()
+                          ? const CupertinoActivityIndicator()
                           : Text(
                               'Verifica convite',
                               style: Theme.of(context)

@@ -87,7 +87,7 @@ class ErroPage extends StatelessWidget {
             child: AnimatedButton(
               onPress: () => onPress,
               enableColor: enableColor ?? Colors.deepPurple.shade300,
-              disabledChild: const CircularProgressIndicator.adaptive(),
+              disabledChild: const CupertinoActivityIndicator(),
               child: Text(
                 'Proximo',
                 style: Theme.of(context)

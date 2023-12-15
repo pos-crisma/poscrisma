@@ -140,7 +140,7 @@ class ErrorMobile extends StatelessWidget {
                   child: AnimatedButton(
                     onPress: onPress(),
                     enableColor: enableColor ?? Colors.deepPurple.shade300,
-                    disabledChild: const CircularProgressIndicator.adaptive(),
+                    disabledChild: const CupertinoActivityIndicator(),
                     child: Text(
                       titleButton,
                       style: Theme.of(context)
