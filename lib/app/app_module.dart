@@ -11,6 +11,7 @@ import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
 import 'package:splash_screen/splash_screen.dart';
 import 'package:young/young.dart';
+import 'package:home/home.dart';
 
 class AppModule extends Module {
   @override
@@ -20,6 +21,7 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
+    r.module('/home', module: HomeModule());
     r.module('/feed', module: FeedModule());
     r.module('/invite', module: InviteModule());
     r.module('/auth', module: AuthModule());

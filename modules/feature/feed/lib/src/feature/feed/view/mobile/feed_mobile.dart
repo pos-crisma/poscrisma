@@ -182,7 +182,7 @@ class FeedMobile extends StatelessWidget {
                 ],
               ),
             ),
-            expandedHeight: Responsive.isSmallScreen(context) ? 250 : 500,
+            expandedHeight: Responsive.isSmallScreen(context) ? 350 : 500,
             collapsedHeight: 0,
             toolbarHeight: 0,
           ),

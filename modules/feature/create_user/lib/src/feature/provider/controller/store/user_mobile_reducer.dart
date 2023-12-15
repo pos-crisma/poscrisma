@@ -130,9 +130,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
   }
 
   _success(CreateUserResponseDTO createUserResponseDTO) {
-    return Effect.run(() async {
-      print('Go to login flow');
-    });
+    return Effect.run(() async => Modular.to.popAndPushNamed('/auth'));
   }
 
   _failure(ErrorInfo errorInfo, BuildContext context) {
