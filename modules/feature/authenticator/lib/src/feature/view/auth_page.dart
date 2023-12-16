@@ -16,9 +16,9 @@ class AuthPage extends StatelessWidget {
       ),
     );
 
-    return Responsive(
+    return const Responsive(
       mobile: AuthMobile(),
-      desktop: const AuthWeb(),
+      desktop: AuthWeb(),
     );
   }
 }
