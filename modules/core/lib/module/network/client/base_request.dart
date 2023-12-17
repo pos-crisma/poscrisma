@@ -6,14 +6,14 @@ import '../model/network_response.dart';
 class BaseRequest {
   AsyncResult<Entity, ErrorInfo> get(String path) async {
     final Network client = Modular.get();
-    final languageCode = await LocalePlus().getLanguageCode();
+    final LocalStorage storage = Modular.get();
 
-    // final obj = await getInfo("@token");
-    // final token = obj[0] as String;
+    final languageCode = await LocalePlus().getLanguageCode();
+    final acessToken = storage.acessToken;
 
     final options = Options(
       headers: {
-        "token": null,
+        "token": acessToken == "" ? null : acessToken,
         "accept-language": languageCode,
       },
     );
@@ -83,14 +83,14 @@ class BaseRequest {
     dynamic data,
   }) async {
     final Network client = Modular.get();
-    final languageCode = await LocalePlus().getLanguageCode();
+    final LocalStorage storage = Modular.get();
 
-    // final obj = await getInfo("@token");
-    // final token = obj[0] as String;
+    final languageCode = await LocalePlus().getLanguageCode();
+    final acessToken = storage.acessToken;
 
     final options = Options(
       headers: {
-        "token": null,
+        "token": acessToken == "" ? null : acessToken,
         "accept-language": languageCode,
       },
     );
