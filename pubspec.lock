@@ -20,7 +20,7 @@ packages:
   authenticator:
     dependency: "direct main"
     description:
-      path: "modules/feature/authenticator"
+      path: "modules/feature/public/authenticator"
       relative: true
     source: path
     version: "0.0.1"
@@ -106,7 +106,7 @@ packages:
   create_user:
     dependency: "direct main"
     description:
-      path: "modules/feature/create_user"
+      path: "modules/feature/public/create_user"
       relative: true
     source: path
     version: "0.0.1"
@@ -167,7 +167,7 @@ packages:
   feed:
     dependency: "direct main"
     description:
-      path: "modules/feature/feed"
+      path: "modules/feature/public/feed"
       relative: true
     source: path
     version: "0.0.1"
@@ -258,7 +258,7 @@ packages:
   game:
     dependency: "direct main"
     description:
-      path: "modules/feature/game"
+      path: "modules/feature/private/game"
       relative: true
     source: path
     version: "0.0.1"
@@ -273,7 +273,7 @@ packages:
   godparent:
     dependency: "direct main"
     description:
-      path: "modules/feature/godparent"
+      path: "modules/feature/private/godparent"
       relative: true
     source: path
     version: "0.0.1"
@@ -288,7 +288,7 @@ packages:
   home:
     dependency: "direct main"
     description:
-      path: "modules/feature/home"
+      path: "modules/feature/private/home"
       relative: true
     source: path
     version: "0.0.1"
@@ -311,7 +311,7 @@ packages:
   invite:
     dependency: "direct main"
     description:
-      path: "modules/feature/invite"
+      path: "modules/feature/public/invite"
       relative: true
     source: path
     version: "0.0.1"
@@ -374,7 +374,7 @@ packages:
   parish:
     dependency: "direct main"
     description:
-      path: "modules/feature/parish"
+      path: "modules/feature/public/parish"
       relative: true
     source: path
     version: "0.0.1"
@@ -418,7 +418,7 @@ packages:
   splash_screen:
     dependency: "direct main"
     description:
-      path: "modules/feature/splash_screen"
+      path: "modules/feature/public/splash_screen"
       relative: true
     source: path
     version: "0.0.1"
@@ -505,7 +505,7 @@ packages:
   young:
     dependency: "direct main"
     description:
-      path: "modules/feature/young"
+      path: "modules/feature/private/young"
       relative: true
     source: path
     version: "0.0.1"

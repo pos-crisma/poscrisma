@@ -1,4 +1,4 @@
-name: feed
+name: splash_screen
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -13,9 +13,9 @@ dependencies:
     sdk: flutter
 
   core:
-    path: "../../core"
+    path: "../../../core"
   design:
-    path: "../../design"
+    path: "../../../design"
 
 dev_dependencies:
   flutter_test:

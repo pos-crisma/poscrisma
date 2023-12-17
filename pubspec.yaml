@@ -51,27 +51,27 @@ dependencies:
   
   # Features Modules
   create_user:
-    path: "./modules/feature/create_user"
+    path: "./modules/feature/public/create_user"
   feed:
-    path: "./modules/feature/feed"
+    path: "./modules/feature/public/feed"
   game:
-    path: "./modules/feature/game"
+    path: "./modules/feature/private/game"
   young:
-    path: "./modules/feature/young"
+    path: "./modules/feature/private/young"
   parish:
-    path: "./modules/feature/parish"
+    path: "./modules/feature/public/parish"
   invite:
-    path: "./modules/feature/invite"
+    path: "./modules/feature/public/invite"
   godparent:
-    path: "./modules/feature/godparent"
+    path: "./modules/feature/private/godparent"
   authenticator:
-    path: "./modules/feature/authenticator"
+    path: "./modules/feature/public/authenticator"
   splash_screen:
-    path: "./modules/feature/splash_screen"
+    path: "./modules/feature/public/splash_screen"
   error:
     path: "./modules/feature/error"
   home:
-    path: "./modules/feature/home"
+    path: "./modules/feature/private/home"
 
 dev_dependencies:
   flutter_test:

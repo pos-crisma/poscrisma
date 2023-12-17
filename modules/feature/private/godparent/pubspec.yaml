@@ -1,12 +1,11 @@
-name: create_user
-description: "A new Flutter package project."
+name: godparent
+description: A new Flutter package project.
 version: 0.0.1
 homepage:
 publish_to: none
 
-
 environment:
-  sdk: '>=3.2.2 <4.0.0'
+  sdk: '>=3.0.3 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,9 +13,9 @@ dependencies:
     sdk: flutter
 
   core:
-    path: "../../core"
+    path: "../../../core"
   design:
-    path: "../../design"
+    path: "../../../design"
 
 dev_dependencies:
   flutter_test:
