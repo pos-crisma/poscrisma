@@ -339,6 +339,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  mascot:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/mascot"
+      relative: true
+    source: path
+    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -394,6 +401,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+  profile:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/profile"
+      relative: true
+    source: path
+    version: "0.0.1"
   result_dart:
     dependency: transitive
     description:
@@ -402,6 +416,34 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  room:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/room"
+      relative: true
+    source: path
+    version: "0.0.1"
+  rule:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/rule"
+      relative: true
+    source: path
+    version: "0.0.1"
+  schedule:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/schedule"
+      relative: true
+    source: path
+    version: "0.0.1"
+  setting:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/setting"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -494,6 +536,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  warehouse:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/warehouse"
+      relative: true
+    source: path
+    version: "0.0.1"
   web:
     dependency: transitive
     description:
