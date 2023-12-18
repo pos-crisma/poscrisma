@@ -10,6 +10,7 @@ import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
 
 import 'package:home/home.dart';
+import 'package:generate_invite/generate_invite.dart';
 import 'package:mascot/mascot.dart';
 import 'package:game/game.dart';
 import 'package:godparent/godparent.dart';
@@ -31,23 +32,27 @@ class AppModule extends Module {
   void routes(r) {
     r.module('/error', module: ErrorModule());
 
-    r.module('/splash_screen', module: SplashScreenModule());
-    r.module('/feed', module: FeedModule());
-    r.module('/invite', module: InviteModule());
-    r.module('/auth', module: AuthModule());
-    r.module('/parish', module: ParishModule());
-    r.module('/create_user', module: CreateUserModule());
+    r.module('/splash_screen',
+        module: SplashScreenModule(), guards: [PublicGuard()]);
+    r.module('/feed', module: FeedModule(), guards: [PublicGuard()]);
+    r.module('/invite', module: InviteModule(), guards: [PublicGuard()]);
+    r.module('/auth', module: AuthModule(), guards: [PublicGuard()]);
+    r.module('/parish', module: ParishModule(), guards: [PublicGuard()]);
+    r.module('/create_user',
+        module: CreateUserModule(), guards: [PublicGuard()]);
 
-    r.module('/home', module: HomeModule(), guards: [AuthGuard()]);
-    r.module('/young', module: YoungModule());
-    r.module('/godparent', module: GodParentModule());
-    r.module('/game', module: GameModule());
-    r.module('/rule', module: RuleModule());
-    r.module('/schedule', module: ScheduleModule());
-    r.module('/warehouse', module: WarehouseModule());
-    r.module('/room', module: RoomModule());
-    r.module('/setting', module: SettingModule());
-    r.module('/mascot', module: MascotModule());
+    r.module('/home', module: HomeModule(), guards: [PrivateGuard()]);
+    r.module('/generate_invite',
+        module: GenerateInviteModule(), guards: [PrivateGuard()]);
+    r.module('/young', module: YoungModule(), guards: [PrivateGuard()]);
+    r.module('/godparent', module: GodParentModule(), guards: [PrivateGuard()]);
+    r.module('/game', module: GameModule(), guards: [PrivateGuard()]);
+    r.module('/rule', module: RuleModule(), guards: [PrivateGuard()]);
+    r.module('/schedule', module: ScheduleModule(), guards: [PrivateGuard()]);
+    r.module('/warehouse', module: WarehouseModule(), guards: [PrivateGuard()]);
+    r.module('/room', module: RoomModule(), guards: [PrivateGuard()]);
+    r.module('/setting', module: SettingModule(), guards: [PrivateGuard()]);
+    r.module('/mascot', module: MascotModule(), guards: [PrivateGuard()]);
 
     r.redirect('/', to: '/splash_screen/');
   }

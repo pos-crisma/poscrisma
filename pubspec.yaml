@@ -85,6 +85,8 @@ dependencies:
     path: "./modules/feature/private/room"
   profile:
     path: "./modules/feature/private/profile"
+  generate_invite:
+    path: "./modules/feature/private/generate_invite"
   
   error:
     path: "./modules/feature/error"

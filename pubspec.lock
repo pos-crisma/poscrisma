@@ -262,6 +262,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  generate_invite:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/generate_invite"
+      relative: true
+    source: path
+    version: "0.0.1"
   glassmorphism:
     dependency: transitive
     description:

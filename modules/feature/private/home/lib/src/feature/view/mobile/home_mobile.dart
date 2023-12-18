@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,9 +56,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     Row(
                       children: [
                         InkWell(
-                          onTap: () {
-                            print('Settings!');
-                          },
+                          onTap: () => Modular.to.pushNamed('/setting/'),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -76,9 +75,7 @@ class _HomeMobileState extends State<HomeMobile> {
 
                         //*
                         InkWell(
-                          onTap: () {
-                            print('Messages!');
-                          },
+                          onTap: () {},
                           child: const Icon(
                             CupertinoIcons.bell_solid,
                             color: Colors.white,
@@ -88,9 +85,8 @@ class _HomeMobileState extends State<HomeMobile> {
                         const SizedBox(width: 8),
 
                         InkWell(
-                          onTap: () {
-                            print('Generate ticket!');
-                          },
+                          onTap: () =>
+                              Modular.to.pushNamed('/generate_invite/'),
                           child: const Icon(
                             CupertinoIcons.tickets_fill,
                             color: Colors.white,
