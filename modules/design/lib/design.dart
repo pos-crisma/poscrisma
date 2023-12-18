@@ -6,6 +6,8 @@ export 'components/glass/glass_morphism.dart';
 export 'components/border/border_input_decoration.dart';
 export 'components/button/animated_button.dart';
 
+export 'components/divider/divider.dart';
+
 export 'font/manrope_font.dart';
 export 'font/roboto_font.dart';
 

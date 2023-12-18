@@ -130,13 +130,8 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Divider(
-              height: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade100,
-            ),
+          const SliverToBoxAdapter(
+            child: CustomDivider(),
           ),
 
           //*
@@ -154,13 +149,8 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Divider(
-              height: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade100,
-            ),
+          const SliverToBoxAdapter(
+            child: CustomDivider(),
           ),
 
           //*
@@ -178,13 +168,8 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Divider(
-              height: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade100,
-            ),
+          const SliverToBoxAdapter(
+            child: CustomDivider(),
           ),
 
           //* Caso tenha a permissão de ver os jogos
@@ -202,13 +187,8 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Divider(
-              height: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade100,
-            ),
+          const SliverToBoxAdapter(
+            child: CustomDivider(),
           ),
 
           //* Apenas se for Padrinho
@@ -226,13 +206,8 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Divider(
-              height: 1,
-              color: SystemMode.isDark(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade100,
-            ),
+          const SliverToBoxAdapter(
+            child: CustomDivider(),
           ),
 
           //*

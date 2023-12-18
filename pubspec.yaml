@@ -54,24 +54,40 @@ dependencies:
     path: "./modules/feature/public/create_user"
   feed:
     path: "./modules/feature/public/feed"
-  game:
-    path: "./modules/feature/private/game"
-  young:
-    path: "./modules/feature/private/young"
   parish:
     path: "./modules/feature/public/parish"
   invite:
     path: "./modules/feature/public/invite"
-  godparent:
-    path: "./modules/feature/private/godparent"
   authenticator:
     path: "./modules/feature/public/authenticator"
   splash_screen:
     path: "./modules/feature/public/splash_screen"
-  error:
-    path: "./modules/feature/error"
+
+  game:
+    path: "./modules/feature/private/game"
+  young:
+    path: "./modules/feature/private/young"
+  godparent:
+    path: "./modules/feature/private/godparent"
   home:
     path: "./modules/feature/private/home"
+  mascot:
+    path: "./modules/feature/private/mascot"
+  setting:
+    path: "./modules/feature/private/setting"
+  schedule:
+    path: "./modules/feature/private/schedule"
+  rule:
+    path: "./modules/feature/private/rule"
+  warehouse:
+    path: "./modules/feature/private/warehouse"
+  room:
+    path: "./modules/feature/private/room"
+  profile:
+    path: "./modules/feature/private/profile"
+  
+  error:
+    path: "./modules/feature/error"
 
 dev_dependencies:
   flutter_test:
