@@ -18,7 +18,8 @@ export './firebase/instance_analitycs.dart';
 
 export './module/storage/local_storage.dart';
 
-export './module/auth/auth_guard.dart';
+export 'module/auth/private_guard.dart';
+export './module/auth/public_guard.dart';
 
 export 'package:flutter_modular/flutter_modular.dart';
 export 'package:result_dart/result_dart.dart';

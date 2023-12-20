@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 
-class AuthGuard extends RouteGuard {
-  AuthGuard() : super(redirectTo: '/');
+class PrivateGuard extends RouteGuard {
+  PrivateGuard() : super(redirectTo: '/');
 
   @override
   Future<bool> canActivate(String path, ModularRoute route) async {
