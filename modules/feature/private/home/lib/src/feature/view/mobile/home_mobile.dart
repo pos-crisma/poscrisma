@@ -96,7 +96,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Olá, Cotonete',
+                      'Olá, <user_nickname>', // TODO: move to i18n
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge! //

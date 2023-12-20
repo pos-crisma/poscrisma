@@ -13,6 +13,7 @@ class HomeModule extends Module {
     r.child(
       "/",
       child: (_) => const HomePage(),
+      transition: TransitionType.noTransition,
     );
   }
 }

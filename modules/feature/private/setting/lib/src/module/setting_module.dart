@@ -13,6 +13,7 @@ class SettingModule extends Module {
     r.child(
       "/",
       child: (_) => const SettingPage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

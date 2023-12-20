@@ -11,10 +11,12 @@ class CustomDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(
+    return Container(
+      margin: const EdgeInsets.only(top: 2),
+      width: MediaQuery.of(context).size.width,
       height: _height,
       color: SystemMode.isDark(context)
-          ? Colors.grey.shade900
+          ? Colors.grey.shade800
           : Colors.grey.shade100,
     );
   }
