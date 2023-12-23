@@ -331,7 +331,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: ComplexButton(
-                    text: "Pesquisar pessoa",
+                    text: "Pesquisar quarto",
                     iconData: CupertinoIcons.search,
                     light: Colors.grey.shade300,
                     dark: Colors.grey.shade700,
