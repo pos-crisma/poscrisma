@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -112,17 +113,232 @@ class _HomeMobileState extends State<HomeMobile> {
           ),
 
           //*
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Quartos'),
-              ),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                ItemButton(
+                  onPress: () {},
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return Container(
+                        // alignment: Alignment.centerLeft,
+                        width: constraints.maxWidth,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Todos quartos",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(),
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      text: 'Total de quartos usados: ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(),
+                                      children: [
+                                        TextSpan(
+                                          text: '45',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 24,
+                              color: Colors.grey.shade700,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        LayoutBuilder(
+                          builder: (context, constraints) => AnimatedButton(
+                            padding: EdgeInsets.zero,
+                            innerPadding: EdgeInsets.zero,
+                            onPress: () {},
+                            disabledChild: Container(),
+                            enableColor: Colors.transparent,
+                            child: SizedBox(
+                              width: 100,
+                              height: constraints.maxHeight,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade300,
+                                          dark: Colors.grey.shade700,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Padrinho",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color: ColorMode.setColor(
+                                            context: context,
+                                            light: Colors.black,
+                                            dark: Colors.white,
+                                          ),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        LayoutBuilder(
+                          builder: (context, constraints) => AnimatedButton(
+                            padding: EdgeInsets.zero,
+                            innerPadding: EdgeInsets.zero,
+                            onPress: () {},
+                            disabledChild: Container(),
+                            enableColor: Colors.transparent,
+                            child: SizedBox(
+                              width: 100,
+                              height: constraints.maxHeight,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade300,
+                                          dark: Colors.grey.shade700,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Jovem",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color: ColorMode.setColor(
+                                            context: context,
+                                            light: Colors.black,
+                                            dark: Colors.white,
+                                          ),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        LayoutBuilder(
+                          builder: (context, constraints) => AnimatedButton(
+                            padding: EdgeInsets.zero,
+                            innerPadding: EdgeInsets.zero,
+                            onPress: () {},
+                            disabledChild: Container(),
+                            enableColor: Colors.transparent,
+                            child: SizedBox(
+                              width: 100,
+                              height: constraints.maxHeight,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade300,
+                                          dark: Colors.grey.shade700,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Voluntarios",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color: ColorMode.setColor(
+                                            context: context,
+                                            light: Colors.black,
+                                            dark: Colors.white,
+                                          ),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: ComplexButton(
+                    text: "Pesquisar pessoa",
+                    iconData: CupertinoIcons.search,
+                    light: Colors.grey.shade300,
+                    dark: Colors.grey.shade700,
+                    showIsNew: false,
+                  ),
+                ),
+              ],
             ),
           ),
 
