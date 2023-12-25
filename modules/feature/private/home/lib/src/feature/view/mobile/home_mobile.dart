@@ -105,15 +105,27 @@ class _HomeMobileState extends State<HomeMobile> {
                     const SizedBox(height: 16),
                     ValueListenableBuilder(
                       valueListenable: viewStore,
-                      builder: (context, value, child) => Text(
-                        'Olá, ${value.user?.nickName ?? 'Carregando ...'}', // TODO: move to i18n
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge! //
-                            .copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
+                      builder: (context, value, child) => RichText(
+                        text: TextSpan(
+                          text: 'Olá, ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge! //
+                              .copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                          children: [
+                            TextSpan(
+                              text: value.user?.nickName ?? 'Carregando ...',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -177,7 +189,7 @@ class _HomeMobileState extends State<HomeMobile> {
                             Icon(
                               Icons.arrow_forward_ios_rounded,
                               size: 24,
-                              color: Colors.grey.shade700,
+                              color: Colors.grey.shade800,
                             ),
                           ],
                         ),
@@ -216,7 +228,7 @@ class _HomeMobileState extends State<HomeMobile> {
                                         color: ColorMode.setColor(
                                           context: context,
                                           light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade700,
+                                          dark: Colors.grey.shade800,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -260,7 +272,7 @@ class _HomeMobileState extends State<HomeMobile> {
                                         color: ColorMode.setColor(
                                           context: context,
                                           light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade700,
+                                          dark: Colors.grey.shade800,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -304,7 +316,7 @@ class _HomeMobileState extends State<HomeMobile> {
                                         color: ColorMode.setColor(
                                           context: context,
                                           light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade700,
+                                          dark: Colors.grey.shade800,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
@@ -344,7 +356,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     text: "Pesquisar quarto",
                     iconData: CupertinoIcons.search,
                     light: Colors.grey.shade300,
-                    dark: Colors.grey.shade700,
+                    dark: Colors.grey.shade800,
                     showIsNew: false,
                   ),
                 ),
@@ -424,7 +436,7 @@ class _HomeMobileState extends State<HomeMobile> {
                 //                         color: ColorMode.setColor(
                 //                           context: context,
                 //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade700,
+                //                           dark: Colors.grey.shade800,
                 //                         ),
                 //                         borderRadius:
                 //                             BorderRadius.circular(8.0),
@@ -468,7 +480,7 @@ class _HomeMobileState extends State<HomeMobile> {
                 //                         color: ColorMode.setColor(
                 //                           context: context,
                 //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade700,
+                //                           dark: Colors.grey.shade800,
                 //                         ),
                 //                         borderRadius:
                 //                             BorderRadius.circular(8.0),
@@ -512,7 +524,7 @@ class _HomeMobileState extends State<HomeMobile> {
                 //                         color: ColorMode.setColor(
                 //                           context: context,
                 //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade700,
+                //                           dark: Colors.grey.shade800,
                 //                         ),
                 //                         borderRadius:
                 //                             BorderRadius.circular(8.0),
@@ -554,7 +566,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     text: "Equipes",
                     iconData: CupertinoIcons.group_solid,
                     light: Colors.grey.shade300,
-                    dark: Colors.grey.shade700,
+                    dark: Colors.grey.shade800,
                     showIsNew: false,
                   ),
                 ),
@@ -584,7 +596,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     text: "Pesquisar Jogos",
                     iconData: CupertinoIcons.gamecontroller_alt_fill,
                     light: Colors.grey.shade300,
-                    dark: Colors.grey.shade700,
+                    dark: Colors.grey.shade800,
                     showIsNew: false,
                   ),
                 ),
@@ -598,7 +610,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     text: "Tabela de jogos",
                     iconData: CupertinoIcons.calendar,
                     light: Colors.grey.shade300,
-                    dark: Colors.grey.shade700,
+                    dark: Colors.grey.shade800,
                     showIsNew: false,
                   ),
                 ),
@@ -640,7 +652,7 @@ class _HomeMobileState extends State<HomeMobile> {
                       text: "Almoxarifado",
                       iconData: CupertinoIcons.cube_box_fill,
                       light: Colors.grey.shade300,
-                      dark: Colors.grey.shade700,
+                      dark: Colors.grey.shade800,
                       showIsNew: false,
                     ),
                   ),
