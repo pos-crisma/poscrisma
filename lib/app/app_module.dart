@@ -19,6 +19,7 @@ import 'package:rule/rule.dart';
 import 'package:schedule/schedule.dart';
 import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
+import 'package:store/module/store_module.dart';
 import 'package:warehouse/warehouse.dart';
 import 'package:young/young.dart';
 
@@ -26,6 +27,7 @@ class AppModule extends Module {
   @override
   List<Module> get imports => [
         CoreModule(),
+        StoreModule(),
       ];
 
   @override

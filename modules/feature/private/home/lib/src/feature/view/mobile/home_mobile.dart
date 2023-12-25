@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../provider/controller/action/home_action.dart';
+import '../../provider/controller/store/home_store.dart';
+
 class HomeMobile extends StatefulWidget {
   const HomeMobile({super.key});
 
@@ -13,9 +16,13 @@ class HomeMobile extends StatefulWidget {
 }
 
 class _HomeMobileState extends State<HomeMobile> {
+  final HomeReducer viewStore = Modular.get();
+
   @override
   void initState() {
     super.initState();
+
+    viewStore.send(HomeAction.onAppear());
   }
 
   @override
@@ -96,15 +103,18 @@ class _HomeMobileState extends State<HomeMobile> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      'Olá, <user_nickname>', // TODO: move to i18n
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge! //
-                          .copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) => Text(
+                        'Olá, ${value.user?.nickName ?? 'Carregando ...'}', // TODO: move to i18n
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge! //
+                            .copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                      ),
                     ),
                   ],
                 ),
@@ -112,7 +122,7 @@ class _HomeMobileState extends State<HomeMobile> {
             ),
           ),
 
-          //*
+          //* Room
           SliverToBoxAdapter(
             child: Column(
               children: [
@@ -347,17 +357,253 @@ class _HomeMobileState extends State<HomeMobile> {
           ),
 
           //*
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Equipes'),
-              ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
+                  child: Text(
+                    'Acampamento',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge! //
+                        .copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                // * Best teams
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: 16,
+                //   ),
+                //   child: Text(
+                //     'Melhores equipes',
+                //     style: Theme.of(context)
+                //         .textTheme
+                //         .bodyLarge! //
+                //         .copyWith(
+                //             // fontWeight: FontWeight.bold,
+                //             ),
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // Container(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: 16,
+                //   ),
+                //   height: 100,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: SingleChildScrollView(
+                //     scrollDirection: Axis.horizontal,
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.start,
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         LayoutBuilder(
+                //           builder: (context, constraints) => AnimatedButton(
+                //             padding: EdgeInsets.zero,
+                //             innerPadding: EdgeInsets.zero,
+                //             onPress: () {},
+                //             disabledChild: Container(),
+                //             enableColor: Colors.transparent,
+                //             child: SizedBox(
+                //               width: 100,
+                //               height: constraints.maxHeight,
+                //               child: Column(
+                //                 children: [
+                //                   Expanded(
+                //                     child: Container(
+                //                       decoration: BoxDecoration(
+                //                         color: ColorMode.setColor(
+                //                           context: context,
+                //                           light: Colors.grey.shade300,
+                //                           dark: Colors.grey.shade700,
+                //                         ),
+                //                         borderRadius:
+                //                             BorderRadius.circular(8.0),
+                //                       ),
+                //                     ),
+                //                   ),
+                //                   Text(
+                //                     "Azul",
+                //                     style: Theme.of(context)
+                //                         .textTheme
+                //                         .bodyMedium!
+                //                         .copyWith(
+                //                           color: ColorMode.setColor(
+                //                             context: context,
+                //                             light: Colors.black,
+                //                             dark: Colors.white,
+                //                           ),
+                //                         ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         const SizedBox(width: 8),
+                //         LayoutBuilder(
+                //           builder: (context, constraints) => AnimatedButton(
+                //             padding: EdgeInsets.zero,
+                //             innerPadding: EdgeInsets.zero,
+                //             onPress: () {},
+                //             disabledChild: Container(),
+                //             enableColor: Colors.transparent,
+                //             child: SizedBox(
+                //               width: 100,
+                //               height: constraints.maxHeight,
+                //               child: Column(
+                //                 children: [
+                //                   Expanded(
+                //                     child: Container(
+                //                       decoration: BoxDecoration(
+                //                         color: ColorMode.setColor(
+                //                           context: context,
+                //                           light: Colors.grey.shade300,
+                //                           dark: Colors.grey.shade700,
+                //                         ),
+                //                         borderRadius:
+                //                             BorderRadius.circular(8.0),
+                //                       ),
+                //                     ),
+                //                   ),
+                //                   Text(
+                //                     "Branco",
+                //                     style: Theme.of(context)
+                //                         .textTheme
+                //                         .bodyMedium!
+                //                         .copyWith(
+                //                           color: ColorMode.setColor(
+                //                             context: context,
+                //                             light: Colors.black,
+                //                             dark: Colors.white,
+                //                           ),
+                //                         ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         const SizedBox(width: 8),
+                //         LayoutBuilder(
+                //           builder: (context, constraints) => AnimatedButton(
+                //             padding: EdgeInsets.zero,
+                //             innerPadding: EdgeInsets.zero,
+                //             onPress: () {},
+                //             disabledChild: Container(),
+                //             enableColor: Colors.transparent,
+                //             child: SizedBox(
+                //               width: 100,
+                //               height: constraints.maxHeight,
+                //               child: Column(
+                //                 children: [
+                //                   Expanded(
+                //                     child: Container(
+                //                       decoration: BoxDecoration(
+                //                         color: ColorMode.setColor(
+                //                           context: context,
+                //                           light: Colors.grey.shade300,
+                //                           dark: Colors.grey.shade700,
+                //                         ),
+                //                         borderRadius:
+                //                             BorderRadius.circular(8.0),
+                //                       ),
+                //                     ),
+                //                   ),
+                //                   Text(
+                //                     "Vermelho",
+                //                     style: Theme.of(context)
+                //                         .textTheme
+                //                         .bodyMedium!
+                //                         .copyWith(
+                //                           color: ColorMode.setColor(
+                //                             context: context,
+                //                             light: Colors.black,
+                //                             dark: Colors.white,
+                //                           ),
+                //                         ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //         const SizedBox(width: 8),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(height: 4),
+
+                // ? Events camp area
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: ComplexButton(
+                    text: "Equipes",
+                    iconData: CupertinoIcons.group_solid,
+                    light: Colors.grey.shade300,
+                    dark: Colors.grey.shade700,
+                    showIsNew: false,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: Text(
+                    'Eventos',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge! //
+                        .copyWith(
+                            // fontWeight: FontWeight.bold,
+                            ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: ComplexButton(
+                    text: "Pesquisar Jogos",
+                    iconData: CupertinoIcons.gamecontroller_alt_fill,
+                    light: Colors.grey.shade300,
+                    dark: Colors.grey.shade700,
+                    showIsNew: false,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: ComplexButton(
+                    text: "Tabela de jogos",
+                    iconData: CupertinoIcons.calendar,
+                    light: Colors.grey.shade300,
+                    dark: Colors.grey.shade700,
+                    showIsNew: false,
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
             ),
           ),
 
@@ -366,73 +612,39 @@ class _HomeMobileState extends State<HomeMobile> {
           ),
 
           //*
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 8,
             ),
             sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Jogos'),
-              ),
-            ),
-          ),
-
-          const SliverToBoxAdapter(
-            child: CustomDivider(),
-          ),
-
-          //* Caso tenha a permissão de ver os jogos
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Tabelas de jogos'),
-              ),
-            ),
-          ),
-
-          const SliverToBoxAdapter(
-            child: CustomDivider(),
-          ),
-
-          //* Apenas se for Padrinho
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Mascotes'),
-              ),
-            ),
-          ),
-
-          const SliverToBoxAdapter(
-            child: CustomDivider(),
-          ),
-
-          //*
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                // color: Colors.white,
-                child: Text('Itens do acampamento'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    // color: Colors.white,
+                    child: Text(
+                      'Itens do acampamento',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge! //
+                          .copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: ComplexButton(
+                      text: "Almoxarifado",
+                      iconData: CupertinoIcons.cube_box_fill,
+                      light: Colors.grey.shade300,
+                      dark: Colors.grey.shade700,
+                      showIsNew: false,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

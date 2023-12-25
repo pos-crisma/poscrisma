@@ -1,33 +1,5 @@
 import 'dart:convert';
 
-class UserSessionDTO {
-  final User user;
-
-  UserSessionDTO({
-    required this.user,
-  });
-
-  UserSessionDTO copyWith({
-    User? user,
-  }) =>
-      UserSessionDTO(
-        user: user ?? this.user,
-      );
-
-  factory UserSessionDTO.fromRawJson(String str) =>
-      UserSessionDTO.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory UserSessionDTO.fromJson(Map<String, dynamic> json) => UserSessionDTO(
-        user: User.fromJson(json["user"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "user": user.toJson(),
-      };
-}
-
 class User {
   final String id;
   final String type;

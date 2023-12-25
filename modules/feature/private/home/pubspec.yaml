@@ -12,8 +12,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  store:
+    path: "../../store"
+
   core:
     path: "../../../core"
+
   design:
     path: "../../../design"
 

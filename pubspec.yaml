@@ -88,6 +88,9 @@ dependencies:
   generate_invite:
     path: "./modules/feature/private/generate_invite"
   
+  store:
+    path: "./modules/feature/store"
+  
   error:
     path: "./modules/feature/error"
 

@@ -3,9 +3,35 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:setting/src/feature/provider/controller/store/setting_store.dart';
 
-class SettingMobile extends StatelessWidget {
+import '../../provider/controller/action/setting_action.dart';
+
+class SettingMobile extends StatefulWidget {
   const SettingMobile({super.key});
+
+  @override
+  State<SettingMobile> createState() => _SettingMobileState();
+}
+
+class _SettingMobileState extends State<SettingMobile> {
+  final SettingReducer viewStore = Modular.get();
+
+  @override
+  void initState() {
+    super.initState();
+
+    viewStore.send(SettingAction.onAppear());
+  }
+
+  String getUserType(String type) {
+    return switch (type) {
+      'GodParent' => 'Padrinho',
+      'Young' => 'Jovem',
+      'Voluntary' => 'Voluntario',
+      _ => 'Falha ao carregar',
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,22 +110,28 @@ class SettingMobile extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   //*
-                  Text(
-                    '<user_nickname>',
-                    style: Theme.of(context)
-                        .textTheme //
-                        .titleMedium,
+                  ValueListenableBuilder(
+                    valueListenable: viewStore,
+                    builder: (context, value, child) => Text(
+                      value.user?.nickName ?? 'Carregando ...',
+                      style: Theme.of(context)
+                          .textTheme //
+                          .titleMedium,
+                    ),
                   ),
 
                   //*
-                  Text(
-                    '<user_type>',
-                    style: Theme.of(context)
-                        .textTheme //
-                        .bodySmall!
-                        .copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  ValueListenableBuilder(
+                    valueListenable: viewStore,
+                    builder: (context, value, child) => Text(
+                      getUserType(value.user?.type ?? ""),
+                      style: Theme.of(context)
+                          .textTheme //
+                          .bodySmall!
+                          .copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
 
                   //*

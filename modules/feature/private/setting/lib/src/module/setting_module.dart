@@ -1,11 +1,12 @@
 import 'package:core/core.dart';
+import 'package:setting/src/feature/provider/controller/store/setting_store.dart';
 
 import '../feature/view/setting_page.dart';
 
 class SettingModule extends Module {
   @override
   void binds(Injector i) {
-    // i.add(UserMobileReducer.new);
+    i.add(SettingReducer.new);
   }
 
   @override
