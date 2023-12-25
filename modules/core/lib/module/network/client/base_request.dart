@@ -9,12 +9,12 @@ class BaseRequest {
     final LocalStorage storage = Modular.get();
 
     final languageCode = await LocalePlus().getLanguageCode();
-    final acessToken = storage.acessToken;
+    final accessToken = storage.acessToken;
 
     final options = Options(
       headers: {
-        "token": acessToken == "" ? null : acessToken,
-        "accept-language": languageCode,
+        'Authorization': accessToken == "" ? null : "Bearer $accessToken",
+        'accept-language': languageCode,
       },
     );
 
@@ -90,8 +90,8 @@ class BaseRequest {
 
     final options = Options(
       headers: {
-        "token": acessToken == "" ? null : acessToken,
-        "accept-language": languageCode,
+        'Authorization': acessToken == "" ? null : "Bearer $acessToken",
+        'accept-language': languageCode,
       },
     );
 

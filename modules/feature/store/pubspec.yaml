@@ -1,8 +1,7 @@
-name: setting
+name: store
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
-publish_to: none
 
 environment:
   sdk: '>=3.2.2 <4.0.0'
@@ -12,14 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  store:
-    path: "../../store"
 
   core:
-    path: "../../../core"
-    
-  design:
-    path: "../../../design"
+    path: "../../core"
 
 dev_dependencies:
   flutter_test:

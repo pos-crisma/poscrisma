@@ -232,44 +232,44 @@ class FeedMobile extends StatelessWidget {
           ),
 
           // * Box Header
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: Responsive.isSmallScreen(context) ? 8 : 16,
-                vertical: 8,
-              ),
-              child: Text(
-                "Noticias", // TODO: Move to i18n
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge! //
-                    .copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-              ),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: Container(
+          //     padding: EdgeInsets.symmetric(
+          //       horizontal: Responsive.isSmallScreen(context) ? 8 : 16,
+          //       vertical: 8,
+          //     ),
+          //     child: Text(
+          //       "Noticias", // TODO: Move to i18n
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodyLarge! //
+          //           .copyWith(
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: 18,
+          //           ),
+          //     ),
+          //   ),
+          // ),
 
-          // * Box List
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) {
-                // TODO: Create card to show noticies
-                return ListTile(
-                  title: Text(
-                    "Item $index",
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                );
-              },
-            ),
-          ),
+          // // * Box List
+          // SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     childCount: 10,
+          //     (context, index) {
+          //       // TODO: Create card to show noticies
+          //       return ListTile(
+          //         title: Text(
+          //           "Item $index",
+          //           style: Theme.of(context).textTheme.bodyMedium,
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
 
           // * Bottom Space
-          const SliverToBoxAdapter(
-            child: SizedBox(height: 30),
+          SliverToBoxAdapter(
+            child: SizedBox(height: MediaQuery.of(context).padding.bottom),
           )
         ],
       ),
