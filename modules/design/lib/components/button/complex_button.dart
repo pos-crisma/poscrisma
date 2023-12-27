@@ -31,7 +31,7 @@ class ComplexButton extends StatelessWidget {
         vertical: 16.0,
         horizontal: 16.0,
       ),
-      onPress: () => onPress,
+      onPress: onPress != null ? () => onPress!() : () {},
       disabledChild: Container(),
       enableColor: ColorMode.setColor(
         context: context,

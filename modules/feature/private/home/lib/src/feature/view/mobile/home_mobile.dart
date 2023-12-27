@@ -139,7 +139,7 @@ class _HomeMobileState extends State<HomeMobile> {
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () {},
+                  onPress: () => Modular.to.pushNamed('/room/'),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       return Container(
@@ -214,7 +214,7 @@ class _HomeMobileState extends State<HomeMobile> {
                           builder: (context, constraints) => AnimatedButton(
                             padding: EdgeInsets.zero,
                             innerPadding: EdgeInsets.zero,
-                            onPress: () {},
+                            onPress: () => Modular.to.pushNamed('/room/type'),
                             disabledChild: Container(),
                             enableColor: Colors.transparent,
                             child: SizedBox(
@@ -258,7 +258,7 @@ class _HomeMobileState extends State<HomeMobile> {
                           builder: (context, constraints) => AnimatedButton(
                             padding: EdgeInsets.zero,
                             innerPadding: EdgeInsets.zero,
-                            onPress: () {},
+                            onPress: () => Modular.to.pushNamed('/room/type'),
                             disabledChild: Container(),
                             enableColor: Colors.transparent,
                             child: SizedBox(
@@ -302,7 +302,7 @@ class _HomeMobileState extends State<HomeMobile> {
                           builder: (context, constraints) => AnimatedButton(
                             padding: EdgeInsets.zero,
                             innerPadding: EdgeInsets.zero,
-                            onPress: () {},
+                            onPress: () => Modular.to.pushNamed('/room/type'),
                             disabledChild: Container(),
                             enableColor: Colors.transparent,
                             child: SizedBox(
@@ -353,6 +353,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: ComplexButton(
+                    onPress: () => Modular.to.pushNamed('/room/search'),
                     text: "Pesquisar quarto",
                     iconData: CupertinoIcons.search,
                     light: Colors.grey.shade300,
@@ -390,172 +391,6 @@ class _HomeMobileState extends State<HomeMobile> {
                 ),
                 const SizedBox(height: 8),
 
-                // * Best teams
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(
-                //     horizontal: 16,
-                //   ),
-                //   child: Text(
-                //     'Melhores equipes',
-                //     style: Theme.of(context)
-                //         .textTheme
-                //         .bodyLarge! //
-                //         .copyWith(
-                //             // fontWeight: FontWeight.bold,
-                //             ),
-                //   ),
-                // ),
-                // const SizedBox(height: 8),
-                // Container(
-                //   padding: const EdgeInsets.symmetric(
-                //     horizontal: 16,
-                //   ),
-                //   height: 100,
-                //   width: MediaQuery.of(context).size.width,
-                //   child: SingleChildScrollView(
-                //     scrollDirection: Axis.horizontal,
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         LayoutBuilder(
-                //           builder: (context, constraints) => AnimatedButton(
-                //             padding: EdgeInsets.zero,
-                //             innerPadding: EdgeInsets.zero,
-                //             onPress: () {},
-                //             disabledChild: Container(),
-                //             enableColor: Colors.transparent,
-                //             child: SizedBox(
-                //               width: 100,
-                //               height: constraints.maxHeight,
-                //               child: Column(
-                //                 children: [
-                //                   Expanded(
-                //                     child: Container(
-                //                       decoration: BoxDecoration(
-                //                         color: ColorMode.setColor(
-                //                           context: context,
-                //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade800,
-                //                         ),
-                //                         borderRadius:
-                //                             BorderRadius.circular(8.0),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                   Text(
-                //                     "Azul",
-                //                     style: Theme.of(context)
-                //                         .textTheme
-                //                         .bodyMedium!
-                //                         .copyWith(
-                //                           color: ColorMode.setColor(
-                //                             context: context,
-                //                             light: Colors.black,
-                //                             dark: Colors.white,
-                //                           ),
-                //                         ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //         const SizedBox(width: 8),
-                //         LayoutBuilder(
-                //           builder: (context, constraints) => AnimatedButton(
-                //             padding: EdgeInsets.zero,
-                //             innerPadding: EdgeInsets.zero,
-                //             onPress: () {},
-                //             disabledChild: Container(),
-                //             enableColor: Colors.transparent,
-                //             child: SizedBox(
-                //               width: 100,
-                //               height: constraints.maxHeight,
-                //               child: Column(
-                //                 children: [
-                //                   Expanded(
-                //                     child: Container(
-                //                       decoration: BoxDecoration(
-                //                         color: ColorMode.setColor(
-                //                           context: context,
-                //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade800,
-                //                         ),
-                //                         borderRadius:
-                //                             BorderRadius.circular(8.0),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                   Text(
-                //                     "Branco",
-                //                     style: Theme.of(context)
-                //                         .textTheme
-                //                         .bodyMedium!
-                //                         .copyWith(
-                //                           color: ColorMode.setColor(
-                //                             context: context,
-                //                             light: Colors.black,
-                //                             dark: Colors.white,
-                //                           ),
-                //                         ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //         const SizedBox(width: 8),
-                //         LayoutBuilder(
-                //           builder: (context, constraints) => AnimatedButton(
-                //             padding: EdgeInsets.zero,
-                //             innerPadding: EdgeInsets.zero,
-                //             onPress: () {},
-                //             disabledChild: Container(),
-                //             enableColor: Colors.transparent,
-                //             child: SizedBox(
-                //               width: 100,
-                //               height: constraints.maxHeight,
-                //               child: Column(
-                //                 children: [
-                //                   Expanded(
-                //                     child: Container(
-                //                       decoration: BoxDecoration(
-                //                         color: ColorMode.setColor(
-                //                           context: context,
-                //                           light: Colors.grey.shade300,
-                //                           dark: Colors.grey.shade800,
-                //                         ),
-                //                         borderRadius:
-                //                             BorderRadius.circular(8.0),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                   Text(
-                //                     "Vermelho",
-                //                     style: Theme.of(context)
-                //                         .textTheme
-                //                         .bodyMedium!
-                //                         .copyWith(
-                //                           color: ColorMode.setColor(
-                //                             context: context,
-                //                             light: Colors.black,
-                //                             dark: Colors.white,
-                //                           ),
-                //                         ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //         const SizedBox(width: 8),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                const SizedBox(height: 4),
-
                 // ? Events camp area
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -563,6 +398,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: ComplexButton(
+                    onPress: () => Modular.to.pushNamed('/team/'),
                     text: "Equipes",
                     iconData: CupertinoIcons.group_solid,
                     light: Colors.grey.shade300,
@@ -593,6 +429,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: ComplexButton(
+                    onPress: () => Modular.to.pushNamed('/team/'),
                     text: "Pesquisar Jogos",
                     iconData: CupertinoIcons.gamecontroller_alt_fill,
                     light: Colors.grey.shade300,
@@ -607,6 +444,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: ComplexButton(
+                    onPress: () => Modular.to.pushNamed('/schedule/'),
                     text: "Tabela de jogos",
                     iconData: CupertinoIcons.calendar,
                     light: Colors.grey.shade300,
@@ -649,6 +487,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ComplexButton(
+                      onPress: () => Modular.to.pushNamed('/warehouse/'),
                       text: "Almoxarifado",
                       iconData: CupertinoIcons.cube_box_fill,
                       light: Colors.grey.shade300,

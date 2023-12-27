@@ -1,14 +1,16 @@
 import 'package:core/core.dart';
 
-///
+// * Error
 import 'package:error/error.dart';
 
+// * Public
 import 'package:authenticator/authenticator.dart';
 import 'package:create_user/create_user.dart';
 import 'package:feed/feed.dart';
 import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
 
+// * Private
 import 'package:home/home.dart';
 import 'package:generate_invite/generate_invite.dart';
 import 'package:mascot/mascot.dart';
@@ -20,6 +22,7 @@ import 'package:schedule/schedule.dart';
 import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
 import 'package:store/module/store_module.dart';
+import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
 import 'package:young/young.dart';
 
@@ -118,6 +121,11 @@ class AppModule extends Module {
     r.module(
       '/mascot',
       module: MascotModule(),
+      guards: [PrivateGuard()],
+    );
+    r.module(
+      '/team',
+      module: TeamModule(),
       guards: [PrivateGuard()],
     );
 

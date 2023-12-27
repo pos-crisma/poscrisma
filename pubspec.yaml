@@ -87,6 +87,8 @@ dependencies:
     path: "./modules/feature/private/profile"
   generate_invite:
     path: "./modules/feature/private/generate_invite"
+  team:
+    path: "./modules/feature/private/team"
   
   store:
     path: "./modules/feature/store"
