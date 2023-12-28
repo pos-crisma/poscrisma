@@ -18,7 +18,7 @@ class FeedPage extends StatelessWidget {
 
     return Responsive(
       mobile: FeedMobile(),
-      desktop: const FeedWeb(),
+      desktop: FeedWeb(),
     );
   }
 }
