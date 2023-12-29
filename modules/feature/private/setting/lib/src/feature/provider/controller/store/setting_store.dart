@@ -24,10 +24,11 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
     return Effect.emit();
   }
 
-  _logoutButtonTapped() async {
-    final Storage storage = Modular.get();
-
-    await storage.delete("@token");
-    Modular.to.navigate('/');
+  _logoutButtonTapped() {
+    return Effect.run(() async {
+      final Storage storage = Modular.get();
+      await storage.delete("@token");
+      Modular.to.navigate('/');
+    });
   }
 }
