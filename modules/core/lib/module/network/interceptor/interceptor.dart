@@ -20,7 +20,6 @@ class NetworkInterceptor extends Interceptor {
     switch (config.env) {
       case Environment.qa:
       case Environment.develop:
-        options.headers.addAll({"isDevelopment": "true"});
         break;
       default:
     }
