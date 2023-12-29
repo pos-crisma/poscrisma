@@ -131,12 +131,16 @@ class ErrorMobile extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.only(
                     top: 8,
-                    bottom: MediaQuery.of(context).padding.bottom,
+                    bottom: MediaQuery.of(context).padding.bottom == 0
+                        ? View.of(context).viewInsets.bottom > 0.0
+                            ? 0
+                            : 8
+                        : MediaQuery.of(context).padding.bottom,
                   ),
                   child: AnimatedButton(
                     onPress: onPress(),
                     enableColor: enableColor ?? Colors.deepPurple.shade300,
-                    disabledChild: const CircularProgressIndicator.adaptive(),
+                    disabledChild: const CupertinoActivityIndicator(),
                     child: Text(
                       titleButton,
                       style: Theme.of(context)

@@ -51,23 +51,46 @@ dependencies:
   
   # Features Modules
   create_user:
-    path: "./modules/feature/create_user"
+    path: "./modules/feature/public/create_user"
   feed:
-    path: "./modules/feature/feed"
-  game:
-    path: "./modules/feature/game"
-  young:
-    path: "./modules/feature/young"
+    path: "./modules/feature/public/feed"
   parish:
-    path: "./modules/feature/parish"
+    path: "./modules/feature/public/parish"
   invite:
-    path: "./modules/feature/invite"
-  godparent:
-    path: "./modules/feature/godparent"
+    path: "./modules/feature/public/invite"
   authenticator:
-    path: "./modules/feature/authenticator"
+    path: "./modules/feature/public/authenticator"
   splash_screen:
-    path: "./modules/feature/splash_screen"
+    path: "./modules/feature/public/splash_screen"
+
+  game:
+    path: "./modules/feature/private/game"
+  young:
+    path: "./modules/feature/private/young"
+  godparent:
+    path: "./modules/feature/private/godparent"
+  home:
+    path: "./modules/feature/private/home"
+  mascot:
+    path: "./modules/feature/private/mascot"
+  setting:
+    path: "./modules/feature/private/setting"
+  schedule:
+    path: "./modules/feature/private/schedule"
+  rule:
+    path: "./modules/feature/private/rule"
+  warehouse:
+    path: "./modules/feature/private/warehouse"
+  room:
+    path: "./modules/feature/private/room"
+  profile:
+    path: "./modules/feature/private/profile"
+  generate_invite:
+    path: "./modules/feature/private/generate_invite"
+  
+  store:
+    path: "./modules/feature/store"
+  
   error:
     path: "./modules/feature/error"
 

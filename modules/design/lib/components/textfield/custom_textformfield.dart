@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +11,15 @@ class CustomTextFormField extends StatelessWidget {
     Color boxDecorationColor = Colors.black,
     bool autoFocus = false,
     bool enabled = true,
+    bool isSecurity = false,
+    bool obscureText = false,
     int? maxLine = 1,
     required this.labelText,
-    this.suffixPress,
     this.controller,
     this.keyboardType,
     this.textInputAction,
     FocusNode? focusNote,
-
+    this.obscureOnPress,
     EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
@@ -25,18 +27,23 @@ class CustomTextFormField extends StatelessWidget {
         _enabled = enabled,
         _edgeInsets = edgeInsets,
         _focusNode = focusNote,
-        _maxLine = maxLine;
+        _maxLine = maxLine,
+        _isSecurity = isSecurity,
+        _obscureText = obscureText;
 
   final EdgeInsets _edgeInsets;
   final String labelText;
   final Color _boxDecorationColor;
   final BorderRadiusGeometry _borderRadiusGeometry;
 
-  final VoidCallback? suffixPress;
+  final VoidCallback? obscureOnPress;
   final TextEditingController? controller;
 
   final bool _autoFocus;
   final bool _enabled;
+
+  final bool _isSecurity;
+  final bool _obscureText;
 
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization = TextCapitalization.none;
@@ -50,43 +57,45 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: _edgeInsets,
-      child: ClipRRect(
-        borderRadius: _borderRadiusGeometry,
-        child: TextFormField(
-          enabled: _enabled,
-          focusNode: _focusNode,
-          autofocus: _autoFocus,
-          controller: controller,
-          keyboardType: keyboardType,
-          textCapitalization: textCapitalization,
-          textInputAction: textInputAction,
-          maxLines: _maxLine,
-          decoration: InputDecoration(
-            labelText: labelText,
-            filled: true,
-            fillColor: _boxDecorationColor,
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            focusedErrorBorder: InputBorder.none,
-            suffixIcon: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: suffixPress,
-              child: Icon(
-                CupertinoIcons.clear_circled_solid,
-                color: Colors.grey.shade600,
-              ),
-            ),
-            contentPadding: const EdgeInsets.only(
-              top: 12,
-              left: 12,
-              right: 0,
-              bottom: 12,
-            ),
-          ),
+      child: CupertinoTextField(
+        enabled: _enabled,
+        focusNode: _focusNode,
+        autofocus: _autoFocus,
+        controller: controller,
+        keyboardType: keyboardType,
+        textCapitalization: textCapitalization,
+        textInputAction: textInputAction,
+        maxLines: _maxLine,
+        expands: false,
+        obscureText: _obscureText,
+        decoration: BoxDecoration(
+          color: _boxDecorationColor,
+          borderRadius: _borderRadiusGeometry,
         ),
+        placeholder: labelText,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        style: TextStyle(
+          color: SystemMode.isDark(context) ? Colors.white : Colors.black,
+        ),
+        suffix: _isSecurity
+            ? CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: obscureOnPress,
+                child: Icon(
+                  _obscureText
+                      ? CupertinoIcons.eye_fill
+                      : CupertinoIcons.eye_slash_fill,
+                  color: Colors.grey.shade600,
+                ),
+              )
+            : CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => controller?.clear(),
+                child: Icon(
+                  CupertinoIcons.clear_circled_solid,
+                  color: Colors.grey.shade600,
+                ),
+              ),
       ),
     );
   }

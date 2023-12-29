@@ -20,7 +20,7 @@ packages:
   authenticator:
     dependency: "direct main"
     description:
-      path: "modules/feature/authenticator"
+      path: "modules/feature/public/authenticator"
       relative: true
     source: path
     version: "0.0.1"
@@ -106,7 +106,7 @@ packages:
   create_user:
     dependency: "direct main"
     description:
-      path: "modules/feature/create_user"
+      path: "modules/feature/public/create_user"
       relative: true
     source: path
     version: "0.0.1"
@@ -167,7 +167,7 @@ packages:
   feed:
     dependency: "direct main"
     description:
-      path: "modules/feature/feed"
+      path: "modules/feature/public/feed"
       relative: true
     source: path
     version: "0.0.1"
@@ -258,7 +258,14 @@ packages:
   game:
     dependency: "direct main"
     description:
-      path: "modules/feature/game"
+      path: "modules/feature/private/game"
+      relative: true
+    source: path
+    version: "0.0.1"
+  generate_invite:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/generate_invite"
       relative: true
     source: path
     version: "0.0.1"
@@ -273,7 +280,7 @@ packages:
   godparent:
     dependency: "direct main"
     description:
-      path: "modules/feature/godparent"
+      path: "modules/feature/private/godparent"
       relative: true
     source: path
     version: "0.0.1"
@@ -285,6 +292,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  home:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/home"
+      relative: true
+    source: path
+    version: "0.0.1"
   http_parser:
     dependency: transitive
     description:
@@ -304,7 +318,7 @@ packages:
   invite:
     dependency: "direct main"
     description:
-      path: "modules/feature/invite"
+      path: "modules/feature/public/invite"
       relative: true
     source: path
     version: "0.0.1"
@@ -332,6 +346,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  mascot:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/mascot"
+      relative: true
+    source: path
+    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -367,7 +388,7 @@ packages:
   parish:
     dependency: "direct main"
     description:
-      path: "modules/feature/parish"
+      path: "modules/feature/public/parish"
       relative: true
     source: path
     version: "0.0.1"
@@ -387,6 +408,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+  profile:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/profile"
+      relative: true
+    source: path
+    version: "0.0.1"
   result_dart:
     dependency: transitive
     description:
@@ -395,6 +423,34 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  room:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/room"
+      relative: true
+    source: path
+    version: "0.0.1"
+  rule:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/rule"
+      relative: true
+    source: path
+    version: "0.0.1"
+  schedule:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/schedule"
+      relative: true
+    source: path
+    version: "0.0.1"
+  setting:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/setting"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -411,7 +467,7 @@ packages:
   splash_screen:
     dependency: "direct main"
     description:
-      path: "modules/feature/splash_screen"
+      path: "modules/feature/public/splash_screen"
       relative: true
     source: path
     version: "0.0.1"
@@ -423,6 +479,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  store:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/store"
+      relative: true
+    source: path
+    version: "0.0.1"
   stream_channel:
     dependency: transitive
     description:
@@ -487,6 +550,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  warehouse:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/warehouse"
+      relative: true
+    source: path
+    version: "0.0.1"
   web:
     dependency: transitive
     description:
@@ -498,7 +568,7 @@ packages:
   young:
     dependency: "direct main"
     description:
-      path: "modules/feature/young"
+      path: "modules/feature/private/young"
       relative: true
     source: path
     version: "0.0.1"
