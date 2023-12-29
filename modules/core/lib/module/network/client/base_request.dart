@@ -4,6 +4,16 @@ import 'package:locale_plus/locale_plus.dart';
 
 import '../model/network_response.dart';
 
+final internalFailure = ErrorInfo(
+  code: 0,
+  response: 'Problema interno',
+  error: ErrorData(
+    type: 'Interno',
+    statusCode: -1009,
+    message: 'Problema interno',
+  ),
+);
+
 class BaseRequest {
   AsyncResult<Entity, ErrorInfo> get(String path) async {
     final Network client = Modular.get();
@@ -39,36 +49,30 @@ class BaseRequest {
         } else if (response.value != null) {
           return Success(response.value);
         } else {
-          return Failure(
-            ErrorInfo(
-              code: 0,
-              error: ErrorData(
-                type: '',
-                statusCode: 0,
-                message: '',
-              ),
-              response: '',
-            ),
-          );
+          return Failure(internalFailure);
         }
       } else {
         return Failure(response.error!);
       }
     } on DioException catch (error) {
-      if (error.response?.data is String) {
-        return Failure(
-          ErrorInfo(
-            code: 0,
-            response: error.response?.data,
-            error: ErrorData(
-              type: 'type',
-              statusCode: -1,
-              message: error.response?.data,
+      if (error.response != null) {
+        if (error.response?.data is String) {
+          return Failure(
+            ErrorInfo(
+              code: 0,
+              response: error.response?.data,
+              error: ErrorData(
+                type: 'type',
+                statusCode: -1,
+                message: error.response?.data,
+              ),
             ),
-          ),
-        );
+          );
+        } else {
+          return Failure(ErrorInfo.fromJson(error.response?.data));
+        }
       } else {
-        return Failure(ErrorInfo.fromJson(error.response?.data));
+        return Failure(internalFailure);
       }
     } catch (error) {
       return Failure(
@@ -123,36 +127,30 @@ class BaseRequest {
         } else if (response.value != null) {
           return Success(response.value);
         } else {
-          return Failure(
-            ErrorInfo(
-              code: 0,
-              error: ErrorData(
-                type: '',
-                statusCode: 0,
-                message: '',
-              ),
-              response: '',
-            ),
-          );
+          return Failure(internalFailure);
         }
       } else {
         return Failure(response.error as ErrorInfo);
       }
     } on DioException catch (error) {
-      if (error.response?.data is String) {
-        return Failure(
-          ErrorInfo(
-            code: 0,
-            response: error.response?.data,
-            error: ErrorData(
-              type: 'type',
-              statusCode: -1,
-              message: error.response?.data,
+      if (error.response != null) {
+        if (error.response?.data is String) {
+          return Failure(
+            ErrorInfo(
+              code: 0,
+              response: error.response?.data,
+              error: ErrorData(
+                type: 'type',
+                statusCode: -1,
+                message: error.response?.data,
+              ),
             ),
-          ),
-        );
+          );
+        } else {
+          return Failure(ErrorInfo.fromJson(error.response?.data));
+        }
       } else {
-        return Failure(ErrorInfo.fromJson(error.response?.data));
+        return Failure(internalFailure);
       }
     } catch (error) {
       return Failure(
