@@ -108,19 +108,21 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
       if (state.type != null && state.parishId != null) {
         final type = state.type?.name ?? '';
-        final parishId = state.parishId ?? '';
+        // final parishId = state.parishId ?? '';
+
         await CreateUserApi.send(
           CreateUserRequestDTO(
-            name: state.nameController.text,
-            gender: state.genderInput,
-            birthday: state.birthdayController.text,
-            nickName: state.nicknameController.text,
-            phone: state.phoneController.text,
-            email: state.emailController.text,
-            type: type,
-            password: state.passwordController.text,
-            parishId: parishId,
-            medicalRecord: state.medicalController.text,
+            user: UserDTO(
+              name: state.nameController.text,
+              gender: state.genderInput,
+              birthdate: state.birthdayController.text,
+              nickName: state.nicknameController.text,
+              phone: state.phoneController.text,
+              email: state.emailController.text,
+              type: type,
+              password: state.passwordController.text,
+              medicalRecord: state.medicalController.text,
+            ),
           ),
           state.invite ?? "",
         ).fold(

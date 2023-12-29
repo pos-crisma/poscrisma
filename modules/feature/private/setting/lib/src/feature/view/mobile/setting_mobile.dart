@@ -169,7 +169,7 @@ class _SettingMobileState extends State<SettingMobile> {
                 dark: Colors.grey.shade800,
               ),
               child: ComplexButton(
-                onPress: () => Modular.to.pushNamed('/young/'),
+                onPress: () => Modular.to.pushNamed('/young'),
                 text: "Seus afilhados",
                 iconData: CupertinoIcons.person_2_fill,
                 light: Colors.grey.shade300,
@@ -201,7 +201,7 @@ class _SettingMobileState extends State<SettingMobile> {
                 dark: Colors.grey.shade800,
               ),
               child: ComplexButton(
-                onPress: () => Modular.to.pushNamed('/mascot/'),
+                onPress: () => Modular.to.pushNamed('/mascot'),
                 text: "Seus filhos ( Mascotes )",
                 iconData: CupertinoIcons.person_2_alt,
                 light: Colors.grey.shade300,
@@ -260,7 +260,7 @@ class _SettingMobileState extends State<SettingMobile> {
           //*
           SliverToBoxAdapter(
             child: ItemButton(
-              onPress: () => Modular.to.pushNamed('/nursing/'),
+              onPress: () => Modular.to.pushNamed('/nursing'),
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -296,7 +296,7 @@ class _SettingMobileState extends State<SettingMobile> {
           //*
           SliverToBoxAdapter(
             child: ItemButton(
-              onPress: () => Modular.to.pushNamed('/access_manager/'),
+              onPress: () => Modular.to.pushNamed('/access_manager'),
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -332,7 +332,7 @@ class _SettingMobileState extends State<SettingMobile> {
           //*
           SliverToBoxAdapter(
             child: ItemButton(
-              onPress: () => Modular.to.pushNamed('/game_manager/'),
+              onPress: () => Modular.to.pushNamed('/game_manager'),
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,

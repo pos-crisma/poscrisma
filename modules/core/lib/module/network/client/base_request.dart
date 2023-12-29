@@ -30,7 +30,9 @@ class BaseRequest {
 
     final options = Options(
       headers: {
-        'Authorization': accessToken == "" ? null : "Bearer $accessToken",
+        'Authorization': (accessToken == "" || accessToken == null)
+            ? null
+            : "Bearer $accessToken",
         'accept-language': languageCode,
       },
     );
@@ -107,7 +109,9 @@ class BaseRequest {
 
     final options = Options(
       headers: {
-        'Authorization': accessToken == "" ? null : "Bearer $accessToken",
+        'Authorization': (accessToken == "" || accessToken == null)
+            ? null
+            : "Bearer $accessToken",
         'accept-language': languageCode,
       },
     );
