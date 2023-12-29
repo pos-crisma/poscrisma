@@ -24,3 +24,7 @@ we will work on creating plugins to have a segregated and
 modularized project that can be reused
 
 - flutter create --org org.poscrisma --template=plugin --platforms=android,ios -i swift -a kotlin <feature_name>
+
+## Running Web
+
+- flutter run -d chrome --web-browser-flag "--disable-web-security"

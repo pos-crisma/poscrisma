@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:core/core.dart';
 import 'package:locale_plus/locale_plus.dart';
 
@@ -8,7 +9,13 @@ class BaseRequest {
     final Network client = Modular.get();
     final LocalStorage storage = Modular.get();
 
-    final languageCode = await LocalePlus().getLanguageCode();
+    String languageCode = "";
+    if (kIsWeb) {
+      languageCode = "pt-BR";
+    } else {
+      languageCode = (await LocalePlus().getLanguageCode())!;
+    }
+
     final accessToken = storage.acessToken;
 
     final options = Options(
@@ -85,12 +92,18 @@ class BaseRequest {
     final Network client = Modular.get();
     final LocalStorage storage = Modular.get();
 
-    final languageCode = await LocalePlus().getLanguageCode();
-    final acessToken = storage.acessToken;
+    String languageCode = "";
+    if (kIsWeb) {
+      languageCode = "pt-BR";
+    } else {
+      languageCode = (await LocalePlus().getLanguageCode())!;
+    }
+
+    final accessToken = storage.acessToken;
 
     final options = Options(
       headers: {
-        'Authorization': acessToken == "" ? null : "Bearer $acessToken",
+        'Authorization': accessToken == "" ? null : "Bearer $accessToken",
         'accept-language': languageCode,
       },
     );
