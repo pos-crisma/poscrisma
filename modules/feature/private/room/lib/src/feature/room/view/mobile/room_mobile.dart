@@ -1,3 +1,4 @@
+import 'package:design/color/color.dart';
 import 'package:flutter/material.dart';
 
 class RoomMobile extends StatelessWidget {
@@ -7,9 +8,15 @@ class RoomMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: BackButton(
+          color: ColorMode.setColor(
+            context: context,
+            light: Colors.black,
+            dark: Colors.white,
+          ),
+        ),
       ),
-      body: Text('Room'),
+      body: const Text('Room'),
     );
   }
 }

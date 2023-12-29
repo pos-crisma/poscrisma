@@ -1,7 +1,14 @@
 import 'dart:convert';
 
+enum UserGender {
+  Male,
+  Female,
+}
+
 class CreateUserRequestDTO {
   final String name;
+  final UserGender gender;
+  final String birthday;
   final String nickName;
   final String phone;
   final String email;
@@ -12,6 +19,8 @@ class CreateUserRequestDTO {
 
   CreateUserRequestDTO({
     required this.name,
+    required this.gender,
+    required this.birthday,
     required this.nickName,
     required this.phone,
     required this.email,
@@ -23,6 +32,8 @@ class CreateUserRequestDTO {
 
   CreateUserRequestDTO copyWith({
     String? name,
+    UserGender? gender,
+    String? birthday,
     String? nickName,
     String? phone,
     String? email,
@@ -33,6 +44,8 @@ class CreateUserRequestDTO {
   }) =>
       CreateUserRequestDTO(
         name: name ?? this.name,
+        gender: gender ?? this.gender,
+        birthday: birthday ?? this.birthday,
         nickName: nickName ?? this.nickName,
         phone: phone ?? this.phone,
         email: email ?? this.email,
@@ -50,6 +63,8 @@ class CreateUserRequestDTO {
   factory CreateUserRequestDTO.fromJson(Map<String, dynamic> json) =>
       CreateUserRequestDTO(
         name: json["name"],
+        gender: json["genre"],
+        birthday: json["birthday"],
         nickName: json["nickName"],
         phone: json["phone"],
         email: json["email"],
@@ -61,6 +76,8 @@ class CreateUserRequestDTO {
 
   Map<String, dynamic> toJson() => {
         "name": name,
+        "genrer": gender,
+        "birthday": birthday,
         "nickName": nickName,
         "phone": phone,
         "email": email,

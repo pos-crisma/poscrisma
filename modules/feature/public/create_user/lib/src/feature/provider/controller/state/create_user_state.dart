@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/user_type.dart';
@@ -6,8 +7,12 @@ import '../../model/user_type.dart';
 interface class CreateUserState {
   ContentOnPage contentOnPage;
 
+  UserGender genderInput;
+
   TextEditingController nameController;
   FocusNode nameFocus;
+  TextEditingController birthdayController;
+  FocusNode birthdayFocus;
   TextEditingController nicknameController;
   FocusNode nicknameFocus;
   TextEditingController emailController;
@@ -31,6 +36,9 @@ interface class CreateUserState {
     this.isLoading = false,
     required this.nameController,
     required this.nameFocus,
+    required this.genderInput,
+    required this.birthdayController,
+    required this.birthdayFocus,
     required this.nicknameController,
     required this.nicknameFocus,
     required this.emailController,
@@ -53,6 +61,8 @@ enum ContentOnPage {
     CreateUserType.name,
     CreateUserType.email,
     CreateUserType.phone,
+    CreateUserType.gender,
+    CreateUserType.birthday,
   ]),
   password(list: [
     CreateUserType.password,
@@ -70,6 +80,18 @@ enum CreateUserType {
     tipTitle:
         'Aqui voce pode criar seu nome de usuario unico\nPode seguir no exemplo abaixo:',
     tipContent: '- usuario.123\n- usuario_123',
+  ),
+  gender(
+    text: 'Agora o seu genero',
+    inputText: 'Genero',
+    tipTitle: '',
+    tipContent: '',
+  ),
+  birthday(
+    text: 'Agora o seu data de nascimento',
+    inputText: 'Data de nascimento',
+    tipTitle: '',
+    tipContent: '- 30/10/1995\n- 05/08/1998',
   ),
   name(
     text: 'Agora seu nome completo',

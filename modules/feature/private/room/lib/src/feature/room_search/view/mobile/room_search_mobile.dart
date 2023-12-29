@@ -9,7 +9,7 @@ class RoomSearchMobile extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButton(),
       ),
-      body: Text('Search'),
+      body: const Text('Search'),
     );
   }
 }

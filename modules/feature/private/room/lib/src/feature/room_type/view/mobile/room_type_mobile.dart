@@ -9,7 +9,7 @@ class RoomTypeMobile extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButton(),
       ),
-      body: Text('Type'),
+      body: const Text('Type'),
     );
   }
 }

@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:core/core.dart';
+import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
 import 'package:flutter/material.dart';
 
 import '../../dto/create_user_response_dto.dart';
@@ -13,6 +14,8 @@ sealed class UserMobileAction {
           parishId: parishId, senderId: senderId, type: type, invite: invite);
   static UserMobileAction handlerTapped(BuildContext context) =>
       _HandlerTapped(context: context);
+  static UserMobileAction genderTapped(UserGender gender) =>
+      _GenderTapped(gender: gender);
   static UserMobileAction backTapped() => _BackTapped();
   static UserMobileAction service(BuildContext context) =>
       _Service(context: context);
@@ -27,6 +30,7 @@ sealed class UserMobileAction {
   T fold<T>(
     T Function(_OnAppear action) onAppear,
     T Function(_HandlerTapped action) handlerTapped,
+    T Function(_GenderTapped action) genderTapped,
     T Function(_BackTapped action) backTapped,
     T Function(_Service action) service,
     T Function(_SuccessService action) success,
@@ -36,6 +40,7 @@ sealed class UserMobileAction {
       switch (this) {
         _OnAppear action => onAppear(action),
         _HandlerTapped action => handlerTapped(action),
+        _GenderTapped action => genderTapped(action),
         _BackTapped action => backTapped(action),
         _Service action => service(action),
         _SuccessService action => success(action),
@@ -56,6 +61,12 @@ class _OnAppear extends UserMobileAction {
     required this.senderId,
     required this.invite,
   });
+}
+
+class _GenderTapped extends UserMobileAction {
+  final UserGender gender;
+
+  _GenderTapped({required this.gender});
 }
 
 class _HandlerTapped extends UserMobileAction {
