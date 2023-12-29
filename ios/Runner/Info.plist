@@ -52,5 +52,7 @@
         <key>NSAllowsLocalNetworking</key>
         <true/>
     </dict>
+    <key>NSFaceIDUsageDescription</key>
+    <string>O app do Poscrisma pode usar o FaceId do seu celular?</string>
 </dict>
 </plist>

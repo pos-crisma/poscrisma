@@ -2,6 +2,7 @@
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.textInputAction,
+    this.inputFormatters,
     FocusNode? focusNote,
     this.obscureOnPress,
     EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
@@ -48,6 +50,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization = TextCapitalization.none;
   final TextInputAction? textInputAction;
+  final List<TextInputFormatter>? inputFormatters;
 
   final FocusNode? _focusNode;
 
@@ -72,6 +75,7 @@ class CustomTextFormField extends StatelessWidget {
           color: _boxDecorationColor,
           borderRadius: _borderRadiusGeometry,
         ),
+        inputFormatters: inputFormatters,
         placeholder: labelText,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         style: TextStyle(

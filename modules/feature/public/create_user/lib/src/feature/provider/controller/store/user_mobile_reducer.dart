@@ -16,6 +16,9 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
             emailFocus: FocusNode(),
             nameController: TextEditingController(text: ''),
             nameFocus: FocusNode(),
+            birthdayController: TextEditingController(text: ''),
+            birthdayFocus: FocusNode(),
+            genderInput: UserGender.Male,
             passwordController: TextEditingController(text: ''),
             passwordFocus: FocusNode(),
             nicknameController: TextEditingController(text: ''),
@@ -38,6 +41,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
         type: action.type,
       ),
       (action) => _handlerTapped(action.context),
+      (action) => _genderTapped(action.gender),
       (action) => _backButton(),
       (action) => _service(action.context),
       (action) => _success(action.createUserResponseDTO),
@@ -76,6 +80,12 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     }();
   }
 
+  _genderTapped(UserGender userGender) {
+    state.genderInput = userGender;
+
+    return Effect.emit();
+  }
+
   _backButton() {
     return switch (state.contentOnPage) {
       ContentOnPage.person => () {
@@ -102,6 +112,8 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
         await CreateUserApi.send(
           CreateUserRequestDTO(
             name: state.nameController.text,
+            gender: state.genderInput,
+            birthday: state.birthdayController.text,
             nickName: state.nicknameController.text,
             phone: state.phoneController.text,
             email: state.emailController.text,

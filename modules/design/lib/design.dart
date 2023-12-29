@@ -22,5 +22,6 @@ export 'theme/config/system_mode/system_mode.dart';
 
 export 'package:glassmorphism/glassmorphism.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+export 'package:brasil_fields/brasil_fields.dart';
 
 export 'components/textfield/custom_textformfield.dart';

@@ -35,13 +35,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
-
-  flutter_localizations:
-    sdk: flutter
     
-  intl: any
-
+  intl: ^0.18.0
 
   # Core Modules
   core:
@@ -87,6 +82,8 @@ dependencies:
     path: "./modules/feature/private/profile"
   generate_invite:
     path: "./modules/feature/private/generate_invite"
+  team:
+    path: "./modules/feature/private/team"
   
   store:
     path: "./modules/feature/store"

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 
 import '../../config/config_config.dart';
@@ -34,8 +35,10 @@ class NetworkInterceptor extends Interceptor {
     final response = err.response;
     if (response != null) {
       if (response.statusCode == 401) {
-        // await storage.delete("@sponsor_token");
-        // navigator.defaultRouteNavigate();
+        final Storage storage = Modular.get();
+
+        await storage.delete("@token");
+        Modular.to.navigate('/');
       }
     }
     handler.next(err);

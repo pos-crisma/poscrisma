@@ -1,10 +1,12 @@
 import 'package:core/core.dart';
-import 'package:create_user/src/feature/provider/controller/state/create_user_state.dart';
+import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../provider/controller/action/user_mobile_action.dart';
+import '../../provider/controller/state/create_user_state.dart';
 import '../../provider/controller/store/user_mobile_reducer.dart';
 import '../../provider/model/user_type.dart';
 
@@ -139,54 +141,127 @@ class _UserMobileState extends State<UserMobile> {
                                         ),
                               ),
                               const SizedBox(height: 8),
-                              CustomTextFormField(
-                                edgeInsets: EdgeInsets.zero,
-                                focusNote: switch (contentOnPage) {
-                                  CreateUserType.email => value.emailFocus,
-                                  CreateUserType.name => value.nameFocus,
-                                  CreateUserType.nickname =>
-                                    value.nicknameFocus,
-                                  CreateUserType.phone => value.phoneFocus,
-                                  CreateUserType.password =>
-                                    value.passwordFocus,
-                                  CreateUserType.medicalRecords =>
-                                    value.medicalFocus,
-                                },
-                                controller: switch (contentOnPage) {
-                                  CreateUserType.email => value.emailController,
-                                  CreateUserType.name => value.nameController,
-                                  CreateUserType.nickname =>
-                                    value.nicknameController,
-                                  CreateUserType.phone => value.phoneController,
-                                  CreateUserType.password =>
-                                    value.passwordController,
-                                  CreateUserType.medicalRecords =>
-                                    value.medicalController,
-                                },
-                                keyboardType: switch (contentOnPage) {
-                                  CreateUserType.email =>
-                                    TextInputType.emailAddress,
-                                  CreateUserType.name => TextInputType.name,
-                                  CreateUserType.nickname => TextInputType.text,
-                                  CreateUserType.phone => TextInputType.phone,
-                                  CreateUserType.password =>
-                                    TextInputType.visiblePassword,
-                                  CreateUserType.medicalRecords =>
-                                    TextInputType.multiline,
-                                },
-                                maxLine: switch (contentOnPage) {
-                                  CreateUserType.email => 1,
-                                  CreateUserType.name => 1,
-                                  CreateUserType.nickname => 1,
-                                  CreateUserType.phone => 1,
-                                  CreateUserType.password => 1,
-                                  CreateUserType.medicalRecords => null,
-                                },
-                                boxDecorationColor: SystemMode.isDark(context)
-                                    ? Colors.black
-                                    : Colors.grey.shade200,
-                                labelText: contentOnPage.inputText,
-                              ),
+                              contentOnPage == CreateUserType.gender
+                                  ? Column(
+                                      children: [
+                                        RadioListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          title: const Text('Masculino'),
+                                          value: UserGender.Male,
+                                          groupValue: value.genderInput,
+                                          onChanged: (UserGender? value) {
+                                            if (value != null) {
+                                              viewStore.send(
+                                                UserMobileAction.genderTapped(
+                                                  value,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                        RadioListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          title: const Text('Feminino'),
+                                          value: UserGender.Female,
+                                          groupValue: value.genderInput,
+                                          onChanged: (UserGender? value) {
+                                            if (value != null) {
+                                              viewStore.send(
+                                                UserMobileAction.genderTapped(
+                                                  value,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    )
+                                  : CustomTextFormField(
+                                      edgeInsets: EdgeInsets.zero,
+                                      focusNote: switch (contentOnPage) {
+                                        CreateUserType.email =>
+                                          value.emailFocus,
+                                        CreateUserType.name => value.nameFocus,
+                                        CreateUserType.nickname =>
+                                          value.nicknameFocus,
+                                        CreateUserType.phone =>
+                                          value.phoneFocus,
+                                        CreateUserType.password =>
+                                          value.passwordFocus,
+                                        CreateUserType.medicalRecords =>
+                                          value.medicalFocus,
+                                        CreateUserType.gender => null,
+                                        CreateUserType.birthday =>
+                                          value.birthdayFocus,
+                                      },
+                                      controller: switch (contentOnPage) {
+                                        CreateUserType.email =>
+                                          value.emailController,
+                                        CreateUserType.name =>
+                                          value.nameController,
+                                        CreateUserType.nickname =>
+                                          value.nicknameController,
+                                        CreateUserType.phone =>
+                                          value.phoneController,
+                                        CreateUserType.password =>
+                                          value.passwordController,
+                                        CreateUserType.medicalRecords =>
+                                          value.medicalController,
+                                        CreateUserType.gender => null,
+                                        CreateUserType.birthday =>
+                                          value.birthdayController,
+                                      },
+                                      keyboardType: switch (contentOnPage) {
+                                        CreateUserType.email =>
+                                          TextInputType.emailAddress,
+                                        CreateUserType.name =>
+                                          TextInputType.name,
+                                        CreateUserType.nickname =>
+                                          TextInputType.text,
+                                        CreateUserType.phone =>
+                                          TextInputType.phone,
+                                        CreateUserType.password =>
+                                          TextInputType.visiblePassword,
+                                        CreateUserType.medicalRecords =>
+                                          TextInputType.multiline,
+                                        CreateUserType.gender => null,
+                                        CreateUserType.birthday =>
+                                          TextInputType.number,
+                                      },
+                                      maxLine: switch (contentOnPage) {
+                                        CreateUserType.email => 1,
+                                        CreateUserType.name => 1,
+                                        CreateUserType.nickname => 1,
+                                        CreateUserType.phone => 1,
+                                        CreateUserType.password => 1,
+                                        CreateUserType.gender => 1,
+                                        CreateUserType.birthday => 1,
+                                        CreateUserType.medicalRecords => null,
+                                      },
+                                      inputFormatters: switch (contentOnPage) {
+                                        CreateUserType.email => null,
+                                        CreateUserType.name => null,
+                                        CreateUserType.nickname => null,
+                                        CreateUserType.phone => [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly,
+                                            TelefoneInputFormatter(),
+                                          ],
+                                        CreateUserType.password => null,
+                                        CreateUserType.gender => null,
+                                        CreateUserType.birthday => [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly,
+                                            DataInputFormatter(),
+                                          ],
+                                        CreateUserType.medicalRecords => null,
+                                      },
+                                      boxDecorationColor:
+                                          SystemMode.isDark(context)
+                                              ? Colors.black
+                                              : Colors.grey.shade200,
+                                      labelText: contentOnPage.inputText,
+                                    ),
                               SizedBox(
                                   height: (contentOnPage.tipTitle != '' ||
                                           contentOnPage.tipContent != '')

@@ -5,6 +5,9 @@ class PrivateGuard extends RouteGuard {
 
   @override
   Future<bool> canActivate(String path, ModularRoute route) async {
-    return Modular.get<LocalStorage>().isLogged;
+    final storage = Modular.get<Storage>();
+    final token = await storage.get<String>('@token');
+
+    return token != null;
   }
 }
