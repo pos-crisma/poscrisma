@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:core/core.dart';
 import 'package:locale_plus/locale_plus.dart';
 
@@ -6,7 +7,13 @@ import '../model/network_response.dart';
 class BaseRequest {
   AsyncResult<Entity, ErrorInfo> get(String path) async {
     final Network client = Modular.get();
-    final languageCode = await LocalePlus().getLanguageCode();
+
+    String languageCode = "";
+    if (kIsWeb) {
+      languageCode = "pt-BR";
+    } else {
+      languageCode = (await LocalePlus().getLanguageCode())!;
+    }
 
     // final obj = await getInfo("@token");
     // final token = obj[0] as String;
@@ -83,7 +90,13 @@ class BaseRequest {
     dynamic data,
   }) async {
     final Network client = Modular.get();
-    final languageCode = await LocalePlus().getLanguageCode();
+
+    String languageCode = "";
+    if (kIsWeb) {
+      languageCode = "pt-BR";
+    } else {
+      languageCode = (await LocalePlus().getLanguageCode())!;
+    }
 
     // final obj = await getInfo("@token");
     // final token = obj[0] as String;
