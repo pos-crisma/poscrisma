@@ -17,7 +17,7 @@ final internalFailure = ErrorInfo(
 class BaseRequest {
   AsyncResult<Entity, ErrorInfo> get(String path) async {
     final Network client = Modular.get();
-    final LocalStorage storage = Modular.get();
+    final Storage storage = Modular.get();
 
     String languageCode = "";
     if (kIsWeb) {
@@ -26,7 +26,7 @@ class BaseRequest {
       languageCode = (await LocalePlus().getLanguageCode())!;
     }
 
-    final accessToken = storage.acessToken;
+    final accessToken = await storage.get<String>('@token');
 
     final options = Options(
       headers: {
@@ -94,7 +94,7 @@ class BaseRequest {
     dynamic data,
   }) async {
     final Network client = Modular.get();
-    final LocalStorage storage = Modular.get();
+    final Storage storage = Modular.get();
 
     String languageCode = "";
     if (kIsWeb) {
@@ -103,7 +103,7 @@ class BaseRequest {
       languageCode = (await LocalePlus().getLanguageCode())!;
     }
 
-    final accessToken = storage.acessToken;
+    final accessToken = await storage.get<String>('@token');
 
     final options = Options(
       headers: {

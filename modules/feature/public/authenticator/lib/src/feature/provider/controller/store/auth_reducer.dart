@@ -65,8 +65,8 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
 
   _success(AuthResponseDTO dto) {
     return Effect.run(() async {
-      final LocalStorage storage = Modular.get();
-      storage.addAccess(accessToken: dto.accessToken);
+      final Storage storage = Modular.get();
+      storage.put<String>('@token', dto.accessToken);
 
       Modular.to.navigate('/home/');
     });

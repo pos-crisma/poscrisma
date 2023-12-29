@@ -13,6 +13,7 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
   Future<Effect> reduce(SettingAction action) async {
     return action.fold(
       (action) => _onAppear(),
+      (action) => _logoutButtonTapped(),
     );
   }
 
@@ -21,5 +22,12 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
     state.user = store.user;
 
     return Effect.emit();
+  }
+
+  _logoutButtonTapped() async {
+    final Storage storage = Modular.get();
+
+    await storage.delete("@token");
+    Modular.to.navigate('/');
   }
 }

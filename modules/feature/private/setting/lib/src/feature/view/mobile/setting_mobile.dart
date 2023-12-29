@@ -413,10 +413,7 @@ class _SettingMobileState extends State<SettingMobile> {
                 vertical: 16.0,
                 horizontal: 8.0,
               ),
-              onPress: () {
-                Modular.get<LocalStorage>().removeAccess();
-                Modular.to.navigate('/');
-              },
+              onPress: () => viewStore.send(SettingAction.logoutButtonTapped()),
               disabledChild: Container(),
               enableColor: Colors.grey,
               child: Row(
