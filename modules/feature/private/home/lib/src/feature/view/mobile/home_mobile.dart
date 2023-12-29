@@ -82,20 +82,47 @@ class _HomeMobileState extends State<HomeMobile> {
                         const Spacer(),
 
                         //*
-                        InkWell(
-                          onTap: () {},
-                          child: const Icon(
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
                             CupertinoIcons.bell_solid,
                             color: Colors.white,
                           ),
                         ),
 
-                        const SizedBox(width: 8),
+                        // const SizedBox(width: 8),
 
-                        InkWell(
-                          onTap: () =>
-                              Modular.to.pushNamed('/generate_invite/'),
-                          child: const Icon(
+                        IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              isScrollControlled: true,
+                              isDismissible: false,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height - 50,
+                                  child: CustomScrollView(
+                                    slivers: [
+                                      SliverAppBar(
+                                        leading: BackButton(
+                                          color: ColorMode.setColor(
+                                            context: context,
+                                            light: Colors.black,
+                                            dark: Colors.white,
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          icon: const Icon(
                             CupertinoIcons.tickets_fill,
                             color: Colors.white,
                           ),
@@ -377,7 +404,7 @@ class _HomeMobileState extends State<HomeMobile> {
             child: CustomDivider(),
           ),
 
-          //*
+          //* Camp
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -469,7 +496,7 @@ class _HomeMobileState extends State<HomeMobile> {
             child: CustomDivider(),
           ),
 
-          //*
+          //* Item
           SliverPadding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
