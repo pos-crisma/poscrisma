@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/feature/create_family/provider/dto/create_family_request_dto.dart';
 import 'package:home/src/feature/create_family/provider/dto/create_family_response_dto.dart';
+import 'package:home/src/feature/home/provider/controller/action/home_action.dart';
+import 'package:home/src/feature/home/provider/controller/store/home_store.dart';
 import 'package:store/store.dart';
 
 import '../../api/create_family_api.dart';
@@ -30,10 +32,6 @@ class CreateFamilyReducer
       (action) => _loading(),
       (action) => _successFamily(action.family),
       (action) => _failure(action.error),
-      (action) => _service(),
-      (action) => _loading(),
-      (action) => _successUser(action.user),
-      (action) => _failure(action.error),
     );
   }
 
@@ -47,12 +45,31 @@ class CreateFamilyReducer
 
   _serviceFamily() {
     return Effect.run<void>(() async {
+      final ProfileStore store = Modular.get();
+
+      if (store.user == null) {
+        return send(
+          CreateFamilyAction.failureFamilyService(
+            ErrorInfo(
+              code: -2,
+              response: "Problema ao recuperar o seu identificador unico",
+              error: ErrorData(
+                type: "userId not found",
+                statusCode: 0,
+                message: "Erro ao recuperar seu identificador unico",
+              ),
+            ),
+          ),
+        );
+      }
+
       await send(CreateFamilyAction.loadingFamilyService());
       final result = await CreateFamilyAPI.createFamily(
         CreateFamilyRequestDTO(
           name: state.nameFamilyController.text,
           year: state.yearFamilyController.text,
         ),
+        currentUserId: store.user!.userId,
       );
 
       result.fold(
@@ -69,7 +86,11 @@ class CreateFamilyReducer
   }
 
   _successFamily(CreateFamilyResponseDTO family) {
-    return Effect.send(CreateFamilyAction.userService());
+    return Effect.run(() async {
+      final HomeReducer viewStore = Modular.get();
+      viewStore.send(HomeAction.userService());
+      Modular.to.pop();
+    });
   }
 
   _failure(ErrorInfo errorInfo) {
@@ -80,7 +101,7 @@ class CreateFamilyReducer
         '/error/',
         arguments: {
           'title': errorInfo.response,
-          'content': errorInfo.error.message,
+          'content': errorInfo.error.message.toString(),
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();
@@ -92,24 +113,5 @@ class CreateFamilyReducer
         },
       );
     });
-  }
-
-  _service() {
-    return Effect.run<void>(() async {
-      await send(CreateFamilyAction.loadingUserService());
-      final result = await ProfileAPI.getProfile();
-
-      result.fold(
-        (success) => send(CreateFamilyAction.successUserService(success)),
-        (failure) => send(CreateFamilyAction.failureUserService(failure)),
-      );
-    });
-  }
-
-  _successUser(ProfileDTO user) {
-    final ProfileStore store = Modular.get();
-    store.updateUser = user;
-
-    return Effect.emit();
   }
 }

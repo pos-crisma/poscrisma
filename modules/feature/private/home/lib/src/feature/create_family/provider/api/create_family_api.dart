@@ -5,11 +5,13 @@ import '../dto/create_family_response_dto.dart';
 
 mixin CreateFamilyAPI {
   static AsyncResult<CreateFamilyResponseDTO, ErrorInfo> createFamily(
-      CreateFamilyRequestDTO dto) async {
+    CreateFamilyRequestDTO dto, {
+    required String currentUserId,
+  }) async {
     final BaseRequest client = Modular.get();
 
     return client
-        .post('/auth/profile', data: dto)
+        .post('/family/$currentUserId', data: dto.toJson())
         .map(CreateFamilyResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
   }
