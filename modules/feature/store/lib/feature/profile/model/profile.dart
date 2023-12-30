@@ -9,12 +9,12 @@ class ProfileDTO {
   final String email;
   final String gender;
   final String birthdate;
+  final bool guest;
   final String? phone;
   final String? medicalRecord;
-  final bool guest;
   final FamilyDTO? family;
   final List<String>? permissions;
-  final String familyId;
+  final String? familyId;
 
   ProfileDTO({
     required this.parishId,
