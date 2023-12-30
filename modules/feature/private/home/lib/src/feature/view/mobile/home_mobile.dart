@@ -117,6 +117,7 @@ class _HomeMobileState extends State<HomeMobile> {
                   children: [
                     Row(
                       children: [
+                        // * Settings
                         InkWell(
                           onTap: () => Modular.to.pushNamed('/setting/'),
                           child: Container(
@@ -135,7 +136,7 @@ class _HomeMobileState extends State<HomeMobile> {
                         // *
                         const Spacer(),
 
-                        //*
+                        // * Notification
                         IconButton(
                           onPressed: () async => notification(context),
                           icon: const Icon(
@@ -144,14 +145,25 @@ class _HomeMobileState extends State<HomeMobile> {
                           ),
                         ),
 
-                        // const SizedBox(width: 8),
-
-                        IconButton(
-                          onPressed: () async => generateInvite(context),
-                          icon: const Icon(
-                            CupertinoIcons.tickets_fill,
-                            color: Colors.white,
-                          ),
+                        // * Invite
+                        ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) {
+                            if (value.user != null &&
+                                value.user!.permissions != null &&
+                                value.user!.permissions!
+                                    .contains('manager_invite')) {
+                              return IconButton(
+                                onPressed: () async => generateInvite(context),
+                                icon: const Icon(
+                                  CupertinoIcons.tickets_fill,
+                                  color: Colors.white,
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
                         ),
                       ],
                     ),
@@ -182,12 +194,25 @@ class _HomeMobileState extends State<HomeMobile> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    ComplexButton(
-                      onPress: () => generateFamily(context),
-                      text: 'Crie sua familia',
-                      iconData: CupertinoIcons.person_crop_circle_badge_plus,
-                      light: Colors.grey.shade200,
-                      dark: Colors.grey.shade800,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        if (value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!
+                                .contains('manager_family')) {
+                          return ComplexButton(
+                            onPress: () => generateFamily(context),
+                            text: 'Crie sua familia',
+                            iconData:
+                                CupertinoIcons.person_crop_circle_badge_plus,
+                            light: Colors.grey.shade200,
+                            dark: Colors.grey.shade800,
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
                     ),
                     const SizedBox(height: 8),
                   ],
