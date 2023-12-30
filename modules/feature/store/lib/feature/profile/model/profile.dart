@@ -14,6 +14,7 @@ class ProfileDTO {
   final bool guest;
   final FamilyDTO? family;
   final List<String>? permissions;
+  final String familyId;
 
   ProfileDTO({
     required this.parishId,
@@ -29,6 +30,7 @@ class ProfileDTO {
     required this.guest,
     required this.family,
     required this.permissions,
+    required this.familyId,
   });
 
   ProfileDTO copyWith({
@@ -45,6 +47,7 @@ class ProfileDTO {
     bool? guest,
     FamilyDTO? family,
     List<String>? permissions,
+    String? familyId,
   }) =>
       ProfileDTO(
         parishId: parishId ?? this.parishId,
@@ -60,6 +63,7 @@ class ProfileDTO {
         guest: guest ?? this.guest,
         family: family ?? this.family,
         permissions: permissions ?? this.permissions,
+        familyId: familyId ?? this.familyId,
       );
 
   factory ProfileDTO.fromRawJson(String str) =>
@@ -79,6 +83,7 @@ class ProfileDTO {
         phone: json["phone"],
         medicalRecord: json["medicalRecord"],
         guest: json["guest"],
+        familyId: json["familyId"],
         family:
             json["family"] == null ? null : FamilyDTO.fromJson(json["family"]),
         permissions: List<String>.from(json["permissions"].map((x) => x)),
@@ -98,18 +103,17 @@ class ProfileDTO {
         "guest": guest,
         "family": family?.toJson(),
         "permissions": permissions,
+        "familyId": familyId,
       };
 }
 
 class FamilyDTO {
-  final String familyId;
   final String fatherId;
   final String father;
-  final List<ChildrenDTO> childrens;
-  final List<GroupInfoDTO> groups;
+  final List<ChildrenDTO>? childrens;
+  final List<GroupInfoDTO>? groups;
 
   FamilyDTO({
-    required this.familyId,
     required this.fatherId,
     required this.father,
     required this.childrens,
@@ -117,14 +121,12 @@ class FamilyDTO {
   });
 
   FamilyDTO copyWith({
-    String? familyId,
     String? fatherId,
     String? father,
     List<ChildrenDTO>? childrens,
     List<GroupInfoDTO>? groups,
   }) =>
       FamilyDTO(
-        familyId: familyId ?? this.familyId,
         fatherId: fatherId ?? this.fatherId,
         father: father ?? this.father,
         childrens: childrens ?? this.childrens,
@@ -137,21 +139,27 @@ class FamilyDTO {
   String toRawJson() => json.encode(toJson());
 
   factory FamilyDTO.fromJson(Map<String, dynamic> json) => FamilyDTO(
-        familyId: json["familyId"],
         fatherId: json["fatherId"],
         father: json["father"],
-        childrens: List<ChildrenDTO>.from(
-            json["childrens"].map((x) => ChildrenDTO.fromJson(x))),
-        groups: List<GroupInfoDTO>.from(
-            json["groups"].map((x) => GroupInfoDTO.fromJson(x))),
+        childrens: json["childrens"] == []
+            ? null
+            : List<ChildrenDTO>.from(
+                json["childrens"].map((x) => ChildrenDTO.fromJson(x))),
+        groups: json["groups"] == []
+            ? null
+            : List<GroupInfoDTO>.from(
+                json["groups"].map((x) => GroupInfoDTO.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "familyId": familyId,
         "fatherId": fatherId,
         "father": father,
-        "childrens": List<dynamic>.from(childrens.map((x) => x.toJson())),
-        "groups": List<dynamic>.from(groups.map((x) => x.toJson())),
+        "childrens": childrens != null
+            ? List<dynamic>.from(childrens!.map((x) => x.toJson()))
+            : null,
+        "groups": childrens != null
+            ? List<dynamic>.from(groups!.map((x) => x.toJson()))
+            : null,
       };
 }
 

@@ -196,7 +196,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   ),
                 );
               } else {
-                return Container();
+                return const SliverToBoxAdapter();
               }
             },
           ),
@@ -239,7 +239,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   ),
                 );
               } else {
-                return Container();
+                return const SliverToBoxAdapter();
               }
             },
           ),

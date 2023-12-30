@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
@@ -55,7 +56,7 @@ class _HomeMobileState extends State<HomeMobile> {
           ),
         ),
         builder: (context) {
-          return Container();
+          return CreateFamilyMobile();
         },
       );
     });
@@ -197,24 +198,27 @@ class _HomeMobileState extends State<HomeMobile> {
                     ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
-                        if (value.user != null &&
-                            value.user!.permissions != null &&
-                            value.user!.permissions!
-                                .contains('manager_family')) {
-                          return ComplexButton(
-                            onPress: () => generateFamily(context),
-                            text: 'Crie sua familia',
-                            iconData:
-                                CupertinoIcons.person_crop_circle_badge_plus,
-                            light: Colors.grey.shade200,
-                            dark: Colors.grey.shade800,
+                        if (value.user != null && value.user!.family == null //
+                            /*&& value.user!.typeUser == "GodParent" */
+                            ) {
+                          return Column(
+                            children: [
+                              ComplexButton(
+                                onPress: () => generateFamily(context),
+                                text: 'Crie sua familia',
+                                iconData: CupertinoIcons
+                                    .person_crop_circle_badge_plus,
+                                light: Colors.grey.shade200,
+                                dark: Colors.grey.shade800,
+                              ),
+                              const SizedBox(height: 8),
+                            ],
                           );
                         } else {
                           return Container();
                         }
                       },
                     ),
-                    const SizedBox(height: 8),
                   ],
                 ),
               ),
