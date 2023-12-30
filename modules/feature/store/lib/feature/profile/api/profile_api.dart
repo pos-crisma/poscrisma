@@ -7,7 +7,7 @@ mixin ProfileAPI {
     final BaseRequest client = Modular.get();
 
     return client
-        .post('/auth/profile')
+        .get('/auth/profile')
         .map(ProfileDTO.fromJson)
         .fold(Success.new, Failure.new);
   }

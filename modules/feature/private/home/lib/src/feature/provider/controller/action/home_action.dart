@@ -7,7 +7,7 @@ sealed class HomeAction {
   static HomeAction onAppear() => _OnAppearTapped();
   static HomeAction userService() => _UserService();
   static HomeAction loadingUserService() => _LoadingUserService();
-  static HomeAction successUserService(User user) =>
+  static HomeAction successUserService(ProfileDTO user) =>
       _SuccessUserService(user: user);
   static HomeAction failureUserService(ErrorInfo error) =>
       _FailureUserService(error: error);
@@ -35,7 +35,7 @@ class _UserService extends HomeAction {}
 class _LoadingUserService extends HomeAction {}
 
 class _SuccessUserService extends HomeAction {
-  final User user;
+  final ProfileDTO user;
 
   _SuccessUserService({required this.user});
 }

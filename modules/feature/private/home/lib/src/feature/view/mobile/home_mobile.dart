@@ -25,6 +25,60 @@ class _HomeMobileState extends State<HomeMobile> {
     viewStore.send(HomeAction.onAppear());
   }
 
+  void generateInvite(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(8),
+          ),
+        ),
+        builder: (context) {
+          return Container();
+        },
+      );
+    });
+  }
+
+  void generateFamily(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(8),
+          ),
+        ),
+        builder: (context) {
+          return Container();
+        },
+      );
+    });
+  }
+
+  void notification(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(8),
+          ),
+        ),
+        builder: (context) {
+          return Container();
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -83,7 +137,7 @@ class _HomeMobileState extends State<HomeMobile> {
 
                         //*
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () async => notification(context),
                           icon: const Icon(
                             CupertinoIcons.bell_solid,
                             color: Colors.white,
@@ -93,35 +147,7 @@ class _HomeMobileState extends State<HomeMobile> {
                         // const SizedBox(width: 8),
 
                         IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              isDismissible: false,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height - 50,
-                                  child: CustomScrollView(
-                                    slivers: [
-                                      SliverAppBar(
-                                        leading: BackButton(
-                                          color: ColorMode.setColor(
-                                            context: context,
-                                            light: Colors.black,
-                                            dark: Colors.white,
-                                          ),
-                                          onPressed: () =>
-                                              Navigator.of(context).pop(),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
+                          onPressed: () async => generateInvite(context),
                           icon: const Icon(
                             CupertinoIcons.tickets_fill,
                             color: Colors.white,
@@ -157,6 +183,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     ),
                     const SizedBox(height: 8),
                     ComplexButton(
+                      onPress: () => generateFamily(context),
                       text: 'Crie sua familia',
                       iconData: CupertinoIcons.person_crop_circle_badge_plus,
                       light: Colors.grey.shade200,
@@ -170,369 +197,405 @@ class _HomeMobileState extends State<HomeMobile> {
           ),
 
           //* Room
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                ItemButton(
-                  onPress: () => Modular.to.pushNamed('/room/'),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Container(
-                        // alignment: Alignment.centerLeft,
-                        width: constraints.maxWidth,
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.user != null &&
+                  value.user!.permissions != null &&
+                  value.user!.permissions!.contains('view_room')) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      ItemButton(
+                        onPress: () => Modular.to.pushNamed('/room/'),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            return Container(
+                              // alignment: Alignment.centerLeft,
+                              width: constraints.maxWidth,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Todos quartos",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(),
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            text: 'Total de quartos usados: ',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge!
+                                                .copyWith(),
+                                            children: [
+                                              TextSpan(
+                                                text: '45',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 24,
+                                    color: Colors.grey.shade800,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 8,
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Todos quartos",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .copyWith(),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: 'Total de quartos usados: ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(),
+                        height: 100,
+                        width: MediaQuery.of(context).size.width,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LayoutBuilder(
+                                builder: (context, constraints) =>
+                                    AnimatedButton(
+                                  padding: EdgeInsets.zero,
+                                  innerPadding: EdgeInsets.zero,
+                                  onPress: () =>
+                                      Modular.to.pushNamed('/room/type'),
+                                  disabledChild: Container(),
+                                  enableColor: Colors.transparent,
+                                  child: SizedBox(
+                                    width: 100,
+                                    height: constraints.maxHeight,
+                                    child: Column(
                                       children: [
-                                        TextSpan(
-                                          text: '45',
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade300,
+                                                dark: Colors.grey.shade800,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          "Padrinho",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyLarge!
+                                              .bodyMedium!
                                               .copyWith(
-                                                fontWeight: FontWeight.bold,
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: Colors.black,
+                                                  dark: Colors.white,
+                                                ),
                                               ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 24,
-                              color: Colors.grey.shade800,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  height: 100,
-                  width: MediaQuery.of(context).size.width,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        LayoutBuilder(
-                          builder: (context, constraints) => AnimatedButton(
-                            padding: EdgeInsets.zero,
-                            innerPadding: EdgeInsets.zero,
-                            onPress: () => Modular.to.pushNamed('/room/type'),
-                            disabledChild: Container(),
-                            enableColor: Colors.transparent,
-                            child: SizedBox(
-                              width: 100,
-                              height: constraints.maxHeight,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorMode.setColor(
-                                          context: context,
-                                          light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade800,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    "Padrinho",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          color: ColorMode.setColor(
-                                            context: context,
-                                            light: Colors.black,
-                                            dark: Colors.white,
+                              const SizedBox(width: 8),
+                              LayoutBuilder(
+                                builder: (context, constraints) =>
+                                    AnimatedButton(
+                                  padding: EdgeInsets.zero,
+                                  innerPadding: EdgeInsets.zero,
+                                  onPress: () =>
+                                      Modular.to.pushNamed('/room/type'),
+                                  disabledChild: Container(),
+                                  enableColor: Colors.transparent,
+                                  child: SizedBox(
+                                    width: 100,
+                                    height: constraints.maxHeight,
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade300,
+                                                dark: Colors.grey.shade800,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        LayoutBuilder(
-                          builder: (context, constraints) => AnimatedButton(
-                            padding: EdgeInsets.zero,
-                            innerPadding: EdgeInsets.zero,
-                            onPress: () => Modular.to.pushNamed('/room/type'),
-                            disabledChild: Container(),
-                            enableColor: Colors.transparent,
-                            child: SizedBox(
-                              width: 100,
-                              height: constraints.maxHeight,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorMode.setColor(
-                                          context: context,
-                                          light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade800,
+                                        Text(
+                                          "Jovem",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: Colors.black,
+                                                  dark: Colors.white,
+                                                ),
+                                              ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
+                                      ],
                                     ),
                                   ),
-                                  Text(
-                                    "Jovem",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          color: ColorMode.setColor(
-                                            context: context,
-                                            light: Colors.black,
-                                            dark: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              LayoutBuilder(
+                                builder: (context, constraints) =>
+                                    AnimatedButton(
+                                  padding: EdgeInsets.zero,
+                                  innerPadding: EdgeInsets.zero,
+                                  onPress: () =>
+                                      Modular.to.pushNamed('/room/type'),
+                                  disabledChild: Container(),
+                                  enableColor: Colors.transparent,
+                                  child: SizedBox(
+                                    width: 100,
+                                    height: constraints.maxHeight,
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade300,
+                                                dark: Colors.grey.shade800,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        LayoutBuilder(
-                          builder: (context, constraints) => AnimatedButton(
-                            padding: EdgeInsets.zero,
-                            innerPadding: EdgeInsets.zero,
-                            onPress: () => Modular.to.pushNamed('/room/type'),
-                            disabledChild: Container(),
-                            enableColor: Colors.transparent,
-                            child: SizedBox(
-                              width: 100,
-                              height: constraints.maxHeight,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorMode.setColor(
-                                          context: context,
-                                          light: Colors.grey.shade300,
-                                          dark: Colors.grey.shade800,
+                                        Text(
+                                          "Voluntarios",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: Colors.black,
+                                                  dark: Colors.white,
+                                                ),
+                                              ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
+                                      ],
                                     ),
                                   ),
-                                  Text(
-                                    "Voluntarios",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          color: ColorMode.setColor(
-                                            context: context,
-                                            light: Colors.black,
-                                            dark: Colors.white,
-                                          ),
-                                        ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 8),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: ComplexButton(
+                          onPress: () => Modular.to.pushNamed('/room/search'),
+                          text: "Pesquisar quarto",
+                          iconData: CupertinoIcons.search,
+                          light: Colors.grey.shade300,
+                          dark: Colors.grey.shade800,
+                          showIsNew: false,
+                        ),
+                      ),
+                      const CustomDivider(),
+                    ],
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: ComplexButton(
-                    onPress: () => Modular.to.pushNamed('/room/search'),
-                    text: "Pesquisar quarto",
-                    iconData: CupertinoIcons.search,
-                    light: Colors.grey.shade300,
-                    dark: Colors.grey.shade800,
-                    showIsNew: false,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SliverToBoxAdapter(
-            child: CustomDivider(),
+                );
+              } else {
+                return const SliverToBoxAdapter();
+              }
+            },
           ),
 
           //* Camp
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  child: Text(
-                    'Acampamento',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge! //
-                        .copyWith(
-                          fontWeight: FontWeight.bold,
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.user != null &&
+                  value.user!.permissions != null &&
+                  value.user!.permissions!.contains('view_camp')) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
                         ),
-                  ),
-                ),
-                const SizedBox(height: 8),
+                        child: Text(
+                          'Acampamento',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge! //
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
 
-                // ? Events camp area
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
+                      // ? Events camp area
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: ComplexButton(
+                          onPress: () => Modular.to.pushNamed('/team/'),
+                          text: "Equipes",
+                          iconData: CupertinoIcons.group_solid,
+                          light: Colors.grey.shade300,
+                          dark: Colors.grey.shade800,
+                          showIsNew: false,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                        ),
+                        child: Text(
+                          'Eventos',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge! //
+                              .copyWith(
+                                  // fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: ComplexButton(
+                          onPress: () => Modular.to.pushNamed('/team/'),
+                          text: "Pesquisar Jogos",
+                          iconData: CupertinoIcons.gamecontroller_alt_fill,
+                          light: Colors.grey.shade300,
+                          dark: Colors.grey.shade800,
+                          showIsNew: false,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: ComplexButton(
+                          onPress: () => Modular.to.pushNamed('/schedule/'),
+                          text: "Tabela de jogos",
+                          iconData: CupertinoIcons.calendar,
+                          light: Colors.grey.shade300,
+                          dark: Colors.grey.shade800,
+                          showIsNew: false,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      const CustomDivider(),
+                    ],
                   ),
-                  width: MediaQuery.of(context).size.width,
-                  child: ComplexButton(
-                    onPress: () => Modular.to.pushNamed('/team/'),
-                    text: "Equipes",
-                    iconData: CupertinoIcons.group_solid,
-                    light: Colors.grey.shade300,
-                    dark: Colors.grey.shade800,
-                    showIsNew: false,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: Text(
-                    'Eventos',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge! //
-                        .copyWith(
-                            // fontWeight: FontWeight.bold,
-                            ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: ComplexButton(
-                    onPress: () => Modular.to.pushNamed('/team/'),
-                    text: "Pesquisar Jogos",
-                    iconData: CupertinoIcons.gamecontroller_alt_fill,
-                    light: Colors.grey.shade300,
-                    dark: Colors.grey.shade800,
-                    showIsNew: false,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  child: ComplexButton(
-                    onPress: () => Modular.to.pushNamed('/schedule/'),
-                    text: "Tabela de jogos",
-                    iconData: CupertinoIcons.calendar,
-                    light: Colors.grey.shade300,
-                    dark: Colors.grey.shade800,
-                    showIsNew: false,
-                  ),
-                ),
-                const SizedBox(height: 8),
-              ],
-            ),
-          ),
-
-          const SliverToBoxAdapter(
-            child: CustomDivider(),
+                );
+              } else {
+                return const SliverToBoxAdapter();
+              }
+            },
           ),
 
           //* Item
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    // color: Colors.white,
-                    child: Text(
-                      'Itens do acampamento',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge! //
-                          .copyWith(
-                            fontWeight: FontWeight.bold,
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.user != null &&
+                  value.user!.permissions != null &&
+                  value.user!.permissions!.contains('manager_warehouse')) {
+                return SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          // color: Colors.white,
+                          child: Text(
+                            'Itens do acampamento',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            onPress: () => Modular.to.pushNamed('/warehouse/'),
+                            text: "Almoxarifado",
+                            iconData: CupertinoIcons.cube_box_fill,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                            showIsNew: false,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ComplexButton(
-                      onPress: () => Modular.to.pushNamed('/warehouse/'),
-                      text: "Almoxarifado",
-                      iconData: CupertinoIcons.cube_box_fill,
-                      light: Colors.grey.shade300,
-                      dark: Colors.grey.shade800,
-                      showIsNew: false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                );
+              } else {
+                return const SliverToBoxAdapter();
+              }
+            },
           ),
         ],
       ),

@@ -33,7 +33,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   _service() {
     return Effect.run<void>(() async {
       await send(HomeAction.loadingUserService());
-      final result = await UserSessionAPI.getUserDataBySession();
+      final result = await ProfileAPI.getProfile();
 
       result.fold(
         (success) => send(HomeAction.successUserService(success)),
@@ -47,8 +47,8 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.emit();
   }
 
-  _success(User user) {
-    final UserStore store = Modular.get();
+  _success(ProfileDTO user) {
+    final ProfileStore store = Modular.get();
     store.updateUser = user;
     state.user = user;
 

@@ -18,7 +18,7 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
   }
 
   _onAppear() {
-    final UserStore store = Modular.get();
+    final ProfileStore store = Modular.get();
     state.user = store.user;
 
     return Effect.emit();

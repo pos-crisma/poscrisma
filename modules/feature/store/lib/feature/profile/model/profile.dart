@@ -9,10 +9,11 @@ class ProfileDTO {
   final String email;
   final String gender;
   final String birthdate;
-  final dynamic phone;
-  final dynamic medicalRecord;
+  final String? phone;
+  final String? medicalRecord;
   final bool guest;
-  final List<dynamic> family;
+  final FamilyDTO? family;
+  final List<String>? permissions;
 
   ProfileDTO({
     required this.parishId,
@@ -27,6 +28,7 @@ class ProfileDTO {
     required this.medicalRecord,
     required this.guest,
     required this.family,
+    required this.permissions,
   });
 
   ProfileDTO copyWith({
@@ -38,10 +40,11 @@ class ProfileDTO {
     String? email,
     String? gender,
     String? birthdate,
-    dynamic phone,
-    dynamic medicalRecord,
+    String? phone,
+    String? medicalRecord,
     bool? guest,
-    List<dynamic>? family,
+    FamilyDTO? family,
+    List<String>? permissions,
   }) =>
       ProfileDTO(
         parishId: parishId ?? this.parishId,
@@ -56,6 +59,7 @@ class ProfileDTO {
         medicalRecord: medicalRecord ?? this.medicalRecord,
         guest: guest ?? this.guest,
         family: family ?? this.family,
+        permissions: permissions ?? this.permissions,
       );
 
   factory ProfileDTO.fromRawJson(String str) =>
@@ -75,7 +79,9 @@ class ProfileDTO {
         phone: json["phone"],
         medicalRecord: json["medicalRecord"],
         guest: json["guest"],
-        family: List<dynamic>.from(json["family"].map((x) => x)),
+        family:
+            json["family"] == null ? null : FamilyDTO.fromJson(json["family"]),
+        permissions: List<String>.from(json["permissions"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -90,6 +96,206 @@ class ProfileDTO {
         "phone": phone,
         "medicalRecord": medicalRecord,
         "guest": guest,
-        "family": List<dynamic>.from(family.map((x) => x)),
+        "family": family?.toJson(),
+        "permissions": permissions,
+      };
+}
+
+class FamilyDTO {
+  final String familyId;
+  final String fatherId;
+  final String father;
+  final List<ChildrenDTO> childrens;
+  final List<GroupInfoDTO> groups;
+
+  FamilyDTO({
+    required this.familyId,
+    required this.fatherId,
+    required this.father,
+    required this.childrens,
+    required this.groups,
+  });
+
+  FamilyDTO copyWith({
+    String? familyId,
+    String? fatherId,
+    String? father,
+    List<ChildrenDTO>? childrens,
+    List<GroupInfoDTO>? groups,
+  }) =>
+      FamilyDTO(
+        familyId: familyId ?? this.familyId,
+        fatherId: fatherId ?? this.fatherId,
+        father: father ?? this.father,
+        childrens: childrens ?? this.childrens,
+        groups: groups ?? this.groups,
+      );
+
+  factory FamilyDTO.fromRawJson(String str) =>
+      FamilyDTO.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FamilyDTO.fromJson(Map<String, dynamic> json) => FamilyDTO(
+        familyId: json["familyId"],
+        fatherId: json["fatherId"],
+        father: json["father"],
+        childrens: List<ChildrenDTO>.from(
+            json["childrens"].map((x) => ChildrenDTO.fromJson(x))),
+        groups: List<GroupInfoDTO>.from(
+            json["groups"].map((x) => GroupInfoDTO.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "familyId": familyId,
+        "fatherId": fatherId,
+        "father": father,
+        "childrens": List<dynamic>.from(childrens.map((x) => x.toJson())),
+        "groups": List<dynamic>.from(groups.map((x) => x.toJson())),
+      };
+}
+
+class ChildrenDTO {
+  final String childrenId;
+  final String name;
+  final String gender;
+  final String age;
+  final bool joinGames;
+
+  ChildrenDTO({
+    required this.childrenId,
+    required this.name,
+    required this.gender,
+    required this.age,
+    required this.joinGames,
+  });
+
+  ChildrenDTO copyWith({
+    String? childrenId,
+    String? name,
+    String? gender,
+    String? age,
+    bool? joinGames,
+  }) =>
+      ChildrenDTO(
+        childrenId: childrenId ?? this.childrenId,
+        name: name ?? this.name,
+        gender: gender ?? this.gender,
+        age: age ?? this.age,
+        joinGames: joinGames ?? this.joinGames,
+      );
+
+  factory ChildrenDTO.fromRawJson(String str) =>
+      ChildrenDTO.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ChildrenDTO.fromJson(Map<String, dynamic> json) => ChildrenDTO(
+        childrenId: json["childrenId"],
+        name: json["name"],
+        gender: json["gender"],
+        age: json["age"],
+        joinGames: json["joinGames"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "childrenId": childrenId,
+        "name": name,
+        "gender": gender,
+        "age": age,
+        "joinGames": joinGames,
+      };
+}
+
+class GroupInfoDTO {
+  final String groupId;
+  final String year;
+  final List<GroupDTO> grupo;
+
+  GroupInfoDTO({
+    required this.groupId,
+    required this.year,
+    required this.grupo,
+  });
+
+  GroupInfoDTO copyWith({
+    String? groupId,
+    String? year,
+    List<GroupDTO>? grupo,
+  }) =>
+      GroupInfoDTO(
+        groupId: groupId ?? this.groupId,
+        year: year ?? this.year,
+        grupo: grupo ?? this.grupo,
+      );
+
+  factory GroupInfoDTO.fromRawJson(String str) =>
+      GroupInfoDTO.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory GroupInfoDTO.fromJson(Map<String, dynamic> json) => GroupInfoDTO(
+        groupId: json["groupId"],
+        year: json["year"],
+        grupo:
+            List<GroupDTO>.from(json["grupo"].map((x) => GroupDTO.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "groupId": groupId,
+        "year": year,
+        "grupo": List<dynamic>.from(grupo.map((x) => x.toJson())),
+      };
+}
+
+class GroupDTO {
+  final String godchildrenId;
+  final String name;
+  final String gender;
+  final String birthdate;
+  final int age;
+
+  GroupDTO({
+    required this.godchildrenId,
+    required this.name,
+    required this.gender,
+    required this.birthdate,
+    required this.age,
+  });
+
+  GroupDTO copyWith({
+    String? godchildrenId,
+    String? name,
+    String? gender,
+    String? birthdate,
+    int? age,
+  }) =>
+      GroupDTO(
+        godchildrenId: godchildrenId ?? this.godchildrenId,
+        name: name ?? this.name,
+        gender: gender ?? this.gender,
+        birthdate: birthdate ?? this.birthdate,
+        age: age ?? this.age,
+      );
+
+  factory GroupDTO.fromRawJson(String str) =>
+      GroupDTO.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory GroupDTO.fromJson(Map<String, dynamic> json) => GroupDTO(
+        godchildrenId: json["godchildrenId"],
+        name: json["name"],
+        gender: json["gender"],
+        birthdate: json["birthdate"],
+        age: json["age"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "godchildrenId": godchildrenId,
+        "name": name,
+        "gender": gender,
+        "birthdate": birthdate,
+        "age": age,
       };
 }

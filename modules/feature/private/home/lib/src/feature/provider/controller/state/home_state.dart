@@ -2,7 +2,7 @@ import 'package:store/store.dart';
 
 interface class HomeState {
   HomeServiceStatus status;
-  User? user;
+  ProfileDTO? user;
 
   HomeState({
     this.status = HomeServiceStatus.idle,
