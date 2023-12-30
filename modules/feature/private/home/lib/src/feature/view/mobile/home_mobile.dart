@@ -181,7 +181,7 @@ class _HomeMobileState extends State<HomeMobile> {
                               ),
                           children: [
                             TextSpan(
-                              text: value.user?.nickName ?? 'Carregando ...',
+                              text: value.user?.name ?? 'Carregando ...',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!

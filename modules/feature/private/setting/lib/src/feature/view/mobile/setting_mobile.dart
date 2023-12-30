@@ -125,7 +125,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   ValueListenableBuilder(
                     valueListenable: viewStore,
                     builder: (context, value, child) => Text(
-                      value.user?.nickName ?? 'Carregando ...',
+                      value.user?.name ?? 'Carregando ...',
                       style: Theme.of(context)
                           .textTheme //
                           .titleMedium,
