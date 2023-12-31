@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
 import '../feature/create_family/provider/controller/store/create_family_store.dart';
 import '../feature/home/provider/controller/store/home_store.dart';
@@ -23,6 +24,7 @@ class HomeModule extends Module {
       "/",
       child: (_) => const HomePage(),
       transition: TransitionType.downToUp,
+      duration: Durations.short1,
     );
   }
 }

@@ -13,6 +13,7 @@ class GodParentModule extends Module {
     r.child(
       "/",
       child: (_) => const GodParentPage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

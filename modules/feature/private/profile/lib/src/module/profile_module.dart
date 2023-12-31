@@ -13,6 +13,7 @@ class ProfileModule extends Module {
     r.child(
       "/",
       child: (_) => const ProfilePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

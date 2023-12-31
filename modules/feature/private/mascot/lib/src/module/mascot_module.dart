@@ -13,6 +13,7 @@ class MascotModule extends Module {
     r.child(
       "/",
       child: (_) => const MascotPage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

@@ -13,6 +13,7 @@ class TeamModule extends Module {
     r.child(
       "/",
       child: (_) => const TeamPage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

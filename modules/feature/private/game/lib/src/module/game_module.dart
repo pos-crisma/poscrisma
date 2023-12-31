@@ -13,6 +13,7 @@ class GameModule extends Module {
     r.child(
       "/",
       child: (_) => const GamePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

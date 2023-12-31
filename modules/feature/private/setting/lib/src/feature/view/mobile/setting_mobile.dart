@@ -187,7 +187,7 @@ class _SettingMobileState extends State<SettingMobile> {
                       dark: Colors.grey.shade800,
                     ),
                     child: ComplexButton(
-                      onPress: () => Modular.to.pushNamed('/young'),
+                      onPress: () => Modular.to.pushNamed('/young/'),
                       text: "Seus afilhados",
                       iconData: CupertinoIcons.person_2_fill,
                       light: Colors.grey.shade300,
@@ -453,7 +453,7 @@ class _SettingMobileState extends State<SettingMobile> {
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () => Modular.to.pushNamed('/manager'),
+                  onPress: () => Modular.to.pushNamed('/profile'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

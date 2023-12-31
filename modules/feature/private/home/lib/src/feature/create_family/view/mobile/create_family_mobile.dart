@@ -4,9 +4,9 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home/src/feature/create_family/provider/controller/action/create_family_action.dart';
-import 'package:home/src/feature/create_family/provider/controller/state/create_family_state.dart';
 
+import '../../provider/controller/action/create_family_action.dart';
+import '../../provider/controller/state/create_family_state.dart';
 import '../../provider/controller/store/create_family_store.dart';
 
 class CreateFamilyMobile extends StatelessWidget {
@@ -25,8 +25,14 @@ class CreateFamilyMobile extends StatelessWidget {
                 const SliverAppBar(
                   pinned: true,
                   elevation: 0,
-                  leadingWidth: 100,
-                  leading: CustomBackButton(),
+                  leadingWidth: 50,
+                  leading: Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: CustomBackButton(
+                      backIcon: CupertinoIcons.clear_thick_circled,
+                      backTitle: "",
+                    ),
+                  ),
                 ),
 
                 // * Title

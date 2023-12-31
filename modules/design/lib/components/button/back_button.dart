@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
     super.key,
+    IconData backIcon = CupertinoIcons.chevron_left,
     String backTitle = "Voltar",
-  }) : _backTitle = backTitle;
+  })  : _backTitle = backTitle,
+        _backIcon = backIcon;
 
+  final IconData _backIcon;
   final String _backTitle;
 
   @override
@@ -18,7 +21,7 @@ class CustomBackButton extends StatelessWidget {
       child: Row(
         children: [
           Icon(
-            CupertinoIcons.chevron_left,
+            _backIcon,
             color: ColorMode.setColor(
               context: context,
               light: Colors.black,
