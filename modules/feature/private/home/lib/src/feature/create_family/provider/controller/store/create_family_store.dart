@@ -32,6 +32,7 @@ class CreateFamilyReducer
       (action) => _loading(),
       (action) => _successFamily(action.family),
       (action) => _failure(action.error),
+      (action) => _validator(action.error, action.failure),
     );
   }
 
@@ -46,6 +47,13 @@ class CreateFamilyReducer
   _serviceFamily() {
     return Effect.run<void>(() async {
       final ProfileStore store = Modular.get();
+
+      await send(
+        CreateFamilyAction.validator(
+          "",
+          CreateFamilyTextFieldFailure.none,
+        ),
+      );
 
       if (store.user == null) {
         return send(
@@ -63,6 +71,24 @@ class CreateFamilyReducer
         );
       }
 
+      if (state.nameFamilyController.text.length < 3) {
+        return send(
+          CreateFamilyAction.validator(
+            "Nome da familia, invalido",
+            CreateFamilyTextFieldFailure.name,
+          ),
+        );
+      }
+
+      if (!isValidYear(state.yearFamilyController.text)) {
+        return send(
+          CreateFamilyAction.validator(
+            "Não e um ano valido",
+            CreateFamilyTextFieldFailure.year,
+          ),
+        );
+      }
+
       await send(CreateFamilyAction.loadingFamilyService());
       final result = await CreateFamilyAPI.createFamily(
         CreateFamilyRequestDTO(
@@ -73,9 +99,8 @@ class CreateFamilyReducer
       );
 
       result.fold(
-        (successFamily) =>
-            send(CreateFamilyAction.successFamilyService(successFamily)),
-        (failure) => send(CreateFamilyAction.failureFamilyService(failure)),
+        (s) => send(CreateFamilyAction.successFamilyService(s)),
+        (f) => send(CreateFamilyAction.failureFamilyService(f)),
       );
     });
   }
@@ -100,8 +125,8 @@ class CreateFamilyReducer
       Modular.to.pushNamed(
         '/error/',
         arguments: {
-          'title': errorInfo.response,
-          'content': errorInfo.error.message.toString(),
+          'title': errorInfo.error.message.toString(),
+          'content': errorInfo.response,
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();
@@ -113,5 +138,19 @@ class CreateFamilyReducer
         },
       );
     });
+  }
+
+  _validator(String error, CreateFamilyTextFieldFailure failure) {
+    state.errorMessage = error;
+    state.failure = failure;
+    return Effect.emit();
+  }
+
+  bool isValidYear(String year) {
+    // Define a regular expression pattern for a four-digit year
+    RegExp yearRegExp = RegExp(r'^\d{4}$');
+
+    // Test if the year string matches the pattern
+    return yearRegExp.hasMatch(year);
   }
 }

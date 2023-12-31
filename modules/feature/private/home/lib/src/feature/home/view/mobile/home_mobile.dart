@@ -198,9 +198,10 @@ class _HomeMobileState extends State<HomeMobile> {
                     ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
-                        if (value.user != null && value.user!.family == null //
-                            /*&& value.user!.typeUser == "GodParent" */
-                            ) {
+                        if (value.user != null &&
+                            value.user!.familyId == null &&
+                            (value.user!.typeUser == "GodParent" ||
+                                value.user!.typeUser == "Voluntary")) {
                           return Column(
                             children: [
                               ComplexButton(

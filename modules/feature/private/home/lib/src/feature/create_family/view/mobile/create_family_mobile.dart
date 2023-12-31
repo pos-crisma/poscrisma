@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:home/src/feature/create_family/provider/controller/action/create_family_action.dart';
+import 'package:home/src/feature/create_family/provider/controller/state/create_family_state.dart';
 
 import '../../provider/controller/store/create_family_store.dart';
 
@@ -105,15 +106,45 @@ class CreateFamilyMobile extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      CustomTextFormField(
-                        controller: viewStore.state.nameFamilyController,
-                        focusNote: viewStore.state.nameFamilyFocus,
-                        boxDecorationColor: ColorMode.setColor(
-                          context: context,
-                          light: Colors.grey.shade200,
-                          dark: Colors.black,
-                        ),
-                        labelText: "Nome da familia",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomTextFormField(
+                                controller:
+                                    viewStore.state.nameFamilyController,
+                                focusNote: viewStore.state.nameFamilyFocus,
+                                boxDecorationColor: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade200,
+                                  dark: Colors.black,
+                                ),
+                                labelText: "Nome da familia",
+                                borderColor: value.failure ==
+                                        CreateFamilyTextFieldFailure.name
+                                    ? Colors.red
+                                    : Colors.transparent,
+                              ),
+                              value.failure == CreateFamilyTextFieldFailure.name
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Text(
+                                        value.errorMessage,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                              color: Colors.red,
+                                            ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -147,19 +178,49 @@ class CreateFamilyMobile extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      CustomTextFormField(
-                        controller: viewStore.state.yearFamilyController,
-                        focusNote: viewStore.state.yearFamilyFocus,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        boxDecorationColor: ColorMode.setColor(
-                          context: context,
-                          light: Colors.grey.shade200,
-                          dark: Colors.black,
-                        ),
-                        labelText: "Ano da familia no acampamento",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomTextFormField(
+                                controller:
+                                    viewStore.state.yearFamilyController,
+                                focusNote: viewStore.state.yearFamilyFocus,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                boxDecorationColor: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade200,
+                                  dark: Colors.black,
+                                ),
+                                labelText: "Ano da familia no acampamento",
+                                borderColor: value.failure ==
+                                        CreateFamilyTextFieldFailure.year
+                                    ? Colors.red
+                                    : Colors.transparent,
+                              ),
+                              value.failure == CreateFamilyTextFieldFailure.year
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Text(
+                                        value.errorMessage,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                              color: Colors.red,
+                                            ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -168,6 +229,8 @@ class CreateFamilyMobile extends StatelessWidget {
                 const SliverToBoxAdapter(
                   child: SizedBox(height: 36),
                 ),
+
+                // * Show error
               ],
             ),
           ),

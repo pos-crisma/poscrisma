@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:core/core.dart';
+import 'package:home/src/feature/create_family/provider/controller/state/create_family_state.dart';
 import 'package:home/src/feature/create_family/provider/dto/create_family_response_dto.dart';
 
 sealed class CreateFamilyAction {
@@ -13,6 +14,9 @@ sealed class CreateFamilyAction {
       _SuccessFamilyService(family: family);
   static CreateFamilyAction failureFamilyService(ErrorInfo error) =>
       _FailureFamilyService(error: error);
+  static CreateFamilyAction validator(
+          String error, CreateFamilyTextFieldFailure failure) =>
+      _Validator(error: error, failure: failure);
 
   T fold<T>(
     T Function(_OnAppear action) onAppear,
@@ -21,6 +25,7 @@ sealed class CreateFamilyAction {
     T Function(_LoadingFamilyService action) loadingFamilyService,
     T Function(_SuccessFamilyService action) successFamilyService,
     T Function(_FailureFamilyService action) failureFamilyService,
+    T Function(_Validator action) validator,
   ) =>
       switch (this) {
         _OnAppear action => onAppear(action),
@@ -29,6 +34,7 @@ sealed class CreateFamilyAction {
         _LoadingFamilyService action => loadingFamilyService(action),
         _SuccessFamilyService action => successFamilyService(action),
         _FailureFamilyService action => failureFamilyService(action),
+        _Validator action => validator(action),
       };
 }
 
@@ -50,4 +56,14 @@ class _FailureFamilyService extends CreateFamilyAction {
   final ErrorInfo error;
 
   _FailureFamilyService({required this.error});
+}
+
+class _Validator extends CreateFamilyAction {
+  final String error;
+  final CreateFamilyTextFieldFailure failure;
+
+  _Validator({
+    required this.error,
+    required this.failure,
+  });
 }

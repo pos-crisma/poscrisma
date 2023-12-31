@@ -10,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
     BorderRadiusGeometry borderRadiusGeometry =
         const BorderRadius.all(Radius.circular(12)),
     Color boxDecorationColor = Colors.black,
+    Color borderColor = Colors.transparent,
     bool autoFocus = false,
     bool enabled = true,
     bool isSecurity = false,
@@ -31,11 +32,13 @@ class CustomTextFormField extends StatelessWidget {
         _focusNode = focusNote,
         _maxLine = maxLine,
         _isSecurity = isSecurity,
-        _obscureText = obscureText;
+        _obscureText = obscureText,
+        _borderColor = borderColor;
 
   final EdgeInsets _edgeInsets;
   final String labelText;
   final Color _boxDecorationColor;
+  final Color _borderColor;
   final BorderRadiusGeometry _borderRadiusGeometry;
 
   final VoidCallback? obscureOnPress;
@@ -74,6 +77,9 @@ class CustomTextFormField extends StatelessWidget {
         decoration: BoxDecoration(
           color: _boxDecorationColor,
           borderRadius: _borderRadiusGeometry,
+          border: Border.all(
+            color: _borderColor,
+          ),
         ),
         inputFormatters: inputFormatters,
         placeholder: labelText,
