@@ -2,8 +2,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
-import '../../../../home/provider/controller/action/home_action.dart';
-import '../../../../home/provider/controller/store/home_store.dart';
 import '../../api/create_family_api.dart';
 import '../../dto/create_family_request_dto.dart';
 import '../../dto/create_family_response_dto.dart';
@@ -112,9 +110,7 @@ class CreateFamilyReducer
 
   _successFamily(CreateFamilyResponseDTO family) {
     return Effect.run(() async {
-      final HomeReducer viewStore = Modular.get();
-      viewStore.send(HomeAction.userService());
-      Modular.to.pop();
+      Modular.to.popAndPushNamed('/home/');
     });
   }
 

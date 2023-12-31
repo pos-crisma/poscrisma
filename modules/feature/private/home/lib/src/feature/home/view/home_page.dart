@@ -16,9 +16,9 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    return const Responsive(
+    return Responsive(
       mobile: HomeMobile(),
-      desktop: HomeWeb(),
+      desktop: const HomeWeb(),
     );
   }
 }

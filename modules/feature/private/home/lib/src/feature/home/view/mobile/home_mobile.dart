@@ -9,22 +9,10 @@ import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
-class HomeMobile extends StatefulWidget {
-  const HomeMobile({super.key});
+class HomeMobile extends StatelessWidget {
+  HomeMobile({super.key});
 
-  @override
-  State<HomeMobile> createState() => _HomeMobileState();
-}
-
-class _HomeMobileState extends State<HomeMobile> {
   final HomeReducer viewStore = Modular.get();
-
-  @override
-  void initState() {
-    super.initState();
-
-    viewStore.send(HomeAction.onAppear());
-  }
 
   void generateInvite(BuildContext context) {
     Future.delayed(Durations.short1).then((value) {
@@ -62,6 +50,24 @@ class _HomeMobileState extends State<HomeMobile> {
     });
   }
 
+  void showFamily(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(8),
+          ),
+        ),
+        builder: (context) {
+          return Container();
+        },
+      );
+    });
+  }
+
   void notification(BuildContext context) {
     Future.delayed(Durations.short1).then((value) {
       showModalBottomSheet(
@@ -82,6 +88,8 @@ class _HomeMobileState extends State<HomeMobile> {
 
   @override
   Widget build(BuildContext context) {
+    viewStore.send(HomeAction.onAppear());
+
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.deepPurpleAccent,
@@ -194,16 +202,22 @@ class _HomeMobileState extends State<HomeMobile> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
                     ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
-                        if (value.user != null &&
+                        final createFamily = (value.user != null &&
                             value.user!.familyId == null &&
                             (value.user!.typeUser == "GodParent" ||
-                                value.user!.typeUser == "Voluntary")) {
+                                value.user!.typeUser == "Voluntary"));
+                        final viewFamily = (value.user != null &&
+                            value.user!.familyId != null &&
+                            (value.user!.typeUser == "GodParent" ||
+                                value.user!.typeUser == "Voluntary"));
+
+                        if (createFamily) {
                           return Column(
                             children: [
+                              const SizedBox(height: 8),
                               ComplexButton(
                                 onPress: () => generateFamily(context),
                                 text: 'Crie sua familia',
@@ -212,7 +226,20 @@ class _HomeMobileState extends State<HomeMobile> {
                                 light: Colors.grey.shade200,
                                 dark: Colors.grey.shade800,
                               ),
+                            ],
+                          );
+                        } else if (viewFamily) {
+                          return Column(
+                            children: [
                               const SizedBox(height: 8),
+                              ComplexButton(
+                                onPress: () => showFamily(context),
+                                text: 'Visualiza sua familia',
+                                iconData: CupertinoIcons
+                                    .person_crop_circle_badge_checkmark,
+                                light: Colors.grey.shade200,
+                                dark: Colors.grey.shade800,
+                              ),
                             ],
                           );
                         } else {
