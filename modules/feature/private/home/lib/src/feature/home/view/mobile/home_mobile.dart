@@ -666,9 +666,28 @@ class HomeMobile extends StatelessWidget {
             builder: (context, value, child) {
               if (value.version != null) {
                 return SliverToBoxAdapter(
-                  child: Text(
-                    "Versão do app: ${value.version!.version}", // TODO: move to i18n
+                  child: RichText(
                     textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: 'Versão: ', // TODO: move to i18n
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelSmall! //
+                          .copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                      children: [
+                        TextSpan(
+                          text: value.version?.version ?? '...',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall! //
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               } else {
@@ -678,7 +697,9 @@ class HomeMobile extends StatelessWidget {
           ),
 
           SliverToBoxAdapter(
-            child: SizedBox(height: MediaQuery.of(context).padding.bottom),
+            child: SizedBox(
+              height: MediaQuery.of(context).padding.bottom,
+            ),
           ),
         ],
       ),
