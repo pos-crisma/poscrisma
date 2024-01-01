@@ -8,6 +8,7 @@ export 'components/border/border_input_decoration.dart';
 export 'components/button/animated_button.dart';
 export 'components/button/complex_button.dart';
 export 'components/button/item_button.dart';
+export 'components/button/back_button.dart';
 
 export 'components/divider/divider.dart';
 

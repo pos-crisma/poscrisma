@@ -13,6 +13,7 @@ class RuleModule extends Module {
     r.child(
       "/",
       child: (_) => const RulePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

@@ -21,10 +21,13 @@ import 'package:rule/rule.dart';
 import 'package:schedule/schedule.dart';
 import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
-import 'package:store/module/store_module.dart';
 import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
 import 'package:young/young.dart';
+import 'package:profile/profile.dart' as profile;
+
+//* Store
+import 'package:store/store.dart';
 
 class AppModule extends Module {
   @override
@@ -126,6 +129,11 @@ class AppModule extends Module {
     r.module(
       '/team',
       module: TeamModule(),
+      guards: [PrivateGuard()],
+    );
+    r.module(
+      '/profile',
+      module: profile.ProfileModule(),
       guards: [PrivateGuard()],
     );
 

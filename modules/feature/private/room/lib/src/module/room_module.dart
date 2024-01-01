@@ -15,14 +15,17 @@ class RoomModule extends Module {
     r.child(
       "/",
       child: (_) => const RoomPage(),
+      transition: TransitionType.fadeIn,
     );
     r.child(
       "/search",
       child: (_) => const RoomSearchPage(),
+      transition: TransitionType.fadeIn,
     );
     r.child(
       "/type",
       child: (_) => const RoomTypePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

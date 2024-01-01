@@ -13,6 +13,7 @@ class ScheduleModule extends Module {
     r.child(
       "/",
       child: (_) => const SchedulePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }

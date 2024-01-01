@@ -15,6 +15,10 @@ abstract class Reducer<Action, State> extends ValueNotifier<State> {
   _effect(Effect effect) async => effect.fold(
         (_) => notifyListeners(),
         (e) => e.function,
+        (e) {
+          notifyListeners();
+          e.function;
+        },
         (e) => send(e.action),
       );
 }

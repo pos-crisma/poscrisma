@@ -13,6 +13,7 @@ class WarehouseModule extends Module {
     r.child(
       "/",
       child: (_) => const WarehousePage(),
+      transition: TransitionType.fadeIn,
     );
   }
 }
