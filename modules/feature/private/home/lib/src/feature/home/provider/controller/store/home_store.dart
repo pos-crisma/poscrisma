@@ -23,6 +23,8 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       (action) => _loading(),
       (action) => _success(action.user),
       (action) => _failure(action.error),
+      (action) => _versionStream(),
+      (action) => _versionUpdate(action.version),
     );
   }
 
@@ -32,6 +34,8 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
   _service() {
     return Effect.run<void>(() async {
+      await send(HomeAction.versionService());
+
       await send(HomeAction.loadingUserService());
       final result = await ProfileAPI.getProfile();
 
@@ -75,5 +79,24 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
         },
       );
     });
+  }
+
+  _versionStream() {
+    return Effect.run(() async {
+      final result = VersionAPI.streamVersion();
+
+      result.listen((event) {
+        final settingsVersion = event.data();
+        if (settingsVersion != null) {
+          send(HomeAction.versionUpdate(settingsVersion));
+        }
+      });
+    });
+  }
+
+  _versionUpdate(Version version) {
+    state.version = version;
+
+    return Effect.emit();
   }
 }

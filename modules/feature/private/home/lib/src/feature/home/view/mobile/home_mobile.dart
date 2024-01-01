@@ -181,7 +181,7 @@ class HomeMobile extends StatelessWidget {
                       valueListenable: viewStore,
                       builder: (context, value, child) => RichText(
                         text: TextSpan(
-                          text: 'Olá, ',
+                          text: 'Olá, ', // TODO: move to i18n
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -190,7 +190,8 @@ class HomeMobile extends StatelessWidget {
                               ),
                           children: [
                             TextSpan(
-                              text: value.user?.name ?? 'Carregando ...',
+                              text: value.user?.name ??
+                                  'Carregando ...', // TODO: move to i18n
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
@@ -220,7 +221,7 @@ class HomeMobile extends StatelessWidget {
                               const SizedBox(height: 8),
                               ComplexButton(
                                 onPress: () => generateFamily(context),
-                                text: 'Crie sua familia',
+                                text: 'Crie sua familia', // TODO: move to i18n
                                 iconData: CupertinoIcons
                                     .person_crop_circle_badge_plus,
                                 light: Colors.grey.shade200,
@@ -234,7 +235,8 @@ class HomeMobile extends StatelessWidget {
                               const SizedBox(height: 8),
                               ComplexButton(
                                 onPress: () => showFamily(context),
-                                text: 'Visualiza sua familia',
+                                text:
+                                    'Visualiza sua familia', // TODO: move to i18n
                                 iconData: CupertinoIcons
                                     .person_crop_circle_badge_checkmark,
                                 light: Colors.grey.shade200,
@@ -292,7 +294,8 @@ class HomeMobile extends StatelessWidget {
                                         ),
                                         RichText(
                                           text: TextSpan(
-                                            text: 'Total de quartos usados: ',
+                                            text:
+                                                'Total de quartos usados: ', // TODO: move to i18n
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge!
@@ -366,7 +369,7 @@ class HomeMobile extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "Padrinho",
+                                          "Padrinho", // TODO: move to i18n
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -412,7 +415,7 @@ class HomeMobile extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "Jovem",
+                                          "Jovem", // TODO: move to i18n
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -458,7 +461,7 @@ class HomeMobile extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "Voluntarios",
+                                          "Voluntarios", // TODO: move to i18n
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -488,7 +491,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           onPress: () => Modular.to.pushNamed('/room/search'),
-                          text: "Pesquisar quarto",
+                          text: "Pesquisar quarto", // TODO: move to i18n
                           iconData: CupertinoIcons.search,
                           light: Colors.grey.shade300,
                           dark: Colors.grey.shade800,
@@ -522,7 +525,7 @@ class HomeMobile extends StatelessWidget {
                           horizontal: 16,
                         ),
                         child: Text(
-                          'Acampamento',
+                          'Acampamento', // TODO: move to i18n
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -541,7 +544,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           onPress: () => Modular.to.pushNamed('/team/'),
-                          text: "Equipes",
+                          text: "Equipes", // TODO: move to i18n
                           iconData: CupertinoIcons.group_solid,
                           light: Colors.grey.shade300,
                           dark: Colors.grey.shade800,
@@ -555,7 +558,7 @@ class HomeMobile extends StatelessWidget {
                           right: 16,
                         ),
                         child: Text(
-                          'Eventos',
+                          'Eventos', // TODO: move to i18n
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -572,7 +575,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           onPress: () => Modular.to.pushNamed('/team/'),
-                          text: "Pesquisar Jogos",
+                          text: "Pesquisar Jogos", // TODO: move to i18n
                           iconData: CupertinoIcons.gamecontroller_alt_fill,
                           light: Colors.grey.shade300,
                           dark: Colors.grey.shade800,
@@ -587,7 +590,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           onPress: () => Modular.to.pushNamed('/schedule/'),
-                          text: "Tabela de jogos",
+                          text: "Tabela de jogos", // TODO: move to i18n
                           iconData: CupertinoIcons.calendar,
                           light: Colors.grey.shade300,
                           dark: Colors.grey.shade800,
@@ -622,9 +625,8 @@ class HomeMobile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          // color: Colors.white,
                           child: Text(
-                            'Itens do acampamento',
+                            'Itens do acampamento', // TODO: move to i18n
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -653,6 +655,30 @@ class HomeMobile extends StatelessWidget {
                 return const SliverToBoxAdapter();
               }
             },
+          ),
+
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 8),
+          ),
+
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.version != null) {
+                return SliverToBoxAdapter(
+                  child: Text(
+                    "Versão do app: ${value.version!.version}", // TODO: move to i18n
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              } else {
+                return const SliverToBoxAdapter();
+              }
+            },
+          ),
+
+          SliverToBoxAdapter(
+            child: SizedBox(height: MediaQuery.of(context).padding.bottom),
           ),
         ],
       ),

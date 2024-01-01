@@ -23,7 +23,7 @@ class HomeModule extends Module {
     r.child(
       "/",
       child: (_) => const HomePage(),
-      transition: TransitionType.downToUp,
+      transition: TransitionType.scale,
       duration: Durations.short1,
     );
   }
