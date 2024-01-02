@@ -90,6 +90,8 @@ dependencies:
   
   error:
     path: "./modules/feature/error"
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

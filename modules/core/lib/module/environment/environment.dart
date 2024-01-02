@@ -1,7 +1,7 @@
 mixin URL {
-  static const String production = "http://poscrisma.ddns.com.br/v1";
-  static const String qa = "http://poscrisma.ddns.com.br/v1";
-  static const String develop = "http://poscrisma.ddns.com.br/v1";
+  static const String production = "https://poscrisma.ddns.com.br/v1";
+  static const String qa = "https://poscrisma.ddns.com.br/v1";
+  static const String develop = "https://poscrisma.ddns.com.br/v1";
 }
 
 enum Environment {

@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../provider/controller/action/auth_action.dart';
@@ -40,39 +42,12 @@ class _AuthMobileState extends State<AuthMobile> {
               slivers: [
                 SliverAppBar(
                   surfaceTintColor: Colors.transparent,
-                  pinned: true,
                   elevation: 0,
-                  leadingWidth: 100,
-                  leading: CupertinoButton(
-                    padding: const EdgeInsets.only(left: 8),
-                    onPressed: () => Modular.to.pop(),
-                    child: Row(
-                      children: [
-                        Icon(
-                          CupertinoIcons.arrow_left,
-                          color: SystemMode.isDark(context)
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Voltar',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge! //
-                              .copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: 200,
-                    child: const Image(
+                  stretch: true,
+                  expandedHeight: Responsive.isSmallScreen(context) ? 150 : 200,
+                  flexibleSpace: const FlexibleSpaceBar(
+                    collapseMode: CollapseMode.parallax,
+                    background: Image(
                       image: backgroundChurch,
                       fit: BoxFit.cover,
                     ),
@@ -94,13 +69,16 @@ class _AuthMobileState extends State<AuthMobile> {
                               ),
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          'Tendo sua conta, abaixo você pode fazer o login dentro do acampamento da paroquia', // TODO: move to i18n
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium! //
-                              .copyWith(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            'Tendo sua conta, abaixo você pode fazer o login dentro do acampamento da paroquia', // TODO: move to i18n
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium! //
+                                .copyWith(),
+                          ),
                         ),
                       ],
                     ),
@@ -130,6 +108,71 @@ class _AuthMobileState extends State<AuthMobile> {
                         ? Colors.black
                         : Colors.grey.shade200,
                     labelText: 'Preencha sua senha', // TODO: Move to i18n
+                  ),
+                ),
+                const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 1,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade200,
+                                  dark: Colors.grey.shade800,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              "ou",
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Container(
+                                height: 1,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade200,
+                                  dark: Colors.grey.shade800,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Voce possui um convite? ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall! //
+                              .copyWith(),
+                          children: [
+                            TextSpan(
+                              text: 'acessar area de convite',
+                              recognizer: TapGestureRecognizer()
+                                ..onTap =
+                                    () => Modular.to.pushNamed('/invite/'),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Colors.purple.shade500,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
