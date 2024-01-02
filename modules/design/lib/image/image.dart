@@ -29,3 +29,18 @@ const noDataDark = AssetImage(
   'assets/image/no-data.dark.png',
   package: 'design',
 );
+
+const roomDay = AssetImage(
+  'assets/image/room_day.png',
+  package: 'design',
+);
+
+const roomDawn = AssetImage(
+  'assets/image/room_dawn.png',
+  package: 'design',
+);
+
+const roomMoon = AssetImage(
+  'assets/image/room_moon.png',
+  package: 'design',
+);
