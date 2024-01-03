@@ -267,7 +267,7 @@ class _SettingMobileState extends State<SettingMobile> {
                     children: [
                       ItemButton(
                         onPress: () =>
-                            Modular.to.pushNamed('/warehouse/manager'),
+                            Modular.to.pushNamed('/warehouse'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,

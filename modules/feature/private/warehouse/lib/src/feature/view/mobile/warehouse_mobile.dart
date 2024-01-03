@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class TeamMobile extends StatelessWidget {
-  const TeamMobile({super.key});
+class WarehouseMobile extends StatelessWidget {
+  const WarehouseMobile({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class TeamMobile extends StatelessWidget {
               background: AnimatedContainer(
                 duration: Durations.extralong1,
                 child: const Image(
-                  image: backgroundCastleTower,
+                  image: warehouse,
                   fit: BoxFit.cover,
                 ),
               ),

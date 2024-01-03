@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class TeamMobile extends StatelessWidget {
-  const TeamMobile({super.key});
+class ScheduleMobile extends StatelessWidget {
+  const ScheduleMobile({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
