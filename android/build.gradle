@@ -6,10 +6,19 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:7.4.1'
+        // START: FlutterFire Configuration
+        classpath 'com.google.gms:google-services:4.3.14'
+        // END: FlutterFire Configuration
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
+// plugins {
+//     id 'com.android.application' version '7.4.1' apply false
+//     id 'com.android.library' version '7.4.1' apply false
+//     // ...
+// }
 
 allprojects {
     repositories {
