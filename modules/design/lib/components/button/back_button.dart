@@ -7,11 +7,18 @@ class CustomBackButton extends StatelessWidget {
     super.key,
     IconData backIcon = CupertinoIcons.chevron_left,
     String backTitle = "Voltar",
+    Color dark = Colors.white,
+    Color light = Colors.black,
   })  : _backTitle = backTitle,
-        _backIcon = backIcon;
+        _backIcon = backIcon,
+        _dark = dark,
+        _light = light;
 
   final IconData _backIcon;
   final String _backTitle;
+
+  final Color _dark;
+  final Color _light;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +31,8 @@ class CustomBackButton extends StatelessWidget {
             _backIcon,
             color: ColorMode.setColor(
               context: context,
-              light: Colors.black,
-              dark: Colors.white,
+              light: _light,
+              dark: _dark,
             ),
           ),
           const SizedBox(width: 4),
@@ -35,6 +42,11 @@ class CustomBackButton extends StatelessWidget {
                 .textTheme
                 .bodyLarge! //
                 .copyWith(
+                  color: ColorMode.setColor(
+                    context: context,
+                    light: _light,
+                    dark: _dark,
+                  ),
                   fontWeight: FontWeight.w600,
                 ),
           ),

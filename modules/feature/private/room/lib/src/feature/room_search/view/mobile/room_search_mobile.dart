@@ -31,8 +31,7 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
       if (image != roomDay) {
         setState(() => _currentImage = roomDay);
       }
-    } else if ((now.hour >= 17 && now.hour < 22) ||
-        (now.hour >= 0 && now.hour < 8)) {
+    } else if ((now.hour >= 16 && now.hour < 20)) {
       if (image != roomDawn) {
         setState(() => _currentImage = roomDawn);
       }
@@ -49,33 +48,34 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            pinned: true,
+            surfaceTintColor: Colors.transparent,
             elevation: 0,
             stretch: true,
-            leadingWidth: 50,
-            leading: const CustomBackButton(
+            leadingWidth: 100,
+            leading: CustomBackButton(
               backIcon: CupertinoIcons.chevron_back,
-              backTitle: "",
+              backTitle: "Voltar",
+              light: Colors.grey.shade300,
+              dark: Colors.grey.shade300,
             ),
             expandedHeight: kIsWeb
                 ? 300
                 : Responsive.isSmallScreen(context)
-                    ? 150
-                    : 200,
+                    ? 100
+                    : 150,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
-              background: AnimatedSwitcher(
+              background: AnimatedContainer(
                 duration: Durations.extralong1,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image(
-                    image: _currentImage,
-                    fit: BoxFit.cover,
-                  ),
+                child: Image(
+                  image: _currentImage,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-          )
+          ),
+
+          //*
         ],
       ),
     );

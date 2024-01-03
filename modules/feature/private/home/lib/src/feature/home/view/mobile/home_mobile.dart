@@ -186,6 +186,7 @@ class HomeMobile extends StatelessWidget {
                               .textTheme
                               .bodyLarge! //
                               .copyWith(
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
                           children: [
@@ -196,6 +197,7 @@ class HomeMobile extends StatelessWidget {
                                   .textTheme
                                   .bodyLarge!
                                   .copyWith(
+                                    color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -358,6 +360,10 @@ class HomeMobile extends StatelessWidget {
                                         Expanded(
                                           child: Container(
                                             decoration: BoxDecoration(
+                                              image: const DecorationImage(
+                                                image: iconAdult,
+                                                fit: BoxFit.scaleDown,
+                                              ),
                                               color: ColorMode.setColor(
                                                 context: context,
                                                 light: Colors.grey.shade300,
@@ -404,6 +410,10 @@ class HomeMobile extends StatelessWidget {
                                         Expanded(
                                           child: Container(
                                             decoration: BoxDecoration(
+                                              image: const DecorationImage(
+                                                image: iconYoung,
+                                                fit: BoxFit.scaleDown,
+                                              ),
                                               color: ColorMode.setColor(
                                                 context: context,
                                                 light: Colors.grey.shade300,
@@ -450,6 +460,10 @@ class HomeMobile extends StatelessWidget {
                                         Expanded(
                                           child: Container(
                                             decoration: BoxDecoration(
+                                              image: const DecorationImage(
+                                                image: iconVoluntary,
+                                                fit: BoxFit.scaleDown,
+                                              ),
                                               color: ColorMode.setColor(
                                                 context: context,
                                                 light: Colors.grey.shade300,

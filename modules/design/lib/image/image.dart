@@ -44,3 +44,18 @@ const roomMoon = AssetImage(
   'assets/image/room_moon.png',
   package: 'design',
 );
+
+const iconAdult = AssetImage(
+  'assets/image/ic_adult.png',
+  package: 'design',
+);
+
+const iconYoung = AssetImage(
+  'assets/image/ic_young.png',
+  package: 'design',
+);
+
+const iconVoluntary = AssetImage(
+  'assets/image/ic_voluntary.png',
+  package: 'design',
+);
