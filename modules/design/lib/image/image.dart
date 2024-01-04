@@ -59,3 +59,8 @@ const iconVoluntary = AssetImage(
   'assets/image/ic_voluntary.png',
   package: 'design',
 );
+
+const warehouse = AssetImage(
+  'assets/image/warehouse.png',
+  package: 'design',
+);

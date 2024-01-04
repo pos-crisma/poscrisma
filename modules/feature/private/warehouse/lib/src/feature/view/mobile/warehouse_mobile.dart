@@ -1,21 +1,15 @@
-
-import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../provider/controller/action/room_type_action.dart';
-import '../../provider/controller/store/room_type_store.dart';
-
-class RoomTypeMobile extends StatelessWidget {
-  RoomTypeMobile({super.key});
-
-  final RoomTypeReducer viewStore = Modular.get();
+class WarehouseMobile extends StatelessWidget {
+  const WarehouseMobile({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(RoomTypeAction.onAppear());
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -39,12 +33,9 @@ class RoomTypeMobile extends StatelessWidget {
               collapseMode: CollapseMode.parallax,
               background: AnimatedContainer(
                 duration: Durations.extralong1,
-                child: ValueListenableBuilder(
-                  valueListenable: viewStore,
-                  builder: (context, value, _) => Image(
-                    image: value.image,
-                    fit: BoxFit.cover,
-                  ),
+                child: const Image(
+                  image: warehouse,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

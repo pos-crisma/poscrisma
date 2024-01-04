@@ -261,264 +261,327 @@ class HomeMobile extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: viewStore,
             builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('view_room')) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ItemButton(
-                        onPress: () => Modular.to.pushNamed('/room/'),
-                        child: LayoutBuilder(
-                          builder: (context, constraints) {
-                            return Container(
-                              // alignment: Alignment.centerLeft,
-                              width: constraints.maxWidth,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Todos quartos",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(),
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text:
-                                                'Total de quartos usados: ', // TODO: move to i18n
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(),
-                                            children: [
-                                              TextSpan(
-                                                text: '45',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge!
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    size: 24,
-                                    color: Colors.grey.shade800,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
-                        height: 100,
+              return SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    // * Your room
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) => Container(
                         width: MediaQuery.of(context).size.width,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 16,
+                          right: 16,
+                        ),
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'Seu quarto fica: ', // TODO: move to i18n
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  color: ColorMode.setColor(
+                                    context: context,
+                                    light: Colors.black,
+                                    dark: Colors.white,
+                                  ),
+                                  // fontWeight: FontWeight.w500,
+                                ),
                             children: [
-                              LayoutBuilder(
-                                builder: (context, constraints) =>
-                                    AnimatedButton(
-                                  padding: EdgeInsets.zero,
-                                  innerPadding: EdgeInsets.zero,
-                                  onPress: () =>
-                                      Modular.to.pushNamed('/room/type'),
-                                  disabledChild: Container(),
-                                  enableColor: Colors.transparent,
-                                  child: SizedBox(
-                                    width: 100,
-                                    height: constraints.maxHeight,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: iconAdult,
-                                                fit: BoxFit.scaleDown,
-                                              ),
-                                              color: ColorMode.setColor(
-                                                context: context,
-                                                light: Colors.grey.shade300,
-                                                dark: Colors.grey.shade800,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "Padrinho", // TODO: move to i18n
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
-                                                ),
-                                              ),
-                                        ),
-                                      ],
+                              TextSpan(
+                                text: "Carregando", // TODO: move to i18n
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                      color: ColorMode.setColor(
+                                        context: context,
+                                        light: Colors.black,
+                                        dark: Colors.white,
+                                      ),
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                ),
                               ),
-                              const SizedBox(width: 8),
-                              LayoutBuilder(
-                                builder: (context, constraints) =>
-                                    AnimatedButton(
-                                  padding: EdgeInsets.zero,
-                                  innerPadding: EdgeInsets.zero,
-                                  onPress: () =>
-                                      Modular.to.pushNamed('/room/type'),
-                                  disabledChild: Container(),
-                                  enableColor: Colors.transparent,
-                                  child: SizedBox(
-                                    width: 100,
-                                    height: constraints.maxHeight,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: iconYoung,
-                                                fit: BoxFit.scaleDown,
-                                              ),
-                                              color: ColorMode.setColor(
-                                                context: context,
-                                                light: Colors.grey.shade300,
-                                                dark: Colors.grey.shade800,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "Jovem", // TODO: move to i18n
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
-                                                ),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              LayoutBuilder(
-                                builder: (context, constraints) =>
-                                    AnimatedButton(
-                                  padding: EdgeInsets.zero,
-                                  innerPadding: EdgeInsets.zero,
-                                  onPress: () =>
-                                      Modular.to.pushNamed('/room/type'),
-                                  disabledChild: Container(),
-                                  enableColor: Colors.transparent,
-                                  child: SizedBox(
-                                    width: 100,
-                                    height: constraints.maxHeight,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: iconVoluntary,
-                                                fit: BoxFit.scaleDown,
-                                              ),
-                                              color: ColorMode.setColor(
-                                                context: context,
-                                                light: Colors.grey.shade300,
-                                                dark: Colors.grey.shade800,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "Voluntarios", // TODO: move to i18n
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
-                                                ),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
                             ],
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        child: ComplexButton(
-                          onPress: () => Modular.to.pushNamed('/room/search'),
-                          text: "Pesquisar quarto", // TODO: move to i18n
-                          iconData: CupertinoIcons.search,
-                          light: Colors.grey.shade300,
-                          dark: Colors.grey.shade800,
-                          showIsNew: false,
-                        ),
-                      ),
-                      const CustomDivider(),
-                    ],
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
+                    ),
+
+                    value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!.contains('view_room')
+                        ? ItemButton(
+                            onPress: () => Modular.to.pushNamed('/room/'),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                return Container(
+                                  // alignment: Alignment.centerLeft,
+                                  width: constraints.maxWidth,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 8,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Todos quartos",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge!
+                                                  .copyWith(),
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                text:
+                                                    'Total de quartos usados: ', // TODO: move to i18n
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(),
+                                                children: [
+                                                  TextSpan(
+                                                    text: '45',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge!
+                                                        .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        size: 24,
+                                        color: Colors.grey.shade800,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        : Container(),
+
+                    value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!.contains('view_room')
+                        ? Container(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 16,
+                              right: 16,
+                            ),
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  LayoutBuilder(
+                                    builder: (context, constraints) =>
+                                        AnimatedButton(
+                                      padding: EdgeInsets.zero,
+                                      innerPadding: EdgeInsets.zero,
+                                      onPress: () =>
+                                          Modular.to.pushNamed('/room/type'),
+                                      disabledChild: Container(),
+                                      enableColor: Colors.transparent,
+                                      child: SizedBox(
+                                        width: 100,
+                                        height: constraints.maxHeight,
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: const DecorationImage(
+                                                    image: iconAdult,
+                                                    fit: BoxFit.scaleDown,
+                                                  ),
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade300,
+                                                    dark: Colors.grey.shade800,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              "Padrinho", // TODO: move to i18n
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: ColorMode.setColor(
+                                                      context: context,
+                                                      light: Colors.black,
+                                                      dark: Colors.white,
+                                                    ),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  LayoutBuilder(
+                                    builder: (context, constraints) =>
+                                        AnimatedButton(
+                                      padding: EdgeInsets.zero,
+                                      innerPadding: EdgeInsets.zero,
+                                      onPress: () =>
+                                          Modular.to.pushNamed('/room/type'),
+                                      disabledChild: Container(),
+                                      enableColor: Colors.transparent,
+                                      child: SizedBox(
+                                        width: 100,
+                                        height: constraints.maxHeight,
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: const DecorationImage(
+                                                    image: iconYoung,
+                                                    fit: BoxFit.scaleDown,
+                                                  ),
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade300,
+                                                    dark: Colors.grey.shade800,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              "Jovem", // TODO: move to i18n
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: ColorMode.setColor(
+                                                      context: context,
+                                                      light: Colors.black,
+                                                      dark: Colors.white,
+                                                    ),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  LayoutBuilder(
+                                    builder: (context, constraints) =>
+                                        AnimatedButton(
+                                      padding: EdgeInsets.zero,
+                                      innerPadding: EdgeInsets.zero,
+                                      onPress: () =>
+                                          Modular.to.pushNamed('/room/type'),
+                                      disabledChild: Container(),
+                                      enableColor: Colors.transparent,
+                                      child: SizedBox(
+                                        width: 100,
+                                        height: constraints.maxHeight,
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: const DecorationImage(
+                                                    image: iconVoluntary,
+                                                    fit: BoxFit.scaleDown,
+                                                  ),
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade300,
+                                                    dark: Colors.grey.shade800,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              "Voluntarios", // TODO: move to i18n
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    color: ColorMode.setColor(
+                                                      context: context,
+                                                      light: Colors.black,
+                                                      dark: Colors.white,
+                                                    ),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Container(),
+
+                    value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!.contains('view_room')
+                        ? Container(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 16,
+                              right: 16,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: ComplexButton(
+                              onPress: () =>
+                                  Modular.to.pushNamed('/room/search'),
+                              text: "Pesquisar quarto", // TODO: move to i18n
+                              iconData: CupertinoIcons.search,
+                              light: Colors.grey.shade300,
+                              dark: Colors.grey.shade800,
+                              showIsNew: false,
+                            ),
+                          )
+                        : Container(),
+
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const CustomDivider(),
+                  ],
+                ),
+              );
             },
           ),
 
