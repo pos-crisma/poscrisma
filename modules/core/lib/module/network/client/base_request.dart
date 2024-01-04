@@ -6,11 +6,12 @@ import '../model/network_response.dart';
 
 final internalFailure = ErrorInfo(
   code: 0,
-  response: 'Problema interno',
+  response: "Tente novamente",
   error: ErrorData(
-    type: 'Interno',
-    statusCode: -1009,
-    message: 'Problema interno',
+    type: "Interno",
+    statusCode: -1,
+    message:
+        "Tente novamente mais tarde, quando sua conexão com a internet retornar",
   ),
 );
 

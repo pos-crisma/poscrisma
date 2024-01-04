@@ -132,11 +132,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       } catch (e) {
         final error = ErrorInfo(
           code: -1,
-          response: "Error Storage",
+          response: "Tente novamente",
           error: ErrorData(
             type: "Storage",
             statusCode: -1,
-            message: "Error Storage",
+            message:
+                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
           ),
         );
 
