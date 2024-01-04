@@ -25,29 +25,36 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       (action) => _failure(action.error),
       (action) => _versionStream(),
       (action) => _versionUpdate(action.version),
+      (action) => _internetChecker(action.internetChecker),
+      (action) => _offlineService(),
     );
   }
 
   _onAppear() {
     return Effect.run(() async {
-
-
-
       send(HomeAction.userService());
+
+      InternetConnection().onStatusChange.listen((InternetStatus status) {
+        status == InternetStatus.connected
+            ? send(HomeAction.internetChecker(true))
+            : send(HomeAction.internetChecker(false));
+      });
     });
   }
 
   _service() {
     return Effect.run<void>(() async {
       await send(HomeAction.versionService());
-
       await send(HomeAction.loadingUserService());
-      final result = await ProfileAPI.getProfile();
 
-      result.fold(
-        (success) => send(HomeAction.successUserService(success)),
-        (failure) => send(HomeAction.failureUserService(failure)),
-      );
+      final hasInternetAccess = await InternetConnection().hasInternetAccess;
+
+      return hasInternetAccess
+          ? await ProfileAPI.getProfile().fold(
+              (success) => send(HomeAction.successUserService(success)),
+              (failure) => send(HomeAction.failureUserService(failure)),
+            )
+          : send(HomeAction.offlineService());
     });
   }
 
@@ -105,4 +112,37 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.emit();
   }
 
+  _internetChecker(bool internetChecker) {
+    state.internetCheck = internetChecker;
+
+    return Effect.emit();
+  }
+
+  _offlineService() {
+    return Effect.run(() async {
+      final Storage storage = Modular.get();
+      final value = await storage.get<String>("@profile");
+
+      try {
+        if (value != null) {
+          final profile = ProfileDTO.fromRawJson(value);
+
+          send(HomeAction.successUserService(profile));
+        }
+      } catch (e) {
+        final error = ErrorInfo(
+          code: -1,
+          response: "Tente novamente",
+          error: ErrorData(
+            type: "Storage",
+            statusCode: -1,
+            message:
+                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
+          ),
+        );
+
+        send(HomeAction.failureUserService(error));
+      }
+    });
+  }
 }

@@ -14,6 +14,9 @@ sealed class HomeAction {
   static HomeAction versionService() => _VersionService();
   static HomeAction versionUpdate(Version version) =>
       _VersionUpdate(version: version);
+  static HomeAction internetChecker(bool internetChecker) =>
+      _InternetChecker(internetChecker: internetChecker);
+  static HomeAction offlineService() => _OfflineService();
 
   T fold<T>(
     T Function(_OnAppearTapped action) onAppear,
@@ -23,6 +26,8 @@ sealed class HomeAction {
     T Function(_FailureUserService action) failureUserService,
     T Function(_VersionService action) versionService,
     T Function(_VersionUpdate action) versionUpdate,
+    T Function(_InternetChecker action) internetChecker,
+    T Function(_OfflineService action) offlineService,
   ) =>
       switch (this) {
         _OnAppearTapped action => onAppear(action),
@@ -32,6 +37,8 @@ sealed class HomeAction {
         _FailureUserService action => failureUserService(action),
         _VersionService action => versionService(action),
         _VersionUpdate action => versionUpdate(action),
+        _InternetChecker action => internetChecker(action),
+        _OfflineService action => offlineService(action),
       };
 }
 
@@ -60,3 +67,11 @@ class _VersionUpdate extends HomeAction {
 
   _VersionUpdate({required this.version});
 }
+
+class _InternetChecker extends HomeAction {
+  final bool internetChecker;
+
+  _InternetChecker({required this.internetChecker});
+}
+
+class _OfflineService extends HomeAction {}
