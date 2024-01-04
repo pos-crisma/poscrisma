@@ -1,49 +1,20 @@
-import 'dart:async';
-
+import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class RoomSearchMobile extends StatefulWidget {
-  const RoomSearchMobile({super.key});
+import '../../provider/controller/action/room_search_action.dart';
+import '../../provider/controller/store/room_search_store.dart';
 
-  @override
-  State<RoomSearchMobile> createState() => _RoomSearchMobileState();
-}
+class RoomSearchMobile extends StatelessWidget {
+  RoomSearchMobile({super.key});
 
-class _RoomSearchMobileState extends State<RoomSearchMobile> {
-  AssetImage _currentImage = roomDay;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateImage();
-
-    Timer.periodic(const Duration(minutes: 1), (Timer t) => _updateImage());
-  }
-
-  void _updateImage() {
-    DateTime now = DateTime.now();
-    AssetImage image = roomDay;
-
-    if (now.hour >= 8 && now.hour < 17) {
-      if (image != roomDay) {
-        setState(() => _currentImage = roomDay);
-      }
-    } else if ((now.hour >= 16 && now.hour < 20)) {
-      if (image != roomDawn) {
-        setState(() => _currentImage = roomDawn);
-      }
-    } else {
-      if (image != roomMoon) {
-        setState(() => _currentImage = roomMoon);
-      }
-    }
-  }
+  final RoomSearchReducer viewStore = Modular.get();
 
   @override
   Widget build(BuildContext context) {
+    viewStore.send(RoomSearchAction.onAppear());
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -67,9 +38,12 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
               collapseMode: CollapseMode.parallax,
               background: AnimatedContainer(
                 duration: Durations.extralong1,
-                child: Image(
-                  image: _currentImage,
-                  fit: BoxFit.cover,
+                child: ValueListenableBuilder(
+                  valueListenable: viewStore,
+                  builder: (context, value, _) => Image(
+                    image: value.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

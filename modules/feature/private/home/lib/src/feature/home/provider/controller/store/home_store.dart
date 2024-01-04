@@ -29,7 +29,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   }
 
   _onAppear() {
-    return Effect.send(HomeAction.userService());
+    return Effect.run(() async {
+
+
+
+      send(HomeAction.userService());
+    });
   }
 
   _service() {
@@ -99,4 +104,5 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
     return Effect.emit();
   }
+
 }
