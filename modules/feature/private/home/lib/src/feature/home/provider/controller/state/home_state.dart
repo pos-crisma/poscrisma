@@ -5,8 +5,11 @@ interface class HomeState {
   ProfileDTO? user;
   Version? version;
 
+  bool internetCheck;
+
   HomeState({
     this.status = HomeServiceStatus.idle,
+    this.internetCheck = false,
   });
 }
 
