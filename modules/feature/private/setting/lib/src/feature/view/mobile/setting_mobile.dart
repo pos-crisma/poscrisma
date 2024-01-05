@@ -169,92 +169,6 @@ class _SettingMobileState extends State<SettingMobile> {
             ),
           ),
 
-          //*
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_group')) {
-                return SliverToBoxAdapter(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
-                    color: ColorMode.setColor(
-                      context: context,
-                      light: Colors.grey.shade200,
-                      dark: Colors.grey.shade800,
-                    ),
-                    child: ComplexButton(
-                      onPress: () => Modular.to.pushNamed('/young/'),
-                      text: "Seus afilhados",
-                      iconData: CupertinoIcons.person_2_fill,
-                      light: Colors.grey.shade300,
-                      dark: Colors.grey.shade600,
-                    ),
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
-            },
-          ),
-
-          SliverToBoxAdapter(
-            child: Container(
-              height: 8,
-              color: ColorMode.setColor(
-                context: context,
-                light: Colors.grey.shade200,
-                dark: Colors.grey.shade800,
-              ),
-            ),
-          ),
-
-          //*
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_mascot')) {
-                return SliverToBoxAdapter(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
-                    color: ColorMode.setColor(
-                      context: context,
-                      light: Colors.grey.shade200,
-                      dark: Colors.grey.shade800,
-                    ),
-                    child: ComplexButton(
-                      onPress: () => Modular.to.pushNamed('/mascot'),
-                      text: "Seus filhos ( Mascotes )",
-                      iconData: CupertinoIcons.person_2_alt,
-                      light: Colors.grey.shade300,
-                      dark: Colors.grey.shade600,
-                    ),
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
-            },
-          ),
-
-          SliverToBoxAdapter(
-            child: Container(
-              height: 8,
-              color: ColorMode.setColor(
-                context: context,
-                light: Colors.grey.shade200,
-                dark: Colors.grey.shade800,
-              ),
-            ),
-          ),
-
           // * WareHouse
           ValueListenableBuilder(
             valueListenable: viewStore,
@@ -266,8 +180,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () =>
-                            Modular.to.pushNamed('/warehouse'),
+                        onPress: () => Modular.to.pushNamed('/warehouse'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,

@@ -108,14 +108,18 @@ class ProfileDTO {
 }
 
 class FamilyDTO {
-  final String fatherId;
-  final String father;
+  final String? fatherId;
+  final String? father;
+  final String? motherId;
+  final String? mother;
   final List<ChildrenDTO>? childrens;
   final List<GroupInfoDTO>? groups;
 
   FamilyDTO({
     required this.fatherId,
     required this.father,
+    required this.motherId,
+    required this.mother,
     required this.childrens,
     required this.groups,
   });
@@ -123,12 +127,16 @@ class FamilyDTO {
   FamilyDTO copyWith({
     String? fatherId,
     String? father,
+    String? motherId,
+    String? mother,
     List<ChildrenDTO>? childrens,
     List<GroupInfoDTO>? groups,
   }) =>
       FamilyDTO(
         fatherId: fatherId ?? this.fatherId,
         father: father ?? this.father,
+        motherId: motherId ?? this.motherId,
+        mother: mother ?? this.mother,
         childrens: childrens ?? this.childrens,
         groups: groups ?? this.groups,
       );
@@ -141,6 +149,8 @@ class FamilyDTO {
   factory FamilyDTO.fromJson(Map<String, dynamic> json) => FamilyDTO(
         fatherId: json["fatherId"],
         father: json["father"],
+        motherId: json["motherId"],
+        mother: json["mother"],
         childrens: json["childrens"] == []
             ? null
             : List<ChildrenDTO>.from(
@@ -154,6 +164,8 @@ class FamilyDTO {
   Map<String, dynamic> toJson() => {
         "fatherId": fatherId,
         "father": father,
+        "motherId": motherId,
+        "mother": mother,
         "childrens": childrens != null
             ? List<dynamic>.from(childrens!.map((x) => x.toJson()))
             : null,
