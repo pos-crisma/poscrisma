@@ -2,9 +2,7 @@
 
 import 'dart:convert';
 
-enum InviteType { CreateParish, CreateUser, CreateParent }
-
-enum InviteUserType { GodParent, Young, Voluntary }
+import '../../enum/invite_type.dart';
 
 class InviteRequestDTO {
   final InviteType type;

@@ -6,6 +6,7 @@ interface class FamilyGroupState {
   BuildContext? context;
 
   InviteResponseDTO? invite;
+  ListInviteByUserDTO? listInvite;
 
   FamilyGroupInviteStatus status;
 

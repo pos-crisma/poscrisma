@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:store/store.dart';
@@ -15,10 +16,13 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
   Future<Effect> reduce(FamilyGroupAction action) async {
     return action.fold(
       (action) => _onAppear(action.context),
-      (action) => _inviteButtonTapped(),
+      (action) => _generateTapped(),
+      (action) => _inviteButtonTapped(null, false),
       (action) => _successInviteGenerate(action.dto),
+      (action) => _successListInvite(action.dto),
       (action) => _failureInviteGenerate(action.error),
       (action) => _inviteToClipboard(),
+      (action) => _inviteButtonTapped(action.invite, action.fromList),
     );
   }
 
@@ -28,6 +32,21 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
     state.context = context;
 
     return Effect.runAndEmit(() async {
+      final user = state.user;
+
+      if (user != null) {
+        ListInviteAPI.list(user.userId, InviteUserType.Young).fold(
+          (success) => send(FamilyGroupAction.successListInvite(success)),
+          (error) => send(FamilyGroupAction.failureAPI(error)),
+        );
+      }
+    });
+  }
+
+  _generateTapped() {
+    return Effect.run(() async {
+      final ProfileStore store = Modular.get();
+      state.user = store.user;
       final user = state.user;
 
       if (user != null) {
@@ -42,18 +61,21 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
           InviteAPI.createInvite(dto).fold(
             (success) => send(FamilyGroupAction.successInviteGenerate(success)),
-            (error) => send(FamilyGroupAction.failureInviteGenerate(error)),
+            (error) => send(FamilyGroupAction.failureAPI(error)),
           );
         }
       }
     });
   }
 
-  _inviteButtonTapped() {
+  _inviteButtonTapped(String? inviteCode, bool fromList) {
     return Effect.run(() async {
       final invite = state.invite;
 
-      if (invite != null) {
+      if (inviteCode != null && fromList) {
+        await Clipboard.setData(ClipboardData(text: inviteCode));
+        send(FamilyGroupAction.inviteToClipboard());
+      } else if (invite != null) {
         await Clipboard.setData(ClipboardData(text: invite.inviteCode));
         send(FamilyGroupAction.inviteToClipboard());
       }
@@ -67,7 +89,12 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       if (context != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: Colors.grey.shade800,
+            backgroundColor: ColorMode.setColor(
+              context: context,
+              light: Colors.grey.shade200,
+              dark: Colors.grey.shade800,
+            ),
+            elevation: 0,
             content: LayoutBuilder(
               builder: (context, constraints) {
                 return SizedBox(
@@ -89,7 +116,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
                             .textTheme
                             .labelSmall! //
                             .copyWith(
-                              color: Colors.white,
+                              color: Colors.deepPurple.shade600,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -111,6 +138,11 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
         );
       }
     });
+  }
+
+  _successListInvite(ListInviteByUserDTO dto) {
+    state.listInvite = dto;
+    return Effect.emit();
   }
 
   _successInviteGenerate(InviteResponseDTO dto) {
