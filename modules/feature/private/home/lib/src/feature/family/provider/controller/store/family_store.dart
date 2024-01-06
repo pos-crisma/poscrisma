@@ -132,7 +132,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
         '/error/',
         arguments: {
           'title': errorInfo.response.toString(),
-          'content': errorInfo.error.message.toString(),
+          'content': errorInfo.error?.message.toString() ?? "",
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();

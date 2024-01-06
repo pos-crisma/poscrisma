@@ -158,7 +158,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
         '/error/',
         arguments: {
           'title': errorInfo.response.toString(),
-          'content': errorInfo.error.message.toString(),
+          'content': errorInfo.error?.message.toString() ?? "",
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();
