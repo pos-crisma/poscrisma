@@ -9,7 +9,7 @@ class ErrorInfo {
 
   final int code;
   final String response;
-  final ErrorData error;
+  final ErrorData? error;
 
   ErrorInfo copyWith({
     int? code,
@@ -30,15 +30,17 @@ class ErrorInfo {
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
         code: json["code"] ?? 0,
         response: json["response"] ?? '',
-        error: json["error"] is String
-            ? ErrorData(type: '', statusCode: 0, message: json["error"])
-            : ErrorData.fromJson(json["error"]),
+        error: json["error"] != null
+            ? json["error"] is String
+                ? ErrorData(type: '', statusCode: 0, message: json["error"])
+                : ErrorData.fromJson(json["error"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
         "code": code,
         "response": response,
-        "error": error.toJson(),
+        "error": error?.toJson(),
       };
 }
 
