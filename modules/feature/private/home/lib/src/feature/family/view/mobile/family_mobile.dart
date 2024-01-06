@@ -24,17 +24,27 @@ class FamilyMobile extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
+            SliverAppBar(
               pinned: true,
               elevation: 0,
               leadingWidth: 50,
-              leading: Padding(
+              leading: const Padding(
                 padding: EdgeInsets.only(left: 8.0),
                 child: CustomBackButton(
                   backIcon: CupertinoIcons.clear_thick_circled,
                   backTitle: "",
                 ),
               ),
+              actions: [
+                CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () =>
+                      viewStore.send(FamilyAction.mascotButtonTapped()),
+                  child: const Icon(
+                    CupertinoIcons.person_add_solid,
+                  ),
+                ),
+              ],
             ),
 
             // * Title

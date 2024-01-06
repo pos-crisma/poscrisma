@@ -14,6 +14,7 @@ sealed class FamilyAction {
       _FailureInviteGenerate(error: error);
   static FamilyAction inviteButtonTapped() => _InviteButtonTapped();
   static FamilyAction inviteToClipboard() => _InviteToClipboard();
+  static FamilyAction mascotButtonTapped() => _MascotButtonTapped();
 
   T fold<T>(
     T Function(_OnAppearTapped action) onAppear,
@@ -21,6 +22,7 @@ sealed class FamilyAction {
     T Function(_SuccessInviteGenerate action) successInviteGenerate,
     T Function(_FailureInviteGenerate action) failureInviteGenerate,
     T Function(_InviteToClipboard action) inviteToClipboard,
+    T Function(_MascotButtonTapped action) mascotButtonTapped,
   ) =>
       switch (this) {
         _OnAppearTapped action => onAppear(action),
@@ -28,6 +30,7 @@ sealed class FamilyAction {
         _SuccessInviteGenerate action => successInviteGenerate(action),
         _FailureInviteGenerate action => failureInviteGenerate(action),
         _InviteToClipboard action => inviteToClipboard(action),
+        _MascotButtonTapped action => mascotButtonTapped(action),
       };
 }
 
@@ -38,6 +41,8 @@ class _OnAppearTapped extends FamilyAction {
     required this.context,
   });
 }
+
+class _MascotButtonTapped extends FamilyAction {}
 
 class _InviteButtonTapped extends FamilyAction {}
 

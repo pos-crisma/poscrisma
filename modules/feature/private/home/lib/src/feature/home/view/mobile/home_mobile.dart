@@ -235,12 +235,10 @@ class HomeMobile extends StatelessWidget {
                       builder: (context, value, child) {
                         final createFamily = (value.user != null &&
                             value.user!.familyId == null &&
-                            (value.user!.typeUser == "GodParent" ||
-                                value.user!.typeUser == "Voluntary"));
+                            (value.user!.typeUser == "GodParent"));
                         final viewFamily = (value.user != null &&
                             value.user!.familyId != null &&
-                            (value.user!.typeUser == "GodParent" ||
-                                value.user!.typeUser == "Voluntary"));
+                            (value.user!.typeUser == "GodParent"));
 
                         if (createFamily) {
                           return Column(

@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
+import '../../../../create_mascot/view/mobile/create_mascote_mobile.dart';
 import '../action/family_action.dart';
 import '../state/family_state.dart';
 
@@ -19,6 +21,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       (action) => _successInviteGenerate(action.dto),
       (action) => _failureInviteGenerate(action.error),
       (action) => _inviteToClipboard(),
+      (action) => _mascotButtonTapped(),
     );
   }
 
@@ -65,7 +68,12 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       if (context != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: Colors.grey.shade800,
+            backgroundColor: ColorMode.setColor(
+              context: context,
+              light: Colors.grey.shade200,
+              dark: Colors.grey.shade800,
+            ),
+            elevation: 0,
             content: LayoutBuilder(
               builder: (context, constraints) {
                 return SizedBox(
@@ -134,6 +142,30 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
           'enableColor': Colors.transparent,
         },
       );
+    });
+  }
+
+  _mascotButtonTapped() {
+    return Effect.run(() async {
+      final context = state.context;
+
+      if (context != null) {
+        Future.delayed(Durations.short1).then((value) {
+          showModalBottomSheet(
+            context: context,
+            useSafeArea: true,
+            isScrollControlled: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(8),
+              ),
+            ),
+            builder: (context) {
+              return const CreateMascotMobile();
+            },
+          );
+        });
+      }
     });
   }
 }
