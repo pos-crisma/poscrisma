@@ -7,6 +7,7 @@ import '../feature/family/provider/controller/store/family_store.dart';
 import '../feature/family_group/provider/controller/store/family_group_store.dart';
 import '../feature/home/provider/controller/store/home_store.dart';
 import '../feature/home/view/home_page.dart';
+import '../feature/invite/provider/controller/store/invite_store.dart';
 
 class HomeModule extends Module {
   @override
@@ -29,6 +30,10 @@ class HomeModule extends Module {
     );
     i.add<CreateMascotReducer>(
       CreateMascotReducer.new,
+      config: storeConfig(),
+    );
+    i.add<InviteReducer>(
+      InviteReducer.new,
       config: storeConfig(),
     );
   }

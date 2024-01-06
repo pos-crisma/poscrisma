@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
+import '../../../invite/view/mobile/invite_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
@@ -22,14 +23,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return Container();
-        },
+        builder: (context) => InviteMobile(),
       );
     });
   }

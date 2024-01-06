@@ -19,6 +19,8 @@ mixin LightTheme {
       backgroundColor: lightBackground,
       iconTheme: IconThemeData(color: Colors.white),
     ),
+    splashColor: Colors.grey.shade50,
+    highlightColor: Colors.transparent,
     colorScheme: const ColorScheme.light(
       background: lightBackground,
     ),
