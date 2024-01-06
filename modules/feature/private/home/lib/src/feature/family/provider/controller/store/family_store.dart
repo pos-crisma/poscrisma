@@ -155,15 +155,12 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
             context: context,
             useSafeArea: true,
             isScrollControlled: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(8),
-              ),
-            ),
-            builder: (context) {
-              return const CreateMascotMobile();
-            },
-          );
+            builder: (context) => CreateMascotMobile(),
+          ).then((result) {
+            if (result is bool && result) {
+              // send(FamilyAction.service());
+            }
+          });
         });
       }
     });

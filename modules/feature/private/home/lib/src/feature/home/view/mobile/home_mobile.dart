@@ -616,6 +616,29 @@ class HomeMobile extends StatelessWidget {
                           )
                         : Container(),
 
+                    value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!.contains('manager_room')
+                        ? Container(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 16,
+                              right: 16,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: ComplexButton(
+                              onPress: () =>
+                                  Modular.to.pushNamed('/room/manager'),
+                              text:
+                                  "Gerenciar os quartos", // TODO: move to i18n
+                              iconData: CupertinoIcons.search,
+                              light: Colors.grey.shade300,
+                              dark: Colors.grey.shade800,
+                              showIsNew: false,
+                            ),
+                          )
+                        : Container(),
+
                     const SizedBox(
                       height: 8,
                     ),

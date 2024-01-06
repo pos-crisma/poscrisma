@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
@@ -14,6 +16,7 @@ class FamilyMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("Chama aqui", name: "teste");
     viewStore.send(FamilyAction.onAppear(context));
 
     return ClipRRect(
@@ -540,7 +543,7 @@ class FamilyMobile extends StatelessWidget {
                                 ),
                                 (index + 1) == childrens.length
                                     ? Container()
-                                    : const CustomDivider(),
+                                    : const CustomDivider(height: 0.5),
                               ],
                             );
                           },

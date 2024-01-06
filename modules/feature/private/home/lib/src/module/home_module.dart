@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../feature/create_family/provider/controller/store/create_family_store.dart';
+import '../feature/create_mascot/provider/controller/store/create_mascot_reducer.dart';
 import '../feature/family/provider/controller/store/family_store.dart';
 import '../feature/family_group/provider/controller/store/family_group_store.dart';
 import '../feature/home/provider/controller/store/home_store.dart';
@@ -24,6 +25,10 @@ class HomeModule extends Module {
     );
     i.add<FamilyReducer>(
       FamilyReducer.new,
+      config: storeConfig(),
+    );
+    i.add<CreateMascotReducer>(
+      CreateMascotReducer.new,
       config: storeConfig(),
     );
   }
