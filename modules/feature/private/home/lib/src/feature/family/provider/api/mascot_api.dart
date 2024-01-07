@@ -1,13 +1,14 @@
-// import 'package:core/core.dart';
+import 'package:core/core.dart';
 
-// mixin MascotApi {
-//   // static AsyncResult<ListMascotResponseDTO, ErrorInfo> get(
-//   //     String userId) async {
-//   //   final BaseRequest client = Modular.get();
+import '../dto/mascot_response_dto.dart';
 
-//   //   return client
-//   //       .get('/mascot/user/$userId')
-//   //       .map(ListMascotResponseDTO.fromJson)
-//   //       .fold(Success.new, Failure.new);
-//   // }
-// }
+mixin MascotApi {
+  static AsyncResult<MascotsResponseDTO, ErrorInfo> get(String userId) async {
+    final BaseRequest client = Modular.get();
+
+    return client
+        .get('/mascot/user/$userId')
+        .map(MascotsResponseDTO.fromJson)
+        .fold(Success.new, Failure.new);
+  }
+}

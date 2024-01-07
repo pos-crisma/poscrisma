@@ -399,149 +399,145 @@ class FamilyMobile extends StatelessWidget {
               ),
             ),
 
-            // * List young
+            // * List mascot
             ValueListenableBuilder(
               valueListenable: viewStore,
               builder: (context, value, child) {
-                final user = value.user;
-                if (user != null) {
-                  final family = user.family;
-                  if (family != null) {
-                    final childrens = family.childrens;
-                    if (childrens != null) {
-                      return SliverList.builder(
-                        itemCount: childrens.length,
-                        itemBuilder: (context, index) {
-                          final young = childrens[index];
+                final response = value.mascotResponse;
+                if (response != null) {
+                  final mascots = response.mascots;
+                  if (mascots != null) {
+                    return SliverList.builder(
+                      itemCount: mascots.length,
+                      itemBuilder: (context, index) {
+                        final mascot = mascots[index];
 
-                          return Column(
-                            children: [
-                              ItemButton(
-                                onPress: () {},
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Nome: ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium! //
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
-                                                ),
+                        return Column(
+                          children: [
+                            ItemButton(
+                              onPress: () {},
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Nome: ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium! //
+                                            .copyWith(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.black,
+                                                dark: Colors.white,
                                               ),
-                                          children: [
-                                            TextSpan(
-                                              text: young.name,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge! //
-                                                  .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light: Colors
-                                                          .deepPurple.shade900,
-                                                      dark: Colors
-                                                          .deepPurple.shade200,
-                                                    ),
-                                                  ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Idade: ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium! //
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
+                                        children: [
+                                          TextSpan(
+                                            text: mascot.name,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge! //
+                                                .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors
+                                                        .deepPurple.shade900,
+                                                    dark: Colors
+                                                        .deepPurple.shade200,
+                                                  ),
                                                 ),
-                                              ),
-                                          children: [
-                                            TextSpan(
-                                              text: young.age.toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge! //
-                                                  .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light: Colors
-                                                          .deepPurple.shade900,
-                                                      dark: Colors
-                                                          .deepPurple.shade200,
-                                                    ),
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Participa: ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium! //
-                                              .copyWith(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.black,
-                                                  dark: Colors.white,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Idade: ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium! //
+                                            .copyWith(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.black,
+                                                dark: Colors.white,
+                                              ),
+                                            ),
+                                        children: [
+                                          TextSpan(
+                                            text: mascot.age.toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge! //
+                                                .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors
+                                                        .deepPurple.shade900,
+                                                    dark: Colors
+                                                        .deepPurple.shade200,
+                                                  ),
                                                 ),
-                                              ),
-                                          children: [
-                                            TextSpan(
-                                              text: young.joinGames
-                                                  ? "Participa"
-                                                  : "Não participa",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge! //
-                                                  .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light: Colors
-                                                          .deepPurple.shade900,
-                                                      dark: Colors
-                                                          .deepPurple.shade200,
-                                                    ),
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Participa: ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium! //
+                                            .copyWith(
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.black,
+                                                dark: Colors.white,
+                                              ),
+                                            ),
+                                        children: [
+                                          TextSpan(
+                                            text: mascot.joinGames
+                                                ? "Participa"
+                                                : "Não participa",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge! //
+                                                .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors
+                                                        .deepPurple.shade900,
+                                                    dark: Colors
+                                                        .deepPurple.shade200,
+                                                  ),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              (index + 1) == childrens.length
-                                  ? Container()
-                                  : const CustomDivider(height: 0.5),
-                            ],
-                          );
-                        },
-                      );
-                    }
+                            ),
+                            (index + 1) == mascots.length
+                                ? Container()
+                                : const CustomDivider(height: 0.5),
+                          ],
+                        );
+                      },
+                    );
                   }
                 }
 

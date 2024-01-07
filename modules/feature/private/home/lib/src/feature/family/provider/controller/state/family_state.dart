@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:store/store.dart';
 
+import '../../dto/mascot_response_dto.dart';
+
 interface class FamilyState {
   ProfileDTO? user;
   BuildContext? context;
+
+  MascotsResponseDTO? mascotResponse;
 
   InviteResponseDTO? invite;
 
