@@ -471,6 +471,7 @@ class FamilyGroupMobile extends StatelessWidget {
                     return SliverList.builder(
                       itemCount: invites.length,
                       itemBuilder: (context, index) {
+                        
                         final invite = invites[index];
 
                         return Column(

@@ -317,7 +317,7 @@ class _InviteMobileState extends State<InviteMobile> {
               ValueListenableBuilder(
                 valueListenable: viewStore,
                 builder: (context, value, child) {
-                  final list = value.listInvite;
+                  final list = value.listInvites;
                   if (list != null) {
                     final invites = list.invites;
 

@@ -9,14 +9,14 @@ class InviteRequestDTO {
   final InviteUserType typeUser;
   final String? familyId;
   final String? groupId;
-  final bool guest;
+  final bool? guest;
 
   InviteRequestDTO({
     required this.type,
     required this.typeUser,
     required this.familyId,
     required this.groupId,
-    this.guest = false,
+    this.guest,
   });
 
   InviteRequestDTO copyWith({
