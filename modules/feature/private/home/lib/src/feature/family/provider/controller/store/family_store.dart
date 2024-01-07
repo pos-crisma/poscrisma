@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../../../../create_mascot/view/mobile/create_mascote_mobile.dart';
+import '../../api/mascot_api.dart';
+import '../../dto/mascot_response_dto.dart';
 import '../action/family_action.dart';
 import '../state/family_state.dart';
 
@@ -22,6 +24,8 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       (action) => _failureInviteGenerate(action.error),
       (action) => _inviteToClipboard(),
       (action) => _mascotButtonTapped(),
+      (action) => _mascotService(),
+      (action) => _mascotSuccess(action.mascotResponse),
     );
   }
 
@@ -47,6 +51,8 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
           (error) => send(FamilyAction.failureInviteGenerate(error)),
         );
       }
+
+      send(FamilyAction.serviceMascot());
     });
   }
 
@@ -158,11 +164,30 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
             builder: (context) => CreateMascotMobile(),
           ).then((result) {
             if (result is bool && result) {
-              // send(FamilyAction.service());
+              send(FamilyAction.serviceMascot());
             }
           });
         });
       }
     });
+  }
+
+  _mascotService() {
+    return Effect.run(() async {
+      final user = state.user;
+
+      if (user != null) {
+        await MascotApi.get(user.userId).fold(
+          (success) => send(FamilyAction.mascotSuccess(success)),
+          (error) => send(FamilyAction.failureMascot(error)),
+        );
+      }
+    });
+  }
+
+  _mascotSuccess(MascotsResponseDTO mascotResponse) {
+    state.mascotResponse = mascotResponse;
+
+    return Effect.emit();
   }
 }
