@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../../enum/invite_type.dart';
 
 class ListInviteByUserDTO {
-  final List<Invite> invites;
+  final List<Invite>? invites;
 
   ListInviteByUserDTO({
     required this.invites,
@@ -28,16 +28,18 @@ class ListInviteByUserDTO {
       );
 
   Map<String, dynamic> toJson() => {
-        "invites": List<dynamic>.from(invites.map((x) => x.toJson())),
+        "invites": invites != null
+            ? List<dynamic>.from(invites!.map((x) => x.toJson()))
+            : null,
       };
 }
 
 class Invite {
-  final String inviteCode;
-  final String parishId;
-  final String senderId;
-  final String familyId;
-  final String groupId;
+  final String? inviteCode;
+  final String? parishId;
+  final String? senderId;
+  final String? familyId;
+  final String? groupId;
   final InviteType inviteType;
   final InviteUserType userType;
   final dynamic guest;
