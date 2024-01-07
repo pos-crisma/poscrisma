@@ -9,6 +9,7 @@ import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
 import '../../../invite/view/mobile/invite_mobile.dart';
+import '../../../notification/view/mobile/notification_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
@@ -67,14 +68,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return Container();
-        },
+        builder: (context) => const NotificationMobile(),
       );
     });
   }
@@ -143,9 +137,13 @@ class HomeMobile extends StatelessWidget {
                           // * Notification
                           IconButton(
                             onPressed: () async => notification(context),
-                            icon: const Icon(
-                              CupertinoIcons.bell_solid,
-                              color: Colors.white,
+                            icon: const Badge(
+                              // label: Text("1"),
+                              isLabelVisible: true,
+                              child: Icon(
+                                CupertinoIcons.bell_solid,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
 
@@ -306,9 +304,8 @@ class HomeMobile extends StatelessWidget {
                       ),
 
                       // * Your room
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
+                      Builder(
+                        builder: (context) {
                           if (value.user == null) {
                             return Container();
                           }
