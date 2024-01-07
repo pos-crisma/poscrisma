@@ -121,8 +121,8 @@ class CreateFamilyReducer
       Modular.to.pushNamed(
         '/error/',
         arguments: {
-          'title': errorInfo.error.message.toString(),
-          'content': errorInfo.response,
+          'title': errorInfo.response.toString(),
+          'content': errorInfo.error?.message.toString() ?? "",
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();

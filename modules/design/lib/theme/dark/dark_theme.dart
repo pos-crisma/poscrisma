@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../color/color.dart';
@@ -22,6 +23,8 @@ mixin DarkTheme {
     colorScheme: const ColorScheme.dark(
       background: darkBackground,
     ),
+    splashColor: CupertinoColors.darkBackgroundGray,
+    highlightColor: Colors.transparent,
     scaffoldBackgroundColor: darkBackground,
   );
 }

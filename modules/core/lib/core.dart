@@ -25,3 +25,4 @@ export 'package:result_dart/result_dart.dart';
 //*
 
 export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';

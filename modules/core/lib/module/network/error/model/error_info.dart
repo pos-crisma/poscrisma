@@ -2,23 +2,27 @@ import 'dart:convert';
 
 class ErrorInfo {
   ErrorInfo({
-    required this.code,
-    required this.response,
-    required this.error,
+    this.code,
+    this.response,
+    this.error,
+    this.message,
   });
 
-  final int code;
-  final String response;
-  final ErrorData error;
+  final int? code;
+  final String? response;
+  final dynamic message;
+  final ErrorData? error;
 
   ErrorInfo copyWith({
     int? code,
     String? response,
+    dynamic message,
     ErrorData? error,
   }) =>
       ErrorInfo(
         code: code ?? this.code,
         response: response ?? this.response,
+        message: message ?? this.message,
         error: error ?? this.error,
       );
 
@@ -30,15 +34,19 @@ class ErrorInfo {
   factory ErrorInfo.fromJson(Map<String, dynamic> json) => ErrorInfo(
         code: json["code"] ?? 0,
         response: json["response"] ?? '',
-        error: json["error"] is String
-            ? ErrorData(type: '', statusCode: 0, message: json["error"])
-            : ErrorData.fromJson(json["error"]),
+        message: json["message"] ?? '',
+        error: json["error"] != null
+            ? json["error"] is String
+                ? ErrorData(type: '', statusCode: 0, message: json["error"])
+                : ErrorData.fromJson(json["error"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
         "code": code,
         "response": response,
-        "error": error.toJson(),
+        "message": message,
+        "error": error?.toJson(),
       };
 }
 

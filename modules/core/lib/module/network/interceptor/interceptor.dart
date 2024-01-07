@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:dio/dio.dart';
 
 import '../../config/config_config.dart';
 import '../../environment/environment.dart';

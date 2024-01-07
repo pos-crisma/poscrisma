@@ -9,9 +9,9 @@ class RoomSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Responsive(
+    return Responsive(
       mobile: RoomSearchMobile(),
-      desktop: RoomSearchWeb(),
+      desktop: const RoomSearchWeb(),
     );
   }
 }
