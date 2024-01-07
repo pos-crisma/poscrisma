@@ -18,6 +18,9 @@ sealed class InviteAction {
   static InviteAction getList() => _Service();
   static InviteAction successInviteList(ListInviteByUserDTO dto) =>
       _SuccessInvite(dto: dto);
+  static InviteAction clipboardTapped(String inviteCode) =>
+      _ClipboardTapped(inviteCode: inviteCode);
+  static InviteAction clipboardAdded() => _ClipboardAdded();
 
   T fold<T>(
     T Function(_OnAppearTapped action) onAppear,
@@ -28,6 +31,8 @@ sealed class InviteAction {
     T Function(_InviteSelector action) inviteSelector,
     T Function(_InviteIsGuest action) inviteIsGuest,
     T Function(_SuccessInvite action) successInvite,
+    T Function(_ClipboardTapped action) clipboardTapped,
+    T Function(_ClipboardAdded action) clipboardAdded,
   ) =>
       switch (this) {
         _OnAppearTapped action => onAppear(action),
@@ -38,6 +43,8 @@ sealed class InviteAction {
         _InviteIsGuest action => inviteIsGuest(action),
         _Service action => service(action),
         _SuccessInvite action => successInvite(action),
+        _ClipboardTapped action => clipboardTapped(action),
+        _ClipboardAdded action => clipboardAdded(action),
       };
 }
 
@@ -80,3 +87,11 @@ class _SuccessInvite extends InviteAction {
 
   _SuccessInvite({required this.dto});
 }
+
+class _ClipboardTapped extends InviteAction {
+  final String inviteCode;
+
+  _ClipboardTapped({required this.inviteCode});
+}
+
+class _ClipboardAdded extends InviteAction {}

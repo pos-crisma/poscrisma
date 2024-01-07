@@ -469,11 +469,9 @@ class FamilyGroupMobile extends StatelessWidget {
                   if (list != null) {
                     final invites = list.invites;
                     return SliverList.builder(
-                      itemCount: invites?.length ?? 0,
+                      itemCount: invites.length,
                       itemBuilder: (context, index) {
-                        if (invites == null) {
-                          return Container();
-                        }
+                        
                         final invite = invites[index];
 
                         return Column(
@@ -481,7 +479,7 @@ class FamilyGroupMobile extends StatelessWidget {
                             ItemButton(
                               onPress: () => viewStore.send(
                                 FamilyGroupAction.clipboardTapped(
-                                    invite.inviteCode ?? "", true),
+                                    invite.inviteCode, true),
                               ),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(

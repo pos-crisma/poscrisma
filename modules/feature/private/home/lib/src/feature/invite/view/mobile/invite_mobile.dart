@@ -295,6 +295,7 @@ class _InviteMobileState extends State<InviteMobile> {
                 ),
               ),
 
+              // *
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -319,155 +320,360 @@ class _InviteMobileState extends State<InviteMobile> {
                   final list = value.listInvites;
                   if (list != null) {
                     final invites = list.invites;
-                    return SliverList.builder(
-                      itemCount: invites?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        if (invites == null) {
-                          return Container();
-                        }
-                        final invite = invites[index];
 
-                        return Column(
-                          children: [
-                            ItemButton(
-                              onPress: () {
-                                // viewStore.send(
-                                //   InviteAction.clipboardTapped(
-                                //       invite.inviteCode ?? "", true),
-                                // );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
+                    if (value.inviteSelector == 3) {
+                      final onlyGuest = invites
+                          .where((element) => element.guest == true)
+                          .toList();
+
+                      return onlyGuest.isEmpty
+                          ? const SliverToBoxAdapter(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0,
                                   vertical: 8,
                                 ),
-                                width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Codigo: ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium! //
-                                                .copyWith(
-                                                  color: ColorMode.setColor(
-                                                    context: context,
-                                                    light: Colors.black,
-                                                    dark: Colors.white,
-                                                  ),
-                                                ),
-                                            children: [
-                                              TextSpan(
-                                                text: invite.inviteCode,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge! //
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: ColorMode.setColor(
-                                                        context: context,
-                                                        light: Colors.deepPurple
-                                                            .shade900,
-                                                        dark: Colors.deepPurple
-                                                            .shade200,
-                                                      ),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Convidado: ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium! //
-                                                .copyWith(
-                                                  color: ColorMode.setColor(
-                                                    context: context,
-                                                    light: Colors.black,
-                                                    dark: Colors.white,
-                                                  ),
-                                                ),
-                                            children: [
-                                              TextSpan(
-                                                text: invite.guest == true
-                                                    ? "Sim"
-                                                    : "Não",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge! //
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: ColorMode.setColor(
-                                                        context: context,
-                                                        light: Colors.deepPurple
-                                                            .shade900,
-                                                        dark: Colors.deepPurple
-                                                            .shade200,
-                                                      ),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // TODO:
-                                    Container(
-                                      padding: const EdgeInsets.all(4),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        color: ColorMode.setColor(
-                                          context: context,
-                                          light: Colors.grey.shade200,
-                                          dark: Colors.grey.shade800,
-                                        ),
-                                      ),
-                                      child: Text(
-                                        invite.status == InviteStatus.active
-                                            ? "Ativo"
-                                            : "Inativo",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .copyWith(),
-                                      ),
-                                    ),
-                                  ],
+                                child: Text(
+                                  "Não possui convites gerados",
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                            ),
-                            (index + 1) == invites.length
-                                ? Container()
-                                : const Padding(
-                                    padding: EdgeInsets.only(left: 16),
-                                    child: CustomDivider(
-                                      height: 0.5,
+                            )
+                          : SliverList.builder(
+                              itemCount: onlyGuest.length,
+                              itemBuilder: (context, index) {
+                                final invite = onlyGuest[index];
+
+                                return Column(
+                                  children: [
+                                    ItemButton(
+                                      onPress: () => viewStore.send(
+                                        InviteAction.clipboardTapped(
+                                          invite.inviteCode,
+                                        ),
+                                      ),
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                          vertical: 8,
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                RichText(
+                                                  text: TextSpan(
+                                                    text: 'Codigo: ',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors.black,
+                                                            dark: Colors.white,
+                                                          ),
+                                                        ),
+                                                    children: [
+                                                      TextSpan(
+                                                        text: invite.inviteCode,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge! //
+                                                            .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: ColorMode
+                                                                  .setColor(
+                                                                context:
+                                                                    context,
+                                                                light: Colors
+                                                                    .deepPurple
+                                                                    .shade900,
+                                                                dark: Colors
+                                                                    .deepPurple
+                                                                    .shade200,
+                                                              ),
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                RichText(
+                                                  text: TextSpan(
+                                                    text: 'Convidado: ',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors.black,
+                                                            dark: Colors.white,
+                                                          ),
+                                                        ),
+                                                    children: [
+                                                      TextSpan(
+                                                        text: invite.guest ==
+                                                                    null ||
+                                                                invite.guest ==
+                                                                    false
+                                                            ? "Não"
+                                                            : "Sim",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge! //
+                                                            .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: ColorMode
+                                                                  .setColor(
+                                                                context:
+                                                                    context,
+                                                                light: Colors
+                                                                    .deepPurple
+                                                                    .shade900,
+                                                                dark: Colors
+                                                                    .deepPurple
+                                                                    .shade200,
+                                                              ),
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            // TODO:
+                                            Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: Colors.grey.shade200,
+                                                  dark: Colors.grey.shade800,
+                                                ),
+                                              ),
+                                              child: Text(
+                                                invite.status ==
+                                                        InviteStatus.active
+                                                    ? "Ativo"
+                                                    : "Inativo",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall!
+                                                    .copyWith(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                          ],
-                        );
-                      },
-                    );
+                                    (index + 1) == invites.length
+                                        ? Container()
+                                        : const Padding(
+                                            padding: EdgeInsets.only(left: 16),
+                                            child: CustomDivider(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                  ],
+                                );
+                              },
+                            );
+                    } else {
+                      return invites.isEmpty
+                          ? const SliverToBoxAdapter(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                  vertical: 8,
+                                ),
+                                child: Text(
+                                  "Não possui convites gerados",
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                          : SliverList.builder(
+                              itemCount: invites.length,
+                              itemBuilder: (context, index) {
+                                final invite = invites[index];
+
+                                return Column(
+                                  children: [
+                                    ItemButton(
+                                      onPress: () => viewStore.send(
+                                        InviteAction.clipboardTapped(
+                                          invite.inviteCode,
+                                        ),
+                                      ),
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                          vertical: 8,
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                RichText(
+                                                  text: TextSpan(
+                                                    text: 'Codigo: ',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors.black,
+                                                            dark: Colors.white,
+                                                          ),
+                                                        ),
+                                                    children: [
+                                                      TextSpan(
+                                                        text: invite.inviteCode,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge! //
+                                                            .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: ColorMode
+                                                                  .setColor(
+                                                                context:
+                                                                    context,
+                                                                light: Colors
+                                                                    .deepPurple
+                                                                    .shade900,
+                                                                dark: Colors
+                                                                    .deepPurple
+                                                                    .shade200,
+                                                              ),
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                RichText(
+                                                  text: TextSpan(
+                                                    text: 'Convidado: ',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors.black,
+                                                            dark: Colors.white,
+                                                          ),
+                                                        ),
+                                                    children: [
+                                                      TextSpan(
+                                                        text: invite.guest ==
+                                                                    null ||
+                                                                invite.guest ==
+                                                                    false
+                                                            ? "Não"
+                                                            : "Sim",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge! //
+                                                            .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: ColorMode
+                                                                  .setColor(
+                                                                context:
+                                                                    context,
+                                                                light: Colors
+                                                                    .deepPurple
+                                                                    .shade900,
+                                                                dark: Colors
+                                                                    .deepPurple
+                                                                    .shade200,
+                                                              ),
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            // TODO:
+                                            Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: Colors.grey.shade200,
+                                                  dark: Colors.grey.shade800,
+                                                ),
+                                              ),
+                                              child: Text(
+                                                invite.status ==
+                                                        InviteStatus.active
+                                                    ? "Ativo"
+                                                    : "Inativo",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall!
+                                                    .copyWith(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    (index + 1) == invites.length
+                                        ? Container()
+                                        : const Padding(
+                                            padding: EdgeInsets.only(left: 16),
+                                            child: CustomDivider(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                  ],
+                                );
+                              },
+                            );
+                    }
                   }
 
                   return const SliverToBoxAdapter(
-                    child: Text(
-                      "Ainda não possui jovens cadastrados",
-                    ),
+                    child: CupertinoActivityIndicator(),
                   );
                 },
               ),
