@@ -9,6 +9,7 @@ interface class InviteState {
 
   int inviteSelector;
   InviteResponseDTO? invite;
+  ListInviteByUserDTO? listInvite;
   bool isGuest;
 
   InviteState({

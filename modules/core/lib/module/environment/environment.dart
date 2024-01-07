@@ -7,7 +7,7 @@ mixin URL {
 enum Environment {
   production(url: URL.production, isDebug: false, isDebugNetwork: false),
   qa(url: URL.qa, isDebug: false, isDebugNetwork: false),
-  develop(url: URL.develop, isDebug: true, isDebugNetwork: true);
+  develop(url: URL.develop, isDebug: false, isDebugNetwork: false);
 
   final String url;
   final bool isDebug;

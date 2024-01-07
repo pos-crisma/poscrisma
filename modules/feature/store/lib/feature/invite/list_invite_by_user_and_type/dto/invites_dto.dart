@@ -34,10 +34,10 @@ class ListInviteByUserDTO {
 
 class Invite {
   final String inviteCode;
-  final String parishId;
-  final String senderId;
-  final String familyId;
-  final String groupId;
+  final String? parishId;
+  final String? senderId;
+  final String? familyId;
+  final String? groupId;
   final InviteType inviteType;
   final InviteUserType userType;
   final dynamic guest;

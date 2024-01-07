@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/invite_action.dart';
@@ -22,6 +23,8 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
       (action) => _inviteSelector(action.selector),
       (action) => _inviteIsGuest(),
       (action) => _successInvite(action.dto),
+      (action) => _clipboardTapped(action.inviteCode),
+      (action) => _clipboardAdded(),
     );
   }
 
@@ -67,7 +70,10 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _successInviteGenerate(InviteResponseDTO dto) {
     state.invite = dto;
-    return Effect.emit();
+    return Effect.runAndEmit(() async {
+      await Clipboard.setData(ClipboardData(text: dto.inviteCode));
+      send(InviteAction.clipboardAdded());
+    });
   }
 
   _failure(ErrorInfo errorInfo) {
@@ -97,14 +103,25 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _inviteSelector(int value) {
     state.inviteSelector = value;
+    state.listInvite = null;
+    state.invite = null;
 
-    return Effect.runAndEmit(
-      () async => send(InviteAction.getList()),
-    );
+    if (state.inviteSelector == 3) {
+      state.isGuest = true;
+    } else {
+      state.isGuest = false;
+    }
+
+    return Effect.runAndEmit(() async => send(InviteAction.getList()));
   }
 
   _inviteIsGuest() {
-    state.isGuest = !state.isGuest;
+    if (state.inviteSelector == 3) {
+      state.isGuest = true;
+    } else {
+      state.isGuest = !state.isGuest;
+    }
+
     return Effect.emit();
   }
 
@@ -132,7 +149,72 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   }
 
   _successInvite(ListInviteByUserDTO dto) {
-    log(dto.toRawJson(), name: "Invite");
+    state.listInvite = dto;
     return Effect.emit();
+  }
+
+  _clipboardTapped(String inviteCode) {
+    return Effect.run(() async {
+      await Clipboard.setData(ClipboardData(text: inviteCode));
+      send(InviteAction.clipboardAdded());
+    });
+  }
+
+  _clipboardAdded() {
+    return Effect.run(() async {
+      final context = state.context;
+
+      if (context != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: ColorMode.setColor(
+              context: context,
+              light: Colors.grey.shade200,
+              dark: Colors.grey.shade800,
+            ),
+            elevation: 0,
+            content: LayoutBuilder(
+              builder: (context, constraints) {
+                return SizedBox(
+                  // color: Colors.amber,
+                  width: constraints.maxWidth,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Convite copiado!',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge! //
+                            .copyWith(),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Entendi',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall! //
+                            .copyWith(
+                              color: Colors.deepPurple.shade600,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            duration: Durations.extralong4,
+            margin: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+            ),
+            padding: const EdgeInsets.all(16.0),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        );
+      }
+    });
   }
 }
