@@ -19,10 +19,10 @@ class AppWidget extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: const Locale('pt', 'BR'),
       supportedLocales: const [
-        Locale('pt-br'),
-        Locale('en'),
-        Locale('es'),
+        Locale('pt', 'BR'),
+        Locale('en', 'US'),
       ],
     );
   }
