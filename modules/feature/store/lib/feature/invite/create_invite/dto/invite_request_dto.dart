@@ -9,12 +9,14 @@ class InviteRequestDTO {
   final InviteUserType typeUser;
   final String? familyId;
   final String? groupId;
+  final bool guest;
 
   InviteRequestDTO({
     required this.type,
     required this.typeUser,
     required this.familyId,
     required this.groupId,
+    this.guest = false,
   });
 
   InviteRequestDTO copyWith({
@@ -22,12 +24,14 @@ class InviteRequestDTO {
     InviteUserType? typeUser,
     String? familyId,
     String? groupId,
+    bool? guest,
   }) =>
       InviteRequestDTO(
         type: type ?? this.type,
         typeUser: typeUser ?? this.typeUser,
         familyId: familyId ?? this.familyId,
         groupId: groupId ?? this.groupId,
+        guest: guest ?? this.guest,
       );
 
   factory InviteRequestDTO.fromRawJson(String str) =>
@@ -41,6 +45,7 @@ class InviteRequestDTO {
         typeUser: json["type_user"],
         familyId: json["familyId"],
         groupId: json["groupId"],
+        guest: json["guest"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,5 +53,6 @@ class InviteRequestDTO {
         "type_user": typeUser.name,
         "familyId": familyId,
         "groupId": groupId,
+        "guest": guest,
       };
 }
