@@ -77,8 +77,8 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
       () async => Modular.to.pushNamed(
         '/error/',
         arguments: {
-          'title': errorInfo.response,
-          'content': errorInfo.error.message,
+          'title': errorInfo.response.toString(),
+          'content': errorInfo.error?.message.toString() ?? "",
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();

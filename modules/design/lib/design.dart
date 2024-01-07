@@ -26,3 +26,4 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:brasil_fields/brasil_fields.dart';
 
 export 'components/textfield/custom_textformfield.dart';
+export 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';

@@ -9,6 +9,7 @@ class CustomBackButton extends StatelessWidget {
     String backTitle = "Voltar",
     Color dark = Colors.white,
     Color light = Colors.black,
+    this.popResult,
   })  : _backTitle = backTitle,
         _backIcon = backIcon,
         _dark = dark,
@@ -19,12 +20,13 @@ class CustomBackButton extends StatelessWidget {
 
   final Color _dark;
   final Color _light;
+  final bool? popResult;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => Navigator.of(context).pop(popResult),
       child: Row(
         children: [
           Icon(

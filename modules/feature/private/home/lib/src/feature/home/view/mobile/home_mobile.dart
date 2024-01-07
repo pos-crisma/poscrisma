@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../create_family/view/mobile/create_family_mobile.dart';
+import '../../../family/view/mobile/family_mobile.dart';
+import '../../../family_group/view/mobile/family_group_mobile.dart';
+import '../../../invite/view/mobile/invite_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
@@ -20,14 +23,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return Container();
-        },
+        builder: (context) => InviteMobile(),
       );
     });
   }
@@ -38,14 +34,18 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return CreateFamilyMobile();
-        },
+        builder: (context) => CreateFamilyMobile(),
+      );
+    });
+  }
+
+  void showFamilyGroup(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        builder: (context) => FamilyGroupMobile(),
       );
     });
   }
@@ -56,14 +56,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return Container();
-        },
+        builder: (context) => FamilyMobile(),
       );
     });
   }
@@ -205,17 +198,41 @@ class HomeMobile extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    //*
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        if (value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.typeUser == "GodParent") {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 8),
+                              ComplexButton(
+                                onPress: () => showFamily(context),
+                                text: "Sua familia",
+                                iconData: CupertinoIcons.person_2_alt,
+                                light: Colors.grey.shade200,
+                                dark: Colors.grey.shade800,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+
                     ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
                         final createFamily = (value.user != null &&
                             value.user!.familyId == null &&
-                            (value.user!.typeUser == "GodParent" ||
-                                value.user!.typeUser == "Voluntary"));
+                            (value.user!.typeUser == "GodParent"));
                         final viewFamily = (value.user != null &&
                             value.user!.familyId != null &&
-                            (value.user!.typeUser == "GodParent" ||
-                                value.user!.typeUser == "Voluntary"));
+                            (value.user!.typeUser == "GodParent"));
 
                         if (createFamily) {
                           return Column(
@@ -236,11 +253,10 @@ class HomeMobile extends StatelessWidget {
                             children: [
                               const SizedBox(height: 8),
                               ComplexButton(
-                                onPress: () => showFamily(context),
+                                onPress: () => showFamilyGroup(context),
                                 text:
-                                    'Visualiza sua familia', // TODO: move to i18n
-                                iconData: CupertinoIcons
-                                    .person_crop_circle_badge_checkmark,
+                                    'Seu grupo poscrisma', // TODO: move to i18n
+                                iconData: CupertinoIcons.person_3_fill,
                                 light: Colors.grey.shade200,
                                 dark: Colors.grey.shade800,
                               ),
@@ -263,7 +279,25 @@ class HomeMobile extends StatelessWidget {
             builder: (context, value, child) {
               return SliverToBoxAdapter(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                      ),
+                      child: Text(
+                        'Quartos', // TODO: move to i18n
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge! //
+                            .copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
+
                     // * Your room
                     ValueListenableBuilder(
                       valueListenable: viewStore,
@@ -290,7 +324,8 @@ class HomeMobile extends StatelessWidget {
                                 ),
                             children: [
                               TextSpan(
-                                text: "Carregando", // TODO: move to i18n
+                                text:
+                                    "em desenvolvimento", // TODO: move to i18n
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -567,6 +602,29 @@ class HomeMobile extends StatelessWidget {
                               onPress: () =>
                                   Modular.to.pushNamed('/room/search'),
                               text: "Pesquisar quarto", // TODO: move to i18n
+                              iconData: CupertinoIcons.search,
+                              light: Colors.grey.shade300,
+                              dark: Colors.grey.shade800,
+                              showIsNew: false,
+                            ),
+                          )
+                        : Container(),
+
+                    value.user != null &&
+                            value.user!.permissions != null &&
+                            value.user!.permissions!.contains('manager_room')
+                        ? Container(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 16,
+                              right: 16,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: ComplexButton(
+                              onPress: () =>
+                                  Modular.to.pushNamed('/room/manager'),
+                              text:
+                                  "Gerenciar os quartos", // TODO: move to i18n
                               iconData: CupertinoIcons.search,
                               light: Colors.grey.shade300,
                               dark: Colors.grey.shade800,
