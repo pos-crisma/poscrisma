@@ -42,7 +42,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         _ => InviteUserType.GodParent,
       };
       final inviteType = switch (state.inviteSelector) {
-        1 => InviteType.CreateParent,
+        1 => InviteType.CreateUser,
         2 => InviteType.CreateUser,
         3 => InviteType.CreateUser,
         _ => InviteType.CreateUser,
@@ -56,7 +56,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           typeUser: userType,
           familyId: null,
           groupId: null,
-          guest: isGuest,
+          guest: isGuest ? true : null,
         ),
       ).fold(
         (success) => send(InviteAction.successInviteGenerate(success)),
@@ -97,6 +97,13 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _inviteSelector(int value) {
     state.inviteSelector = value;
+    state.invite = null;
+
+    if (state.inviteSelector == 3) {
+      state.isGuest = true;
+    } else {
+      state.isGuest = false;
+    }
 
     return Effect.runAndEmit(
       () async => send(InviteAction.getList()),
@@ -104,7 +111,12 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   }
 
   _inviteIsGuest() {
-    state.isGuest = !state.isGuest;
+    if (state.inviteSelector != 3) {
+      state.isGuest = !state.isGuest;
+    } else {
+      state.isGuest = true;
+    }
+
     return Effect.emit();
   }
 
@@ -132,6 +144,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   }
 
   _successInvite(ListInviteByUserDTO dto) {
+    state.listInvites = dto;
     log(dto.toRawJson(), name: "Invite");
     return Effect.emit();
   }
