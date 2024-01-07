@@ -8,8 +8,8 @@ class ErrorModule extends Module {
     r.child(
       "/",
       child: (_) => ErrorPage(
-        title: r.args.data["title"],
-        content: r.args.data["content"],
+        title: r.args.data["title"] ?? "",
+        content: r.args.data["content"] ?? "",
         backButton: r.args.data["backButton"],
         onPress: r.args.data["onPress"],
         isShowButton: r.args.data["isShowButton"],
