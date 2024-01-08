@@ -57,7 +57,7 @@ class _InviteWebState extends State<InviteWeb> {
                         leadingWidth: 66,
                         leading: CupertinoButton(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
-                          onPressed: () => Modular.to.pop(),
+                          onPressed: () => Modular.to.navigate("/"),
                           child: Text(
                             'Fechar',
                             style: Theme.of(context).textTheme.bodyMedium,

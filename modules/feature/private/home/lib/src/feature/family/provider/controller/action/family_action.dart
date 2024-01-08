@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 import '../../dto/mascot_response_dto.dart';
+import '../../model/mascot.dart';
 
 sealed class FamilyAction {
   static FamilyAction onAppear(BuildContext context) =>
@@ -22,6 +23,10 @@ sealed class FamilyAction {
   static FamilyAction serviceMascot() => _MascotService();
   static FamilyAction mascotSuccess(MascotsResponseDTO mascotResponse) =>
       _MascotServiceSuccess(mascotResponse: mascotResponse);
+  static FamilyAction serviceUpdateMascotTapped(String mascotId) =>
+      _MascotUpdateService(mascotId: mascotId);
+  static FamilyAction successUpdateMascot(Mascot response) =>
+      _MascotUpdateServiceSuccess(response: response);
 
   T fold<T>(
     T Function(_OnAppearTapped action) onAppear,
@@ -32,6 +37,8 @@ sealed class FamilyAction {
     T Function(_MascotButtonTapped action) mascotButtonTapped,
     T Function(_MascotService action) serviceMascot,
     T Function(_MascotServiceSuccess action) successMascot,
+    T Function(_MascotUpdateService action) serviceUpdateMascot,
+    T Function(_MascotUpdateServiceSuccess action) successUpdateMascot,
   ) =>
       switch (this) {
         _OnAppearTapped action => onAppear(action),
@@ -42,6 +49,8 @@ sealed class FamilyAction {
         _MascotButtonTapped action => mascotButtonTapped(action),
         _MascotService action => serviceMascot(action),
         _MascotServiceSuccess action => successMascot(action),
+        _MascotUpdateService action => serviceUpdateMascot(action),
+        _MascotUpdateServiceSuccess action => successUpdateMascot(action),
       };
 }
 
@@ -79,4 +88,16 @@ class _MascotServiceSuccess extends FamilyAction {
   final MascotsResponseDTO mascotResponse;
 
   _MascotServiceSuccess({required this.mascotResponse});
+}
+
+class _MascotUpdateService extends FamilyAction {
+  final String mascotId;
+
+  _MascotUpdateService({required this.mascotId});
+}
+
+class _MascotUpdateServiceSuccess extends FamilyAction {
+  final Mascot response;
+
+  _MascotUpdateServiceSuccess({required this.response});
 }
