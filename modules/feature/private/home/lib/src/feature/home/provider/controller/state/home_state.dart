@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:store/store.dart';
 
 interface class HomeState {
@@ -7,9 +8,12 @@ interface class HomeState {
 
   bool internetCheck;
 
+  InternetStatus internetStatus;
+
   HomeState({
     this.status = HomeServiceStatus.idle,
     this.internetCheck = false,
+    this.internetStatus = InternetStatus.disconnected,
   });
 }
 

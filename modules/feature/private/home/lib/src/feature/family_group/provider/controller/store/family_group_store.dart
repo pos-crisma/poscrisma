@@ -77,6 +77,8 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       } else if (invite != null) {
         await Clipboard.setData(ClipboardData(text: invite.inviteCode));
         send(const FamilyGroupAction.inviteToClipboard());
+      } else if (invite == null) {
+        send(const FamilyGroupAction.generateTapped());
       }
     });
   }

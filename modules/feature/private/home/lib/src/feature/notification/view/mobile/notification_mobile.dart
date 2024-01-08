@@ -75,12 +75,13 @@ class NotificationMobile extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                      color: ColorMode.setColor(
-                        context: context,
-                        light: Colors.grey.shade200,
-                        dark: Colors.grey.shade800,
-                      ),
-                      borderRadius: BorderRadius.circular(8)),
+                    color: ColorMode.setColor(
+                      context: context,
+                      light: Colors.grey.shade200,
+                      dark: Colors.grey.shade800,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   child: const Text(
                     "Em desenvolvimento",
                   ),
