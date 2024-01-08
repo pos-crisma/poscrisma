@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -17,35 +18,43 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
   @override
   Future<Effect> reduce(HomeAction action) async {
-    return action.fold(
-      (action) => _onAppear(),
-      (action) => _service(),
-      (action) => _loading(),
-      (action) => _success(action.user),
-      (action) => _failure(action.error),
-      (action) => _versionStream(),
-      (action) => _versionUpdate(action.version),
-      (action) => _internetChecker(action.internetChecker),
-      (action) => _offlineService(),
+    return action.when(
+      onAppear: () => _onAppear(),
+      userService: () => _service(),
+      loadingUserService: () => _loading(),
+      successUserService: (user) => _success(user),
+      failureUserService: (error) => _failure(error),
+      versionService: () => _versionStream(),
+      versionUpdate: (version) => _versionUpdate(version),
+      internetChecker: (internetChecker) => _internetChecker(internetChecker),
+      offlineService: () => _offlineService(),
+      managerRoom: () => Effect.emit(),
     );
   }
 
   _onAppear() {
     return Effect.run(() async {
-      send(HomeAction.userService());
+      final package = await PackageData.getInfo();
+
+      log(package.appName);
+      log(package.buildNumber);
+      log(package.packageName);
+      log(package.version);
+
+      send(const HomeAction.userService());
 
       InternetConnection().onStatusChange.listen((InternetStatus status) {
         status == InternetStatus.connected
-            ? send(HomeAction.internetChecker(true))
-            : send(HomeAction.internetChecker(false));
+            ? send(const HomeAction.internetChecker(true))
+            : send(const HomeAction.internetChecker(false));
       });
     });
   }
 
   _service() {
     return Effect.run<void>(() async {
-      await send(HomeAction.versionService());
-      await send(HomeAction.loadingUserService());
+      await send(const HomeAction.versionService());
+      await send(const HomeAction.loadingUserService());
 
       final hasInternetAccess = await InternetConnection().hasInternetAccess;
 
@@ -54,7 +63,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
               (success) => send(HomeAction.successUserService(success)),
               (failure) => send(HomeAction.failureUserService(failure)),
             )
-          : send(HomeAction.offlineService());
+          : send(const HomeAction.offlineService());
     });
   }
 
@@ -83,7 +92,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();
-            HomeAction.userService();
+            const HomeAction.userService();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,

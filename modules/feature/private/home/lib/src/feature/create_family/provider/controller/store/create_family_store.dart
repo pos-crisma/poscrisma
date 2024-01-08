@@ -23,14 +23,14 @@ class CreateFamilyReducer
 
   @override
   Future<Effect> reduce(CreateFamilyAction action) async {
-    return action.fold(
-      (action) => _onAppear(),
-      (action) => _buttonTapped(),
-      (action) => _serviceFamily(),
-      (action) => _loading(),
-      (action) => _successFamily(action.family),
-      (action) => _failure(action.error),
-      (action) => _validator(action.error, action.failure),
+    return action.when(
+      onAppear: () => _onAppear(),
+      buttonTapped: () => _buttonTapped(),
+      familyService: () => _serviceFamily(),
+      loadingFamilyService: () => _loading(),
+      successFamilyService: (family) => _successFamily(family),
+      failureFamilyService: (error) => _failure(error),
+      validator: (error, failure) => _validator(error, failure),
     );
   }
 
@@ -39,7 +39,7 @@ class CreateFamilyReducer
   }
 
   _buttonTapped() {
-    return Effect.send(CreateFamilyAction.familyService());
+    return Effect.send(const CreateFamilyAction.familyService());
   }
 
   _serviceFamily() {
@@ -47,7 +47,7 @@ class CreateFamilyReducer
       final ProfileStore store = Modular.get();
 
       await send(
-        CreateFamilyAction.validator(
+        const CreateFamilyAction.validator(
           "",
           CreateFamilyTextFieldFailure.none,
         ),
@@ -71,7 +71,7 @@ class CreateFamilyReducer
 
       if (state.nameFamilyController.text.length < 3) {
         return send(
-          CreateFamilyAction.validator(
+          const CreateFamilyAction.validator(
             "Nome da familia, invalido",
             CreateFamilyTextFieldFailure.name,
           ),
@@ -80,14 +80,14 @@ class CreateFamilyReducer
 
       if (!isValidYear(state.yearFamilyController.text)) {
         return send(
-          CreateFamilyAction.validator(
+          const CreateFamilyAction.validator(
             "Não e um ano valido",
             CreateFamilyTextFieldFailure.year,
           ),
         );
       }
 
-      await send(CreateFamilyAction.loadingFamilyService());
+      await send(const CreateFamilyAction.loadingFamilyService());
       final result = await CreateFamilyAPI.createFamily(
         CreateFamilyRequestDTO(
           name: state.nameFamilyController.text,
@@ -126,7 +126,7 @@ class CreateFamilyReducer
           'backButton': () => Modular.to.pop(),
           'onPress': () {
             Modular.to.pop();
-            CreateFamilyAction.familyService();
+            const CreateFamilyAction.familyService();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,

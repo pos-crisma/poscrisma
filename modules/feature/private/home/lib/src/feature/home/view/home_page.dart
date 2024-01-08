@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'mobile/home_mobile.dart';
-import 'web/home_web.dart';
+// import 'web/home_web.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
     return Responsive(
       mobile: HomeMobile(),
-      desktop: const HomeWeb(),
+      desktop: HomeMobile(),
     );
   }
 }

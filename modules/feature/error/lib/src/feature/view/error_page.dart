@@ -45,7 +45,14 @@ class ErrorPage extends StatelessWidget {
         isShowButton: isShowButton,
         titleButton: titleButton,
       ),
-      desktop: const ErrorWeb(),
+      desktop: ErrorMobile(
+        backButton: () => backButton,
+        onPress: () => onPress,
+        title: title,
+        content: content,
+        isShowButton: isShowButton,
+        titleButton: titleButton,
+      ),
     );
   }
 }

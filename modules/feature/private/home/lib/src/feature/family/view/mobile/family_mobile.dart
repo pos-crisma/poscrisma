@@ -7,14 +7,25 @@ import 'package:flutter/material.dart';
 import '../../provider/controller/action/family_action.dart';
 import '../../provider/controller/store/family_store.dart';
 
-class FamilyMobile extends StatelessWidget {
+class FamilyMobile extends StatefulWidget {
   FamilyMobile({super.key});
 
+  @override
+  State<FamilyMobile> createState() => _FamilyMobileState();
+}
+
+class _FamilyMobileState extends State<FamilyMobile> {
   final FamilyReducer viewStore = Modular.get();
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewStore.send(FamilyAction.onAppear(context));
+  }
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(FamilyAction.onAppear(context));
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(

@@ -22,17 +22,15 @@ class CreateMascotReducer
         );
 
   @override
-  Future<Effect> reduce(CreateMascotAction action) async {
-    return action.fold(
-      (action) => _onAppear(),
-      (action) => _handlerTapped(),
-      (action) => _genderTapped(action.gender),
-      (action) => _service(),
-      (action) => _success(),
-      (action) => _failure(action.errorInfo),
-      (action) => _loading(),
-    );
-  }
+  Future<Effect> reduce(CreateMascotAction action) async => action.when(
+        onAppear: () => _onAppear(),
+        handlerTapped: () => _handlerTapped(),
+        genderTapped: (gender) => _genderTapped(gender),
+        service: () => _service(),
+        successService: (dto) => _success(),
+        failureService: (errorInfo) => _failure(errorInfo),
+        loadingService: () => _loading(),
+      );
 
   _onAppear() {
     return Effect.emit();
@@ -42,7 +40,7 @@ class CreateMascotReducer
     return switch (state.contentOnPage) {
       ContentOnPage.person => () {
           return Effect.run(() async {
-            send(CreateMascotAction.service());
+            send(const CreateMascotAction.service());
           });
         },
     }();
@@ -56,7 +54,7 @@ class CreateMascotReducer
 
   _service() {
     return Effect.run(() async {
-      send(CreateMascotAction.loadingService());
+      send(const CreateMascotAction.loadingService());
       final ProfileStore store = Modular.get();
       final user = store.user;
 
@@ -70,16 +68,16 @@ class CreateMascotReducer
           user.userId,
         ).fold(
           (success) {
-            send(CreateMascotAction.loadingService());
+            send(const CreateMascotAction.loadingService());
             send(CreateMascotAction.successService(success));
           },
           (error) {
-            send(CreateMascotAction.loadingService());
+            send(const CreateMascotAction.loadingService());
             send(CreateMascotAction.failureService(error));
           },
         );
       } else {
-        send(CreateMascotAction.loadingService());
+        send(const CreateMascotAction.loadingService());
       }
     });
   }

@@ -90,8 +90,8 @@ class _AuthWebState extends State<AuthWeb> {
 
                       // *
                       CustomTextFormField(
-                        // focusNote: viewStore.value.nicknameFocus,
-                        // controller: viewStore.value.nicknameController,
+                        focusNote: viewStore.value.nicknameFocus,
+                        controller: viewStore.value.nicknameController,
                         boxDecorationColor: SystemMode.isDark(context)
                             ? Colors.black
                             : Colors.grey.shade200,
