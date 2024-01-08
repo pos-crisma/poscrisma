@@ -437,9 +437,12 @@ class FamilyGroupMobile extends StatelessWidget {
               ),
 
               const SliverToBoxAdapter(
-                child: CustomDivider(),
+                child: SizedBox(height: 8),
               ),
 
+              const SliverToBoxAdapter(
+                child: CustomDivider(),
+              ),
               const SliverToBoxAdapter(
                 child: SizedBox(height: 8),
               ),
@@ -471,7 +474,6 @@ class FamilyGroupMobile extends StatelessWidget {
                     return SliverList.builder(
                       itemCount: invites.length,
                       itemBuilder: (context, index) {
-                        
                         final invite = invites[index];
 
                         return Column(
