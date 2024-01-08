@@ -18,4 +18,6 @@ abstract class HomeAction with _$HomeAction {
       _InternetChecker;
   const factory HomeAction.offlineService() = _OfflineService;
   const factory HomeAction.managerRoom() = _ManagerRoomTapped;
+  const factory HomeAction.internetUpdate(InternetStatus status) = _InternetStatus;
+
 }

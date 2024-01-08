@@ -278,6 +278,56 @@ class HomeMobile extends StatelessWidget {
               ),
             ),
 
+            ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) =>
+                  value.internetStatus == InternetStatus.disconnected
+                      ? SliverToBoxAdapter(
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 8),
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: ColorMode.setColor(
+                                    context: context,
+                                    light: Colors.grey.shade200,
+                                    dark: Colors.grey.shade800,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Row(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.wifi_slash,
+                                    ),
+                                    SizedBox(width: 16),
+                                    Flexible(
+                                      child: Text(
+                                        "Sem internet sua experiencia no app sera limitada",
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              const CustomDivider(),
+                            ],
+                          ),
+                        )
+                      : SliverToBoxAdapter(
+                          child: Container(),
+                        ),
+            ),
+
             //* Room
             ValueListenableBuilder(
               valueListenable: viewStore,
@@ -426,7 +476,9 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('view_room')
+                              value.user!.permissions!.contains('view_room') &&
+                              value.internetStatus !=
+                                  InternetStatus.disconnected
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -611,7 +663,9 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('view_room')
+                              value.user!.permissions!.contains('view_room') &&
+                              value.internetStatus !=
+                                  InternetStatus.disconnected
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -633,7 +687,10 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('manager_room')
+                              value.user!.permissions!
+                                  .contains('manager_room') &&
+                              value.internetStatus !=
+                                  InternetStatus.disconnected
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -646,7 +703,7 @@ class HomeMobile extends StatelessWidget {
                                     Modular.to.pushNamed('/room/manager'),
                                 text:
                                     "Gerenciar os quartos", // TODO: move to i18n
-                                iconData: CupertinoIcons.search,
+                                iconData: CupertinoIcons.house_fill,
                                 light: Colors.grey.shade300,
                                 dark: Colors.grey.shade800,
                                 showIsNew: false,
@@ -658,6 +715,150 @@ class HomeMobile extends StatelessWidget {
                         height: 8,
                       ),
                       const CustomDivider(),
+                    ],
+                  ),
+                );
+              },
+            ),
+
+            ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      value.user != null && value.user!.permissions != null
+                          ? const SizedBox(height: 8)
+                          : Container(),
+
+                      //
+                      value.user != null && value.user!.permissions != null
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                'Punimentos', // TODO: move to i18n
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            )
+                          : Container(),
+
+                      //
+                      const SizedBox(height: 8),
+
+                      //
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                onPressed: () {},
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.grey.shade800,
+                                      child: Icon(
+                                        Icons.policy_rounded,
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade700,
+                                          dark: Colors.grey.shade300,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Lista\npunimentos",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall! //
+                                          .copyWith(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                onPressed: () {},
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.grey.shade800,
+                                      child: Image(
+                                        alignment: Alignment.center,
+                                        image: judgeMace,
+                                        fit: BoxFit.scaleDown,
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade700,
+                                          dark: Colors.grey.shade300,
+                                        ),
+                                        height: 24,
+                                        width: 24,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Julgar\npunimento",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall! //
+                                          .copyWith(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                onPressed: () {},
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.grey.shade800,
+                                      child: Icon(
+                                        CupertinoIcons.doc_person_fill,
+                                        color: ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.grey.shade700,
+                                          dark: Colors.grey.shade300,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Marcar\nPunimento",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall! //
+                                          .copyWith(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      //
+                      const SizedBox(height: 8),
+
+                      //
+                      value.user != null && value.user!.permissions != null
+                          ? const CustomDivider()
+                          : Container(),
                     ],
                   ),
                 );
@@ -692,6 +893,24 @@ class HomeMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
 
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Gerenciar times", // TODO: move to i18n
+                            iconData: CupertinoIcons.sportscourt_fill,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                            showIsNew: false,
+                          ),
+                        ),
+
+                        const SizedBox(height: 8),
+
                         // ? Events camp area
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -714,13 +933,13 @@ class HomeMobile extends StatelessWidget {
                             right: 16,
                           ),
                           child: Text(
-                            'Eventos', // TODO: move to i18n
+                            'Jogos', // TODO: move to i18n
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
                                 .copyWith(
-                                    // fontWeight: FontWeight.bold,
-                                    ),
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -754,6 +973,7 @@ class HomeMobile extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
+
                         const CustomDivider(),
                       ],
                     ),
@@ -852,12 +1072,6 @@ class HomeMobile extends StatelessWidget {
                   return const SliverToBoxAdapter();
                 }
               },
-            ),
-
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).padding.bottom,
-              ),
             ),
           ],
         ),

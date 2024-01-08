@@ -19,6 +19,7 @@ export 'module/storage/local_storage.dart';
 export 'module/storage/repositories/storage.dart';
 export 'module/auth/private_guard.dart';
 export 'module/network/client/base_request.dart';
+export 'module/dto/default_response_dto.dart';
 
 //
 export 'package:dio/dio.dart';

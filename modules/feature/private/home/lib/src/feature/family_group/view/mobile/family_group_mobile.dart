@@ -105,7 +105,7 @@ class FamilyGroupMobile extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () => viewStore.send(
-                            FamilyGroupAction.inviteButtonTapped(),
+                            const FamilyGroupAction.inviteButtonTapped(),
                           ),
                           child: Container(
                             height: 60,
@@ -152,7 +152,7 @@ class FamilyGroupMobile extends StatelessWidget {
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () => viewStore.send(
-                          FamilyGroupAction.inviteButtonTapped(),
+                          const FamilyGroupAction.inviteButtonTapped(),
                         ),
                         child: Container(
                           height: 60,

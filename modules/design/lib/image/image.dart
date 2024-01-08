@@ -64,3 +64,8 @@ const warehouse = AssetImage(
   'assets/image/warehouse.png',
   package: 'design',
 );
+
+const judgeMace = AssetImage(
+  'assets/image/mace.png',
+  package: 'design',
+);

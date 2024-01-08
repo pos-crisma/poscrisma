@@ -29,6 +29,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       internetChecker: (internetChecker) => _internetChecker(internetChecker),
       offlineService: () => _offlineService(),
       managerRoom: () => Effect.emit(),
+      internetUpdate: (status) => _internetUpdate(status),
     );
   }
 
@@ -44,6 +45,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       send(const HomeAction.userService());
 
       InternetConnection().onStatusChange.listen((InternetStatus status) {
+        send(HomeAction.internetUpdate(status));
         status == InternetStatus.connected
             ? send(const HomeAction.internetChecker(true))
             : send(const HomeAction.internetChecker(false));
@@ -153,5 +155,11 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
         send(HomeAction.failureUserService(error));
       }
     });
+  }
+
+  _internetUpdate(InternetStatus status) {
+    state.internetStatus = status;
+
+    return Effect.emit();
   }
 }
