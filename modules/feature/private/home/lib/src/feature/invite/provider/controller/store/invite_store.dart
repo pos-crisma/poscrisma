@@ -13,26 +13,24 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   InviteReducer() : super(InviteState());
 
   @override
-  Future<Effect> reduce(InviteAction action) async {
-    return action.fold(
-      (action) => _onAppear(action.context),
-      (action) => _getList(),
-      (action) => _failure(action.error),
-      (action) => _inviteButtonTapped(),
-      (action) => _successInviteGenerate(action.dto),
-      (action) => _inviteSelector(action.selector),
-      (action) => _inviteIsGuest(),
-      (action) => _successInvite(action.dto),
-      (action) => _clipboardTapped(action.inviteCode),
-      (action) => _clipboardAdded(),
-    );
-  }
+  Future<Effect> reduce(InviteAction action) async => action.when(
+        onAppear: (context) => _onAppear(context),
+        successInviteGenerate: (dto) => _successInviteGenerate(dto),
+        failure: (error) => _failure(error),
+        inviteButtonTapped: () => _inviteButtonTapped(),
+        inviteSelector: (number) => _inviteSelector(number),
+        inviteIsGuest: () => _inviteIsGuest(),
+        getList: () => _getList(),
+        successInviteList: (dto) => _successInvite(dto),
+        clipboardTapped: (inviteCode) => _clipboardTapped(inviteCode),
+        clipboardAdded: () => _clipboardAdded(),
+      );
 
   _onAppear(BuildContext context) {
     state.context = context;
 
     return Effect.runAndEmit(() async {
-      send(InviteAction.getList());
+      send(const InviteAction.getList());
     });
   }
 
@@ -72,7 +70,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     state.invite = dto;
     return Effect.runAndEmit(() async {
       await Clipboard.setData(ClipboardData(text: dto.inviteCode));
-      send(InviteAction.clipboardAdded());
+      send(const InviteAction.clipboardAdded());
     });
   }
 
@@ -112,7 +110,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
       state.isGuest = false;
     }
 
-    return Effect.runAndEmit(() async => send(InviteAction.getList()));
+    return Effect.runAndEmit(() async => send(const InviteAction.getList()));
   }
 
   _inviteIsGuest() {
@@ -156,7 +154,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _clipboardTapped(String inviteCode) {
     return Effect.run(() async {
       await Clipboard.setData(ClipboardData(text: inviteCode));
-      send(InviteAction.clipboardAdded());
+      send(const InviteAction.clipboardAdded());
     });
   }
 

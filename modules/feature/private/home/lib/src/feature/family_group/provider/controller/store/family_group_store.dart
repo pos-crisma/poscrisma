@@ -13,18 +13,17 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
   FamilyGroupReducer() : super(FamilyGroupState());
 
   @override
-  Future<Effect> reduce(FamilyGroupAction action) async {
-    return action.fold(
-      (action) => _onAppear(action.context),
-      (action) => _generateTapped(),
-      (action) => _inviteButtonTapped(null, false),
-      (action) => _successInviteGenerate(action.dto),
-      (action) => _successListInvite(action.dto),
-      (action) => _failureInviteGenerate(action.error),
-      (action) => _inviteToClipboard(),
-      (action) => _inviteButtonTapped(action.invite, action.fromList),
-    );
-  }
+  Future<Effect> reduce(FamilyGroupAction action) async => action.when(
+        onAppear: (context) => _onAppear(context),
+        inviteButtonTapped: () => _inviteButtonTapped(null, false),
+        generateTapped: () => _generateTapped(),
+        successInviteGenerate: (dto) => _successInviteGenerate(dto),
+        successListInvite: (dto) => _successListInvite(dto),
+        failureAPI: (error) => _failureInviteGenerate(error),
+        inviteToClipboard: () => _inviteToClipboard(),
+        clipboardTapped: (invite, fromList) =>
+            _inviteButtonTapped(invite, fromList),
+      );
 
   _onAppear(BuildContext context) {
     final ProfileStore store = Modular.get();
@@ -74,10 +73,10 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
       if (inviteCode != null && fromList) {
         await Clipboard.setData(ClipboardData(text: inviteCode));
-        send(FamilyGroupAction.inviteToClipboard());
+        send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite != null) {
         await Clipboard.setData(ClipboardData(text: invite.inviteCode));
-        send(FamilyGroupAction.inviteToClipboard());
+        send(const FamilyGroupAction.inviteToClipboard());
       }
     });
   }

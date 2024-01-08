@@ -1,69 +1,23 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:core/core.dart';
-import 'package:home/src/feature/create_family/provider/controller/state/create_family_state.dart';
-import 'package:home/src/feature/create_family/provider/dto/create_family_response_dto.dart';
 
-sealed class CreateFamilyAction {
-  static CreateFamilyAction onAppear() => _OnAppear();
-  static CreateFamilyAction buttonTapped() => _ButtonTapped();
-  static CreateFamilyAction familyService() => _FamilyService();
-  static CreateFamilyAction loadingFamilyService() => _LoadingFamilyService();
-  static CreateFamilyAction successFamilyService(
-          CreateFamilyResponseDTO family) =>
-      _SuccessFamilyService(family: family);
-  static CreateFamilyAction failureFamilyService(ErrorInfo error) =>
-      _FailureFamilyService(error: error);
-  static CreateFamilyAction validator(
-          String error, CreateFamilyTextFieldFailure failure) =>
-      _Validator(error: error, failure: failure);
+import '../../dto/create_family_response_dto.dart';
+import '../state/create_family_state.dart';
 
-  T fold<T>(
-    T Function(_OnAppear action) onAppear,
-    T Function(_ButtonTapped action) buttonTapped,
-    T Function(_FamilyService action) familyService,
-    T Function(_LoadingFamilyService action) loadingFamilyService,
-    T Function(_SuccessFamilyService action) successFamilyService,
-    T Function(_FailureFamilyService action) failureFamilyService,
-    T Function(_Validator action) validator,
-  ) =>
-      switch (this) {
-        _OnAppear action => onAppear(action),
-        _ButtonTapped action => buttonTapped(action),
-        _FamilyService action => familyService(action),
-        _LoadingFamilyService action => loadingFamilyService(action),
-        _SuccessFamilyService action => successFamilyService(action),
-        _FailureFamilyService action => failureFamilyService(action),
-        _Validator action => validator(action),
-      };
-}
+part 'create_family_action.freezed.dart';
 
-class _OnAppear extends CreateFamilyAction {}
-
-class _ButtonTapped extends CreateFamilyAction {}
-
-class _FamilyService extends CreateFamilyAction {}
-
-class _LoadingFamilyService extends CreateFamilyAction {}
-
-class _SuccessFamilyService extends CreateFamilyAction {
-  final CreateFamilyResponseDTO family;
-
-  _SuccessFamilyService({required this.family});
-}
-
-class _FailureFamilyService extends CreateFamilyAction {
-  final ErrorInfo error;
-
-  _FailureFamilyService({required this.error});
-}
-
-class _Validator extends CreateFamilyAction {
-  final String error;
-  final CreateFamilyTextFieldFailure failure;
-
-  _Validator({
-    required this.error,
-    required this.failure,
-  });
+@freezed
+abstract class CreateFamilyAction with _$CreateFamilyAction {
+  const factory CreateFamilyAction.onAppear() = _OnAppear;
+  const factory CreateFamilyAction.buttonTapped() = _ButtonTapped;
+  const factory CreateFamilyAction.familyService() = _FamilyService;
+  const factory CreateFamilyAction.loadingFamilyService() =
+      _LoadingFamilyService;
+  const factory CreateFamilyAction.successFamilyService(
+      CreateFamilyResponseDTO family) = _SuccessFamilyService;
+  const factory CreateFamilyAction.failureFamilyService(ErrorInfo error) =
+      _FailureFamilyService;
+  const factory CreateFamilyAction.validator(
+      String error, CreateFamilyTextFieldFailure failure) = _Validator;
 }

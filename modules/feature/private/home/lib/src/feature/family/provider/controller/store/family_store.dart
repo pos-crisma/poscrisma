@@ -17,20 +17,20 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
   FamilyReducer() : super(FamilyState());
 
   @override
-  Future<Effect> reduce(FamilyAction action) async {
-    return action.fold(
-      (action) => _onAppear(action.context),
-      (action) => _inviteButtonTapped(),
-      (action) => _successInviteGenerate(action.dto),
-      (action) => _failureInviteGenerate(action.error),
-      (action) => _inviteToClipboard(),
-      (action) => _mascotButtonTapped(),
-      (action) => _mascotService(),
-      (action) => _mascotSuccess(action.mascotResponse),
-      (action) => _serviceUpdateMascotTapped(action.mascotId),
-      (action) => _successUpdateMascot(action.response),
-    );
-  }
+  Future<Effect> reduce(FamilyAction action) async => action.when(
+        onAppear: (context) => _onAppear(context),
+        successInviteGenerate: (dto) => _successInviteGenerate(dto),
+        failureInviteGenerate: (error) => _failureInviteGenerate(error),
+        failureMascot: (error) => _failureInviteGenerate(error),
+        inviteButtonTapped: () => _inviteButtonTapped(),
+        inviteToClipboard: () => _inviteToClipboard(),
+        mascotButtonTapped: () => _mascotButtonTapped(),
+        serviceMascot: () => _mascotService(),
+        mascotSuccess: (mascotResponse) => _mascotSuccess(mascotResponse),
+        serviceUpdateMascotTapped: (mascotId) =>
+            _serviceUpdateMascotTapped(mascotId),
+        successUpdateMascot: (response) => _successUpdateMascot(response),
+      );
 
   _onAppear(BuildContext context) {
     final ProfileStore store = Modular.get();
@@ -55,7 +55,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
         );
       }
 
-      send(FamilyAction.serviceMascot());
+      send(const FamilyAction.serviceMascot());
     });
   }
 
@@ -65,7 +65,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
 
       if (invite != null) {
         await Clipboard.setData(ClipboardData(text: invite.inviteCode));
-        send(FamilyAction.inviteToClipboard());
+        send(const FamilyAction.inviteToClipboard());
       }
     });
   }
@@ -167,7 +167,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
             builder: (context) => CreateMascotMobile(),
           ).then((result) {
             if (result is bool && result) {
-              send(FamilyAction.serviceMascot());
+              send(const FamilyAction.serviceMascot());
             }
           });
         });
@@ -199,6 +199,6 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
   }
 
   _successUpdateMascot(Mascot response) {
-    return Effect.send(FamilyAction.serviceMascot());
+    return Effect.send(const FamilyAction.serviceMascot());
   }
 }
