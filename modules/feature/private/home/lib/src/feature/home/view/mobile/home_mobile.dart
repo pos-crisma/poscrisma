@@ -75,7 +75,7 @@ class HomeMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(HomeAction.onAppear());
+    viewStore.send(const HomeAction.onAppear());
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(

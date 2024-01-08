@@ -11,6 +11,7 @@ export 'components/button/item_button.dart';
 export 'components/button/back_button.dart';
 
 export 'components/divider/divider.dart';
+export 'components/snack_bar/custom_snack_bar.dart';
 
 export 'font/manrope_font.dart';
 export 'font/roboto_font.dart';

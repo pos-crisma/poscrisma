@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:design/color/color.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:store/store.dart';
@@ -76,53 +76,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
 
       if (context != null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: ColorMode.setColor(
-              context: context,
-              light: Colors.grey.shade200,
-              dark: Colors.grey.shade800,
-            ),
-            elevation: 0,
-            content: LayoutBuilder(
-              builder: (context, constraints) {
-                return SizedBox(
-                  // color: Colors.amber,
-                  width: constraints.maxWidth,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Convite copiado!',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge! //
-                            .copyWith(),
-                      ),
-                      const Spacer(),
-                      Text(
-                        'Entendi',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall! //
-                            .copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            duration: Durations.extralong4,
-            margin: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
+          customSnackBar(context: context),
         );
       }
     });
