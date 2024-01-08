@@ -28,6 +28,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       versionUpdate: (version) => _versionUpdate(version),
       internetChecker: (internetChecker) => _internetChecker(internetChecker),
       offlineService: () => _offlineService(),
+      managerRoom: () => Effect.emit(),
     );
   }
 

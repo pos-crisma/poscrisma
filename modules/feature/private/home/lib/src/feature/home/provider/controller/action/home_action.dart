@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:store/store.dart';
 
 part 'home_action.freezed.dart';
@@ -18,4 +17,5 @@ abstract class HomeAction with _$HomeAction {
   const factory HomeAction.internetChecker(bool internetChecker) =
       _InternetChecker;
   const factory HomeAction.offlineService() = _OfflineService;
+  const factory HomeAction.managerRoom() = _ManagerRoomTapped;
 }

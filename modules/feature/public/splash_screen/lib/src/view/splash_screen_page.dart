@@ -26,7 +26,7 @@ class SplashScreenPage extends StatelessWidget {
 
     return Responsive(
       mobile: SplashScreenMobile(),
-      desktop: const SplashScreenWeb(),
+      desktop: SplashScreenMobile(),
     );
   }
 }

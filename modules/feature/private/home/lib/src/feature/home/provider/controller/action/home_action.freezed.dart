@@ -27,6 +27,7 @@ mixin _$HomeAction {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$HomeAction {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$HomeAction {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +70,7 @@ mixin _$HomeAction {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +84,7 @@ mixin _$HomeAction {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +98,7 @@ mixin _$HomeAction {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +169,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return onAppear();
   }
@@ -179,6 +186,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return onAppear?.call();
   }
@@ -195,6 +203,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -215,6 +224,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return onAppear(this);
   }
@@ -231,6 +241,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return onAppear?.call(this);
   }
@@ -247,6 +258,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -307,6 +319,7 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return userService();
   }
@@ -323,6 +336,7 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return userService?.call();
   }
@@ -339,6 +353,7 @@ class _$UserServiceImpl implements _UserService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (userService != null) {
@@ -359,6 +374,7 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return userService(this);
   }
@@ -375,6 +391,7 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return userService?.call(this);
   }
@@ -391,6 +408,7 @@ class _$UserServiceImpl implements _UserService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (userService != null) {
@@ -451,6 +469,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return loadingUserService();
   }
@@ -467,6 +486,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return loadingUserService?.call();
   }
@@ -483,6 +503,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (loadingUserService != null) {
@@ -503,6 +524,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return loadingUserService(this);
   }
@@ -519,6 +541,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return loadingUserService?.call(this);
   }
@@ -535,6 +558,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (loadingUserService != null) {
@@ -622,6 +646,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return successUserService(user);
   }
@@ -638,6 +663,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return successUserService?.call(user);
   }
@@ -654,6 +680,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (successUserService != null) {
@@ -674,6 +701,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return successUserService(this);
   }
@@ -690,6 +718,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return successUserService?.call(this);
   }
@@ -706,6 +735,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (successUserService != null) {
@@ -799,6 +829,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return failureUserService(error);
   }
@@ -815,6 +846,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return failureUserService?.call(error);
   }
@@ -831,6 +863,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (failureUserService != null) {
@@ -851,6 +884,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return failureUserService(this);
   }
@@ -867,6 +901,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return failureUserService?.call(this);
   }
@@ -883,6 +918,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (failureUserService != null) {
@@ -949,6 +985,7 @@ class _$VersionServiceImpl implements _VersionService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return versionService();
   }
@@ -965,6 +1002,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return versionService?.call();
   }
@@ -981,6 +1019,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (versionService != null) {
@@ -1001,6 +1040,7 @@ class _$VersionServiceImpl implements _VersionService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return versionService(this);
   }
@@ -1017,6 +1057,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return versionService?.call(this);
   }
@@ -1033,6 +1074,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (versionService != null) {
@@ -1119,6 +1161,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return versionUpdate(version);
   }
@@ -1135,6 +1178,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return versionUpdate?.call(version);
   }
@@ -1151,6 +1195,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (versionUpdate != null) {
@@ -1171,6 +1216,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return versionUpdate(this);
   }
@@ -1187,6 +1233,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return versionUpdate?.call(this);
   }
@@ -1203,6 +1250,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (versionUpdate != null) {
@@ -1296,6 +1344,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return internetChecker(this.internetChecker);
   }
@@ -1312,6 +1361,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return internetChecker?.call(this.internetChecker);
   }
@@ -1328,6 +1378,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (internetChecker != null) {
@@ -1348,6 +1399,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return internetChecker(this);
   }
@@ -1364,6 +1416,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return internetChecker?.call(this);
   }
@@ -1380,6 +1433,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (internetChecker != null) {
@@ -1446,6 +1500,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     required TResult Function(Version version) versionUpdate,
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
+    required TResult Function() managerRoom,
   }) {
     return offlineService();
   }
@@ -1462,6 +1517,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult? Function(Version version)? versionUpdate,
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
   }) {
     return offlineService?.call();
   }
@@ -1478,6 +1534,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult Function(Version version)? versionUpdate,
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
+    TResult Function()? managerRoom,
     required TResult orElse(),
   }) {
     if (offlineService != null) {
@@ -1498,6 +1555,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     required TResult Function(_VersionUpdate value) versionUpdate,
     required TResult Function(_InternetChecker value) internetChecker,
     required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
   }) {
     return offlineService(this);
   }
@@ -1514,6 +1572,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult? Function(_VersionUpdate value)? versionUpdate,
     TResult? Function(_InternetChecker value)? internetChecker,
     TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
   }) {
     return offlineService?.call(this);
   }
@@ -1530,6 +1589,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult Function(_VersionUpdate value)? versionUpdate,
     TResult Function(_InternetChecker value)? internetChecker,
     TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
     required TResult orElse(),
   }) {
     if (offlineService != null) {
@@ -1541,4 +1601,154 @@ class _$OfflineServiceImpl implements _OfflineService {
 
 abstract class _OfflineService implements HomeAction {
   const factory _OfflineService() = _$OfflineServiceImpl;
+}
+
+/// @nodoc
+abstract class _$$ManagerRoomTappedImplCopyWith<$Res> {
+  factory _$$ManagerRoomTappedImplCopyWith(_$ManagerRoomTappedImpl value,
+          $Res Function(_$ManagerRoomTappedImpl) then) =
+      __$$ManagerRoomTappedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ManagerRoomTappedImplCopyWithImpl<$Res>
+    extends _$HomeActionCopyWithImpl<$Res, _$ManagerRoomTappedImpl>
+    implements _$$ManagerRoomTappedImplCopyWith<$Res> {
+  __$$ManagerRoomTappedImplCopyWithImpl(_$ManagerRoomTappedImpl _value,
+      $Res Function(_$ManagerRoomTappedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
+  const _$ManagerRoomTappedImpl();
+
+  @override
+  String toString() {
+    return 'HomeAction.managerRoom()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ManagerRoomTappedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() userService,
+    required TResult Function() loadingUserService,
+    required TResult Function(ProfileDTO user) successUserService,
+    required TResult Function(ErrorInfo error) failureUserService,
+    required TResult Function() versionService,
+    required TResult Function(Version version) versionUpdate,
+    required TResult Function(bool internetChecker) internetChecker,
+    required TResult Function() offlineService,
+    required TResult Function() managerRoom,
+  }) {
+    return managerRoom();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? userService,
+    TResult? Function()? loadingUserService,
+    TResult? Function(ProfileDTO user)? successUserService,
+    TResult? Function(ErrorInfo error)? failureUserService,
+    TResult? Function()? versionService,
+    TResult? Function(Version version)? versionUpdate,
+    TResult? Function(bool internetChecker)? internetChecker,
+    TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
+  }) {
+    return managerRoom?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? userService,
+    TResult Function()? loadingUserService,
+    TResult Function(ProfileDTO user)? successUserService,
+    TResult Function(ErrorInfo error)? failureUserService,
+    TResult Function()? versionService,
+    TResult Function(Version version)? versionUpdate,
+    TResult Function(bool internetChecker)? internetChecker,
+    TResult Function()? offlineService,
+    TResult Function()? managerRoom,
+    required TResult orElse(),
+  }) {
+    if (managerRoom != null) {
+      return managerRoom();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_UserService value) userService,
+    required TResult Function(_LoadingUserService value) loadingUserService,
+    required TResult Function(_SuccessUserService value) successUserService,
+    required TResult Function(_FailureUserService value) failureUserService,
+    required TResult Function(_VersionService value) versionService,
+    required TResult Function(_VersionUpdate value) versionUpdate,
+    required TResult Function(_InternetChecker value) internetChecker,
+    required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
+  }) {
+    return managerRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_UserService value)? userService,
+    TResult? Function(_LoadingUserService value)? loadingUserService,
+    TResult? Function(_SuccessUserService value)? successUserService,
+    TResult? Function(_FailureUserService value)? failureUserService,
+    TResult? Function(_VersionService value)? versionService,
+    TResult? Function(_VersionUpdate value)? versionUpdate,
+    TResult? Function(_InternetChecker value)? internetChecker,
+    TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
+  }) {
+    return managerRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_UserService value)? userService,
+    TResult Function(_LoadingUserService value)? loadingUserService,
+    TResult Function(_SuccessUserService value)? successUserService,
+    TResult Function(_FailureUserService value)? failureUserService,
+    TResult Function(_VersionService value)? versionService,
+    TResult Function(_VersionUpdate value)? versionUpdate,
+    TResult Function(_InternetChecker value)? internetChecker,
+    TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
+    required TResult orElse(),
+  }) {
+    if (managerRoom != null) {
+      return managerRoom(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ManagerRoomTapped implements HomeAction {
+  const factory _ManagerRoomTapped() = _$ManagerRoomTappedImpl;
 }
