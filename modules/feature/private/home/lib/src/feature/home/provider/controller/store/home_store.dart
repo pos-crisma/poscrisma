@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
+import '../../../../update/page/update_page.dart';
 import '../action/home_action.dart';
 import '../state/home_state.dart';
 
@@ -19,48 +21,46 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   @override
   Future<Effect> reduce(HomeAction action) async {
     return action.when(
-      onAppear: () => _onAppear(),
-      userService: () => _service(),
-      loadingUserService: () => _loading(),
-      successUserService: (user) => _success(user),
-      failureUserService: (error) => _failure(error),
-      versionService: () => _versionStream(),
-      versionUpdate: (version) => _versionUpdate(version),
-      internetChecker: (internetChecker) => _internetChecker(internetChecker),
-      offlineService: () => _offlineService(),
+      onAppear: _onAppear,
+      userService: _service,
+      loadingUserService: _loading,
+      successUserService: _success,
+      failureUserService: _failure,
+      versionService: _versionStream,
+      versionUpdate: _versionUpdate,
+      internetChecker: _internetChecker,
+      offlineService: _offlineService,
       managerRoom: () => Effect.emit(),
-      internetUpdate: (status) => _internetUpdate(status),
+      internetUpdate: _internetUpdate,
     );
   }
 
-  _onAppear() {
-    return Effect.run(() async {
-      final package = await PackageData.getInfo();
+  FutureOr<Effect> _onAppear(BuildContext context) {
+    state.context = context;
+    return Effect.runAndEmit(() async {
+      await send(const HomeAction.versionService());
 
-      log(package.appName);
-      log(package.buildNumber);
-      log(package.packageName);
-      log(package.version);
+      final result = await Connectivity().checkConnectivity();
+      final resultStatus = switch (result) {
+        ConnectivityResult.mobile => true,
+        ConnectivityResult.bluetooth => true,
+        ConnectivityResult.ethernet => true,
+        ConnectivityResult.wifi => true,
+        ConnectivityResult.vpn => true,
+        ConnectivityResult.other => true,
+        ConnectivityResult.none => false,
+      };
 
-      send(const HomeAction.userService());
-
-      InternetConnection().onStatusChange.listen((InternetStatus status) {
-        send(HomeAction.internetUpdate(status));
-        status == InternetStatus.connected
-            ? send(const HomeAction.internetChecker(true))
-            : send(const HomeAction.internetChecker(false));
-      });
+      await send(HomeAction.internetChecker(resultStatus));
+      await send(const HomeAction.userService());
     });
   }
 
-  _service() {
+  FutureOr<Effect> _service() {
     return Effect.run<void>(() async {
-      await send(const HomeAction.versionService());
       await send(const HomeAction.loadingUserService());
 
-      final hasInternetAccess = await InternetConnection().hasInternetAccess;
-
-      return hasInternetAccess
+      return state.internetCheck
           ? await ProfileAPI.getProfile().fold(
               (success) => send(HomeAction.successUserService(success)),
               (failure) => send(HomeAction.failureUserService(failure)),
@@ -69,12 +69,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     });
   }
 
-  _loading() {
+  FutureOr<Effect> _loading() {
     value.status = HomeServiceStatus.loading;
     return Effect.emit();
   }
 
-  _success(ProfileDTO user) {
+  FutureOr<Effect> _success(ProfileDTO user) {
     final ProfileStore store = Modular.get();
     store.updateUser = user;
     state.user = user;
@@ -82,7 +82,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.emit();
   }
 
-  _failure(ErrorInfo errorInfo) {
+  FutureOr<Effect> _failure(ErrorInfo errorInfo) {
     value.status = HomeServiceStatus.failure;
 
     return Effect.run(() async {
@@ -104,7 +104,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     });
   }
 
-  _versionStream() {
+  FutureOr<Effect> _versionStream() {
     return Effect.run(() async {
       final result = VersionAPI.streamVersion();
 
@@ -117,19 +117,64 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     });
   }
 
-  _versionUpdate(Version version) {
+  FutureOr<Effect> _versionUpdate(Version version) {
     state.version = version;
 
-    return Effect.emit();
+    return Effect.runAndEmit(() async {
+      if (!kIsWeb) {
+        final package = await PackageData.getInfo();
+        if (package.version != version.version ||
+            !(int.parse(package.buildNumber) >= version.build)) {
+          final context = state.context;
+          if (context != null && state.showUpdatedModal == false) {
+            Future.delayed(Durations.short1).then((value) {
+              showModalBottomSheet(
+                context: context,
+                useSafeArea: true,
+                isScrollControlled: true,
+                isDismissible: false,
+                enableDrag: false,
+                builder: (context) => UpdatePage(
+                  version: version,
+                  action: () {
+                    Platform.isAndroid //
+                        ? openLink(Uri.parse(version.android))
+                        : null;
+
+                    Platform.isIOS //
+                        ? openLink(Uri.parse(version.iOS))
+                        : null;
+                  },
+                ),
+              );
+            });
+          }
+        }
+      }
+    });
   }
 
-  _internetChecker(bool internetChecker) {
+  FutureOr<Effect> _internetChecker(bool internetChecker) {
     state.internetCheck = internetChecker;
 
-    return Effect.emit();
+    return Effect.runAndEmit(() async {
+      Connectivity().onConnectivityChanged.listen((event) async {
+        final resultStatus = switch (event) {
+          ConnectivityResult.mobile => true,
+          ConnectivityResult.bluetooth => true,
+          ConnectivityResult.ethernet => true,
+          ConnectivityResult.wifi => true,
+          ConnectivityResult.vpn => true,
+          ConnectivityResult.other => true,
+          ConnectivityResult.none => false,
+        };
+
+        await send(HomeAction.internetUpdate(resultStatus));
+      });
+    });
   }
 
-  _offlineService() {
+  FutureOr<Effect> _offlineService() {
     return Effect.run(() async {
       final Storage storage = Modular.get();
       final value = await storage.get<String>("@profile");
@@ -157,8 +202,8 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     });
   }
 
-  _internetUpdate(InternetStatus status) {
-    state.internetStatus = status;
+  FutureOr<Effect> _internetUpdate(bool status) {
+    state.internetCheck = status;
 
     return Effect.emit();
   }

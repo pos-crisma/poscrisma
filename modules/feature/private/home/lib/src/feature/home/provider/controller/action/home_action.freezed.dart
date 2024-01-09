@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -28,12 +28,12 @@ mixin _$HomeAction {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -43,12 +43,12 @@ mixin _$HomeAction {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -58,7 +58,7 @@ mixin _$HomeAction {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +133,8 @@ abstract class _$$OnAppearTappedImplCopyWith<$Res> {
   factory _$$OnAppearTappedImplCopyWith(_$OnAppearTappedImpl value,
           $Res Function(_$OnAppearTappedImpl) then) =
       __$$OnAppearTappedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -142,31 +144,56 @@ class __$$OnAppearTappedImplCopyWithImpl<$Res>
   __$$OnAppearTappedImplCopyWithImpl(
       _$OnAppearTappedImpl _value, $Res Function(_$OnAppearTappedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$OnAppearTappedImpl(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnAppearTappedImpl implements _OnAppearTapped {
-  const _$OnAppearTappedImpl();
+  const _$OnAppearTappedImpl(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'HomeAction.onAppear()';
+    return 'HomeAction.onAppear(context: $context)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnAppearTappedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$OnAppearTappedImpl &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
+      __$$OnAppearTappedImplCopyWithImpl<_$OnAppearTappedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -176,15 +203,15 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
-    return onAppear();
+    return onAppear(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -194,15 +221,15 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
-    return onAppear?.call();
+    return onAppear?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -212,11 +239,11 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear();
+      return onAppear(context);
     }
     return orElse();
   }
@@ -281,7 +308,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
 }
 
 abstract class _OnAppearTapped implements HomeAction {
-  const factory _OnAppearTapped() = _$OnAppearTappedImpl;
+  const factory _OnAppearTapped(final BuildContext context) =
+      _$OnAppearTappedImpl;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -322,7 +355,7 @@ class _$UserServiceImpl implements _UserService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -332,7 +365,7 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return userService();
   }
@@ -340,7 +373,7 @@ class _$UserServiceImpl implements _UserService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -350,7 +383,7 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return userService?.call();
   }
@@ -358,7 +391,7 @@ class _$UserServiceImpl implements _UserService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -368,7 +401,7 @@ class _$UserServiceImpl implements _UserService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (userService != null) {
@@ -478,7 +511,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -488,7 +521,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return loadingUserService();
   }
@@ -496,7 +529,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -506,7 +539,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return loadingUserService?.call();
   }
@@ -514,7 +547,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -524,7 +557,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (loadingUserService != null) {
@@ -661,7 +694,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -671,7 +704,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return successUserService(user);
   }
@@ -679,7 +712,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -689,7 +722,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return successUserService?.call(user);
   }
@@ -697,7 +730,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -707,7 +740,7 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (successUserService != null) {
@@ -850,7 +883,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -860,7 +893,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return failureUserService(error);
   }
@@ -868,7 +901,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -878,7 +911,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return failureUserService?.call(error);
   }
@@ -886,7 +919,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -896,7 +929,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (failureUserService != null) {
@@ -1012,7 +1045,7 @@ class _$VersionServiceImpl implements _VersionService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1022,7 +1055,7 @@ class _$VersionServiceImpl implements _VersionService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return versionService();
   }
@@ -1030,7 +1063,7 @@ class _$VersionServiceImpl implements _VersionService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1040,7 +1073,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return versionService?.call();
   }
@@ -1048,7 +1081,7 @@ class _$VersionServiceImpl implements _VersionService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1058,7 +1091,7 @@ class _$VersionServiceImpl implements _VersionService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (versionService != null) {
@@ -1194,7 +1227,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1204,7 +1237,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return versionUpdate(version);
   }
@@ -1212,7 +1245,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1222,7 +1255,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return versionUpdate?.call(version);
   }
@@ -1230,7 +1263,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1240,7 +1273,7 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (versionUpdate != null) {
@@ -1383,7 +1416,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1393,7 +1426,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return internetChecker(this.internetChecker);
   }
@@ -1401,7 +1434,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1411,7 +1444,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return internetChecker?.call(this.internetChecker);
   }
@@ -1419,7 +1452,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1429,7 +1462,7 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (internetChecker != null) {
@@ -1545,7 +1578,7 @@ class _$OfflineServiceImpl implements _OfflineService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1555,7 +1588,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return offlineService();
   }
@@ -1563,7 +1596,7 @@ class _$OfflineServiceImpl implements _OfflineService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1573,7 +1606,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return offlineService?.call();
   }
@@ -1581,7 +1614,7 @@ class _$OfflineServiceImpl implements _OfflineService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1591,7 +1624,7 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (offlineService != null) {
@@ -1701,7 +1734,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1711,7 +1744,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return managerRoom();
   }
@@ -1719,7 +1752,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1729,7 +1762,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return managerRoom?.call();
   }
@@ -1737,7 +1770,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1747,7 +1780,7 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (managerRoom != null) {
@@ -1825,7 +1858,7 @@ abstract class _$$InternetStatusImplCopyWith<$Res> {
           $Res Function(_$InternetStatusImpl) then) =
       __$$InternetStatusImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({InternetStatus status});
+  $Res call({bool status});
 }
 
 /// @nodoc
@@ -1845,7 +1878,7 @@ class __$$InternetStatusImplCopyWithImpl<$Res>
       null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as InternetStatus,
+              as bool,
     ));
   }
 }
@@ -1856,7 +1889,7 @@ class _$InternetStatusImpl implements _InternetStatus {
   const _$InternetStatusImpl(this.status);
 
   @override
-  final InternetStatus status;
+  final bool status;
 
   @override
   String toString() {
@@ -1884,7 +1917,7 @@ class _$InternetStatusImpl implements _InternetStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() userService,
     required TResult Function() loadingUserService,
     required TResult Function(ProfileDTO user) successUserService,
@@ -1894,7 +1927,7 @@ class _$InternetStatusImpl implements _InternetStatus {
     required TResult Function(bool internetChecker) internetChecker,
     required TResult Function() offlineService,
     required TResult Function() managerRoom,
-    required TResult Function(InternetStatus status) internetUpdate,
+    required TResult Function(bool status) internetUpdate,
   }) {
     return internetUpdate(status);
   }
@@ -1902,7 +1935,7 @@ class _$InternetStatusImpl implements _InternetStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? userService,
     TResult? Function()? loadingUserService,
     TResult? Function(ProfileDTO user)? successUserService,
@@ -1912,7 +1945,7 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult? Function(bool internetChecker)? internetChecker,
     TResult? Function()? offlineService,
     TResult? Function()? managerRoom,
-    TResult? Function(InternetStatus status)? internetUpdate,
+    TResult? Function(bool status)? internetUpdate,
   }) {
     return internetUpdate?.call(status);
   }
@@ -1920,7 +1953,7 @@ class _$InternetStatusImpl implements _InternetStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? userService,
     TResult Function()? loadingUserService,
     TResult Function(ProfileDTO user)? successUserService,
@@ -1930,7 +1963,7 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult Function(bool internetChecker)? internetChecker,
     TResult Function()? offlineService,
     TResult Function()? managerRoom,
-    TResult Function(InternetStatus status)? internetUpdate,
+    TResult Function(bool status)? internetUpdate,
     required TResult orElse(),
   }) {
     if (internetUpdate != null) {
@@ -1999,10 +2032,9 @@ class _$InternetStatusImpl implements _InternetStatus {
 }
 
 abstract class _InternetStatus implements HomeAction {
-  const factory _InternetStatus(final InternetStatus status) =
-      _$InternetStatusImpl;
+  const factory _InternetStatus(final bool status) = _$InternetStatusImpl;
 
-  InternetStatus get status;
+  bool get status;
   @JsonKey(ignore: true)
   _$$InternetStatusImplCopyWith<_$InternetStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;

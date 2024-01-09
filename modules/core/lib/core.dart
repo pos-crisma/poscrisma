@@ -13,6 +13,7 @@ export './module/network/error/model/error_info.dart';
 export './module/network/interface/network.dart';
 export './module/network/network_module.dart';
 export './module/package/package.dart';
+export './module/package/open_browser.dart';
 
 // *
 export 'module/storage/local_storage.dart';
@@ -29,5 +30,5 @@ export 'package:result_dart/result_dart.dart';
 //*
 
 export 'package:cloud_firestore/cloud_firestore.dart';
-export 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';

@@ -75,7 +75,7 @@ class HomeMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(const HomeAction.onAppear());
+    viewStore.send(HomeAction.onAppear(context));
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -280,52 +280,51 @@ class HomeMobile extends StatelessWidget {
 
             ValueListenableBuilder(
               valueListenable: viewStore,
-              builder: (context, value, child) =>
-                  value.internetStatus == InternetStatus.disconnected
-                      ? SliverToBoxAdapter(
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 8),
-                              Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 16,
+              builder: (context, value, child) => value.internetCheck == false
+                  ? SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 8),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: ColorMode.setColor(
+                                context: context,
+                                light: Colors.grey.shade200,
+                                dark: Colors.grey.shade800,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  CupertinoIcons.wifi_slash,
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: ColorMode.setColor(
-                                    context: context,
-                                    light: Colors.grey.shade200,
-                                    dark: Colors.grey.shade800,
+                                SizedBox(width: 16),
+                                Flexible(
+                                  child: Text(
+                                    "Sem internet sua experiencia no app sera limitada ${value.internetCheck.toString()}",
                                   ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.wifi_slash,
-                                    ),
-                                    SizedBox(width: 16),
-                                    Flexible(
-                                      child: Text(
-                                        "Sem internet sua experiencia no app sera limitada",
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const CustomDivider(),
-                            ],
+                                )
+                              ],
+                            ),
                           ),
-                        )
-                      : SliverToBoxAdapter(
-                          child: Container(),
-                        ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const CustomDivider(),
+                        ],
+                      ),
+                    )
+                  : SliverToBoxAdapter(
+                      child: Container(),
+                    ),
             ),
 
             //* Room
@@ -477,8 +476,7 @@ class HomeMobile extends StatelessWidget {
                       value.user != null &&
                               value.user!.permissions != null &&
                               value.user!.permissions!.contains('view_room') &&
-                              value.internetStatus !=
-                                  InternetStatus.disconnected
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -664,8 +662,7 @@ class HomeMobile extends StatelessWidget {
                       value.user != null &&
                               value.user!.permissions != null &&
                               value.user!.permissions!.contains('view_room') &&
-                              value.internetStatus !=
-                                  InternetStatus.disconnected
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -689,8 +686,7 @@ class HomeMobile extends StatelessWidget {
                               value.user!.permissions != null &&
                               value.user!.permissions!
                                   .contains('manager_room') &&
-                              value.internetStatus !=
-                                  InternetStatus.disconnected
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -970,6 +966,69 @@ class HomeMobile extends StatelessWidget {
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
                             showIsNew: false,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          child: Text(
+                            'Caça ao tesouros', // TODO: move to i18n
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Tendas", // TODO: move to i18n
+                            iconData: Icons.emoji_events,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          child: Text(
+                            'Show de talentos', // TODO: move to i18n
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Talentos", // TODO: move to i18n
+                            iconData: CupertinoIcons.today,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
                           ),
                         ),
                         const SizedBox(height: 8),
