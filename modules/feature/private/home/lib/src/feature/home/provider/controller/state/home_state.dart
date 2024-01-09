@@ -1,19 +1,21 @@
-import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 interface class HomeState {
   HomeServiceStatus status;
+
+  BuildContext? context;
   ProfileDTO? user;
   Version? version;
 
   bool internetCheck;
 
-  InternetStatus internetStatus;
+  bool showUpdatedModal;
 
   HomeState({
     this.status = HomeServiceStatus.idle,
     this.internetCheck = false,
-    this.internetStatus = InternetStatus.disconnected,
+    this.showUpdatedModal = false,
   });
 }
 

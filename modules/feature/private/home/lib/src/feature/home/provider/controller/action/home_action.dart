@@ -1,11 +1,12 @@
 import 'package:core/core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:store/store.dart';
 
 part 'home_action.freezed.dart';
 
 @freezed
 abstract class HomeAction with _$HomeAction {
-  const factory HomeAction.onAppear() = _OnAppearTapped;
+  const factory HomeAction.onAppear(BuildContext context) = _OnAppearTapped;
   const factory HomeAction.userService() = _UserService;
   const factory HomeAction.loadingUserService() = _LoadingUserService;
   const factory HomeAction.successUserService(ProfileDTO user) =
@@ -18,6 +19,7 @@ abstract class HomeAction with _$HomeAction {
       _InternetChecker;
   const factory HomeAction.offlineService() = _OfflineService;
   const factory HomeAction.managerRoom() = _ManagerRoomTapped;
-  const factory HomeAction.internetUpdate(InternetStatus status) = _InternetStatus;
-
+  const factory HomeAction.internetUpdate(bool status) = _InternetStatus;
+  // const factory HomeAction.getPackageData(PackageData package) = _GetPackageData;
+  // const factory HomeAction.internetUpdate(bool status) = _InternetStatus;
 }

@@ -21,8 +21,6 @@ dependencies:
   design:
     path: "../../../design"
 
-  freezed_annotation: ^2.4.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
