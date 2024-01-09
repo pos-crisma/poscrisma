@@ -8,7 +8,7 @@ import '../../provider/controller/action/family_action.dart';
 import '../../provider/controller/store/family_store.dart';
 
 class FamilyMobile extends StatefulWidget {
-  FamilyMobile({super.key});
+  const FamilyMobile({super.key});
 
   @override
   State<FamilyMobile> createState() => _FamilyMobileState();
@@ -17,7 +17,7 @@ class FamilyMobile extends StatefulWidget {
 class _FamilyMobileState extends State<FamilyMobile> {
   final FamilyReducer viewStore = Modular.get();
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -26,7 +26,6 @@ class _FamilyMobileState extends State<FamilyMobile> {
 
   @override
   Widget build(BuildContext context) {
-
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(12),
@@ -50,7 +49,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () =>
-                      viewStore.send(FamilyAction.mascotButtonTapped()),
+                      viewStore.send(const FamilyAction.mascotButtonTapped()),
                   child: const Icon(
                     CupertinoIcons.person_add_solid,
                   ),
@@ -186,7 +185,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                                   CupertinoButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: () => viewStore.send(
-                                      FamilyAction.inviteButtonTapped(),
+                                      const FamilyAction.inviteButtonTapped(),
                                     ),
                                     child: Container(
                                       height: 60,
@@ -266,7 +265,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                                   ),
                                   GestureDetector(
                                     onTap: () => viewStore.send(
-                                      FamilyAction.inviteButtonTapped(),
+                                      const FamilyAction.inviteButtonTapped(),
                                     ),
                                     child: Container(
                                       height: 60,

@@ -15,7 +15,7 @@ class CreateMascotMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(CreateMascotAction.onAppear());
+    viewStore.send(const CreateMascotAction.onAppear());
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -261,8 +261,8 @@ class CreateMascotMobile extends StatelessWidget {
                   return AnimatedButton(
                     isFocus: View.of(context).viewInsets.bottom > 0.0,
                     isDisabled: value.isLoading,
-                    onPress: () =>
-                        viewStore.send(CreateMascotAction.handlerTapped()),
+                    onPress: () => viewStore
+                        .send(const CreateMascotAction.handlerTapped()),
                     enableColor: Colors.deepPurple.shade300,
                     disableColor: SystemMode.isDark(context)
                         ? Colors.deepPurple.shade500

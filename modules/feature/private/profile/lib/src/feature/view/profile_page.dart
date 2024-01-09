@@ -7,7 +7,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Responsive(
-      mobile: Scaffold(),
+      mobile: const Scaffold(),
       desktop: Container(),
     );
   }

@@ -1,9 +1,6 @@
 import 'package:core/core.dart';
 import 'package:store/store.dart';
 
-import '../dto/room_setting_response_dto.dart';
-import '../model/room.dart';
-
 mixin RoomAPI {
   static AsyncResult<RoomSettingResponseDTO, ErrorInfo> getRooms() async {
     final BaseRequest client = Modular.get();

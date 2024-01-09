@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'mobile/splash_screen_mobile.dart';
-import 'web/splash_screen_web.dart';
+// import 'web/splash_screen_web.dart';
 
 class SplashScreenPage extends StatelessWidget {
   const SplashScreenPage({super.key});

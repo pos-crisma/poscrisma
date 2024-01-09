@@ -10,7 +10,7 @@ import '../../provider/controller/action/invite_action.dart';
 import '../../provider/controller/store/invite_store.dart';
 
 class InviteMobile extends StatefulWidget {
-  InviteMobile({super.key});
+  const InviteMobile({super.key});
 
   @override
   State<InviteMobile> createState() => _InviteMobileState();
@@ -198,8 +198,8 @@ class _InviteMobileState extends State<InviteMobile> {
                     children: [
                       Expanded(
                         child: GestureDetector(
-                          onTap: () =>
-                              viewStore.send(InviteAction.inviteButtonTapped()),
+                          onTap: () => viewStore
+                              .send(const InviteAction.inviteButtonTapped()),
                           child: Container(
                             height: 60,
                             width: 60,
@@ -244,8 +244,8 @@ class _InviteMobileState extends State<InviteMobile> {
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () =>
-                            viewStore.send(InviteAction.inviteButtonTapped()),
+                        onPressed: () => viewStore
+                            .send(const InviteAction.inviteButtonTapped()),
                         child: Container(
                           height: 60,
                           width: 60,
@@ -285,12 +285,13 @@ class _InviteMobileState extends State<InviteMobile> {
                       builder: (context, value, child) {
                         return CupertinoSwitch(
                           value: value.isGuest,
-                          onChanged: (_) =>
-                              viewStore.send(InviteAction.inviteIsGuest()),
+                          onChanged: (_) => viewStore
+                              .send(const InviteAction.inviteIsGuest()),
                         );
                       },
                     ),
-                    onTap: () => viewStore.send(InviteAction.inviteIsGuest()),
+                    onTap: () =>
+                        viewStore.send(const InviteAction.inviteIsGuest()),
                   ),
                 ),
               ),

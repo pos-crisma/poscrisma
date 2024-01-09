@@ -4,6 +4,7 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:store/store.dart';
 
 import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../../family/view/mobile/family_mobile.dart';
@@ -24,7 +25,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        builder: (context) => InviteMobile(),
+        builder: (context) => const InviteMobile(),
       );
     });
   }
@@ -57,7 +58,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        builder: (context) => FamilyMobile(),
+        builder: (context) => const FamilyMobile(),
       );
     });
   }
@@ -303,10 +304,10 @@ class HomeMobile extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   CupertinoIcons.wifi_slash,
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Flexible(
                                   child: Text(
                                     "Sem internet sua experiencia no app sera limitada ${value.internetCheck.toString()}",
@@ -496,8 +497,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.GodParent.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
@@ -550,8 +551,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.Young.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
@@ -576,7 +577,8 @@ class HomeMobile extends StatelessWidget {
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8.0),
+                                                      8.0,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -604,8 +606,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.Voluntary.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
