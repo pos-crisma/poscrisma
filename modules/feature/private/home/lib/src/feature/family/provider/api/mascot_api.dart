@@ -16,6 +16,7 @@ mixin MascotApi {
 
   static AsyncResult<Mascot, ErrorInfo> update(
     String mascotId,
+    MascotUpdateDTO dto,
   ) async {
     final BaseRequest client = Modular.get();
 
