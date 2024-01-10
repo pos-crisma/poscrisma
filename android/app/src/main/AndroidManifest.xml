@@ -27,11 +27,7 @@
         <meta-data android:name="flutterEmbedding" android:value="2" />
 
     </application>
-
     <!-- Required to fetch data from the internet. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 </manifest>
-
-
-Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/oBrxQGat9Tp3Bp75fxVVJx
