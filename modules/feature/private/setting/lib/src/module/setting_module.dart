@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:setting/src/feature/provider/controller/store/setting_store.dart';
+import 'package:setting/src/feature/setting/provider/controller/store/setting_store.dart';
 
-import '../feature/view/setting_page.dart';
+import '../feature/setting/view/setting_page.dart';
 
 class SettingModule extends Module {
   @override
@@ -13,6 +13,11 @@ class SettingModule extends Module {
   void routes(RouteManager r) {
     r.child(
       "/",
+      child: (_) => const SettingPage(),
+      transition: TransitionType.fadeIn,
+    );
+    r.child(
+      "/configuration",
       child: (_) => const SettingPage(),
       transition: TransitionType.fadeIn,
     );

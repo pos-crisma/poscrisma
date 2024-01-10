@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
 import 'package:store/store.dart';
 
-import '../feature/provider/controller/store/room_store.dart';
-import '../feature/screen/room/view/room_page.dart';
-import '../feature/screen/room_search/view/room_search_page.dart';
-import '../feature/screen/room_type/view/room_type_page.dart';
+import '../feature/rooms/provider/controller/store/room_store.dart';
+import '../feature/rooms/screen/room/view/room_page.dart';
+import '../feature/rooms/screen/room_search/view/room_search_page.dart';
+import '../feature/rooms/screen/room_type/view/room_type_page.dart';
 
 class RoomModule extends Module {
   @override

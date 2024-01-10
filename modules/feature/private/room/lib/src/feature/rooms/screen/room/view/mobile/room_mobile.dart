@@ -9,21 +9,21 @@ import '../../../../provider/controller/action/room_action.dart';
 import '../../../../provider/controller/state/room_state.dart';
 import '../../../../provider/controller/store/room_store.dart';
 
-class RoomSearchMobile extends StatefulWidget {
-  const RoomSearchMobile({super.key});
+class RoomMobile extends StatefulWidget {
+  const RoomMobile({super.key});
 
   @override
-  State<RoomSearchMobile> createState() => _RoomSearchMobileState();
+  State<RoomMobile> createState() => _RoomMobileState();
 }
 
-class _RoomSearchMobileState extends State<RoomSearchMobile> {
+class _RoomMobileState extends State<RoomMobile> {
   final RoomReducer viewStore = Modular.get();
 
   @override
   void initState() {
     super.initState();
 
-    viewStore.send(const RoomAction.onAppear(RoomAreaPage.search, null));
+    viewStore.send(const RoomAction.onAppear(RoomAreaPage.all, null));
   }
 
   @override
@@ -47,7 +47,7 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
                       ? Hero(
                           tag: "hero",
                           child: Text(
-                            "Pesquisar quarto",
+                            "Todos os quartos",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium! //
@@ -91,7 +91,7 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
                       child: Hero(
                         tag: "hero",
                         child: Text(
-                          "Pesquisar quarto",
+                          "Todos os quartos",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -113,7 +113,6 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
             valueListenable: viewStore,
             builder: (context, value, child) {
               final response = value.response;
-              final errorInfo = value.info;
               if (response != null &&
                   response.rooms != null &&
                   response.rooms!.isNotEmpty) {
@@ -133,17 +132,6 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
                     ),
                   );
                 }
-              } else if (errorInfo != null) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      Text("${errorInfo.message.toString()}"),
-                      Text("${errorInfo.response.toString()}"),
-                      Text("${errorInfo.error?.message.toString()}"),
-                      Text("${errorInfo.error?.type.toString()}"),
-                    ],
-                  ),
-                );
               }
 
               return const SliverToBoxAdapter();

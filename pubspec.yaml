@@ -83,6 +83,8 @@ dependencies:
     path: "./modules/feature/private/profile"
   team:
     path: "./modules/feature/private/team"
+  config:
+    path: "./modules/feature/private/config"
   
   store:
     path: "./modules/feature/store"

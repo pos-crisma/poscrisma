@@ -3,7 +3,7 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:setting/src/feature/provider/controller/store/setting_store.dart';
+import 'package:setting/src/feature/setting/provider/controller/store/setting_store.dart';
 
 import '../../provider/controller/action/setting_action.dart';
 
@@ -21,7 +21,7 @@ class _SettingMobileState extends State<SettingMobile> {
   void initState() {
     super.initState();
 
-    viewStore.send(SettingAction.onAppear());
+    viewStore.send(const SettingAction.onAppear());
   }
 
   String getUserType(String type) {
@@ -150,7 +150,7 @@ class _SettingMobileState extends State<SettingMobile> {
             ),
           ),
 
-          // * WareHouse
+          // * Warehouse
           ValueListenableBuilder(
             valueListenable: viewStore,
             builder: (context, value, child) {
@@ -204,7 +204,7 @@ class _SettingMobileState extends State<SettingMobile> {
             builder: (context, value, child) {
               if (value.user != null &&
                   value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_nursing')) {
+                  value.user!.permissions!.contains('area_nursing')) {
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -391,7 +391,8 @@ class _SettingMobileState extends State<SettingMobile> {
                 vertical: 16.0,
                 horizontal: 8.0,
               ),
-              onPress: () => viewStore.send(SettingAction.logoutButtonTapped()),
+              onPress: () =>
+                  viewStore.send(const SettingAction.logoutButtonTapped()),
               disabledChild: Container(),
               enableColor: Colors.grey,
               child: Row(

@@ -10,21 +10,20 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
   SettingReducer() : super(SettingState());
 
   @override
-  Future<Effect> reduce(SettingAction action) async {
-    return action.fold(
-      (action) => _onAppear(),
-      (action) => _logoutButtonTapped(),
-    );
-  }
+  Future<Effect> reduce(SettingAction action) async => //
+      action.when(
+        onAppear: _onAppear,
+        logoutButtonTapped: _logoutButtonTapped,
+      );
 
-  _onAppear() {
+  FutureOr<Effect> _onAppear() {
     final ProfileStore store = Modular.get();
     state.user = store.user;
 
     return Effect.emit();
   }
 
-  _logoutButtonTapped() {
+  FutureOr<Effect> _logoutButtonTapped() {
     return Effect.run(() async {
       final Storage storage = Modular.get();
       await storage.delete("@token");
