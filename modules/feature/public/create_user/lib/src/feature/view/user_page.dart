@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../provider/model/user_type.dart';
 import 'mobile/user_mobile.dart';
-import 'web/user_web.dart';
+// import 'web/user_web.dart';
 
 class UserPage extends StatelessWidget {
   final UserType type;
@@ -35,7 +35,12 @@ class UserPage extends StatelessWidget {
         type: type,
         invite: invite,
       ),
-      desktop: const UserWeb(),
+      desktop: UserMobile(
+        parishId: parishId,
+        spenderId: spenderId,
+        type: type,
+        invite: invite,
+      ),
     );
   }
 }

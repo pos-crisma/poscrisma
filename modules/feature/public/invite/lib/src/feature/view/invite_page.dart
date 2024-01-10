@@ -6,7 +6,12 @@ import 'mobile/invite_mobile.dart';
 import 'web/invite_web.dart';
 
 class InvitePage extends StatelessWidget {
-  const InvitePage({super.key});
+  const InvitePage({
+    super.key,
+    this.inviteCode,
+  });
+
+  final String? inviteCode;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,11 @@ class InvitePage extends StatelessWidget {
       ),
     );
 
-    return const Responsive(
-      mobile: InviteMobile(),
-      desktop: InviteWeb(),
+    return Responsive(
+      mobile: const InviteMobile(),
+      desktop: InviteWeb(
+        inviteCode: inviteCode ?? "",
+      ),
     );
   }
 }

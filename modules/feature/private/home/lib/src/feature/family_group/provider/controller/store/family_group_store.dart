@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/family_group_action.dart';
@@ -72,10 +71,19 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       final invite = state.invite;
 
       if (inviteCode != null && fromList) {
-        await Clipboard.setData(ClipboardData(text: inviteCode));
+        await onShare(
+          "Codigo copiado",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/$inviteCode",
+        );
+
+        // await Clipboard.setData(ClipboardData(text: inviteCode));
         send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite != null) {
-        await Clipboard.setData(ClipboardData(text: invite.inviteCode));
+        await onShare(
+          "Codigo copiado",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/$inviteCode",
+        );
+        // await Clipboard.setData(ClipboardData(text: invite.inviteCode));
         send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite == null) {
         send(const FamilyGroupAction.generateTapped());
