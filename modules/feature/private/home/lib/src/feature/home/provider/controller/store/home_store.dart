@@ -123,8 +123,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.runAndEmit(() async {
       if (!kIsWeb) {
         final package = await PackageData.getInfo();
-        if (package.version != version.version ||
-            !(int.parse(package.buildNumber) >= version.build)) {
+        if (!(int.parse(package.buildNumber) >= version.build)) {
           final context = state.context;
           if (context != null && state.showUpdatedModal == false) {
             Future.delayed(Durations.short1).then((value) {

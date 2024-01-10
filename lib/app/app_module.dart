@@ -12,10 +12,7 @@ import 'package:parish/parish.dart';
 
 // * Private
 import 'package:home/home.dart';
-import 'package:generate_invite/generate_invite.dart';
-import 'package:mascot/mascot.dart';
 import 'package:game/game.dart';
-import 'package:godparent/godparent.dart';
 import 'package:room/room.dart';
 import 'package:rule/rule.dart';
 import 'package:schedule/schedule.dart';
@@ -23,7 +20,6 @@ import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
 import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
-import 'package:young/young.dart';
 import 'package:profile/profile.dart' as profile;
 
 //* Store
@@ -77,21 +73,6 @@ class AppModule extends Module {
       guards: [PrivateGuard()],
     );
     r.module(
-      '/generate_invite',
-      module: GenerateInviteModule(),
-      guards: [PrivateGuard()],
-    );
-    r.module(
-      '/young',
-      module: YoungModule(),
-      guards: [PrivateGuard()],
-    );
-    r.module(
-      '/godparent',
-      module: GodParentModule(),
-      guards: [PrivateGuard()],
-    );
-    r.module(
       '/game',
       module: GameModule(),
       guards: [PrivateGuard()],
@@ -119,11 +100,6 @@ class AppModule extends Module {
     r.module(
       '/setting',
       module: SettingModule(),
-      guards: [PrivateGuard()],
-    );
-    r.module(
-      '/mascot',
-      module: MascotModule(),
       guards: [PrivateGuard()],
     );
     r.module(
