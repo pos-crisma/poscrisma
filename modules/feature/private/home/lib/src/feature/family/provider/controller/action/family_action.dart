@@ -13,14 +13,19 @@ part 'family_action.freezed.dart';
 @freezed
 abstract class FamilyAction with _$FamilyAction {
   const factory FamilyAction.onAppear(BuildContext context) = _OnAppearTapped;
-  const factory FamilyAction.successInviteGenerate(InviteResponseDTO dto) = _SuccessInviteGenerate;
-  const factory FamilyAction.failureInviteGenerate(ErrorInfo error) = _FailureInviteGenerate;
+  const factory FamilyAction.successInviteGenerate(InviteResponseDTO dto) =
+      _SuccessInviteGenerate;
+  const factory FamilyAction.failureInviteGenerate(ErrorInfo error) =
+      _FailureInviteGenerate;
   const factory FamilyAction.failureMascot(ErrorInfo error) = _FailureMascot;
   const factory FamilyAction.inviteButtonTapped() = _InviteButtonTapped;
   const factory FamilyAction.inviteToClipboard() = _InviteToClipboard;
   const factory FamilyAction.mascotButtonTapped() = _MascotButtonTapped;
   const factory FamilyAction.serviceMascot() = _MascotService;
-  const factory FamilyAction.mascotSuccess(MascotsResponseDTO mascotResponse) = _MascotServiceSuccess;
-  const factory FamilyAction.serviceUpdateMascotTapped(String mascotId) = _MascotUpdateService;
-  const factory FamilyAction.successUpdateMascot(Mascot response) = _MascotUpdateServiceSuccess;
+  const factory FamilyAction.mascotSuccess(MascotsResponseDTO mascotResponse) =
+      _MascotServiceSuccess;
+  const factory FamilyAction.serviceUpdateMascotTapped(String mascotId) =
+      _MascotUpdateService;
+  const factory FamilyAction.successUpdateMascot(Mascot response) =
+      _MascotUpdateServiceSuccess;
 }

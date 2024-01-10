@@ -45,7 +45,6 @@ dependencies:
     
   intl: ^0.18.0
 
-
   # ? Core Modules
   core:
     path: "./modules/core"
