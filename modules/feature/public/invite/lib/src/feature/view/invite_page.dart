@@ -22,7 +22,9 @@ class InvitePage extends StatelessWidget {
     );
 
     return Responsive(
-      mobile: const InviteMobile(),
+      mobile: InviteMobile(
+        inviteCode: inviteCode ?? "",
+      ),
       desktop: InviteWeb(
         inviteCode: inviteCode ?? "",
       ),
