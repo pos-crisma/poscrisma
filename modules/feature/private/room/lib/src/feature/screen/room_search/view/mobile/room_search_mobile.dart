@@ -4,25 +4,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/room_card.dart';
-import '../../provider/controller/action/room_action.dart';
-import '../../provider/controller/store/room_store.dart';
+import '../../../../components/room_card.dart';
+import '../../../../provider/controller/action/room_action.dart';
+import '../../../../provider/controller/state/room_state.dart';
+import '../../../../provider/controller/store/room_store.dart';
 
-class RoomMobile extends StatefulWidget {
-  const RoomMobile({super.key});
+class RoomSearchMobile extends StatefulWidget {
+  const RoomSearchMobile({super.key});
 
   @override
-  State<RoomMobile> createState() => _RoomMobileState();
+  State<RoomSearchMobile> createState() => _RoomSearchMobileState();
 }
 
-class _RoomMobileState extends State<RoomMobile> {
+class _RoomSearchMobileState extends State<RoomSearchMobile> {
   final RoomReducer viewStore = Modular.get();
 
   @override
   void initState() {
     super.initState();
 
-    viewStore.send(const RoomAction.onAppear());
+    viewStore.send(const RoomAction.onAppear(RoomAreaPage.search, null));
   }
 
   @override
@@ -46,7 +47,7 @@ class _RoomMobileState extends State<RoomMobile> {
                       ? Hero(
                           tag: "hero",
                           child: Text(
-                            "Todos os quartos",
+                            "Pesquisar quarto",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium! //
@@ -90,7 +91,7 @@ class _RoomMobileState extends State<RoomMobile> {
                       child: Hero(
                         tag: "hero",
                         child: Text(
-                          "Todos os quartos",
+                          "Pesquisar quarto",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -112,6 +113,7 @@ class _RoomMobileState extends State<RoomMobile> {
             valueListenable: viewStore,
             builder: (context, value, child) {
               final response = value.response;
+              final errorInfo = value.info;
               if (response != null &&
                   response.rooms != null &&
                   response.rooms!.isNotEmpty) {
@@ -131,6 +133,17 @@ class _RoomMobileState extends State<RoomMobile> {
                     ),
                   );
                 }
+              } else if (errorInfo != null) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Text("${errorInfo.message.toString()}"),
+                      Text("${errorInfo.response.toString()}"),
+                      Text("${errorInfo.error?.message.toString()}"),
+                      Text("${errorInfo.error?.type.toString()}"),
+                    ],
+                  ),
+                );
               }
 
               return const SliverToBoxAdapter();
