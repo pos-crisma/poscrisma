@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/invite_action.dart';
@@ -69,7 +68,11 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _successInviteGenerate(InviteResponseDTO dto) {
     state.invite = dto;
     return Effect.runAndEmit(() async {
-      await Clipboard.setData(ClipboardData(text: dto.inviteCode));
+      await onShare(
+        "Envie esse convite ao seu familiar",
+        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/${dto.inviteCode}",
+      );
+
       send(const InviteAction.clipboardAdded());
     });
   }
@@ -153,7 +156,17 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _clipboardTapped(String inviteCode) {
     return Effect.run(() async {
-      await Clipboard.setData(ClipboardData(text: inviteCode));
+      final inviteSelector = switch (state.inviteSelector) {
+        1 => "Padrinho",
+        2 => "Voluntario",
+        3 => "Jovem [Convidado]",
+        _ => "Padrinho",
+      };
+
+      await onShare(
+        "Envie esse codigo ao $inviteSelector",
+        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/$inviteCode",
+      );
       send(const InviteAction.clipboardAdded());
     });
   }

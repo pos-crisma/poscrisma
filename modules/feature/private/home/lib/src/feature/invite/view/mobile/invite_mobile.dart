@@ -10,7 +10,7 @@ import '../../provider/controller/action/invite_action.dart';
 import '../../provider/controller/store/invite_store.dart';
 
 class InviteMobile extends StatefulWidget {
-  InviteMobile({super.key});
+  const InviteMobile({super.key});
 
   @override
   State<InviteMobile> createState() => _InviteMobileState();
@@ -198,8 +198,8 @@ class _InviteMobileState extends State<InviteMobile> {
                     children: [
                       Expanded(
                         child: GestureDetector(
-                          onTap: () =>
-                              viewStore.send(InviteAction.inviteButtonTapped()),
+                          onTap: () => viewStore
+                              .send(const InviteAction.inviteButtonTapped()),
                           child: Container(
                             height: 60,
                             width: 60,
@@ -244,8 +244,8 @@ class _InviteMobileState extends State<InviteMobile> {
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () =>
-                            viewStore.send(InviteAction.inviteButtonTapped()),
+                        onPressed: () => viewStore
+                            .send(const InviteAction.inviteButtonTapped()),
                         child: Container(
                           height: 60,
                           width: 60,
@@ -285,12 +285,13 @@ class _InviteMobileState extends State<InviteMobile> {
                       builder: (context, value, child) {
                         return CupertinoSwitch(
                           value: value.isGuest,
-                          onChanged: (_) =>
-                              viewStore.send(InviteAction.inviteIsGuest()),
+                          onChanged: (_) => viewStore
+                              .send(const InviteAction.inviteIsGuest()),
                         );
                       },
                     ),
-                    onTap: () => viewStore.send(InviteAction.inviteIsGuest()),
+                    onTap: () =>
+                        viewStore.send(const InviteAction.inviteIsGuest()),
                   ),
                 ),
               ),
@@ -638,19 +639,41 @@ class _InviteMobileState extends State<InviteMobile> {
                                                     BorderRadius.circular(4),
                                                 color: ColorMode.setColor(
                                                   context: context,
-                                                  light: Colors.grey.shade200,
-                                                  dark: Colors.grey.shade800,
+                                                  light: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade200
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade200
+                                                          : Colors
+                                                              .grey.shade200,
+                                                  dark: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade800
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade800
+                                                          : Colors
+                                                              .grey.shade800,
                                                 ),
                                               ),
                                               child: Text(
                                                 invite.status ==
                                                         InviteStatus.active
                                                     ? "Ativo"
-                                                    : "Inativo",
+                                                    : invite.status ==
+                                                            InviteStatus.used
+                                                        ? "Usado"
+                                                        : "Inativo",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .labelSmall!
-                                                    .copyWith(),
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                               ),
                                             ),
                                           ],

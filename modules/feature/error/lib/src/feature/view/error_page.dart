@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'mobile/error_mobile.dart';
-import 'web/error_web.dart';
+// import 'web/error_web.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({

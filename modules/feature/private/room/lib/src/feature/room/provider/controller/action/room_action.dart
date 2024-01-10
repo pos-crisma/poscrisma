@@ -1,19 +1,16 @@
-// ignore_for_file: library_private_types_in_public_api
+import 'package:core/core.dart';
+import 'package:store/store.dart';
 
-sealed class RoomAction {
-  static RoomAction onAppear() => _OnAppearTapped();
-  static RoomAction updateRoomImage() => _UpdateRoomImage();
+part 'room_action.freezed.dart';
 
-  T fold<T>(
-    T Function(_OnAppearTapped action) onAppear,
-    T Function(_UpdateRoomImage action) updateRoomImage,
-  ) =>
-      switch (this) {
-        _OnAppearTapped action => onAppear(action),
-        _UpdateRoomImage action => updateRoomImage(action),
-      };
+@freezed
+abstract class RoomAction with _$RoomAction {
+  const factory RoomAction.onAppear() = _OnAppearTapped;
+  const factory RoomAction.updateRoomImage() = _UpdateRoomImage;
+  const factory RoomAction.service() = _Service;
+  const factory RoomAction.scrollListener() = _ScrollListener;
+  const factory RoomAction.loading() = _Loading;
+  const factory RoomAction.success(RoomSettingResponseDTO dto) = _Success;
+  const factory RoomAction.failure(ErrorInfo error) = _Failure;
+  const factory RoomAction.buttonTapped(Room room) = _ButtonTapped;
 }
-
-class _OnAppearTapped extends RoomAction {}
-
-class _UpdateRoomImage extends RoomAction {}

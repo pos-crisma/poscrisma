@@ -257,7 +257,7 @@ class CreateFamilyMobile extends StatelessWidget {
               isDisabled: false,
               onPress: () {
                 FocusManager.instance.primaryFocus?.unfocus();
-                viewStore.send(CreateFamilyAction.buttonTapped());
+                viewStore.send(const CreateFamilyAction.buttonTapped());
               },
               enableColor: Colors.deepPurple.shade300,
               disableColor: ColorMode.setColor(

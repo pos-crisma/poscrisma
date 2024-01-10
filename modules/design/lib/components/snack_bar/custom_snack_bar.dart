@@ -20,19 +20,19 @@ SnackBar customSnackBar({
           .bodyLarge! //
           .copyWith(),
     ),
-    action: SnackBarAction(
-      label: "Entendi",
-      textColor: Colors.white,
-      onPressed: () {},
-    ),
-    duration: Durations.extralong4,
-    margin: const EdgeInsets.symmetric(
-      horizontal: 8.0,
-    ),
-    padding: const EdgeInsets.all(16.0),
-    behavior: SnackBarBehavior.floating,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
+    // action: SnackBarAction(
+    //   label: "Entendi",
+    //   textColor: Colors.white,
+    //   onPressed: () {},
+    // ),
+    // duration: Durations.extralong4,
+    // margin: const EdgeInsets.symmetric(
+    //   horizontal: 8.0,
+    // ),
+    // padding: const EdgeInsets.all(16.0),
+    // behavior: SnackBarBehavior.floating,
+    // shape: RoundedRectangleBorder(
+    //   borderRadius: BorderRadius.circular(8),
+    // ),
   );
 }

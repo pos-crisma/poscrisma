@@ -244,7 +244,7 @@ class FamilyGroupMobile extends StatelessWidget {
                     final family = user.family;
                     if (family != null) {
                       final groups = family.groups;
-                      if (groups != null) {
+                      if (groups != null && groups.isNotEmpty) {
                         final group = groups.first.grupo;
 
                         return SliverList.builder(
@@ -479,26 +479,29 @@ class FamilyGroupMobile extends StatelessWidget {
                         return Column(
                           children: [
                             ItemButton(
-                              onPress: () => viewStore.send(
-                                FamilyGroupAction.clipboardTapped(
-                                    invite.inviteCode, true),
-                              ),
+                              onPress: () =>
+                                  invite.status == InviteStatus.active
+                                      ? viewStore.send(
+                                          FamilyGroupAction.clipboardTapped(
+                                            invite.inviteCode,
+                                            true,
+                                          ),
+                                        )
+                                      : null,
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 16,
                                   vertical: 8,
                                 ),
-                                width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Column(
+                                    Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         RichText(
                                           text: TextSpan(
@@ -534,63 +537,81 @@ class FamilyGroupMobile extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Tipo: ',
+                                        Container(
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: ColorMode.setColor(
+                                              context: context,
+                                              light: invite.status ==
+                                                      InviteStatus.active
+                                                  ? Colors.green.shade200
+                                                  : invite.status ==
+                                                          InviteStatus.used
+                                                      ? Colors.orange.shade200
+                                                      : Colors.grey.shade200,
+                                              dark: invite.status ==
+                                                      InviteStatus.active
+                                                  ? Colors.green.shade800
+                                                  : invite.status ==
+                                                          InviteStatus.used
+                                                      ? Colors.orange.shade800
+                                                      : Colors.grey.shade800,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            invite.status == InviteStatus.active
+                                                ? "Ativo"
+                                                : invite.status ==
+                                                        InviteStatus.used
+                                                    ? "Usado"
+                                                    : "Inativo",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyMedium! //
+                                                .labelSmall!
                                                 .copyWith(
-                                                  color: ColorMode.setColor(
-                                                    context: context,
-                                                    light: Colors.black,
-                                                    dark: Colors.white,
-                                                  ),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
-                                            children: [
-                                              TextSpan(
-                                                text: invite.inviteType.name,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge! //
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: ColorMode.setColor(
-                                                        context: context,
-                                                        light: Colors.deepPurple
-                                                            .shade900,
-                                                        dark: Colors.deepPurple
-                                                            .shade200,
-                                                      ),
-                                                    ),
-                                              ),
-                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                    // TODO:
-                                    Container(
-                                      padding: const EdgeInsets.all(4),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        color: ColorMode.setColor(
-                                          context: context,
-                                          light: Colors.grey.shade200,
-                                          dark: Colors.grey.shade800,
-                                        ),
-                                      ),
-                                      child: Text(
-                                        invite.status == InviteStatus.active
-                                            ? "Ativo"
-                                            : "Inativo",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .copyWith(),
-                                      ),
-                                    ),
+                                    // Row(
+                                    //   children: [
+                                    //     Text(
+                                    //       'Jovem: ',
+                                    //       style: Theme.of(context)
+                                    //           .textTheme
+                                    //           .bodyMedium! //
+                                    //           .copyWith(
+                                    //             color: ColorMode.setColor(
+                                    //               context: context,
+                                    //               light: Colors.black,
+                                    //               dark: Colors.white,
+                                    //             ),
+                                    //           ),
+                                    //     ),
+                                    //     Text(
+                                    //       "", //invite.inviteType.name,
+                                    //       overflow: TextOverflow.clip,
+                                    //       maxLines: 5,
+                                    //       style: Theme.of(context)
+                                    //           .textTheme
+                                    //           .bodyLarge! //
+                                    //           .copyWith(
+                                    //             fontWeight: FontWeight.bold,
+                                    //             color: ColorMode.setColor(
+                                    //               context: context,
+                                    //               light: Colors
+                                    //                   .deepPurple.shade900,
+                                    //               dark: Colors
+                                    //                   .deepPurple.shade200,
+                                    //             ),
+                                    //           ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               ),

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../components/room_card.dart';
 import '../../provider/controller/action/room_action.dart';
 import '../../provider/controller/store/room_store.dart';
 
@@ -17,34 +18,18 @@ class RoomMobile extends StatefulWidget {
 class _RoomMobileState extends State<RoomMobile> {
   final RoomReducer viewStore = Modular.get();
 
-  late ScrollController _controller = ScrollController(initialScrollOffset: 1);
-
-  bool showCenterTitle = false;
-
   @override
   void initState() {
     super.initState();
 
-    viewStore.send(RoomAction.onAppear());
-
-    _controller = ScrollController(initialScrollOffset: 1);
-    _controller.addListener(_scrollListener);
-  }
-
-  // Listening for user scroll on screen.
-  void _scrollListener() {
-    if (_controller.offset >= 65) {
-      setState(() => showCenterTitle = true);
-    } else {
-      setState(() => showCenterTitle = false);
-    }
+    viewStore.send(const RoomAction.onAppear());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        controller: _controller,
+        controller: viewStore.state.controller,
         slivers: [
           SliverAppBar(
             surfaceTintColor: Colors.transparent,
@@ -52,22 +37,27 @@ class _RoomMobileState extends State<RoomMobile> {
             stretch: true,
             pinned: true,
             leadingWidth: 100,
-            title: AnimatedSwitcher(
-              duration: Durations.medium1,
-              child: showCenterTitle
-                  ? Hero(
-                      tag: "hero",
-                      child: Text(
-                        "Todos os quartos",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium! //
-                            .copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    )
-                  : Container(),
+            title: ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return AnimatedSwitcher(
+                  duration: Durations.medium1,
+                  child: value.isCenterTitle
+                      ? Hero(
+                          tag: "hero",
+                          child: Text(
+                            "Todos os quartos",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        )
+                      : Container(),
+                );
+              },
             ),
             leading: CustomBackButton(
               backIcon: CupertinoIcons.chevron_back,
@@ -117,6 +107,35 @@ class _RoomMobileState extends State<RoomMobile> {
           ),
 
           //*
+
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              final response = value.response;
+              if (response != null &&
+                  response.rooms != null &&
+                  response.rooms!.isNotEmpty) {
+                final rooms = response.rooms;
+
+                if (rooms != null && rooms.isNotEmpty) {
+                  return SliverPadding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewPadding.bottom,
+                    ),
+                    sliver: SliverList.builder(
+                      itemCount: rooms.length,
+                      itemBuilder: (context, index) {
+                        final room = rooms[index];
+                        return CardRoom(room: room);
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return const SliverToBoxAdapter();
+            },
+          ),
         ],
       ),
     );

@@ -8,7 +8,12 @@ import '../../provider/controller/state/invite_state.dart';
 import '../../provider/controller/store/invite_store.dart';
 
 class InviteWeb extends StatefulWidget {
-  const InviteWeb({super.key});
+  const InviteWeb({
+    super.key,
+    required this.inviteCode,
+  });
+
+  final String inviteCode;
 
   @override
   State<InviteWeb> createState() => _InviteWebState();
@@ -22,6 +27,7 @@ class _InviteWebState extends State<InviteWeb> {
     super.initState();
 
     viewStore.send(InviteAction.onAppear());
+    viewStore.state.textEditingController.text = widget.inviteCode;
   }
 
   @override

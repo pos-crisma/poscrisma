@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../../../../create_mascot/view/mobile/create_mascote_mobile.dart';
@@ -64,8 +63,11 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       final invite = state.invite;
 
       if (invite != null) {
-        await Clipboard.setData(ClipboardData(text: invite.inviteCode));
-        send(const FamilyAction.inviteToClipboard());
+        await onShare(
+          "Envie esse convite ao seu familiar",
+          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/${invite.inviteCode}",
+        );
+        // send(const FamilyAction.inviteToClipboard());
       }
     });
   }

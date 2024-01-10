@@ -3,12 +3,18 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:store/store.dart';
 
 import '../../provider/controller/action/room_type_action.dart';
 import '../../provider/controller/store/room_type_store.dart';
 
 class RoomTypeMobile extends StatefulWidget {
-  const RoomTypeMobile({super.key});
+  const RoomTypeMobile({
+    super.key,
+    required this.type,
+  });
+
+  final InviteUserType type;
 
   @override
   State<RoomTypeMobile> createState() => _RoomTypeMobileState();
@@ -40,6 +46,12 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
     }
   }
 
+  String getTypeFromEnum() => switch (widget.type) {
+        InviteUserType.GodParent => 'Padrinho',
+        InviteUserType.Voluntary => 'Voluntario',
+        InviteUserType.Young => 'Jovem',
+      };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +71,7 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
                       transitionOnUserGestures: true,
                       tag: "hero",
                       child: Text(
-                        "Quartos dos _type_",
+                        "Quartos dos ${getTypeFromEnum()}",
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium! //
@@ -102,7 +114,7 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
                         transitionOnUserGestures: true,
                         tag: "hero",
                         child: Text(
-                          "Quartos dos _type_",
+                          "Quartos dos ${getTypeFromEnum()}",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //

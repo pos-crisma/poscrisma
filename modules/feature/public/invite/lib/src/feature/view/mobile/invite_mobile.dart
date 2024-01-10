@@ -8,7 +8,12 @@ import '../../provider/controller/state/invite_state.dart';
 import '../../provider/controller/store/invite_store.dart';
 
 class InviteMobile extends StatefulWidget {
-  const InviteMobile({super.key});
+  const InviteMobile({
+    super.key,
+    required this.inviteCode,
+  });
+
+  final String inviteCode;
 
   @override
   State<InviteMobile> createState() => _InviteMobileState();
@@ -22,6 +27,7 @@ class _InviteMobileState extends State<InviteMobile> {
     super.initState();
 
     viewStore.send(InviteAction.onAppear());
+    viewStore.state.textEditingController.text = widget.inviteCode;
   }
 
   @override
