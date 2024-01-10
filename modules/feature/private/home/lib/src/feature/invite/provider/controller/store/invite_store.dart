@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
@@ -176,9 +175,9 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
       final context = state.context;
 
       if (context != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          customSnackBar(context: context),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   customSnackBar(context: context),
+        // );
       }
     });
   }
