@@ -12,13 +12,16 @@ class ComplexButton extends StatelessWidget {
     required this.light,
     required this.dark,
     bool showIsNew = true,
-  }) : _showIsNew = showIsNew;
+    bool badge = false,
+  })  : _showIsNew = showIsNew,
+        _badge = badge;
 
   final Function()? onPress;
   final String text;
   final IconData iconData;
 
   final bool _showIsNew;
+  final bool _badge;
 
   final Color light;
   final Color dark;
@@ -41,12 +44,15 @@ class ComplexButton extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            iconData,
-            color: ColorMode.setColor(
-              context: context,
-              light: Colors.grey.shade900,
-              dark: Colors.white,
+          Badge(
+            isLabelVisible: _badge,
+            child: Icon(
+              iconData,
+              color: ColorMode.setColor(
+                context: context,
+                light: Colors.grey.shade900,
+                dark: Colors.white,
+              ),
             ),
           ),
           const SizedBox(width: 16),

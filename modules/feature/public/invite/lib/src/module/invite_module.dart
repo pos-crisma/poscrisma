@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import '../feature/provider/controller/store/invite_store.dart';
 import '../feature/view/invite_page.dart';
 
-
 class InviteModule extends Module {
   @override
   void binds(Injector i) {
@@ -18,6 +17,13 @@ class InviteModule extends Module {
     r.child(
       "/",
       child: (_) => const InvitePage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      "/:inviteCode",
+      child: (_) => InvitePage(
+        inviteCode: r.args.params['inviteCode'],
+      ),
       transition: TransitionType.noTransition,
     );
   }

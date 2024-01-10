@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:design/color/color.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/family_group_action.dart';
@@ -13,18 +12,17 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
   FamilyGroupReducer() : super(FamilyGroupState());
 
   @override
-  Future<Effect> reduce(FamilyGroupAction action) async {
-    return action.fold(
-      (action) => _onAppear(action.context),
-      (action) => _generateTapped(),
-      (action) => _inviteButtonTapped(null, false),
-      (action) => _successInviteGenerate(action.dto),
-      (action) => _successListInvite(action.dto),
-      (action) => _failureInviteGenerate(action.error),
-      (action) => _inviteToClipboard(),
-      (action) => _inviteButtonTapped(action.invite, action.fromList),
-    );
-  }
+  Future<Effect> reduce(FamilyGroupAction action) async => action.when(
+        onAppear: (context) => _onAppear(context),
+        inviteButtonTapped: () => _inviteButtonTapped(null, false),
+        generateTapped: () => _generateTapped(),
+        successInviteGenerate: (dto) => _successInviteGenerate(dto),
+        successListInvite: (dto) => _successListInvite(dto),
+        failureAPI: (error) => _failureInviteGenerate(error),
+        inviteToClipboard: () => _inviteToClipboard(),
+        clipboardTapped: (invite, fromList) =>
+            _inviteButtonTapped(invite, fromList),
+      );
 
   _onAppear(BuildContext context) {
     final ProfileStore store = Modular.get();
@@ -73,11 +71,20 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       final invite = state.invite;
 
       if (inviteCode != null && fromList) {
-        await Clipboard.setData(ClipboardData(text: inviteCode));
-        send(FamilyGroupAction.inviteToClipboard());
+        await onShare(
+          "Envie esse codigo ao seu jovem",
+          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/$inviteCode",
+        );
+
+        // send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite != null) {
-        await Clipboard.setData(ClipboardData(text: invite.inviteCode));
-        send(FamilyGroupAction.inviteToClipboard());
+        await onShare(
+          "Envie esse codigo ao seu jovem",
+          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/$invite.inviteCode",
+        );
+        // send(const FamilyGroupAction.inviteToClipboard());
+      } else if (invite == null) {
+        send(const FamilyGroupAction.generateTapped());
       }
     });
   }
@@ -88,53 +95,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
       if (context != null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: ColorMode.setColor(
-              context: context,
-              light: Colors.grey.shade200,
-              dark: Colors.grey.shade800,
-            ),
-            elevation: 0,
-            content: LayoutBuilder(
-              builder: (context, constraints) {
-                return SizedBox(
-                  // color: Colors.amber,
-                  width: constraints.maxWidth,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Convite copiado!',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge! //
-                            .copyWith(),
-                      ),
-                      const Spacer(),
-                      Text(
-                        'Entendi',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall! //
-                            .copyWith(
-                              color: Colors.deepPurple.shade600,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            duration: Durations.extralong4,
-            margin: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
+          customSnackBar(context: context),
         );
       }
     });

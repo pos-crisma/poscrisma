@@ -4,11 +4,13 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:store/store.dart';
 
 import '../../../create_family/view/mobile/create_family_mobile.dart';
 import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
 import '../../../invite/view/mobile/invite_mobile.dart';
+import '../../../notification/view/mobile/notification_mobile.dart';
 import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
@@ -23,7 +25,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        builder: (context) => InviteMobile(),
+        builder: (context) => const InviteMobile(),
       );
     });
   }
@@ -56,7 +58,7 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        builder: (context) => FamilyMobile(),
+        builder: (context) => const FamilyMobile(),
       );
     });
   }
@@ -67,21 +69,14 @@ class HomeMobile extends StatelessWidget {
         context: context,
         useSafeArea: true,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(8),
-          ),
-        ),
-        builder: (context) {
-          return Container();
-        },
+        builder: (context) => const NotificationMobile(),
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(HomeAction.onAppear());
+    viewStore.send(HomeAction.onAppear(context));
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -143,9 +138,13 @@ class HomeMobile extends StatelessWidget {
                           // * Notification
                           IconButton(
                             onPressed: () async => notification(context),
-                            icon: const Icon(
-                              CupertinoIcons.bell_solid,
-                              color: Colors.white,
+                            icon: const Badge(
+                              // label: Text("1"),
+                              isLabelVisible: true,
+                              child: Icon(
+                                CupertinoIcons.bell_solid,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
 
@@ -209,7 +208,9 @@ class HomeMobile extends StatelessWidget {
                           if (value.user != null &&
                               value.user!.permissions != null &&
                               value.user!.permissions!
-                                  .contains('manager_family')) {
+                                  .contains('manager_family') &&
+                              value.user!.permissions!
+                                  .contains('create_family')) {
                             return Column(
                               children: [
                                 const SizedBox(height: 8),
@@ -280,6 +281,55 @@ class HomeMobile extends StatelessWidget {
               ),
             ),
 
+            ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) => value.internetCheck == false
+                  ? SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 8),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: ColorMode.setColor(
+                                context: context,
+                                light: Colors.grey.shade200,
+                                dark: Colors.grey.shade800,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  CupertinoIcons.wifi_slash,
+                                ),
+                                const SizedBox(width: 16),
+                                Flexible(
+                                  child: Text(
+                                    "Sem internet sua experiencia no app sera limitada ${value.internetCheck.toString()}",
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const CustomDivider(),
+                        ],
+                      ),
+                    )
+                  : SliverToBoxAdapter(
+                      child: Container(),
+                    ),
+            ),
+
             //* Room
             ValueListenableBuilder(
               valueListenable: viewStore,
@@ -306,9 +356,8 @@ class HomeMobile extends StatelessWidget {
                       ),
 
                       // * Your room
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
+                      Builder(
+                        builder: (context) {
                           if (value.user == null) {
                             return Container();
                           }
@@ -429,7 +478,8 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('view_room')
+                              value.user!.permissions!.contains('view_room') &&
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -449,8 +499,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.GodParent.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
@@ -503,8 +553,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.Young.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
@@ -529,7 +579,8 @@ class HomeMobile extends StatelessWidget {
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8.0),
+                                                      8.0,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -557,8 +608,8 @@ class HomeMobile extends StatelessWidget {
                                           AnimatedButton(
                                         padding: EdgeInsets.zero,
                                         innerPadding: EdgeInsets.zero,
-                                        onPress: () =>
-                                            Modular.to.pushNamed('/room/type'),
+                                        onPress: () => Modular.to.pushNamed(
+                                            '/room/type/${InviteUserType.Voluntary.name}'),
                                         disabledChild: Container(),
                                         enableColor: Colors.transparent,
                                         child: SizedBox(
@@ -614,7 +665,8 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('view_room')
+                              value.user!.permissions!.contains('view_room') &&
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -636,7 +688,9 @@ class HomeMobile extends StatelessWidget {
 
                       value.user != null &&
                               value.user!.permissions != null &&
-                              value.user!.permissions!.contains('manager_room')
+                              value.user!.permissions!
+                                  .contains('manager_room') &&
+                              value.internetCheck
                           ? Container(
                               padding: const EdgeInsets.only(
                                 top: 8,
@@ -649,7 +703,7 @@ class HomeMobile extends StatelessWidget {
                                     Modular.to.pushNamed('/room/manager'),
                                 text:
                                     "Gerenciar os quartos", // TODO: move to i18n
-                                iconData: CupertinoIcons.search,
+                                iconData: CupertinoIcons.house_fill,
                                 light: Colors.grey.shade300,
                                 dark: Colors.grey.shade800,
                                 showIsNew: false,
@@ -661,6 +715,211 @@ class HomeMobile extends StatelessWidget {
                         height: 8,
                       ),
                       const CustomDivider(),
+                    ],
+                  ),
+                );
+              },
+            ),
+
+            ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      value.user != null && value.user!.permissions != null
+                          ? const SizedBox(height: 8)
+                          : Container(),
+
+                      //
+                      value.user != null && value.user!.permissions != null
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                'Punimentos', // TODO: move to i18n
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            )
+                          : Container(),
+
+                      //
+                      const SizedBox(height: 8),
+
+                      //
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              value.user != null &&
+                                      value.user!.permissions != null &&
+                                      value.user!.permissions!
+                                          .contains('view_punish')
+                                  ? CupertinoButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {},
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.grey.shade800,
+                                            ),
+                                            child: Icon(
+                                              Icons.policy_rounded,
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade700,
+                                                dark: Colors.grey.shade300,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "Lista\npunimentos",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall! //
+                                                .copyWith(),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                              value.user != null &&
+                                      value.user!.permissions != null &&
+                                      value.user!.permissions!
+                                          .contains('view_punish')
+                                  ? const SizedBox(width: 16)
+                                  : Container(),
+
+                              // *
+                              value.user != null &&
+                                      value.user!.permissions != null &&
+                                      value.user!.permissions!
+                                          .contains('jugde_punish')
+                                  ? CupertinoButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {},
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.grey.shade800,
+                                            ),
+                                            child: Image(
+                                              alignment: Alignment.center,
+                                              image: judgeMace,
+                                              fit: BoxFit.scaleDown,
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade700,
+                                                dark: Colors.grey.shade300,
+                                              ),
+                                              height: 24,
+                                              width: 24,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Julgar\npunimento",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall! //
+                                                .copyWith(),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+
+                              // *
+                              value.user != null &&
+                                      value.user!.permissions != null &&
+                                      value.user!.permissions!
+                                          .contains('jugde_punish')
+                                  ? const SizedBox(width: 16)
+                                  : Container(),
+
+                              // *
+
+                              value.user != null &&
+                                      value.user!.permissions != null &&
+                                      value.user!.permissions!
+                                          .contains('mark_punish')
+                                  ? CupertinoButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {},
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.grey.shade800,
+                                            ),
+                                            child: Icon(
+                                              CupertinoIcons.doc_person_fill,
+                                              color: ColorMode.setColor(
+                                                context: context,
+                                                light: Colors.grey.shade700,
+                                                dark: Colors.grey.shade300,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            "Marcar\nPunimento",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall! //
+                                                .copyWith(),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container()
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      value.user != null &&
+                              value.user!.permissions != null &&
+                              !value.user!.permissions!
+                                  .contains('view_punish') &&
+                              !value.user!.permissions!
+                                  .contains('jugde_punish') &&
+                              !value.user!.permissions!.contains('mark_punish')
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                "Você não tem permissão de ver os punimentos",
+                              ),
+                            )
+                          : Container(),
+
+                      //
+                      const SizedBox(height: 8),
+
+                      //
+                      value.user != null && value.user!.permissions != null
+                          ? const CustomDivider()
+                          : Container(),
                     ],
                   ),
                 );
@@ -695,6 +954,24 @@ class HomeMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
 
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Gerenciar times", // TODO: move to i18n
+                            iconData: CupertinoIcons.sportscourt_fill,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                            showIsNew: false,
+                          ),
+                        ),
+
+                        const SizedBox(height: 8),
+
                         // ? Events camp area
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -717,13 +994,13 @@ class HomeMobile extends StatelessWidget {
                             right: 16,
                           ),
                           child: Text(
-                            'Eventos', // TODO: move to i18n
+                            'Jogos', // TODO: move to i18n
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
                                 .copyWith(
-                                    // fontWeight: FontWeight.bold,
-                                    ),
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -757,6 +1034,70 @@ class HomeMobile extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          child: Text(
+                            'Caça ao tesouros', // TODO: move to i18n
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Tendas", // TODO: move to i18n
+                            iconData: Icons.emoji_events,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          child: Text(
+                            'Show de talentos', // TODO: move to i18n
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: ComplexButton(
+                            badge: true,
+                            onPress: () => Modular.to.pushNamed('/team/'),
+                            text: "Talentos", // TODO: move to i18n
+                            iconData: CupertinoIcons.today,
+                            light: Colors.grey.shade300,
+                            dark: Colors.grey.shade800,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+
                         const CustomDivider(),
                       ],
                     ),
@@ -855,12 +1196,6 @@ class HomeMobile extends StatelessWidget {
                   return const SliverToBoxAdapter();
                 }
               },
-            ),
-
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).padding.bottom,
-              ),
             ),
           ],
         ),

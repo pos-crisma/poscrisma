@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "poscrisma",
+    "package_name": "org.poscrisma.poscrisma",
+    "sha256_cert_fingerprints":
+    ["F4:66:C9:62:6D:CE:CC:2B:90:57:37:D8:E9:84:8C:58:EC:31:99:7A:E2:73:27:BA:69:F5:86:C2:0E:06:82:AF"]
+  }
+}]

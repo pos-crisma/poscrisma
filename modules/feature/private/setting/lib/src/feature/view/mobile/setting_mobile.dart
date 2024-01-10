@@ -85,36 +85,6 @@ class _SettingMobileState extends State<SettingMobile> {
                           color: Colors.grey,
                         ),
                       ),
-
-                      // *
-                      const Spacer(),
-
-                      // * Games
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
-                          if (value.user != null &&
-                              value.user!.permissions != null &&
-                              value.user!.permissions!
-                                  .contains('manager_invite')) {
-                            return CupertinoButton(
-                              minSize: 0,
-                              alignment: Alignment.centerLeft,
-                              color: Colors.transparent,
-                              padding: EdgeInsets.zero,
-                              onPressed: () =>
-                                  Modular.to.pushNamed('/generate_invite/'),
-                              child: const Icon(
-                                CupertinoIcons.tickets_fill,
-                                size: 26,
-                                color: Colors.grey,
-                              ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      ),
                     ],
                   ),
 
@@ -147,11 +117,22 @@ class _SettingMobileState extends State<SettingMobile> {
                   ),
 
                   //*
-                  Text(
-                    '<user_room>',
-                    style: Theme.of(context)
-                        .textTheme //
-                        .bodySmall,
+                  ValueListenableBuilder(
+                    valueListenable: viewStore,
+                    builder: (context, value, child) {
+                      if (value.user == null) {
+                        return Container();
+                      }
+
+                      final hosted = value.user?.hosted;
+
+                      return Text(
+                        hosted?.roomName ?? "Ainda não possui quarto definido",
+                        style: Theme.of(context)
+                            .textTheme //
+                            .bodySmall,
+                      );
+                    },
                   ),
                 ],
               ),

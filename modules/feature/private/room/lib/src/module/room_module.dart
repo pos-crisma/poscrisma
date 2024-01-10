@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:store/store.dart';
 
 import '../feature/room/provider/controller/store/room_store.dart';
 import '../feature/room/view/room_page.dart';
@@ -28,8 +29,12 @@ class RoomModule extends Module {
       transition: TransitionType.fadeIn,
     );
     r.child(
-      "/type",
-      child: (_) => const RoomTypePage(),
+      "/type/:type",
+      child: (_) => RoomTypePage(
+        type: InviteUserType.values.byName(
+          r.args.params['type'],
+        ),
+      ),
       transition: TransitionType.fadeIn,
     );
   }

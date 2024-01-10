@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "Z42V6W967K.org.poscrisma.poscrisma",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

@@ -4,26 +4,61 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../components/room_card.dart';
 import '../../provider/controller/action/room_action.dart';
 import '../../provider/controller/store/room_store.dart';
 
-class RoomMobile extends StatelessWidget {
-  RoomMobile({super.key});
+class RoomMobile extends StatefulWidget {
+  const RoomMobile({super.key});
 
+  @override
+  State<RoomMobile> createState() => _RoomMobileState();
+}
+
+class _RoomMobileState extends State<RoomMobile> {
   final RoomReducer viewStore = Modular.get();
 
   @override
-  Widget build(BuildContext context) {
-    viewStore.send(RoomAction.onAppear());
+  void initState() {
+    super.initState();
 
+    viewStore.send(const RoomAction.onAppear());
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        controller: viewStore.state.controller,
         slivers: [
           SliverAppBar(
             surfaceTintColor: Colors.transparent,
             elevation: 0,
             stretch: true,
+            pinned: true,
             leadingWidth: 100,
+            title: ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                return AnimatedSwitcher(
+                  duration: Durations.medium1,
+                  child: value.isCenterTitle
+                      ? Hero(
+                          tag: "hero",
+                          child: Text(
+                            "Todos os quartos",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        )
+                      : Container(),
+                );
+              },
+            ),
             leading: CustomBackButton(
               backIcon: CupertinoIcons.chevron_back,
               backTitle: "Voltar",
@@ -39,18 +74,68 @@ class RoomMobile extends StatelessWidget {
               collapseMode: CollapseMode.parallax,
               background: AnimatedContainer(
                 duration: Durations.extralong1,
-                child: ValueListenableBuilder(
-                  valueListenable: viewStore,
-                  builder: (context, value, _) => Image(
-                    image: value.image,
-                    fit: BoxFit.cover,
-                  ),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, _) => Image(
+                        image: value.image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      left: 16,
+                      bottom: 16,
+                      child: Hero(
+                        tag: "hero",
+                        child: Text(
+                          "Todos os quartos",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge! //
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
 
           //*
+
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              final response = value.response;
+              if (response != null &&
+                  response.rooms != null &&
+                  response.rooms!.isNotEmpty) {
+                final rooms = response.rooms;
+
+                if (rooms != null && rooms.isNotEmpty) {
+                  return SliverPadding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewPadding.bottom,
+                    ),
+                    sliver: SliverList.builder(
+                      itemCount: rooms.length,
+                      itemBuilder: (context, index) {
+                        final room = rooms[index];
+                        return CardRoom(room: room);
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return const SliverToBoxAdapter();
+            },
+          ),
         ],
       ),
     );

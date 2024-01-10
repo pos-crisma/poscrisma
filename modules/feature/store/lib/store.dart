@@ -21,5 +21,13 @@ export 'feature/invite/list_invite_by_user_and_type/dto/invites_dto.dart';
 
 export 'feature/invite/enum/invite_type.dart';
 
+//* Room
+export 'feature/room/api/room_api.dart';
+
+export 'feature/room/dto/room_setting_response_dto.dart';
+
+export 'feature/room/model/hosted.dart';
+export 'feature/room/model/room.dart';
+
 // * Module
 export 'module/store_module.dart';

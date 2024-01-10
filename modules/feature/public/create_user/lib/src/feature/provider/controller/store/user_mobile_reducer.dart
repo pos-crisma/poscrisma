@@ -116,7 +116,9 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
               name: state.nameController.text,
               gender: state.genderInput,
               birthdate: state.birthdayController.text,
-              nickName: state.nicknameController.text,
+              nickName: state.nicknameController.text
+                  .toLowerCase()
+                  .replaceAll(" ", ""),
               phone: state.phoneController.text,
               email: state.emailController.text,
               type: type,

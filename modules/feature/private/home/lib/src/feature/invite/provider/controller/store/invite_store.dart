@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:design/color/color.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/invite_action.dart';
@@ -13,26 +12,24 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   InviteReducer() : super(InviteState());
 
   @override
-  Future<Effect> reduce(InviteAction action) async {
-    return action.fold(
-      (action) => _onAppear(action.context),
-      (action) => _getList(),
-      (action) => _failure(action.error),
-      (action) => _inviteButtonTapped(),
-      (action) => _successInviteGenerate(action.dto),
-      (action) => _inviteSelector(action.selector),
-      (action) => _inviteIsGuest(),
-      (action) => _successInvite(action.dto),
-      (action) => _clipboardTapped(action.inviteCode),
-      (action) => _clipboardAdded(),
-    );
-  }
+  Future<Effect> reduce(InviteAction action) async => action.when(
+        onAppear: (context) => _onAppear(context),
+        successInviteGenerate: (dto) => _successInviteGenerate(dto),
+        failure: (error) => _failure(error),
+        inviteButtonTapped: () => _inviteButtonTapped(),
+        inviteSelector: (number) => _inviteSelector(number),
+        inviteIsGuest: () => _inviteIsGuest(),
+        getList: () => _getList(),
+        successInviteList: (dto) => _successInvite(dto),
+        clipboardTapped: (inviteCode) => _clipboardTapped(inviteCode),
+        clipboardAdded: () => _clipboardAdded(),
+      );
 
   _onAppear(BuildContext context) {
     state.context = context;
 
     return Effect.runAndEmit(() async {
-      send(InviteAction.getList());
+      send(const InviteAction.getList());
     });
   }
 
@@ -71,8 +68,12 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   _successInviteGenerate(InviteResponseDTO dto) {
     state.invite = dto;
     return Effect.runAndEmit(() async {
-      await Clipboard.setData(ClipboardData(text: dto.inviteCode));
-      send(InviteAction.clipboardAdded());
+      await onShare(
+        "Envie esse convite ao seu familiar",
+        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/${dto.inviteCode}",
+      );
+
+      send(const InviteAction.clipboardAdded());
     });
   }
 
@@ -112,7 +113,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
       state.isGuest = false;
     }
 
-    return Effect.runAndEmit(() async => send(InviteAction.getList()));
+    return Effect.runAndEmit(() async => send(const InviteAction.getList()));
   }
 
   _inviteIsGuest() {
@@ -155,8 +156,18 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _clipboardTapped(String inviteCode) {
     return Effect.run(() async {
-      await Clipboard.setData(ClipboardData(text: inviteCode));
-      send(InviteAction.clipboardAdded());
+      final inviteSelector = switch (state.inviteSelector) {
+        1 => "Padrinho",
+        2 => "Voluntario",
+        3 => "Jovem [Convidado]",
+        _ => "Padrinho",
+      };
+
+      await onShare(
+        "Envie esse codigo ao $inviteSelector",
+        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/#/invite/$inviteCode",
+      );
+      send(const InviteAction.clipboardAdded());
     });
   }
 
@@ -166,53 +177,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
       if (context != null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: ColorMode.setColor(
-              context: context,
-              light: Colors.grey.shade200,
-              dark: Colors.grey.shade800,
-            ),
-            elevation: 0,
-            content: LayoutBuilder(
-              builder: (context, constraints) {
-                return SizedBox(
-                  // color: Colors.amber,
-                  width: constraints.maxWidth,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Convite copiado!',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge! //
-                            .copyWith(),
-                      ),
-                      const Spacer(),
-                      Text(
-                        'Entendi',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall! //
-                            .copyWith(
-                              color: Colors.deepPurple.shade600,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            duration: Durations.extralong4,
-            margin: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
+          customSnackBar(context: context),
         );
       }
     });
