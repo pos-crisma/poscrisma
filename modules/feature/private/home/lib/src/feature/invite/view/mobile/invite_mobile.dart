@@ -639,19 +639,41 @@ class _InviteMobileState extends State<InviteMobile> {
                                                     BorderRadius.circular(4),
                                                 color: ColorMode.setColor(
                                                   context: context,
-                                                  light: Colors.grey.shade200,
-                                                  dark: Colors.grey.shade800,
+                                                  light: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade200
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade200
+                                                          : Colors
+                                                              .grey.shade200,
+                                                  dark: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade800
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade800
+                                                          : Colors
+                                                              .grey.shade800,
                                                 ),
                                               ),
                                               child: Text(
                                                 invite.status ==
                                                         InviteStatus.active
                                                     ? "Ativo"
-                                                    : "Inativo",
+                                                    : invite.status ==
+                                                            InviteStatus.used
+                                                        ? "Usado"
+                                                        : "Inativo",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .labelSmall!
-                                                    .copyWith(),
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                               ),
                                             ),
                                           ],
