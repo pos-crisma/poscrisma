@@ -5,6 +5,7 @@ import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
+import '../../../../details/view/detail_page.dart';
 import '../action/room_action.dart';
 import '../state/room_state.dart';
 
@@ -34,31 +35,35 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
         buttonTapped: _buttonTapped,
       );
 
-  FutureOr<Effect> _onAppear(RoomAreaPage areaPage, InviteUserType? type) => //
-      Effect.run(() async {
-        send(const RoomAction.updateRoomImage());
+  FutureOr<Effect> _onAppear(
+      RoomAreaPage areaPage, InviteUserType? type, BuildContext context) {
+    state.context = context;
 
-        Timer.periodic(
-          const Duration(minutes: 1),
-          (_) => send(const RoomAction.updateRoomImage()),
-        );
+    return Effect.runAndEmit(() async {
+      send(const RoomAction.updateRoomImage());
 
-        state.controller.addListener(
-          () => send(const RoomAction.scrollListener()),
-        );
+      Timer.periodic(
+        const Duration(minutes: 1),
+        (_) => send(const RoomAction.updateRoomImage()),
+      );
 
-        switch (areaPage) {
-          case RoomAreaPage.all:
-            send(const RoomAction.roomAreaFull());
-            break;
-          case RoomAreaPage.search:
-            send(const RoomAction.roomAreaSearch());
-            break;
-          case RoomAreaPage.type:
-            send(RoomAction.roomAreaByType(type ?? InviteUserType.Young));
-            break;
-        }
-      });
+      state.controller.addListener(
+        () => send(const RoomAction.scrollListener()),
+      );
+
+      switch (areaPage) {
+        case RoomAreaPage.all:
+          send(const RoomAction.roomAreaFull());
+          break;
+        case RoomAreaPage.search:
+          send(const RoomAction.roomAreaSearch());
+          break;
+        case RoomAreaPage.type:
+          send(RoomAction.roomAreaByType(type ?? InviteUserType.Young));
+          break;
+      }
+    });
+  }
 
   FutureOr<Effect> _roomAreaFull() => Effect.run(() async {
         send(const RoomAction.serviceFull());
@@ -142,6 +147,12 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
   }
 
   FutureOr<Effect> _buttonTapped(Room room) {
-    return Effect.emit();
+    return Effect.run(() async {
+      showDetail(
+        state.context,
+        room: room,
+        onClose: (bool? value) {},
+      );
+    });
   }
 }
