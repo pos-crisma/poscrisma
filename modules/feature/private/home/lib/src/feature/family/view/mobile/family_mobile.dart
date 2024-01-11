@@ -19,7 +19,6 @@ class _FamilyMobileState extends State<FamilyMobile> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewStore.send(FamilyAction.onAppear(context));
   }

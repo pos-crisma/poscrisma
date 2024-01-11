@@ -9,17 +9,23 @@ class ConfigModule extends Module {
   void routes(RouteManager r) {
     r.child(
       "/user",
-      child: (_) => const Scaffold(),
+      child: (_) => Scaffold(
+        appBar: AppBar(),
+      ),
       transition: TransitionType.fadeIn,
     );
     r.child(
       "/create_user",
-      child: (_) => const Scaffold(),
+      child: (_) => Scaffold(
+        appBar: AppBar(),
+      ),
       transition: TransitionType.fadeIn,
     );
     r.child(
       "/access_manager",
-      child: (_) => const Scaffold(),
+      child: (_) => Scaffold(
+        appBar: AppBar(),
+      ),
       transition: TransitionType.fadeIn,
     );
   }

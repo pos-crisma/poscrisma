@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
-import 'package:setting/src/feature/setting/provider/controller/store/setting_store.dart';
+import 'package:flutter/material.dart';
 
+import '../feature/setting/provider/controller/store/setting_store.dart';
 import '../feature/setting/view/setting_page.dart';
 
 class SettingModule extends Module {
@@ -17,9 +18,10 @@ class SettingModule extends Module {
       transition: TransitionType.fadeIn,
     );
     r.child(
-      "/configuration",
-      child: (_) => const SettingPage(),
-      transition: TransitionType.fadeIn,
+      '/config',
+      child: (context) => Scaffold(
+        appBar: AppBar(),
+      ),
     );
   }
 }

@@ -3,9 +3,9 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:setting/src/feature/setting/provider/controller/store/setting_store.dart';
 
 import '../../provider/controller/action/setting_action.dart';
+import '../../provider/controller/store/setting_store.dart';
 
 class SettingMobile extends StatefulWidget {
   const SettingMobile({super.key});
@@ -150,6 +150,55 @@ class _SettingMobileState extends State<SettingMobile> {
             ),
           ),
 
+          // * Create User
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.user != null &&
+                  value.user!.permissions != null &&
+                  value.user!.permissions!.contains('create_user_generic')) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      ItemButton(
+                        onPress: () =>
+                            Modular.to.pushNamed('/config/create_user'),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 24,
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                CupertinoIcons.person_add_solid,
+                                size: 30,
+                              ),
+                              const SizedBox(width: 16),
+                              Text(
+                                "Criar usuario",
+                                style: Theme.of(context)
+                                    .textTheme //
+                                    .bodyLarge,
+                              ),
+                              const Spacer(),
+                              const Icon(
+                                CupertinoIcons.chevron_forward,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const CustomDivider(),
+                    ],
+                  ),
+                );
+              } else {
+                return const SliverToBoxAdapter();
+              }
+            },
+          ),
+
           // * Warehouse
           ValueListenableBuilder(
             valueListenable: viewStore,
@@ -161,7 +210,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/warehouse'),
+                        onPress: () => Modular.to.pushNamed('/warehouse/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -209,7 +258,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/nursing'),
+                        onPress: () => Modular.to.pushNamed('/nursing/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -252,12 +301,13 @@ class _SettingMobileState extends State<SettingMobile> {
             builder: (context, value, child) {
               if (value.user != null &&
                   value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_permissions')) {
+                  value.user!.permissions!.contains('set_permissions')) {
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/access_manager'),
+                        onPress: () =>
+                            Modular.to.pushNamed('/config/access_manager/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -305,7 +355,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/game_manager'),
+                        onPress: () => Modular.to.pushNamed('/game/manager'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -347,7 +397,7 @@ class _SettingMobileState extends State<SettingMobile> {
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () => Modular.to.pushNamed('/profile'),
+                  onPress: () => Modular.to.pushNamed('/setting/config'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

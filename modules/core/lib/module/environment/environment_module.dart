@@ -5,6 +5,6 @@ import 'environment.dart';
 class EnvironmentModule extends Module {
   @override
   void exportedBinds(Injector i) {
-    i.addInstance<Environment>(Environment.develop);
+    i.addInstance<Environment>(Environment.production);
   }
 }

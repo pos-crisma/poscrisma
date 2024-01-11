@@ -21,6 +21,7 @@ import 'package:splash_screen/splash_screen.dart';
 import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
 import 'package:profile/profile.dart' as profile;
+import 'package:core/module/config/config_module.dart';
 
 //* Store
 import 'package:store/store.dart';
@@ -110,6 +111,11 @@ class AppModule extends Module {
     r.module(
       '/profile',
       module: profile.ProfileModule(),
+      guards: [PrivateGuard()],
+    );
+    r.module(
+      '/config',
+      module: ConfigModule(),
       guards: [PrivateGuard()],
     );
 
