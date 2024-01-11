@@ -94,7 +94,8 @@ class _AuthMobileState extends State<AuthMobile> {
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
-                    labelText: 'Preencha seu nickname', // TODO: Move to i18n
+                    labelText:
+                        'Preencha seu nome de usuario', // TODO: Move to i18n
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
