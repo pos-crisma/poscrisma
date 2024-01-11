@@ -1,3 +1,4 @@
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -22,7 +23,7 @@ class _RoomMobileState extends State<RoomMobile> {
   void initState() {
     super.initState();
 
-    viewStore.send(const RoomAction.onAppear(RoomAreaPage.all, null));
+    viewStore.send(RoomAction.onAppear(RoomAreaPage.all, null, context));
   }
 
   @override
@@ -31,79 +32,90 @@ class _RoomMobileState extends State<RoomMobile> {
       body: CustomScrollView(
         controller: viewStore.state.controller,
         slivers: [
-          SliverAppBar(
-            surfaceTintColor: Colors.transparent,
-            elevation: 0,
-            stretch: true,
-            pinned: true,
-            leadingWidth: 100,
-            title: ValueListenableBuilder(
-              valueListenable: viewStore,
-              builder: (context, value, child) {
-                return AnimatedSwitcher(
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              return SliverAppBar(
+                backgroundColor: value.isCenterTitle
+                    ? ColorMode.setColor(
+                        context: context,
+                        light: lightBackground,
+                        dark: darkBackground,
+                      )
+                    : Colors.deepPurple,
+                // surfaceTintColor: Colors.transparent,
+                elevation: 0,
+                stretch: true,
+                pinned: true,
+                leadingWidth: 100,
+                title: AnimatedSwitcher(
                   duration: Durations.medium1,
                   child: value.isCenterTitle
-                      ? Hero(
-                          tag: "hero",
+                      ? Text(
+                          "Todos os quartos",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium! //
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.black,
+                                  dark: Colors.white,
+                                ),
+                              ),
+                        )
+                      : Container(),
+                ),
+                leading: AnimatedSwitcher(
+                  duration: Durations.medium1,
+                  child: CustomBackButton(
+                    backIcon: CupertinoIcons.chevron_back,
+                    backTitle: "Voltar",
+                    light: value.isCenterTitle ? Colors.black : Colors.white,
+                    // dark: Colors.white,
+                  ),
+                ),
+                expandedHeight: kIsWeb
+                    ? 300
+                    : Responsive.isSmallScreen(context)
+                        ? 100
+                        : 150,
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  background: AnimatedContainer(
+                    color: Colors.deepPurple,
+                    duration: Durations.extralong1,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, _) => Image(
+                            image: value.image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          left: 16,
+                          bottom: 16,
                           child: Text(
                             "Todos os quartos",
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium! //
+                                .titleLarge! //
                                 .copyWith(
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
-                        )
-                      : Container(),
-                );
-              },
-            ),
-            leading: CustomBackButton(
-              backIcon: CupertinoIcons.chevron_back,
-              backTitle: "Voltar",
-              light: Colors.grey.shade300,
-              dark: Colors.grey.shade300,
-            ),
-            expandedHeight: kIsWeb
-                ? 300
-                : Responsive.isSmallScreen(context)
-                    ? 100
-                    : 150,
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.parallax,
-              background: AnimatedContainer(
-                duration: Durations.extralong1,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    ValueListenableBuilder(
-                      valueListenable: viewStore,
-                      builder: (context, value, _) => Image(
-                        image: value.image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      left: 16,
-                      bottom: 16,
-                      child: Hero(
-                        tag: "hero",
-                        child: Text(
-                          "Todos os quartos",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge! //
-                              .copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
 
           //*
@@ -126,7 +138,11 @@ class _RoomMobileState extends State<RoomMobile> {
                       itemCount: rooms.length,
                       itemBuilder: (context, index) {
                         final room = rooms[index];
-                        return CardRoom(room: room);
+                        return CardRoom(
+                          room: room,
+                          tapped: () =>
+                              viewStore.send(RoomAction.buttonTapped(room)),
+                        );
                       },
                     ),
                   );

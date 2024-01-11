@@ -22,7 +22,7 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
   void initState() {
     super.initState();
 
-    viewStore.send(const RoomAction.onAppear(RoomAreaPage.search, null));
+    viewStore.send(RoomAction.onAppear(RoomAreaPage.search, null, context));
   }
 
   @override
@@ -126,7 +126,11 @@ class _RoomSearchMobileState extends State<RoomSearchMobile> {
                       itemCount: rooms.length,
                       itemBuilder: (context, index) {
                         final room = rooms[index];
-                        return CardRoom(room: room);
+                        return CardRoom(
+                          room: room,
+                          tapped: () =>
+                              viewStore.send(RoomAction.buttonTapped(room)),
+                        );
                       },
                     ),
                   );

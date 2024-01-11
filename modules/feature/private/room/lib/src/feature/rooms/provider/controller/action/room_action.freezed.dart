@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RoomAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -36,7 +37,9 @@ mixin _$RoomAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -53,7 +56,9 @@ mixin _$RoomAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -147,7 +152,8 @@ abstract class _$$OnAppearImplCopyWith<$Res> {
           _$OnAppearImpl value, $Res Function(_$OnAppearImpl) then) =
       __$$OnAppearImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RoomAreaPage areaPage, InviteUserType? type});
+  $Res call(
+      {RoomAreaPage areaPage, InviteUserType? type, BuildContext context});
 }
 
 /// @nodoc
@@ -163,6 +169,7 @@ class __$$OnAppearImplCopyWithImpl<$Res>
   $Res call({
     Object? areaPage = null,
     Object? type = freezed,
+    Object? context = null,
   }) {
     return _then(_$OnAppearImpl(
       null == areaPage
@@ -173,6 +180,10 @@ class __$$OnAppearImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as InviteUserType?,
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ));
   }
 }
@@ -180,16 +191,18 @@ class __$$OnAppearImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OnAppearImpl implements _OnAppear {
-  const _$OnAppearImpl(this.areaPage, this.type);
+  const _$OnAppearImpl(this.areaPage, this.type, this.context);
 
   @override
   final RoomAreaPage areaPage;
   @override
   final InviteUserType? type;
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'RoomAction.onAppear(areaPage: $areaPage, type: $type)';
+    return 'RoomAction.onAppear(areaPage: $areaPage, type: $type, context: $context)';
   }
 
   @override
@@ -199,11 +212,12 @@ class _$OnAppearImpl implements _OnAppear {
             other is _$OnAppearImpl &&
             (identical(other.areaPage, areaPage) ||
                 other.areaPage == areaPage) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, areaPage, type);
+  int get hashCode => Object.hash(runtimeType, areaPage, type, context);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +228,8 @@ class _$OnAppearImpl implements _OnAppear {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -229,13 +244,15 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
   }) {
-    return onAppear(areaPage, type);
+    return onAppear(areaPage, type, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -249,13 +266,15 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
   }) {
-    return onAppear?.call(areaPage, type);
+    return onAppear?.call(areaPage, type, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -271,7 +290,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear(areaPage, type);
+      return onAppear(areaPage, type, context);
     }
     return orElse();
   }
@@ -342,11 +361,12 @@ class _$OnAppearImpl implements _OnAppear {
 }
 
 abstract class _OnAppear implements RoomAction {
-  const factory _OnAppear(
-      final RoomAreaPage areaPage, final InviteUserType? type) = _$OnAppearImpl;
+  const factory _OnAppear(final RoomAreaPage areaPage,
+      final InviteUserType? type, final BuildContext context) = _$OnAppearImpl;
 
   RoomAreaPage get areaPage;
   InviteUserType? get type;
+  BuildContext get context;
   @JsonKey(ignore: true)
   _$$OnAppearImplCopyWith<_$OnAppearImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -390,7 +410,8 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -411,7 +432,9 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -431,7 +454,9 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -559,7 +584,8 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -580,7 +606,9 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -600,7 +628,9 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -728,7 +758,8 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -749,7 +780,9 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -769,7 +802,9 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -924,7 +959,8 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -945,7 +981,9 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -965,7 +1003,9 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -1099,7 +1139,8 @@ class _$ServiceFullImpl implements _ServiceFull {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -1120,7 +1161,9 @@ class _$ServiceFullImpl implements _ServiceFull {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -1140,7 +1183,9 @@ class _$ServiceFullImpl implements _ServiceFull {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -1268,7 +1313,8 @@ class _$ServiceSearchImpl implements _ServiceSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -1289,7 +1335,9 @@ class _$ServiceSearchImpl implements _ServiceSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -1309,7 +1357,9 @@ class _$ServiceSearchImpl implements _ServiceSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -1463,7 +1513,8 @@ class _$ServiceByTypeImpl implements _ServiceByType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -1484,7 +1535,9 @@ class _$ServiceByTypeImpl implements _ServiceByType {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -1504,7 +1557,9 @@ class _$ServiceByTypeImpl implements _ServiceByType {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -1637,7 +1692,8 @@ class _$ScrollListenerImpl implements _ScrollListener {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -1658,7 +1714,9 @@ class _$ScrollListenerImpl implements _ScrollListener {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -1678,7 +1736,9 @@ class _$ScrollListenerImpl implements _ScrollListener {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -1806,7 +1866,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -1827,7 +1888,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -1847,7 +1910,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -2001,7 +2066,8 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -2022,7 +2088,9 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -2042,7 +2110,9 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -2201,7 +2271,8 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -2222,7 +2293,9 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -2242,7 +2315,9 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,
@@ -2401,7 +2476,8 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RoomAreaPage areaPage, InviteUserType? type)
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
         onAppear,
     required TResult Function() updateRoomImage,
     required TResult Function() roomAreaFull,
@@ -2422,7 +2498,9 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult? Function()? updateRoomImage,
     TResult? Function()? roomAreaFull,
     TResult? Function()? roomAreaSearch,
@@ -2442,7 +2520,9 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RoomAreaPage areaPage, InviteUserType? type)? onAppear,
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
     TResult Function()? updateRoomImage,
     TResult Function()? roomAreaFull,
     TResult Function()? roomAreaSearch,

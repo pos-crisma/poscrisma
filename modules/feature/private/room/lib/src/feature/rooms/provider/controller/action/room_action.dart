@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 import '../state/room_state.dart';
@@ -8,7 +9,8 @@ part 'room_action.freezed.dart';
 @freezed
 abstract class RoomAction with _$RoomAction {
   const factory RoomAction.onAppear(
-      RoomAreaPage areaPage, InviteUserType? type) = _OnAppear;
+          RoomAreaPage areaPage, InviteUserType? type, BuildContext context) =
+      _OnAppear;
   const factory RoomAction.updateRoomImage() = _UpdateRoomImage;
   const factory RoomAction.roomAreaFull() = _RoomAreaFull;
   const factory RoomAction.roomAreaSearch() = _RoomAreaSearch;

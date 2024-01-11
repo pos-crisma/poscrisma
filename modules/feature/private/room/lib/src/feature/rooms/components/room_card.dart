@@ -7,9 +7,11 @@ class CardRoom extends StatelessWidget {
   const CardRoom({
     super.key,
     required this.room,
+    required this.tapped,
   });
 
   final Room room;
+  final VoidCallback tapped;
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +23,7 @@ class CardRoom extends StatelessWidget {
             horizontal: 16.0,
           ),
           child: GestureDetector(
-            onTap: () {
-              Future.delayed(Durations.short1).then((value) {
-                showModalBottomSheet(
-                  context: context,
-                  useSafeArea: true,
-                  isScrollControlled: true,
-                  builder: (context) => ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: const Scaffold(),
-                  ),
-                );
-              });
-              // print("Tap on room: ${room.roomId}");
-            },
+            onTap: tapped,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,

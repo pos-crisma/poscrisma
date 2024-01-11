@@ -28,7 +28,8 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
   void initState() {
     super.initState();
 
-    viewStore.send(RoomAction.onAppear(RoomAreaPage.type, widget.type));
+    viewStore
+        .send(RoomAction.onAppear(RoomAreaPage.type, widget.type, context));
   }
 
   String getTypeFromEnum() => switch (widget.type) {
@@ -139,7 +140,11 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
                       itemCount: rooms.length,
                       itemBuilder: (context, index) {
                         final room = rooms[index];
-                        return CardRoom(room: room);
+                        return CardRoom(
+                          room: room,
+                          tapped: () =>
+                              viewStore.send(RoomAction.buttonTapped(room)),
+                        );
                       },
                     ),
                   );
