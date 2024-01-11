@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 interface class CreateFamilyState {
+  late BuildContext context;
+
   CreateFamilyServiceStatus status;
 
   TextEditingController nameFamilyController;

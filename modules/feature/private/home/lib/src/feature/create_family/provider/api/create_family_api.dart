@@ -8,9 +8,7 @@ mixin CreateFamilyAPI {
     CreateFamilyRequestDTO dto, {
     required String currentUserId,
   }) async {
-    final BaseRequest client = Modular.get();
-
-    return client
+    return baseRequest
         .post('/family/$currentUserId', data: dto.toJson())
         .map(CreateFamilyResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

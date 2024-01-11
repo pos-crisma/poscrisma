@@ -5,8 +5,10 @@ import 'package:feed/feed.dart';
 import 'package:flutter/material.dart';
 
 import 'package:authenticator/authenticator.dart';
+import 'package:home/home.dart';
 import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
+import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -89,91 +91,16 @@ final GoRouter appRouter = GoRouter(
         );
       },
     ),
+    GoRoute(
+      name: "home",
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
+    ),
+    GoRoute(
+      name: "setting",
+      path: '/setting',
+      builder: (BuildContext context, GoRouterState state) =>
+          const SettingPage(),
+    ),
   ],
 );
-
-// r.module('/error', module: ErrorModule());
-
-//     r.module(
-//       '/splash_screen',
-//       module: SplashScreenModule(),
-//       guards: [PublicGuard()],
-//     );
-//     r.module(
-//       '/feed',
-//       module: FeedModule(),
-//       guards: [PublicGuard()],
-//     );
-//     r.module(
-//       '/invite',
-//       module: InviteModule(),
-//       guards: [PublicGuard()],
-//     );
-//     r.module(
-//       '/auth',
-//       module: AuthModule(),
-//       guards: [PublicGuard()],
-//     );
-//     r.module(
-//       '/parish',
-//       module: ParishModule(),
-//       guards: [PublicGuard()],
-//     );
-//     r.module(
-//       '/create_user',
-//       module: CreateUserModule(),
-//       guards: [PublicGuard()],
-//     );
-
-//     r.module(
-//       '/home',
-//       module: HomeModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/game',
-//       module: GameModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/rule',
-//       module: RuleModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/schedule',
-//       module: ScheduleModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/warehouse',
-//       module: WarehouseModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/room',
-//       module: RoomModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/setting',
-//       module: SettingModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/team',
-//       module: TeamModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/profile',
-//       module: profile.ProfileModule(),
-//       guards: [PrivateGuard()],
-//     );
-//     r.module(
-//       '/config',
-//       module: ConfigModule(),
-//       guards: [PrivateGuard()],
-//     );
-
-//     r.redirect('/', to: '/splash_screen/');

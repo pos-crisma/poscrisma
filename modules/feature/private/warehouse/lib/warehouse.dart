@@ -1,3 +1,3 @@
 library warehouse;
 
-export './src/module/warehouse_module.dart';
+export './src/feature/view/warehouse_page.dart';

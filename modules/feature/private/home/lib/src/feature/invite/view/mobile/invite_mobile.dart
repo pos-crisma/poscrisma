@@ -1,5 +1,3 @@
-// import 'package:core/core.dart';
-import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +15,7 @@ class InviteMobile extends StatefulWidget {
 }
 
 class _InviteMobileState extends State<InviteMobile> {
-  final InviteReducer viewStore = Modular.get();
+  final InviteReducer viewStore = InviteReducer();
 
   @override
   void initState() {

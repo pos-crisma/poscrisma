@@ -1,3 +1,3 @@
 library game;
 
-export './src/module/game_module.dart';
+export './src/view/game_page.dart';

@@ -11,13 +11,12 @@ import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
 import '../../../invite/view/mobile/invite_mobile.dart';
 import '../../../notification/view/mobile/notification_mobile.dart';
-import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
 class HomeMobile extends StatelessWidget {
-  HomeMobile({super.key});
+  const HomeMobile({super.key, required this.viewStore});
 
-  final HomeReducer viewStore = Modular.get();
+  final HomeReducer viewStore;
 
   void generateInvite(BuildContext context) {
     Future.delayed(Durations.short1).then((value) {
@@ -76,8 +75,6 @@ class HomeMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(HomeAction.onAppear(context));
-
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.deepPurpleAccent,
@@ -116,7 +113,7 @@ class HomeMobile extends StatelessWidget {
                       children: [
                         // * Settings
                         InkWell(
-                          onTap: () => Modular.to.pushNamed('/setting/'),
+                          onTap: () => context.pushNamed('setting'),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -406,7 +403,7 @@ class HomeMobile extends StatelessWidget {
                             value.user!.permissions != null &&
                             value.user!.permissions!.contains('view_room')
                         ? ItemButton(
-                            onPress: () => Modular.to.pushNamed('/room/'),
+                            onPress: () => context.pushNamed('/room/'),
                             child: LayoutBuilder(
                               builder: (context, constraints) {
                                 return Container(
@@ -493,7 +490,7 @@ class HomeMobile extends StatelessWidget {
                                         AnimatedButton(
                                       padding: EdgeInsets.zero,
                                       innerPadding: EdgeInsets.zero,
-                                      onPress: () => Modular.to.pushNamed(
+                                      onPress: () => context.pushNamed(
                                           '/room/type/${InviteUserType.GodParent.name}'),
                                       disabledChild: Container(),
                                       enableColor: Colors.transparent,
@@ -544,7 +541,7 @@ class HomeMobile extends StatelessWidget {
                                         AnimatedButton(
                                       padding: EdgeInsets.zero,
                                       innerPadding: EdgeInsets.zero,
-                                      onPress: () => Modular.to.pushNamed(
+                                      onPress: () => context.pushNamed(
                                           '/room/type/${InviteUserType.Young.name}'),
                                       disabledChild: Container(),
                                       enableColor: Colors.transparent,
@@ -596,7 +593,7 @@ class HomeMobile extends StatelessWidget {
                                         AnimatedButton(
                                       padding: EdgeInsets.zero,
                                       innerPadding: EdgeInsets.zero,
-                                      onPress: () => Modular.to.pushNamed(
+                                      onPress: () => context.pushNamed(
                                           '/room/type/${InviteUserType.Voluntary.name}'),
                                       disabledChild: Container(),
                                       enableColor: Colors.transparent,
@@ -660,8 +657,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                             width: MediaQuery.of(context).size.width,
                             child: ComplexButton(
-                              onPress: () =>
-                                  Modular.to.pushNamed('/room/search'),
+                              onPress: () => context.pushNamed('/room/search'),
                               text: "Pesquisar quarto", // TODO: move to i18n
                               iconData: CupertinoIcons.search,
                               light: Colors.grey.shade300,
@@ -683,8 +679,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                             width: MediaQuery.of(context).size.width,
                             child: ComplexButton(
-                              onPress: () =>
-                                  Modular.to.pushNamed('/room/manager'),
+                              onPress: () => context.pushNamed('/room/manager'),
                               text:
                                   "Gerenciar os quartos", // TODO: move to i18n
                               iconData: CupertinoIcons.house_fill,
@@ -943,7 +938,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           badge: true,
-                          onPress: () => Modular.to.pushNamed('/team/'),
+                          onPress: () => context.pushNamed('/team/'),
                           text: "Gerenciar times", // TODO: move to i18n
                           iconData: CupertinoIcons.sportscourt_fill,
                           light: Colors.grey.shade300,
@@ -961,7 +956,7 @@ class HomeMobile extends StatelessWidget {
                         ),
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
-                          onPress: () => Modular.to.pushNamed('/team/'),
+                          onPress: () => context.pushNamed('/team/'),
                           text: "Equipes", // TODO: move to i18n
                           iconData: CupertinoIcons.group_solid,
                           light: Colors.grey.shade300,
@@ -992,7 +987,7 @@ class HomeMobile extends StatelessWidget {
                         ),
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
-                          onPress: () => Modular.to.pushNamed('/team/'),
+                          onPress: () => context.pushNamed('/team/'),
                           text: "Pesquisar Jogos", // TODO: move to i18n
                           iconData: CupertinoIcons.gamecontroller_alt_fill,
                           light: Colors.grey.shade300,
@@ -1007,7 +1002,7 @@ class HomeMobile extends StatelessWidget {
                         ),
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
-                          onPress: () => Modular.to.pushNamed('/schedule/'),
+                          onPress: () => context.pushNamed('/schedule/'),
                           text: "Tabela de jogos", // TODO: move to i18n
                           iconData: CupertinoIcons.calendar,
                           light: Colors.grey.shade300,
@@ -1040,7 +1035,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           badge: true,
-                          onPress: () => Modular.to.pushNamed('/team/'),
+                          onPress: () => context.pushNamed('/team/'),
                           text: "Tendas", // TODO: move to i18n
                           iconData: Icons.emoji_events,
                           light: Colors.grey.shade300,
@@ -1071,7 +1066,7 @@ class HomeMobile extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: ComplexButton(
                           badge: true,
-                          onPress: () => Modular.to.pushNamed('/team/'),
+                          onPress: () => context.pushNamed('/team/'),
                           text: "Talentos", // TODO: move to i18n
                           iconData: CupertinoIcons.today,
                           light: Colors.grey.shade300,
@@ -1121,7 +1116,7 @@ class HomeMobile extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: ComplexButton(
-                            onPress: () => Modular.to.pushNamed('/warehouse/'),
+                            onPress: () => context.pushNamed('/warehouse/'),
                             text: "Almoxarifado",
                             iconData: CupertinoIcons.cube_box_fill,
                             light: Colors.grey.shade300,

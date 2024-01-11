@@ -1,3 +1,3 @@
 library home;
 
-export './src/module/home_module.dart';
+export './src/feature/home/view/home_page.dart';

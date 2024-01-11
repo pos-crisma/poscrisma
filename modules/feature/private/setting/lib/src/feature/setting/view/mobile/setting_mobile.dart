@@ -15,13 +15,13 @@ class SettingMobile extends StatefulWidget {
 }
 
 class _SettingMobileState extends State<SettingMobile> {
-  final SettingReducer viewStore = Modular.get();
+  final SettingReducer viewStore = SettingReducer();
 
   @override
   void initState() {
     super.initState();
 
-    viewStore.send(const SettingAction.onAppear());
+    viewStore.send(SettingAction.onAppear(context));
   }
 
   String getUserType(String type) {
@@ -78,7 +78,7 @@ class _SettingMobileState extends State<SettingMobile> {
                         alignment: Alignment.centerLeft,
                         color: Colors.transparent,
                         padding: EdgeInsets.zero,
-                        onPressed: () => Modular.to.pop(),
+                        onPressed: () => context.pop(),
                         child: const Icon(
                           CupertinoIcons.clear_circled_solid,
                           size: 26,
@@ -161,8 +161,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () =>
-                            Modular.to.pushNamed('/config/create_user'),
+                        onPress: () => context.pushNamed('/config/create_user'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -210,7 +209,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/warehouse/'),
+                        onPress: () => context.pushNamed('/warehouse/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -258,7 +257,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/nursing/'),
+                        onPress: () => context.pushNamed('/nursing/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -307,7 +306,7 @@ class _SettingMobileState extends State<SettingMobile> {
                     children: [
                       ItemButton(
                         onPress: () =>
-                            Modular.to.pushNamed('/config/access_manager/'),
+                            context.pushNamed('/config/access_manager/'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -355,7 +354,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => Modular.to.pushNamed('/game/manager'),
+                        onPress: () => context.pushNamed('/game/manager'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -397,7 +396,7 @@ class _SettingMobileState extends State<SettingMobile> {
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () => Modular.to.pushNamed('/setting/config'),
+                  onPress: () => context.pushNamed('/setting/config'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

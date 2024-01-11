@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 interface class HomeState {
+  late BuildContext context;
   HomeServiceStatus status;
 
-  BuildContext? context;
   ProfileDTO? user;
   Version? version;
 

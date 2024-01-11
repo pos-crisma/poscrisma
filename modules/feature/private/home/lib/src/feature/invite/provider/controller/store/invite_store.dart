@@ -84,14 +84,14 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           errorInfo.message?.toString().replaceAll("[", "").replaceAll("]", "");
       final errorMessage = errorInfo.error?.message.toString();
 
-      Modular.to.pushNamed(
+      state.context.pushNamed(
         '/error/',
-        arguments: {
+        queryParameters: {
           'title': errorMessage,
           'content': (message ?? ""),
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,
@@ -133,8 +133,8 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         3 => InviteUserType.Young,
         _ => InviteUserType.GodParent,
       };
-      final ProfileStore store = Modular.get();
-      final user = store.user;
+
+      final user = profileStore.user;
 
       if (user != null) {
         await ListInviteAPI.list(
@@ -172,13 +172,11 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
   _clipboardAdded() {
     return Effect.run(() async {
-      final context = state.context;
+      // final context = state.context;
 
-      if (context != null) {
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   customSnackBar(context: context),
-        // );
-      }
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   customSnackBar(context: context),
+      // );
     });
   }
 }

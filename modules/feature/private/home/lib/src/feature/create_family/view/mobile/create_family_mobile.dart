@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +11,7 @@ import '../../provider/controller/store/create_family_store.dart';
 class CreateFamilyMobile extends StatelessWidget {
   CreateFamilyMobile({super.key});
 
-  final CreateFamilyReducer viewStore = Modular.get();
+  final CreateFamilyReducer viewStore = CreateFamilyReducer();
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import '../../dto/mascot_response_dto.dart';
 
 interface class FamilyState {
   ProfileDTO? user;
-  BuildContext? context;
+  late BuildContext context;
 
   MascotsResponseDTO? mascotResponse;
 

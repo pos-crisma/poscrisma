@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SettingAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() logoutButtonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? logoutButtonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? logoutButtonTapped,
     required TResult orElse(),
   }) =>
@@ -79,6 +79,8 @@ abstract class _$$OnAppearTappedImplCopyWith<$Res> {
   factory _$$OnAppearTappedImplCopyWith(_$OnAppearTappedImpl value,
           $Res Function(_$OnAppearTappedImpl) then) =
       __$$OnAppearTappedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -88,54 +90,79 @@ class __$$OnAppearTappedImplCopyWithImpl<$Res>
   __$$OnAppearTappedImplCopyWithImpl(
       _$OnAppearTappedImpl _value, $Res Function(_$OnAppearTappedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$OnAppearTappedImpl(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnAppearTappedImpl implements _OnAppearTapped {
-  const _$OnAppearTappedImpl();
+  const _$OnAppearTappedImpl(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'SettingAction.onAppear()';
+    return 'SettingAction.onAppear(context: $context)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnAppearTappedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$OnAppearTappedImpl &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
+      __$$OnAppearTappedImplCopyWithImpl<_$OnAppearTappedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() logoutButtonTapped,
   }) {
-    return onAppear();
+    return onAppear(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? logoutButtonTapped,
   }) {
-    return onAppear?.call();
+    return onAppear?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? logoutButtonTapped,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear();
+      return onAppear(context);
     }
     return orElse();
   }
@@ -173,7 +200,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
 }
 
 abstract class _OnAppearTapped implements SettingAction {
-  const factory _OnAppearTapped() = _$OnAppearTappedImpl;
+  const factory _OnAppearTapped(final BuildContext context) =
+      _$OnAppearTappedImpl;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -214,7 +247,7 @@ class _$LogoutButtonTappedImpl implements _LogoutButtonTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() logoutButtonTapped,
   }) {
     return logoutButtonTapped();
@@ -223,7 +256,7 @@ class _$LogoutButtonTappedImpl implements _LogoutButtonTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? logoutButtonTapped,
   }) {
     return logoutButtonTapped?.call();
@@ -232,7 +265,7 @@ class _$LogoutButtonTappedImpl implements _LogoutButtonTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? logoutButtonTapped,
     required TResult orElse(),
   }) {

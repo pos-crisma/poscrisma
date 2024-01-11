@@ -55,8 +55,7 @@ class CreateMascotReducer
   _service() {
     return Effect.run(() async {
       send(const CreateMascotAction.loadingService());
-      final ProfileStore store = Modular.get();
-      final user = store.user;
+      final user = profileStore.user;
 
       if (user != null) {
         await CreateMascotApi.send(
@@ -83,19 +82,19 @@ class CreateMascotReducer
   }
 
   _success() {
-    return Effect.run(() async => Modular.to.pop(true));
+    return Effect.run(() async => state.context.pop(true));
   }
 
   _failure(ErrorInfo errorInfo) {
     return Effect.run(
-      () async => Modular.to.pushNamed(
-        '/error/',
-        arguments: {
+      () async => state.context.pushNamed(
+        'error',
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': true,

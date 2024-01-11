@@ -75,8 +75,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   }
 
   FutureOr<Effect> _success(ProfileDTO user) {
-    final ProfileStore store = Modular.get();
-    store.updateUser = user;
+    profileStore.updateUser = user;
     state.user = user;
 
     return Effect.emit();
@@ -86,19 +85,19 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     value.status = HomeServiceStatus.failure;
 
     return Effect.run(() async {
-      Modular.to.pushNamed(
-        '/error/',
-        arguments: {
+      state.context.pushNamed(
+        'error',
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
             const HomeAction.userService();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,
-          'enableColor': Colors.amber,
+          'enableColor': Colors.transparent,
         },
       );
     });
@@ -126,7 +125,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
         if (!(int.parse(package.buildNumber) >= version.build) &&
             version.forceUpdate) {
           final context = state.context;
-          if (context != null && state.showUpdatedModal == false) {
+          if (state.showUpdatedModal == false) {
             Future.delayed(Durations.short1).then((value) {
               showModalBottomSheet(
                 context: context,
@@ -176,8 +175,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
   FutureOr<Effect> _offlineService() {
     return Effect.run(() async {
-      final Storage storage = Modular.get();
-      final value = await storage.get<String>("@profile");
+      final value = await hiveStorage.get<String>("@profile");
 
       try {
         if (value != null) {

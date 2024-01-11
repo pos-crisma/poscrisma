@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 import '../action/setting_action.dart';
@@ -16,18 +17,17 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
         logoutButtonTapped: _logoutButtonTapped,
       );
 
-  FutureOr<Effect> _onAppear() {
-    final ProfileStore store = Modular.get();
-    state.user = store.user;
+  FutureOr<Effect> _onAppear(BuildContext context) {
+    state.user = profileStore.user;
+    state.context = context;
 
     return Effect.emit();
   }
 
   FutureOr<Effect> _logoutButtonTapped() {
     return Effect.run(() async {
-      final Storage storage = Modular.get();
-      await storage.delete("@token");
-      Modular.to.navigate('/');
+      await hiveStorage.delete("@token");
+      state.context.go('/');
     });
   }
 }
