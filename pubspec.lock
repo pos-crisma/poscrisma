@@ -112,6 +112,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  config:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/private/config"
+      relative: true
+    source: path
+    version: "0.0.1"
   connectivity_plus:
     dependency: transitive
     description:
@@ -920,5 +927,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-  dart: ">=3.2.2 <4.0.0"
+  dart: ">=3.2.3 <4.0.0"
   flutter: ">=3.16.0"

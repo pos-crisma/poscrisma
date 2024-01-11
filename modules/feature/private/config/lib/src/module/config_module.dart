@@ -1,23 +1,28 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../view/game_page.dart';
-
-class GameModule extends Module {
+class ConfigModule extends Module {
   @override
-  void binds(Injector i) {
-    // i.addSingleton(FeedReducer.new);
-  }
+  void binds(Injector i) {}
 
   @override
   void routes(RouteManager r) {
     r.child(
-      "/",
-      child: (_) => const GamePage(),
+      "/user",
+      child: (_) => Scaffold(
+        appBar: AppBar(),
+      ),
       transition: TransitionType.fadeIn,
     );
     r.child(
-      "/manager",
+      "/create_user",
+      child: (_) => Scaffold(
+        appBar: AppBar(),
+      ),
+      transition: TransitionType.fadeIn,
+    );
+    r.child(
+      "/access_manager",
       child: (_) => Scaffold(
         appBar: AppBar(),
       ),
