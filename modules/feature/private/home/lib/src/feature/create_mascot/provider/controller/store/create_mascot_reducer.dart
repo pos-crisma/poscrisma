@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
@@ -23,7 +25,7 @@ class CreateMascotReducer
 
   @override
   Future<Effect> reduce(CreateMascotAction action) async => action.when(
-        onAppear: () => _onAppear(),
+        onAppear: _onAppear,
         handlerTapped: () => _handlerTapped(),
         genderTapped: (gender) => _genderTapped(gender),
         service: () => _service(),
@@ -32,7 +34,8 @@ class CreateMascotReducer
         loadingService: () => _loading(),
       );
 
-  _onAppear() {
+  FutureOr<Effect> _onAppear(BuildContext context) {
+    state.context = context;
     return Effect.emit();
   }
 

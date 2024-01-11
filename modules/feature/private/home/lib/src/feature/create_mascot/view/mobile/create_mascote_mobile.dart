@@ -14,7 +14,7 @@ class CreateMascotMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    viewStore.send(const CreateMascotAction.onAppear());
+    viewStore.send(CreateMascotAction.onAppear(context));
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
