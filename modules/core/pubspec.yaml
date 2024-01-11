@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_modular: ^6.3.2
   firebase_analytics: ^10.7.0
   result_dart: ^1.0.5
   locale_plus: ^1.5.0

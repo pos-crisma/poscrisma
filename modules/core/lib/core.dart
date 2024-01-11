@@ -38,7 +38,6 @@ export 'module/dto/default_response_dto.dart';
 
 // *
 export 'package:dio/dio.dart';
-// export 'package:flutter_modular/flutter_modular.dart' show Module, Modular;
 export 'package:result_dart/result_dart.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
