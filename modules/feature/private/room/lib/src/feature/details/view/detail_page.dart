@@ -3,12 +3,14 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:room/src/feature/details/provider/action/detail_action.dart';
+import 'package:room/src/feature/details/provider/store/detail_store.dart';
 import 'package:store/store.dart';
 
 void showDetail(
   BuildContext context, {
   required Room room,
-  required VoidCallback onClose,
+  required Function(bool?) onClose,
 }) {
   Future.delayed(Durations.short1).then((value) {
     showModalBottomSheet(
@@ -24,12 +26,12 @@ void showDetail(
         ),
       ),
     ).then((value) {
-      onClose();
+      onClose(value);
     });
   });
 }
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({
     super.key,
     required this.room,
@@ -38,45 +40,75 @@ class DetailPage extends StatelessWidget {
   final Room room;
 
   @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  final DetailReducer viewStore = DetailReducer();
+
+  @override
+  void initState() {
+    super.initState();
+    viewStore.send(DetailAction.onAppear(context, widget.room));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).padding.bottom + 50,
-        child: Column(
-          children: [
-            const CustomDivider(height: 0.5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      bottomNavigationBar: ValueListenableBuilder(
+        valueListenable: viewStore,
+        builder: (context, value, child) {
+          if (value.user.permissions != null &&
+              value.user.permissions!.contains("manager_room")) {
+            return SizedBox(
+              height: MediaQuery.of(context).padding.bottom + 50,
+              child: Column(
                 children: [
-                  const Text("Reserve esse quarto"),
-                  CupertinoButton(
-                    onPressed: () {},
-                    padding: EdgeInsets.zero,
-                    color: Colors.transparent,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                          color: Colors.deepPurple,
-                          borderRadius: BorderRadius.circular(6)),
-                      child: Text(
-                        "Gerencie",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge! //
-                            .copyWith(
-                              color: Colors.white,
+                  const CustomDivider(height: 0.5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // TODO: Upgrade this text
+                        const Text(
+                          "Visão gerencial do quarto",
+                        ),
+
+                        // *
+                        CupertinoButton(
+                          onPressed: () => viewStore.send(
+                              DetailAction.buttonTapped(
+                                  widget.room.roomId ?? "")),
+                          padding: EdgeInsets.zero,
+                          color: Colors.transparent,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                                color: Colors.deepPurple,
+                                borderRadius: BorderRadius.circular(6)),
+                            child: Text(
+                              "Atualizar",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge! //
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
                             ),
-                      ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
+            );
+          } else {
+            return const SizedBox(height: 0);
+          }
+        },
       ),
       body: CustomScrollView(
         slivers: [
@@ -125,7 +157,7 @@ class DetailPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        room.roomName ?? "Não adicionado",
+                        widget.room.roomName ?? "Não adicionado",
                         style: Theme.of(context)
                             .textTheme
                             .headlineSmall! //
@@ -143,14 +175,14 @@ class DetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Icon(
-                            room.roomType == "Couple"
+                            widget.room.roomType == "Couple"
                                 ? Icons.family_restroom_rounded
                                 : CupertinoIcons.person_3_fill,
                             size: 20,
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            room.vacancies?.toString() ?? "0",
+                            widget.room.vacancies?.toString() ?? "0",
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge! //
@@ -182,7 +214,7 @@ class DetailPage extends StatelessWidget {
                           ),
                       children: [
                         TextSpan(
-                          text: room.blockName ?? "Não adicionado",
+                          text: widget.room.blockName ?? "Não adicionado",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -213,7 +245,9 @@ class DetailPage extends StatelessWidget {
                           ),
                       children: [
                         TextSpan(
-                          text: room.roomType == "Couple" ? 'Casal' : "Jovens",
+                          text: widget.room.roomType == "Couple"
+                              ? 'Casal'
+                              : "Jovens",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -244,7 +278,7 @@ class DetailPage extends StatelessWidget {
                           ),
                       children: [
                         TextSpan(
-                          text: room.availability == true
+                          text: widget.room.availability == true
                               ? 'Disponivel'
                               : "Indisponivel",
                           style: Theme.of(context)
@@ -315,7 +349,7 @@ class DetailPage extends StatelessWidget {
                 horizontal: 16.0,
               ),
               child: Text(
-                room.observations ?? "Não adicionado",
+                widget.room.observations ?? "Não adicionado",
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge! //
@@ -368,16 +402,18 @@ class DetailPage extends StatelessWidget {
             ),
           ),
 
-          (room.hosted != null && room.hosted!.isNotEmpty)
+          (widget.room.hosted != null && widget.room.hosted!.isNotEmpty)
               ? SliverList.builder(
-                  itemCount: room.hosted?.length ?? 0,
+                  itemCount: widget.room.hosted?.length ?? 0,
                   itemBuilder: (context, index) {
-                    final host = room.hosted?[index];
+                    final host = widget.room.hosted?[index];
                     return Column(
                       children: [
                         const SizedBox(height: 8),
                         ItemButton(
-                          onPress: () {},
+                          onPress: () => viewStore.send(
+                              DetailAction.buttonUserTapped(
+                                  host!.userId ?? "")),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16.0,
@@ -532,7 +568,6 @@ class DetailPage extends StatelessWidget {
               ),
             ),
           ),
-
           // * Bathrooms
           SliverToBoxAdapter(
             child: Container(
@@ -556,7 +591,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.bathrooms.toString(),
+                              text: widget.room.bathrooms.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -577,7 +612,7 @@ class DetailPage extends StatelessWidget {
               ),
             ),
           ),
-          // * Bathrooms
+          // * Air Conditioning
           SliverToBoxAdapter(
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -600,7 +635,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.airConditioning == true
+                              text: widget.room.airConditioning == true
                                   ? "Possui"
                                   : "Não possui",
                               style: Theme.of(context)
@@ -646,7 +681,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.doubleBed.toString(),
+                              text: widget.room.doubleBed.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -690,7 +725,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.couchBed.toString(),
+                              text: widget.room.couchBed.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -734,7 +769,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.singleBed.toString(),
+                              text: widget.room.singleBed.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -778,7 +813,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.supportBed.toString(),
+                              text: widget.room.supportBed.toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -799,6 +834,7 @@ class DetailPage extends StatelessWidget {
               ),
             ),
           ),
+          // * Mini Bar
           SliverToBoxAdapter(
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -821,7 +857,7 @@ class DetailPage extends StatelessWidget {
                               .copyWith(),
                           children: [
                             TextSpan(
-                              text: room.minibar == true
+                              text: widget.room.minibar == true
                                   ? "Possui"
                                   : "Não possui",
                               style: Theme.of(context)

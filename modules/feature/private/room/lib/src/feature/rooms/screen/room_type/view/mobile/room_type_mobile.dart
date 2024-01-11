@@ -154,8 +154,8 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Text("${errorInfo.message.toString()}"),
-                      Text("${errorInfo.response.toString()}"),
+                      Text(errorInfo.message.toString()),
+                      Text(errorInfo.response.toString()),
                       Text("${errorInfo.error?.message.toString()}"),
                       Text("${errorInfo.error?.type.toString()}"),
                     ],

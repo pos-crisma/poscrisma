@@ -151,7 +151,7 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
       showDetail(
         state.context,
         room: room,
-        onClose: () {},
+        onClose: (bool? value) {},
       );
     });
   }
