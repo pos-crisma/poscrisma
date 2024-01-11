@@ -44,4 +44,3 @@ export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:go_router/go_router.dart';
-export 'package:get_it/get_it.dart';
