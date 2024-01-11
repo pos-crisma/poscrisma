@@ -102,7 +102,7 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
 
   FutureOr<Effect> _moveToHome() {
     return Effect.run(() async {
-      state.context.go('/home');
+      state.context.goNamed('home');
     });
   }
 }

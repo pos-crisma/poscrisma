@@ -161,7 +161,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => context.pushNamed('/config/create_user'),
+                        onPress: () => context.pushNamed('config_create_user'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -209,7 +209,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => context.pushNamed('/warehouse/'),
+                        onPress: () => context.pushNamed('warehouse'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -257,7 +257,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => context.pushNamed('/nursing/'),
+                        onPress: () => context.pushNamed('nursing'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -306,7 +306,7 @@ class _SettingMobileState extends State<SettingMobile> {
                     children: [
                       ItemButton(
                         onPress: () =>
-                            context.pushNamed('/config/access_manager/'),
+                            context.pushNamed('config_access_manager'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -354,7 +354,7 @@ class _SettingMobileState extends State<SettingMobile> {
                   child: Column(
                     children: [
                       ItemButton(
-                        onPress: () => context.pushNamed('/game/manager'),
+                        onPress: () => context.pushNamed('game_manager'),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -396,7 +396,7 @@ class _SettingMobileState extends State<SettingMobile> {
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () => context.pushNamed('/setting/config'),
+                  onPress: () => context.pushNamed('setting_config'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

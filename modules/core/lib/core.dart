@@ -14,8 +14,9 @@ export './manager/store/reducer/reducer.dart';
 export './manager/store/state/action.dart';
 
 // *
-export './module/auth/public_guard.dart';
-export './module/auth/private_guard.dart';
+export 'module/router/navigation_observable.dart';
+export 'module/router/private_guard.dart';
+export 'module/router/public_guard.dart';
 
 // *
 export './module/network/error/model/error_info.dart';

@@ -164,7 +164,7 @@ class _AuthWebState extends State<AuthWeb> {
                             TextSpan(
                               text: 'acessar area de convite',
                               recognizer: TapGestureRecognizer()
-                                ..onTap = () => context.go('/invite/'),
+                                ..onTap = () => context.goNamed('invite'),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!

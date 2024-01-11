@@ -159,7 +159,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
   }
 
   FutureOr<Effect> _success(CreateUserResponseDTO createUserResponseDTO) {
-    return Effect.run(() async => state.context.go('/auth'));
+    return Effect.run(() async => state.context.goNamed('auth'));
   }
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo, BuildContext context) {
