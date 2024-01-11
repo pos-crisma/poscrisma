@@ -24,8 +24,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       );
 
   _onAppear(BuildContext context) {
-    final ProfileStore store = Modular.get();
-    state.user = store.user;
+    state.user = profileStore.user;
     state.context = context;
 
     return Effect.runAndEmit(() async {
@@ -42,17 +41,16 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
   _generateTapped() {
     return Effect.run(() async {
-      final ProfileStore store = Modular.get();
-      state.user = store.user;
+      state.user = profileStore.user;
       final user = state.user;
 
       if (user != null) {
-        final group = store.user?.family?.groups;
+        final group = profileStore.user?.family?.groups;
         if (group != null && group.isNotEmpty) {
           final dto = InviteRequestDTO(
             type: InviteType.CreateUser,
             typeUser: InviteUserType.Young,
-            familyId: store.user?.familyId ?? "",
+            familyId: profileStore.user?.familyId ?? "",
             groupId: group.first.groupId,
           );
 
@@ -90,13 +88,11 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
   _inviteToClipboard() {
     return Effect.run(() async {
-      final context = state.context;
+      // final context = state.context;
 
-      if (context != null) {
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   customSnackBar(context: context),
-        // );
-      }
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   customSnackBar(context: context),
+      // );
     });
   }
 
@@ -114,14 +110,14 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
     value.status = FamilyGroupInviteStatus.failure;
 
     return Effect.run(() async {
-      Modular.to.pushNamed(
+      state.context.pushNamed(
         '/error/',
-        arguments: {
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,

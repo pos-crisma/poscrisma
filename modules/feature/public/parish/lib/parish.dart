@@ -1,3 +1,3 @@
 library parish;
 
-export './src/module/parish_module.dart';
+export './src/feature/view/parish_page.dart';

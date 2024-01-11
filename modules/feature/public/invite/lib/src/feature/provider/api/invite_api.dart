@@ -4,9 +4,7 @@ import '../model/invite_model.dart';
 
 mixin InviteApi {
   static AsyncResult<Invite, ErrorInfo> invite(String invite) async {
-    final BaseRequest client = Modular.get();
-
-    return client
+    return baseRequest
         .get('/invite/$invite')
         .map(Invite.fromJson)
         .fold(Success.new, Failure.new);

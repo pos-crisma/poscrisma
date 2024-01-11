@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +10,7 @@ import '../../provider/controller/store/create_mascot_reducer.dart';
 class CreateMascotMobile extends StatelessWidget {
   CreateMascotMobile({super.key});
 
-  final CreateMascotReducer viewStore = Modular.get();
+  final CreateMascotReducer viewStore = CreateMascotReducer();
 
   @override
   Widget build(BuildContext context) {

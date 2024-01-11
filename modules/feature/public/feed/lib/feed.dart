@@ -1,3 +1,3 @@
 library feed;
 
-export './src/module/feed_module.dart';
+export './src/feature/feed/view/feed_page.dart';

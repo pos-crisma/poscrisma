@@ -6,6 +6,8 @@ interface class InviteState {
   FocusNode onFocus;
   bool isFocus;
 
+  late BuildContext context;
+
   InviteState({
     required this.textEditingController,
     required this.onFocus,

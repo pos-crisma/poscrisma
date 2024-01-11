@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -17,7 +16,7 @@ class RoomSearchMobile extends StatefulWidget {
 }
 
 class _RoomSearchMobileState extends State<RoomSearchMobile> {
-  final RoomReducer viewStore = Modular.get();
+  final RoomReducer viewStore = RoomReducer();
 
   @override
   void initState() {

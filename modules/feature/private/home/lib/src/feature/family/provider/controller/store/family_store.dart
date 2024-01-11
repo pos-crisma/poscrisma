@@ -31,8 +31,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       );
 
   _onAppear(BuildContext context) {
-    final ProfileStore store = Modular.get();
-    state.user = store.user;
+    state.user = profileStore.user;
     state.context = context;
 
     return Effect.runAndEmit(() async {
@@ -43,7 +42,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
         final dto = InviteRequestDTO(
           type: InviteType.CreateParent,
           typeUser: InviteUserType.GodParent,
-          familyId: store.user?.familyId ?? "",
+          familyId: profileStore.user?.familyId ?? "",
           groupId: null,
         );
 
@@ -73,13 +72,11 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
 
   _inviteToClipboard() {
     return Effect.run(() async {
-      final context = state.context;
+      // final context = state.context;
 
-      if (context != null) {
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   customSnackBar(context: context),
-        // );
-      }
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   customSnackBar(context: context),
+      // );
     });
   }
 
@@ -92,14 +89,14 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
     value.status = FamilyInviteStatus.failure;
 
     return Effect.run(() async {
-      Modular.to.pushNamed(
+      state.context.pushNamed(
         '/error/',
-        arguments: {
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': false,
@@ -113,20 +110,18 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
     return Effect.run(() async {
       final context = state.context;
 
-      if (context != null) {
-        Future.delayed(Durations.short1).then((value) {
-          showModalBottomSheet(
-            context: context,
-            useSafeArea: true,
-            isScrollControlled: true,
-            builder: (context) => CreateMascotMobile(),
-          ).then((result) {
-            if (result is bool && result) {
-              send(const FamilyAction.serviceMascot());
-            }
-          });
+      Future.delayed(Durations.short1).then((value) {
+        showModalBottomSheet(
+          context: context,
+          useSafeArea: true,
+          isScrollControlled: true,
+          builder: (context) => CreateMascotMobile(),
+        ).then((result) {
+          if (result is bool && result) {
+            send(const FamilyAction.serviceMascot());
+          }
         });
-      }
+      });
     });
   }
 

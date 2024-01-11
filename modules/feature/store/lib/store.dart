@@ -28,6 +28,3 @@ export 'feature/room/dto/room_setting_response_dto.dart';
 
 export 'feature/room/model/hosted.dart';
 export 'feature/room/model/room.dart';
-
-// * Module
-export 'module/store_module.dart';

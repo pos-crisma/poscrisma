@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
@@ -24,28 +26,27 @@ class CreateFamilyReducer
   @override
   Future<Effect> reduce(CreateFamilyAction action) async {
     return action.when(
-      onAppear: () => _onAppear(),
-      buttonTapped: () => _buttonTapped(),
-      familyService: () => _serviceFamily(),
-      loadingFamilyService: () => _loading(),
-      successFamilyService: (family) => _successFamily(family),
-      failureFamilyService: (error) => _failure(error),
-      validator: (error, failure) => _validator(error, failure),
+      onAppear: _onAppear,
+      buttonTapped: _buttonTapped,
+      familyService: _serviceFamily,
+      loadingFamilyService: _loading,
+      successFamilyService: _successFamily,
+      failureFamilyService: _failure,
+      validator: _validator,
     );
   }
 
-  _onAppear() {
+  FutureOr<Effect> _onAppear(BuildContext context) {
+    state.context = context;
     return Effect.emit();
   }
 
-  _buttonTapped() {
+  FutureOr<Effect> _buttonTapped() {
     return Effect.send(const CreateFamilyAction.familyService());
   }
 
-  _serviceFamily() {
+  FutureOr<Effect> _serviceFamily() {
     return Effect.run<void>(() async {
-      final ProfileStore store = Modular.get();
-
       await send(
         const CreateFamilyAction.validator(
           "",
@@ -53,7 +54,7 @@ class CreateFamilyReducer
         ),
       );
 
-      if (store.user == null) {
+      if (profileStore.user == null) {
         return send(
           CreateFamilyAction.failureFamilyService(
             ErrorInfo(
@@ -93,7 +94,7 @@ class CreateFamilyReducer
           name: state.nameFamilyController.text,
           year: state.yearFamilyController.text,
         ),
-        currentUserId: store.user!.userId,
+        currentUserId: profileStore.user!.userId,
       );
 
       result.fold(
@@ -103,29 +104,29 @@ class CreateFamilyReducer
     });
   }
 
-  _loading() {
+  FutureOr<Effect> _loading() {
     value.status = CreateFamilyServiceStatus.loading;
     return Effect.emit();
   }
 
-  _successFamily(CreateFamilyResponseDTO family) {
+  FutureOr<Effect> _successFamily(CreateFamilyResponseDTO family) {
     return Effect.run(() async {
-      Modular.to.popAndPushNamed('/home/');
+      state.context.pushReplacement('home');
     });
   }
 
-  _failure(ErrorInfo errorInfo) {
+  FutureOr<Effect> _failure(ErrorInfo errorInfo) {
     value.status = CreateFamilyServiceStatus.failure;
 
     return Effect.run(() async {
-      Modular.to.pushNamed(
+      state.context.pushNamed(
         '/error/',
-        arguments: {
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
             const CreateFamilyAction.familyService();
           },
           'titleButton': 'Tentar novamente',
@@ -136,7 +137,8 @@ class CreateFamilyReducer
     });
   }
 
-  _validator(String error, CreateFamilyTextFieldFailure failure) {
+  FutureOr<Effect> _validator(
+      String error, CreateFamilyTextFieldFailure failure) {
     state.errorMessage = error;
     state.failure = failure;
     return Effect.emit();

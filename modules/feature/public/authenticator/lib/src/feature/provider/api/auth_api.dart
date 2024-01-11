@@ -6,9 +6,7 @@ import '../dto/auth_response_dto.dart';
 mixin AuthApi {
   static AsyncResult<AuthResponseDTO, ErrorInfo> send(
       AuthRequestDTO dto) async {
-    final BaseRequest client = Modular.get();
-
-    return client
+    return baseRequest
         .post('/auth/login', data: dto.toJson())
         .map(AuthResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

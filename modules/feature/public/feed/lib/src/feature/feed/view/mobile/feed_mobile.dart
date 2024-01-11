@@ -59,7 +59,7 @@ class FeedMobile extends StatelessWidget {
                           ),
                           CupertinoButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () => Modular.to.pushNamed('/invite/'),
+                            onPressed: () => context.pushNamed('invite'),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
@@ -155,7 +155,7 @@ class FeedMobile extends StatelessWidget {
                         child: CupertinoButton(
                           pressedOpacity: 0.8,
                           padding: EdgeInsets.zero,
-                          onPressed: () => Modular.to.pushNamed('/auth/'),
+                          onPressed: () => context.pushNamed('auth'),
                           child: Container(
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(

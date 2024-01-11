@@ -3,7 +3,7 @@ import 'package:store/store.dart';
 
 interface class FamilyGroupState {
   ProfileDTO? user;
-  BuildContext? context;
+  late BuildContext context;
 
   InviteResponseDTO? invite;
   ListInviteByUserDTO? listInvite;

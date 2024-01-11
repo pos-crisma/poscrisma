@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +14,7 @@ class FamilyMobile extends StatefulWidget {
 }
 
 class _FamilyMobileState extends State<FamilyMobile> {
-  final FamilyReducer viewStore = Modular.get();
+  final FamilyReducer viewStore = FamilyReducer();
 
   @override
   void initState() {

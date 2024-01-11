@@ -1,3 +1,3 @@
 library splash_screen;
 
-export './src/module/splash_screen_module.dart';
+export './src/view/splash_screen_page.dart';

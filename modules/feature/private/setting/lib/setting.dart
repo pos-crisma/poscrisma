@@ -1,3 +1,4 @@
 library setting;
 
-export './src/module/setting_module.dart';
+export './src/feature/setting/view/setting_page.dart';
+// export './src/feature/configuration/view/';

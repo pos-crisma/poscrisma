@@ -9,26 +9,28 @@ import '../../provider/controller/action/auth_action.dart';
 import '../../provider/controller/store/auth_reducer.dart';
 
 class AuthMobile extends StatefulWidget {
-  const AuthMobile({super.key});
+  const AuthMobile({
+    super.key,
+    required this.viewStore,
+  });
+
+  final AuthReducer viewStore;
 
   @override
   State<AuthMobile> createState() => _AuthMobileState();
 }
 
 class _AuthMobileState extends State<AuthMobile> {
-  final AuthReducer viewStore = Modular.get();
   bool obscureText = true;
 
   @override
   void initState() {
     super.initState();
-
-    viewStore.send(AuthAction.onAppear());
   }
 
   @override
   void dispose() {
-    viewStore.dispose();
+    widget.viewStore.dispose();
     super.dispose();
   }
 
@@ -87,12 +89,13 @@ class _AuthMobileState extends State<AuthMobile> {
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
                 SliverToBoxAdapter(
                   child: CustomTextFormField(
-                    focusNote: viewStore.value.nicknameFocus,
-                    controller: viewStore.value.nicknameController,
+                    focusNote: widget.viewStore.value.nicknameFocus,
+                    controller: widget.viewStore.value.nicknameController,
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
-                    labelText: 'Preencha seu nickname', // TODO: Move to i18n
+                    labelText:
+                        'Preencha seu nome de usuario', // TODO: Move to i18n
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -102,8 +105,8 @@ class _AuthMobileState extends State<AuthMobile> {
                     obscureText: obscureText,
                     obscureOnPress: () =>
                         setState(() => obscureText = !obscureText),
-                    focusNote: viewStore.value.passwordFocus,
-                    controller: viewStore.value.passwordController,
+                    focusNote: widget.viewStore.value.passwordFocus,
+                    controller: widget.viewStore.value.passwordController,
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
@@ -159,8 +162,7 @@ class _AuthMobileState extends State<AuthMobile> {
                             TextSpan(
                               text: 'acessar area de convite',
                               recognizer: TapGestureRecognizer()
-                                ..onTap =
-                                    () => Modular.to.pushNamed('/invite/'),
+                                ..onTap = () => context.pushNamed('invite'),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -197,11 +199,12 @@ class _AuthMobileState extends State<AuthMobile> {
                   : MediaQuery.of(context).padding.bottom,
             ),
             child: ValueListenableBuilder(
-              valueListenable: viewStore,
+              valueListenable: widget.viewStore,
               builder: (context, value, _) => AnimatedButton(
                 isFocus: View.of(context).viewInsets.bottom > 0.0,
                 isDisabled: value.isLoading,
-                onPress: () => viewStore.send(AuthAction.handlerTapped()),
+                onPress: () =>
+                    widget.viewStore.send(const AuthAction.handlerTapped()),
                 enableColor: Colors.deepPurple.shade300,
                 disableColor: SystemMode.isDark(context)
                     ? Colors.deepPurple.shade500

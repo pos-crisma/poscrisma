@@ -34,10 +34,8 @@ class NetworkInterceptor extends Interceptor {
     final response = err.response;
     if (response != null) {
       if (response.statusCode == 401) {
-        final Storage storage = Modular.get();
-
-        await storage.delete("@token");
-        Modular.to.navigate('/');
+        await hiveStorage.delete("@token");
+        // Modular.to.navigate('/');
       }
     }
     handler.next(err);

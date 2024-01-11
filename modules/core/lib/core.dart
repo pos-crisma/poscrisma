@@ -14,8 +14,9 @@ export './manager/store/reducer/reducer.dart';
 export './manager/store/state/action.dart';
 
 // *
-export './module/auth/public_guard.dart';
-export './module/auth/private_guard.dart';
+export 'module/router/navigation_observable.dart';
+export 'module/router/private_guard.dart';
+export 'module/router/public_guard.dart';
 
 // *
 export './module/network/error/model/error_info.dart';
@@ -37,8 +38,8 @@ export 'module/dto/default_response_dto.dart';
 
 // *
 export 'package:dio/dio.dart';
-export 'package:flutter_modular/flutter_modular.dart';
 export 'package:result_dart/result_dart.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:go_router/go_router.dart';

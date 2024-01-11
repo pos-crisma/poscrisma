@@ -1,3 +1,3 @@
 library rule;
 
-export './src/module/rule_module.dart';
+export './src/feature/view/rule_page.dart';

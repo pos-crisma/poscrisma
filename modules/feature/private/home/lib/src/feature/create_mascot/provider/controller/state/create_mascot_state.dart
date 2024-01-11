@@ -7,7 +7,7 @@ enum UserGender {
 }
 
 interface class CreateMascotState {
-  BuildContext? context;
+  late BuildContext context;
   ContentOnPage contentOnPage;
 
   UserGender genderInput;

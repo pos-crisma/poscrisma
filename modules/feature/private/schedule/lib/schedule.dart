@@ -1,3 +1,3 @@
 library schedule;
 
-export './src/module/schedule_module.dart';
+export './src/feature/view/schedule_page.dart';

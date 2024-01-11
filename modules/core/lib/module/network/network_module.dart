@@ -1,19 +1,11 @@
-import 'package:flutter_modular/flutter_modular.dart';
-
-import '../config/config_module.dart';
+import '../config/config_config.dart';
+import '../storage/repositories/storage.dart';
 import 'client/base_request.dart';
 import 'client/client.dart';
 import 'interface/network.dart';
 
-class NetworkModule extends Module {
-  @override
-  List<Module> get imports => [
-        ConfigModule(),
-      ];
-
-  @override
-  void exportedBinds(Injector i) {
-    i.add<Network>(NetworkClient.new);
-    i.add<BaseRequest>(BaseRequest.new);
-  }
+mixin NetworkModule {
+  static Network setupNetwork(Config config) => NetworkClient(config);
+  static BaseRequest setupBaseRequest(Network client, Storage storage) =>
+      BaseRequest(client: client, storage: storage);
 }

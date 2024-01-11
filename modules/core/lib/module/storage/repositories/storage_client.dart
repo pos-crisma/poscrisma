@@ -4,9 +4,7 @@ import 'package:core/core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<List> getInfo(String key) async {
-  final storage = Modular.get<Storage>();
-
-  return await storage.get("@token");
+  return await hiveStorage.get("@token");
 }
 
 class StorageHive implements Storage {

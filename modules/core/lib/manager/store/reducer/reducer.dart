@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import '../effect/effect.dart';
 
@@ -21,10 +20,4 @@ abstract class Reducer<Action, State> extends ValueNotifier<State> {
         },
         (e) => send(e.action),
       );
-}
-
-BindConfig<T> storeConfig<T extends Reducer>() {
-  return BindConfig(
-    onDispose: (store) => store.dispose(),
-  );
 }

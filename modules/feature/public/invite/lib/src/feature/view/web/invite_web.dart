@@ -7,35 +7,16 @@ import '../../provider/controller/action/invite_action.dart';
 import '../../provider/controller/state/invite_state.dart';
 import '../../provider/controller/store/invite_store.dart';
 
-class InviteWeb extends StatefulWidget {
+class InviteWeb extends StatelessWidget {
   const InviteWeb({
     super.key,
     required this.inviteCode,
+    required this.viewStore,
   });
 
   final String inviteCode;
 
-  @override
-  State<InviteWeb> createState() => _InviteWebState();
-}
-
-class _InviteWebState extends State<InviteWeb> {
-  final InviteReducer viewStore = Modular.get();
-
-  @override
-  void initState() {
-    super.initState();
-
-    viewStore.send(InviteAction.onAppear());
-    viewStore.state.textEditingController.text = widget.inviteCode;
-  }
-
-  @override
-  void dispose() {
-    viewStore.dispose();
-
-    super.dispose();
-  }
+  final InviteReducer viewStore;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +44,7 @@ class _InviteWebState extends State<InviteWeb> {
                         leadingWidth: 66,
                         leading: CupertinoButton(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
-                          onPressed: () => Modular.to.navigate("/"),
+                          onPressed: () => context.go("/"),
                           child: Text(
                             'Fechar',
                             style: Theme.of(context).textTheme.bodyMedium,

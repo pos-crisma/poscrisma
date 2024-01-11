@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateFamilyAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -32,7 +32,7 @@ mixin _$CreateFamilyAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -44,7 +44,7 @@ mixin _$CreateFamilyAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -114,6 +114,8 @@ abstract class _$$OnAppearImplCopyWith<$Res> {
   factory _$$OnAppearImplCopyWith(
           _$OnAppearImpl value, $Res Function(_$OnAppearImpl) then) =
       __$$OnAppearImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -123,31 +125,55 @@ class __$$OnAppearImplCopyWithImpl<$Res>
   __$$OnAppearImplCopyWithImpl(
       _$OnAppearImpl _value, $Res Function(_$OnAppearImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$OnAppearImpl(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnAppearImpl implements _OnAppear {
-  const _$OnAppearImpl();
+  const _$OnAppearImpl(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'CreateFamilyAction.onAppear()';
+    return 'CreateFamilyAction.onAppear(context: $context)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnAppearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$OnAppearImpl &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnAppearImplCopyWith<_$OnAppearImpl> get copyWith =>
+      __$$OnAppearImplCopyWithImpl<_$OnAppearImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -158,13 +184,13 @@ class _$OnAppearImpl implements _OnAppear {
             String error, CreateFamilyTextFieldFailure failure)
         validator,
   }) {
-    return onAppear();
+    return onAppear(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -173,13 +199,13 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(String error, CreateFamilyTextFieldFailure failure)?
         validator,
   }) {
-    return onAppear?.call();
+    return onAppear?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -190,7 +216,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear();
+      return onAppear(context);
     }
     return orElse();
   }
@@ -243,7 +269,12 @@ class _$OnAppearImpl implements _OnAppear {
 }
 
 abstract class _OnAppear implements CreateFamilyAction {
-  const factory _OnAppear() = _$OnAppearImpl;
+  const factory _OnAppear(final BuildContext context) = _$OnAppearImpl;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$OnAppearImplCopyWith<_$OnAppearImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -284,7 +315,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -301,7 +332,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -316,7 +347,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -421,7 +452,7 @@ class _$FamilyServiceImpl implements _FamilyService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -438,7 +469,7 @@ class _$FamilyServiceImpl implements _FamilyService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -453,7 +484,7 @@ class _$FamilyServiceImpl implements _FamilyService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -559,7 +590,7 @@ class _$LoadingFamilyServiceImpl implements _LoadingFamilyService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -576,7 +607,7 @@ class _$LoadingFamilyServiceImpl implements _LoadingFamilyService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -591,7 +622,7 @@ class _$LoadingFamilyServiceImpl implements _LoadingFamilyService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -724,7 +755,7 @@ class _$SuccessFamilyServiceImpl implements _SuccessFamilyService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -741,7 +772,7 @@ class _$SuccessFamilyServiceImpl implements _SuccessFamilyService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -756,7 +787,7 @@ class _$SuccessFamilyServiceImpl implements _SuccessFamilyService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -895,7 +926,7 @@ class _$FailureFamilyServiceImpl implements _FailureFamilyService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -912,7 +943,7 @@ class _$FailureFamilyServiceImpl implements _FailureFamilyService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -927,7 +958,7 @@ class _$FailureFamilyServiceImpl implements _FailureFamilyService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
@@ -1072,7 +1103,7 @@ class _$ValidatorImpl implements _Validator {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() buttonTapped,
     required TResult Function() familyService,
     required TResult Function() loadingFamilyService,
@@ -1089,7 +1120,7 @@ class _$ValidatorImpl implements _Validator {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? buttonTapped,
     TResult? Function()? familyService,
     TResult? Function()? loadingFamilyService,
@@ -1104,7 +1135,7 @@ class _$ValidatorImpl implements _Validator {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? buttonTapped,
     TResult Function()? familyService,
     TResult Function()? loadingFamilyService,
