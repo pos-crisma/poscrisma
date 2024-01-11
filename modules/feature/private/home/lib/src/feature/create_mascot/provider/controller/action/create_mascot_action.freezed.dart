@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateMascotAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -29,7 +29,7 @@ mixin _$CreateMascotAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -40,7 +40,7 @@ mixin _$CreateMascotAction {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -109,6 +109,8 @@ abstract class _$$OnAppearImplCopyWith<$Res> {
   factory _$$OnAppearImplCopyWith(
           _$OnAppearImpl value, $Res Function(_$OnAppearImpl) then) =
       __$$OnAppearImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -118,31 +120,55 @@ class __$$OnAppearImplCopyWithImpl<$Res>
   __$$OnAppearImplCopyWithImpl(
       _$OnAppearImpl _value, $Res Function(_$OnAppearImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$OnAppearImpl(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnAppearImpl implements _OnAppear {
-  const _$OnAppearImpl();
+  const _$OnAppearImpl(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'CreateMascotAction.onAppear()';
+    return 'CreateMascotAction.onAppear(context: $context)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnAppearImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$OnAppearImpl &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnAppearImplCopyWith<_$OnAppearImpl> get copyWith =>
+      __$$OnAppearImplCopyWithImpl<_$OnAppearImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -150,13 +176,13 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(ErrorInfo errorInfo) failureService,
     required TResult Function() loadingService,
   }) {
-    return onAppear();
+    return onAppear(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -164,13 +190,13 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(ErrorInfo errorInfo)? failureService,
     TResult? Function()? loadingService,
   }) {
-    return onAppear?.call();
+    return onAppear?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -180,7 +206,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear();
+      return onAppear(context);
     }
     return orElse();
   }
@@ -233,7 +259,12 @@ class _$OnAppearImpl implements _OnAppear {
 }
 
 abstract class _OnAppear implements CreateMascotAction {
-  const factory _OnAppear() = _$OnAppearImpl;
+  const factory _OnAppear(final BuildContext context) = _$OnAppearImpl;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$OnAppearImplCopyWith<_$OnAppearImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -274,7 +305,7 @@ class _$HandlerTappedImpl implements _HandlerTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -288,7 +319,7 @@ class _$HandlerTappedImpl implements _HandlerTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -302,7 +333,7 @@ class _$HandlerTappedImpl implements _HandlerTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -432,7 +463,7 @@ class _$GenderTappedImpl implements _GenderTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -446,7 +477,7 @@ class _$GenderTappedImpl implements _GenderTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -460,7 +491,7 @@ class _$GenderTappedImpl implements _GenderTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -569,7 +600,7 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -583,7 +614,7 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -597,7 +628,7 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -728,7 +759,7 @@ class _$SuccessServiceImpl implements _SuccessService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -742,7 +773,7 @@ class _$SuccessServiceImpl implements _SuccessService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -756,7 +787,7 @@ class _$SuccessServiceImpl implements _SuccessService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -894,7 +925,7 @@ class _$FailureServiceImpl implements _FailureService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -908,7 +939,7 @@ class _$FailureServiceImpl implements _FailureService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -922,7 +953,7 @@ class _$FailureServiceImpl implements _FailureService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
@@ -1032,7 +1063,7 @@ class _$LoadingServiceImpl implements _LoadingService {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onAppear,
+    required TResult Function(BuildContext context) onAppear,
     required TResult Function() handlerTapped,
     required TResult Function(UserGender gender) genderTapped,
     required TResult Function() service,
@@ -1046,7 +1077,7 @@ class _$LoadingServiceImpl implements _LoadingService {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onAppear,
+    TResult? Function(BuildContext context)? onAppear,
     TResult? Function()? handlerTapped,
     TResult? Function(UserGender gender)? genderTapped,
     TResult? Function()? service,
@@ -1060,7 +1091,7 @@ class _$LoadingServiceImpl implements _LoadingService {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onAppear,
+    TResult Function(BuildContext context)? onAppear,
     TResult Function()? handlerTapped,
     TResult Function(UserGender gender)? genderTapped,
     TResult Function()? service,
