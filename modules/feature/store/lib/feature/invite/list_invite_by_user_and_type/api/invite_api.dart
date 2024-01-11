@@ -8,9 +8,7 @@ mixin ListInviteAPI {
     String userId,
     InviteUserType type,
   ) async {
-    final BaseRequest client = Modular.get();
-
-    return client
+    return baseRequest
         .get('/invite/user/${type.name}/$userId')
         .map(ListInviteByUserDTO.fromJson)
         .fold(Success.new, Failure.new);

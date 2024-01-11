@@ -7,93 +7,27 @@ import 'package:flutter/material.dart';
 import '../../dto/create_user_response_dto.dart';
 import '../../model/user_type.dart';
 
-sealed class UserMobileAction {
-  static UserMobileAction onAppear(
-          String parishId, String senderId, UserType type, String invite) =>
-      _OnAppear(
-          parishId: parishId, senderId: senderId, type: type, invite: invite);
-  static UserMobileAction handlerTapped(BuildContext context) =>
-      _HandlerTapped(context: context);
-  static UserMobileAction genderTapped(UserGender gender) =>
-      _GenderTapped(gender: gender);
-  static UserMobileAction backTapped() => _BackTapped();
-  static UserMobileAction service(BuildContext context) =>
-      _Service(context: context);
-  static UserMobileAction successService(
-          CreateUserResponseDTO createUserResponseDTO) =>
-      _SuccessService(createUserResponseDTO: createUserResponseDTO);
-  static UserMobileAction failureService(
-          ErrorInfo errorInfo, BuildContext context) =>
-      _FailureService(errorInfo: errorInfo, context: context);
-  static UserMobileAction loadingService() => _LoadingService();
+part 'user_mobile_action.freezed.dart';
 
-  T fold<T>(
-    T Function(_OnAppear action) onAppear,
-    T Function(_HandlerTapped action) handlerTapped,
-    T Function(_GenderTapped action) genderTapped,
-    T Function(_BackTapped action) backTapped,
-    T Function(_Service action) service,
-    T Function(_SuccessService action) success,
-    T Function(_FailureService action) failure,
-    T Function(_LoadingService action) loading,
-  ) =>
-      switch (this) {
-        _OnAppear action => onAppear(action),
-        _HandlerTapped action => handlerTapped(action),
-        _GenderTapped action => genderTapped(action),
-        _BackTapped action => backTapped(action),
-        _Service action => service(action),
-        _SuccessService action => success(action),
-        _FailureService action => failure(action),
-        _LoadingService action => loading(action),
-      };
+@freezed
+abstract class UserMobileAction with _$UserMobileAction {
+  const factory UserMobileAction.onAppear(
+    String parishId,
+    String senderId,
+    UserType type,
+    String invite,
+    BuildContext context,
+  ) = _OnAppear;
+
+  const factory UserMobileAction.handlerTapped(BuildContext context) =
+      _HandlerTapped;
+  const factory UserMobileAction.genderTapped(UserGender gender) =
+      _GenderTapped;
+  const factory UserMobileAction.backTapped() = _BackTapped;
+  const factory UserMobileAction.service(BuildContext context) = _Service;
+  const factory UserMobileAction.successService(
+      CreateUserResponseDTO createUserResponseDTO) = _SuccessService;
+  const factory UserMobileAction.failureService(
+      ErrorInfo errorInfo, BuildContext context) = _FailureService;
+  const factory UserMobileAction.loadingService() = _LoadingService;
 }
-
-class _OnAppear extends UserMobileAction {
-  final UserType type;
-  final String parishId;
-  final String senderId;
-  final String invite;
-
-  _OnAppear({
-    required this.type,
-    required this.parishId,
-    required this.senderId,
-    required this.invite,
-  });
-}
-
-class _GenderTapped extends UserMobileAction {
-  final UserGender gender;
-
-  _GenderTapped({required this.gender});
-}
-
-class _HandlerTapped extends UserMobileAction {
-  final BuildContext context;
-
-  _HandlerTapped({required this.context});
-}
-
-class _BackTapped extends UserMobileAction {}
-
-class _Service extends UserMobileAction {
-  final BuildContext context;
-
-  _Service({required this.context});
-}
-
-class _SuccessService extends UserMobileAction {
-  final CreateUserResponseDTO createUserResponseDTO;
-
-  _SuccessService({required this.createUserResponseDTO});
-}
-
-class _FailureService extends UserMobileAction {
-  final ErrorInfo errorInfo;
-  final BuildContext context;
-
-  _FailureService({required this.errorInfo, required this.context});
-}
-
-class _LoadingService extends UserMobileAction {}

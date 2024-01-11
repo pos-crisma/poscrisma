@@ -357,6 +357,14 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  get_it:
+    dependency: transitive
+    description:
+      name: get_it
+      sha256: d0b88dc35a7f97fd91fec0cf8f165abd97a57977968d8fc02ba0bc92e14ba07e
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.6.6"
   glassmorphism:
     dependency: transitive
     description:
@@ -365,6 +373,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  go_router:
+    dependency: transitive
+    description:
+      name: go_router
+      sha256: "3b40e751eaaa855179b416974d59d29669e750d2e50fcdb2b37f1cb0ca8c803a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "13.0.1"
   gradient_borders:
     dependency: transitive
     description:
@@ -507,6 +523,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   matcher:
     dependency: transitive
     description:

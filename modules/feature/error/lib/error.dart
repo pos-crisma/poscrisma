@@ -1,3 +1,3 @@
 library error;
 
-export './src/module/error_module.dart';
+export './src/feature/view/error_page.dart';

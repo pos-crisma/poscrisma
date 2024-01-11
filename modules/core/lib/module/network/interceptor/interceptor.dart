@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../config/config_config.dart';
 import '../../environment/environment.dart';
@@ -34,10 +35,10 @@ class NetworkInterceptor extends Interceptor {
     final response = err.response;
     if (response != null) {
       if (response.statusCode == 401) {
-        final Storage storage = Modular.get();
+        final Storage storage = GetIt.I.get();
 
         await storage.delete("@token");
-        Modular.to.navigate('/');
+        // Modular.to.navigate('/');
       }
     }
     handler.next(err);

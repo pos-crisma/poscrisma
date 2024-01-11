@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
@@ -33,38 +35,51 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
   @override
   Future<Effect> reduce(UserMobileAction action) async {
-    return action.fold(
-      (action) => _onAppear(
-        parishId: action.parishId,
-        senderId: action.senderId,
-        invite: action.invite,
-        type: action.type,
-      ),
-      (action) => _handlerTapped(action.context),
-      (action) => _genderTapped(action.gender),
-      (action) => _backButton(),
-      (action) => _service(action.context),
-      (action) => _success(action.createUserResponseDTO),
-      (action) => _failure(action.errorInfo, action.context),
-      (action) => _loading(),
+    // return action.fold(
+    //   (action) => _onAppear(
+    //     parishId: action.parishId,
+    //     senderId: action.senderId,
+    //     invite: action.invite,
+    //     type: action.type,
+    //   ),
+    //   (action) => _handlerTapped(action.context),
+    //   (action) => _genderTapped(action.gender),
+    //   (action) => _backButton(),
+    //   (action) => _service(action.context),
+    //   (action) => _success(action.createUserResponseDTO),
+    //   (action) => _failure(action.errorInfo, action.context),
+    //   (action) => _loading(),
+    // );
+
+    return action.when(
+      onAppear: _onAppear,
+      handlerTapped: _handlerTapped,
+      genderTapped: _genderTapped,
+      backTapped: _backButton,
+      service: _service,
+      successService: _success,
+      failureService: _failure,
+      loadingService: _loading,
     );
   }
 
-  _onAppear({
-    required String parishId,
-    required String senderId,
-    required String invite,
-    required UserType type,
-  }) {
+  FutureOr<Effect> _onAppear(
+    String parishId,
+    String senderId,
+    UserType type,
+    String invite,
+    BuildContext context,
+  ) {
     state.parishId = parishId;
     state.senderId = senderId;
     state.invite = invite;
     state.type = type;
+    state.context = context;
 
     return Effect.emit();
   }
 
-  _handlerTapped(BuildContext context) {
+  FutureOr<Effect> _handlerTapped(BuildContext context) {
     return switch (state.contentOnPage) {
       ContentOnPage.person => () {
           state.contentOnPage = ContentOnPage.password;
@@ -80,16 +95,16 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     }();
   }
 
-  _genderTapped(UserGender userGender) {
+  FutureOr<Effect> _genderTapped(UserGender userGender) {
     state.genderInput = userGender;
 
     return Effect.emit();
   }
 
-  _backButton() {
+  FutureOr<Effect> _backButton() {
     return switch (state.contentOnPage) {
       ContentOnPage.person => () {
-          return Effect.run(() async => Modular.to.pop());
+          return Effect.run(() async => state.context.pop());
         },
       ContentOnPage.password => () {
           state.contentOnPage = ContentOnPage.person;
@@ -102,9 +117,9 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     }();
   }
 
-  _service(BuildContext context) {
+  FutureOr<Effect> _service(BuildContext context) {
     return Effect.run(() async {
-      send(UserMobileAction.loadingService());
+      send(const UserMobileAction.loadingService());
 
       if (state.type != null && state.parishId != null) {
         final type = state.type?.name ?? '';
@@ -129,34 +144,34 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
           state.invite ?? "",
         ).fold(
           (success) {
-            send(UserMobileAction.loadingService());
+            send(const UserMobileAction.loadingService());
             send(UserMobileAction.successService(success));
           },
           (error) {
-            send(UserMobileAction.loadingService());
+            send(const UserMobileAction.loadingService());
             send(UserMobileAction.failureService(error, context));
           },
         );
       } else {
-        send(UserMobileAction.loadingService());
+        send(const UserMobileAction.loadingService());
       }
     });
   }
 
-  _success(CreateUserResponseDTO createUserResponseDTO) {
-    return Effect.run(() async => Modular.to.popAndPushNamed('/auth'));
+  FutureOr<Effect> _success(CreateUserResponseDTO createUserResponseDTO) {
+    return Effect.run(() async => state.context.go('/auth'));
   }
 
-  _failure(ErrorInfo errorInfo, BuildContext context) {
+  FutureOr<Effect> _failure(ErrorInfo errorInfo, BuildContext context) {
     return Effect.run(
-      () async => Modular.to.pushNamed(
+      () async => state.context.pushNamed(
         '/error/',
-        arguments: {
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
+            state.context.pop();
             UserMobileAction.service(context);
           },
           'titleButton': 'Tentar novamente',
@@ -167,7 +182,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     );
   }
 
-  _loading() {
+  FutureOr<Effect> _loading() {
     state.isLoading = !state.isLoading;
 
     return Effect.emit();

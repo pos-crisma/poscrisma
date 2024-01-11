@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:authenticator/src/feature/provider/dto/auth_request_dto.dart';
 import 'package:authenticator/src/feature/provider/dto/auth_response_dto.dart';
 import 'package:core/core.dart';
@@ -20,81 +22,87 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
 
   @override
   Future<Effect> reduce(AuthAction action) async {
-    return action.fold(
-      (action) => _onAppear(),
-      (action) => _backButton(),
-      (action) => _handlerTapped(),
-      (action) => _service(),
-      (action) => _success(action.responseDTO),
-      (action) => _failure(action.errorInfo),
-      (action) => _loading(),
+    return action.when(
+      onAppear: _onAppear,
+      backTapped: _backTapped,
+      handlerTapped: _handlerTapped,
+      service: _service,
+      successService: _success,
+      failureService: _failure,
+      loadingService: _loading,
+      moveToHome: _moveToHome,
     );
   }
 
-  _onAppear() {
+  FutureOr<Effect> _onAppear(BuildContext context) {
+    state.context = context;
     return Effect.emit();
   }
 
-  _handlerTapped() {
-    return Effect.send(AuthAction.service());
+  FutureOr<Effect> _handlerTapped() {
+    return Effect.send(const AuthAction.service());
   }
 
-  _backButton() {
+  FutureOr<Effect> _backTapped() {
     return Effect.emit();
   }
 
-  _service() {
+  FutureOr<Effect> _service() {
     return Effect.run(() async {
-      send(AuthAction.loadingService());
+      send(const AuthAction.loadingService());
 
       await AuthApi.send(AuthRequestDTO(
         nickName: state.nicknameController.text,
         password: state.passwordController.text,
       )).fold(
         (success) {
-          send(AuthAction.loadingService());
+          send(const AuthAction.loadingService());
           send(AuthAction.successService(success));
         },
         (error) {
-          send(AuthAction.loadingService());
+          send(const AuthAction.loadingService());
           send(AuthAction.failureService(error));
         },
       );
     });
   }
 
-  _success(AuthResponseDTO dto) {
+  FutureOr<Effect> _success(AuthResponseDTO dto) {
     return Effect.run(() async {
-      final Storage storage = Modular.get();
-      await storage.put<String>('@token', dto.accessToken);
-
-      Modular.to.navigate('/home/');
+      await hiveStorage.put<String>('@token', dto.accessToken);
+      send(const AuthAction.moveToHome());
     });
   }
 
-  _failure(ErrorInfo errorInfo) {
-    return Effect.run(
-      () async => Modular.to.pushNamed(
-        '/error/',
-        arguments: {
+  FutureOr<Effect> _failure(ErrorInfo errorInfo) {
+    return Effect.run(() async {
+      state.context.pushNamed(
+        'error',
+        queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => Modular.to.pop(),
+          'backButton': () => state.context.pop(),
           'onPress': () {
-            Modular.to.pop();
-            AuthAction.service();
+            state.context.pop();
+            send(const AuthAction.service());
           },
           'titleButton': 'Tentar novamente',
           'isShowButton': true,
-          'enableColor': Colors.amber,
+          'enableColor': Colors.transparent,
         },
-      ),
-    );
+      );
+    });
   }
 
-  _loading() {
+  FutureOr<Effect> _loading() {
     state.isLoading = !state.isLoading;
 
     return Effect.emit();
+  }
+
+  FutureOr<Effect> _moveToHome() {
+    return Effect.run(() async {
+      state.context.go('/home');
+    });
   }
 }

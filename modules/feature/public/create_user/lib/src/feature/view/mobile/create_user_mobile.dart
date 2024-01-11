@@ -1,5 +1,3 @@
-import 'package:core/core.dart';
-import 'package:create_user/src/feature/provider/dto/create_user_request_dto.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,49 +5,17 @@ import 'package:flutter/services.dart';
 
 import '../../provider/controller/action/user_mobile_action.dart';
 import '../../provider/controller/state/create_user_state.dart';
-import '../../provider/controller/store/user_mobile_reducer.dart';
+import '../../provider/controller/store/create_user_reducer.dart';
+import '../../provider/dto/create_user_request_dto.dart';
 import '../../provider/model/user_type.dart';
 
-class UserMobile extends StatefulWidget {
-  final UserType type;
-  final String parishId;
-  final String spenderId;
-  final String invite;
+class UserMobile extends StatelessWidget {
+  final UserMobileReducer viewStore;
 
   const UserMobile({
     super.key,
-    required this.type,
-    required this.parishId,
-    required this.spenderId,
-    required this.invite,
+    required this.viewStore,
   });
-
-  @override
-  State<UserMobile> createState() => _UserMobileState();
-}
-
-class _UserMobileState extends State<UserMobile> {
-  final UserMobileReducer viewStore = Modular.get();
-
-  @override
-  void initState() {
-    super.initState();
-
-    viewStore.send(
-      UserMobileAction.onAppear(
-        widget.parishId,
-        widget.spenderId,
-        widget.type,
-        widget.invite,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    viewStore.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +34,7 @@ class _UserMobileState extends State<UserMobile> {
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     onPressed: () =>
-                        viewStore.send(UserMobileAction.backTapped()),
+                        viewStore.send(const UserMobileAction.backTapped()),
                     child: Icon(
                       CupertinoIcons.arrow_left,
                       color: SystemMode.isDark(context)

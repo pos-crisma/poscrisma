@@ -8,6 +8,8 @@ interface class AuthState {
 
   bool isLoading;
 
+  late BuildContext context;
+
   AuthState({
     this.isLoading = false,
     required this.nicknameController,

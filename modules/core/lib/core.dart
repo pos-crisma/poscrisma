@@ -37,8 +37,10 @@ export 'module/dto/default_response_dto.dart';
 
 // *
 export 'package:dio/dio.dart';
-export 'package:flutter_modular/flutter_modular.dart';
+// export 'package:flutter_modular/flutter_modular.dart' show Module, Modular;
 export 'package:result_dart/result_dart.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:go_router/go_router.dart';
+export 'package:get_it/get_it.dart';

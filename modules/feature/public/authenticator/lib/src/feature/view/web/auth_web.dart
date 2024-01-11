@@ -9,26 +9,28 @@ import '../../provider/controller/action/auth_action.dart';
 import '../../provider/controller/store/auth_reducer.dart';
 
 class AuthWeb extends StatefulWidget {
-  const AuthWeb({super.key});
+  const AuthWeb({
+    super.key,
+    required this.viewStore,
+  });
+
+  final AuthReducer viewStore;
 
   @override
   State<AuthWeb> createState() => _AuthWebState();
 }
 
 class _AuthWebState extends State<AuthWeb> {
-  final AuthReducer viewStore = Modular.get();
   bool obscureText = true;
 
   @override
   void initState() {
     super.initState();
-
-    viewStore.send(AuthAction.onAppear());
   }
 
   @override
   void dispose() {
-    viewStore.dispose();
+    widget.viewStore.dispose();
     super.dispose();
   }
 
@@ -90,8 +92,8 @@ class _AuthWebState extends State<AuthWeb> {
 
                       // *
                       CustomTextFormField(
-                        focusNote: viewStore.value.nicknameFocus,
-                        controller: viewStore.value.nicknameController,
+                        focusNote: widget.viewStore.value.nicknameFocus,
+                        controller: widget.viewStore.value.nicknameController,
                         boxDecorationColor: SystemMode.isDark(context)
                             ? Colors.black
                             : Colors.grey.shade200,
@@ -105,8 +107,8 @@ class _AuthWebState extends State<AuthWeb> {
                         obscureText: obscureText,
                         obscureOnPress: () =>
                             setState(() => obscureText = !obscureText),
-                        focusNote: viewStore.value.passwordFocus,
-                        controller: viewStore.value.passwordController,
+                        focusNote: widget.viewStore.value.passwordFocus,
+                        controller: widget.viewStore.value.passwordController,
                         boxDecorationColor: SystemMode.isDark(context)
                             ? Colors.black
                             : Colors.grey.shade200,
@@ -162,7 +164,7 @@ class _AuthWebState extends State<AuthWeb> {
                             TextSpan(
                               text: 'acessar area de convite',
                               recognizer: TapGestureRecognizer()
-                                ..onTap = () => Modular.to.navigate('/invite/'),
+                                ..onTap = () => context.go('/invite/'),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -188,12 +190,12 @@ class _AuthWebState extends State<AuthWeb> {
                               : MediaQuery.of(context).padding.bottom,
                         ),
                         child: ValueListenableBuilder(
-                          valueListenable: viewStore,
+                          valueListenable: widget.viewStore,
                           builder: (context, value, _) => AnimatedButton(
                             isFocus: View.of(context).viewInsets.bottom > 0.0,
                             isDisabled: value.isLoading,
-                            onPress: () =>
-                                viewStore.send(AuthAction.handlerTapped()),
+                            onPress: () => widget.viewStore
+                                .send(AuthAction.handlerTapped()),
                             enableColor: Colors.deepPurple.shade300,
                             disableColor: SystemMode.isDark(context)
                                 ? Colors.deepPurple.shade500

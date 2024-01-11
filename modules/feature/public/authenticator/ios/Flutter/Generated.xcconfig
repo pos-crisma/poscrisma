@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/Users/rodrigosouza/Documents/developement/flutter
-FLUTTER_APPLICATION_PATH=/Users/rodrigosouza/Documents/developement/poscrisma/poscrisma/modules/feature/authenticator
+FLUTTER_APPLICATION_PATH=/Users/rodrigosouza/Documents/developement/poscrisma/poscrisma/modules/feature/public/authenticator
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build

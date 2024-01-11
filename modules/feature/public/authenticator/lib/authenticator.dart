@@ -1,3 +1,3 @@
 library authenticator;
 
-export './src/module/auth_module.dart';
+export './src/feature/view/auth_page.dart';

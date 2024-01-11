@@ -3,14 +3,16 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:parish/src/feature/provider/controller/action/parish_action.dart';
-import 'package:parish/src/feature/provider/controller/store/parish_store.dart';
 
-class ParishMobile extends StatefulWidget {
+import '../../provider/controller/store/parish_store.dart';
+
+class ParishMobile extends StatelessWidget {
   final String type;
   final String parishId;
   final String senderId;
   final String invite;
+
+  final ParishReducer viewStore;
 
   const ParishMobile({
     super.key,
@@ -18,21 +20,8 @@ class ParishMobile extends StatefulWidget {
     required this.senderId,
     required this.type,
     required this.invite,
+    required this.viewStore,
   });
-
-  @override
-  State<ParishMobile> createState() => _ParishMobileState();
-}
-
-class _ParishMobileState extends State<ParishMobile> {
-  final ParishReducer viewStore = Modular.get();
-
-  @override
-  void initState() {
-    super.initState();
-
-    viewStore.send(ParishAction.onAppear(widget.parishId));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +42,7 @@ class _ParishMobileState extends State<ParishMobile> {
                   leading: CupertinoButton(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    onPressed: () => Modular.to.pop(),
+                    onPressed: () => Navigator.of(context).pop(),
                     child: Icon(
                       CupertinoIcons.clear_thick_circled,
                       color: SystemMode.isDark(context)
@@ -165,11 +154,11 @@ class _ParishMobileState extends State<ParishMobile> {
             ),
             width: MediaQuery.of(context).size.width,
             child: AnimatedButton(
-              onPress: () => Modular.to.pushNamed('/create_user/', arguments: {
-                "parishId": widget.parishId,
-                "senderId": widget.senderId,
-                "type": widget.type,
-                "invite": widget.invite,
+              onPress: () => context.goNamed('create_user', extra: {
+                "parishId": parishId,
+                "senderId": senderId,
+                "type": type,
+                "invite": invite,
               }),
               enableColor: Colors.deepPurple.shade300,
               disableColor: Colors.deepPurple.shade100,

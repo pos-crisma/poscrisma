@@ -31,6 +31,8 @@ interface class CreateUserState {
   String? senderId;
   String? invite;
 
+  late BuildContext context;
+
   CreateUserState({
     this.contentOnPage = ContentOnPage.person,
     this.isLoading = false,

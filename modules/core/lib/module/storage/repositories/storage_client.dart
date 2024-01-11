@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<List> getInfo(String key) async {
-  final storage = Modular.get<Storage>();
+  final Storage storage = GetIt.I.get();
 
   return await storage.get("@token");
 }

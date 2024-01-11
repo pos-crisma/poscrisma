@@ -21,7 +21,7 @@ class SplashScreenPage extends StatelessWidget {
 
     Timer(
       Durations.short1,
-      () => Modular.to.navigate('/auth/'),
+      () => context.go('/auth/'),
     );
 
     return Responsive(

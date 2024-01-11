@@ -1,7 +1,8 @@
-import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'app_router.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -10,10 +11,9 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'App Acampamento',
-      // themeMode: ThemeMode.,
       theme: LightTheme.theme,
       darkTheme: DarkTheme.theme,
-      routerConfig: Modular.routerConfig,
+      routerConfig: appRouter,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
