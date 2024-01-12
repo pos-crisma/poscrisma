@@ -19,11 +19,11 @@ class ErrorMobile extends StatelessWidget {
 
   final Color? enableColor;
 
-  final Function() backButton;
+  final VoidCallback? backButton;
 
   final bool isShowButton;
   final String titleButton;
-  final Function() onPress;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class ErrorMobile extends StatelessWidget {
                   leading: CupertinoButton(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    onPressed: backButton(),
+                    onPressed: backButton,
                     child: Row(
                       children: [
                         Icon(
@@ -138,7 +138,11 @@ class ErrorMobile extends StatelessWidget {
                         : MediaQuery.of(context).padding.bottom,
                   ),
                   child: AnimatedButton(
-                    onPress: onPress(),
+                    onPress: () {
+                      if (onPress != null) {
+                        onPress!();
+                      }
+                    },
                     enableColor: enableColor ?? Colors.deepPurple.shade300,
                     disabledChild: const CupertinoActivityIndicator(),
                     child: Text(

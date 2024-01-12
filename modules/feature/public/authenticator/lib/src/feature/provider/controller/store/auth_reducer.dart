@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:authenticator/src/feature/provider/dto/auth_request_dto.dart';
 import 'package:authenticator/src/feature/provider/dto/auth_response_dto.dart';
 import 'package:core/core.dart';
+import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/auth_api.dart';
@@ -76,20 +77,35 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo) {
     return Effect.run(() async {
-      state.context.pushNamed(
-        'error',
-        queryParameters: {
-          'title': errorInfo.response.toString(),
-          'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => state.context.pop(),
-          'onPress': () {
-            state.context.pop();
-            send(const AuthAction.service());
+      // state.context.pushNamed(
+      //   'error',
+      //   queryParameters: {
+      //     'title': errorInfo.response.toString(),
+      //     'content': errorInfo.error?.message.toString() ?? "",
+      //     'backButton': () => state.context.pop(),
+      //     'onPress': () {
+      //       state.context.pop();
+      //       send(const AuthAction.service());
+      //     },
+      //     'titleButton': 'Tentar novamente',
+      //     'isShowButton': true,
+      //     'enableColor': Colors.transparent,
+      //   },
+      // );
+
+      Navigator.of(state.context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return ErrorPage(
+              title: errorInfo.response.toString(),
+              content: errorInfo.error?.message.toString() ?? "",
+              backButton: () => Navigator.of(state.context).pop(),
+              onPress: null,
+              isShowButton: false,
+              enableColor: Colors.transparent,
+            );
           },
-          'titleButton': 'Tentar novamente',
-          'isShowButton': true,
-          'enableColor': Colors.transparent,
-        },
+        ),
       );
     });
   }

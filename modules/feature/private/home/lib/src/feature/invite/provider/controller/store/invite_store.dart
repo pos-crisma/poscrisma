@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
@@ -84,19 +85,34 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           errorInfo.message?.toString().replaceAll("[", "").replaceAll("]", "");
       final errorMessage = errorInfo.error?.message.toString();
 
-      state.context.pushNamed(
-        '/error/',
-        queryParameters: {
-          'title': errorMessage,
-          'content': (message ?? ""),
-          'backButton': () => state.context.pop(),
-          'onPress': () {
-            state.context.pop();
+      // state.context.pushNamed(
+      //   'error',
+      //   queryParameters: {
+      //     'title': errorMessage,
+      //     'content': (message ?? ""),
+      //     'backButton': () => state.context.pop(),
+      //     'onPress': () {
+      //       state.context.pop();
+      //     },
+      //     'titleButton': 'Tentar novamente',
+      //     'isShowButton': false,
+      //     'enableColor': Colors.transparent,
+      //   },
+      // );
+
+      Navigator.of(state.context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return ErrorPage(
+              title: errorMessage ?? "",
+              content: message ?? "",
+              backButton: () => Navigator.of(state.context).pop(),
+              onPress: null,
+              isShowButton: false,
+              enableColor: Colors.transparent,
+            );
           },
-          'titleButton': 'Tentar novamente',
-          'isShowButton': false,
-          'enableColor': Colors.transparent,
-        },
+        ),
       );
     });
   }
