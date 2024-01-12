@@ -290,6 +290,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  firebase_crashlytics:
+    dependency: transitive
+    description:
+      name: firebase_crashlytics
+      sha256: "5125b7f3fcef2bfdd7e071afe7edcefd9597968003e44e073456c773d91694ee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.9"
+  firebase_crashlytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_crashlytics_platform_interface
+      sha256: "359197344def001589c84f8d1d57c05f6e2e773f559205610ce58c25e2045a57"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.16"
+  firebase_messaging:
+    dependency: transitive
+    description:
+      name: firebase_messaging
+      sha256: "980259425fa5e2afc03e533f33723335731d21a56fd255611083bceebf4373a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "14.7.10"
+  firebase_messaging_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_messaging_platform_interface
+      sha256: "54e283a0e41d81d854636ad0dad73066adc53407a60a7c3189c9656e2f1b6107"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.18"
+  firebase_messaging_web:
+    dependency: transitive
+    description:
+      name: firebase_messaging_web
+      sha256: "90dc7ed885e90a24bb0e56d661d4d2b5f84429697fd2cbb9e5890a0ca370e6f4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.5.18"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -547,6 +587,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  onesignal_flutter:
+    dependency: transitive
+    description:
+      name: onesignal_flutter
+      sha256: e47b739747bffb6c414b176f156dad8d179ba35c64c2a1dec643876aaea4c3e8
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.4"
   package_info_plus:
     dependency: transitive
     description:

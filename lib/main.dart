@@ -12,6 +12,11 @@ Future<void> main() async {
   final analitycs = instanceAnalitycs();
   analitycs.logAppOpen();
   usePathUrlStrategy();
+  crashlitycsListener();
+
+  await MessagingInstance().initNotification();
+
+  PushNotification.initialize();
 
   return runApp(const AppWidget());
 }

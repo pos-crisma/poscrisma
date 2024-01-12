@@ -6,6 +6,11 @@ export './container/container.dart';
 export './firebase/config.dart';
 export './firebase/instance_analitycs.dart';
 export './firebase/instance_firestore.dart';
+export './firebase/instance_crashlitycs.dart';
+export './firebase/instance_messaging.dart';
+
+// *
+export './onesignal/notification.dart';
 
 // *
 export './manager/store.dart';
@@ -43,3 +48,6 @@ export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:go_router/go_router.dart';
+
+// !
+// export 'package:onesignal_flutter/onesignal_flutter.dart';
