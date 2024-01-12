@@ -200,6 +200,7 @@ class HomeMobile extends StatelessWidget {
                       valueListenable: viewStore,
                       builder: (context, value, child) {
                         if (value.user != null &&
+                            value.user!.family != null &&
                             value.user!.permissions != null &&
                             value.user!.permissions!
                                 .contains('manager_family') &&
