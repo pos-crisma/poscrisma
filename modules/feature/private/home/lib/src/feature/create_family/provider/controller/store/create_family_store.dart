@@ -119,7 +119,7 @@ class CreateFamilyReducer
         familyId: family.id,
         year: state.yearFamilyController.text,
       )).fold(
-        (_) => state.context.pushReplacement('home'),
+        (_) => state.context.pushReplacementNamed('home'),
         (f) => send(CreateFamilyAction.failureFamilyService(f)),
       );
     });
@@ -129,22 +129,6 @@ class CreateFamilyReducer
     value.status = CreateFamilyServiceStatus.failure;
 
     return Effect.run(() async {
-      // state.context.pushNamed(
-      //   'error',
-      //   queryParameters: {
-      //     'title': errorInfo.response.toString(),
-      //     'content': errorInfo.error?.message.toString() ?? "",
-      //     'backButton': () => state.context.pop(),
-      //     'onPress': () {
-      //       state.context.pop();
-      //       const CreateFamilyAction.familyService();
-      //     },
-      //     'titleButton': 'Tentar novamente',
-      //     'isShowButton': false,
-      //     'enableColor': Colors.amber,
-      //   },
-      // );
-
       Navigator.of(state.context).push(
         MaterialPageRoute(
           builder: (context) {

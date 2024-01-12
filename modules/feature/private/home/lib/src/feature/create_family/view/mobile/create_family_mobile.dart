@@ -15,6 +15,7 @@ class CreateFamilyMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    viewStore.send(CreateFamilyAction.onAppear(context));
     return Scaffold(
       body: Column(
         children: [

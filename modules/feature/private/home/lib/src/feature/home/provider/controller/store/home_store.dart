@@ -86,22 +86,6 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     value.status = HomeServiceStatus.failure;
 
     return Effect.run(() async {
-      // state.context.pushNamed(
-      //   'error',
-      //   queryParameters: {
-      //     'title': errorInfo.response.toString(),
-      //     'content': errorInfo.error?.message.toString() ?? "",
-      //     'backButton': () => state.context.pop(),
-      //     'onPress': () {
-      //       state.context.pop();
-      //       const HomeAction.userService();
-      //     },
-      //     'titleButton': 'Tentar novamente',
-      //     'isShowButton': false,
-      //     'enableColor': Colors.transparent,
-      //   },
-      // );
-
       Navigator.of(state.context).push(
         MaterialPageRoute(
           builder: (context) {
