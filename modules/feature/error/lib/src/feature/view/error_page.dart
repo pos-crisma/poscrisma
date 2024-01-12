@@ -22,11 +22,11 @@ class ErrorPage extends StatelessWidget {
 
   final Color? enableColor;
 
-  final Function() backButton;
+  final VoidCallback? backButton;
 
   final bool isShowButton;
   final String titleButton;
-  final Function()? onPress;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +38,16 @@ class ErrorPage extends StatelessWidget {
 
     return Responsive(
       mobile: ErrorMobile(
-        backButton: () => backButton,
-        onPress: () => onPress,
+        backButton: backButton,
+        onPress: onPress,
         title: title,
         content: content,
         isShowButton: isShowButton,
         titleButton: titleButton,
       ),
       desktop: ErrorMobile(
-        backButton: () => backButton,
-        onPress: () => onPress,
+        backButton: backButton,
+        onPress: onPress,
         title: title,
         content: content,
         isShowButton: isShowButton,

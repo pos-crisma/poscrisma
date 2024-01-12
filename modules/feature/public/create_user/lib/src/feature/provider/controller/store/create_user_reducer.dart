@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/create_user_api.dart';
@@ -163,23 +164,22 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
   }
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo, BuildContext context) {
-    return Effect.run(
-      () async => state.context.pushNamed(
-        '/error/',
-        queryParameters: {
-          'title': errorInfo.response.toString(),
-          'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => state.context.pop(),
-          'onPress': () {
-            state.context.pop();
-            UserMobileAction.service(context);
+    return Effect.run(() async {
+      Navigator.of(state.context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return ErrorPage(
+              title: errorInfo.response.toString(),
+              content: errorInfo.error?.message.toString() ?? "",
+              backButton: () => Navigator.of(state.context).pop(),
+              onPress: null,
+              isShowButton: false,
+              enableColor: Colors.transparent,
+            );
           },
-          'titleButton': 'Tentar novamente',
-          'isShowButton': true,
-          'enableColor': Colors.amber,
-        },
-      ),
-    );
+        ),
+      );
+    });
   }
 
   FutureOr<Effect> _loading() {
@@ -188,3 +188,19 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
     return Effect.emit();
   }
 }
+
+      // state.context.pushNamed(
+      //   '/error/',
+      //   queryParameters: {
+      //     'title': errorInfo.response.toString(),
+      //     'content': errorInfo.error?.message.toString() ?? "",
+      //     'backButton': () => state.context.pop(),
+      //     'onPress': () {
+      //       state.context.pop();
+      //       UserMobileAction.service(context);
+      //     },
+      //     'titleButton': 'Tentar novamente',
+      //     'isShowButton': true,
+      //     'enableColor': Colors.amber,
+      //   },
+      // ),

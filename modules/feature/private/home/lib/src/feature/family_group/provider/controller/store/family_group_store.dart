@@ -111,7 +111,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
 
     return Effect.run(() async {
       state.context.pushNamed(
-        '/error/',
+        'error',
         queryParameters: {
           'title': errorInfo.response.toString(),
           'content': errorInfo.error?.message.toString() ?? "",

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/invite_api.dart';
@@ -85,20 +86,35 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     state.status = InviteServiceStatus.failure;
 
     return Effect.runAndEmit(() async {
-      state.context.pushNamed(
-        '/error/',
-        queryParameters: {
-          'title': errorInfo.response.toString(),
-          'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => state.context.pop(),
-          'onPress': () {
-            state.context.pop();
-            const InviteAction.inviteService();
+      // state.context.pushNamed(
+      //   'error',
+      //   queryParameters: {
+      //     'title': errorInfo.response.toString(),
+      //     'content': errorInfo.error?.message.toString() ?? "",
+      //     'backButton': () => state.context.pop(),
+      //     'onPress': () {
+      //       state.context.pop();
+      //       const InviteAction.inviteService();
+      //     },
+      //     'titleButton': 'Tentar novamente',
+      //     'isShowButton': false,
+      //     'enableColor': Colors.transparent,
+      //   },
+      // );
+
+      Navigator.of(state.context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return ErrorPage(
+              title: errorInfo.response.toString(),
+              content: errorInfo.error?.message.toString() ?? "",
+              backButton: () => Navigator.of(state.context).pop(),
+              onPress: null,
+              isShowButton: false,
+              enableColor: Colors.transparent,
+            );
           },
-          'titleButton': 'Tentar novamente',
-          'isShowButton': false,
-          'enableColor': Colors.transparent,
-        },
+        ),
       );
     });
   }

@@ -251,31 +251,36 @@ class CreateFamilyMobile extends StatelessWidget {
                       : 8
                   : MediaQuery.of(context).padding.bottom,
             ),
-            child: AnimatedButton(
-              isFocus: View.of(context).viewInsets.bottom > 0.0,
-              isDisabled: false,
-              onPress: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-                viewStore.send(const CreateFamilyAction.buttonTapped());
-              },
-              enableColor: Colors.deepPurple.shade300,
-              disableColor: ColorMode.setColor(
-                context: context,
-                light: Colors.deepPurple.shade100,
-                dark: Colors.deepPurple.shade500,
-              ),
-              disabledChild: const CupertinoActivityIndicator(),
-              child: Text(
-                'Proximo',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium! //
-                    .copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+            child: ValueListenableBuilder(
+                valueListenable: viewStore,
+                builder: (context, value, _) {
+                  return AnimatedButton(
+                    isFocus: View.of(context).viewInsets.bottom > 0.0,
+                    isDisabled:
+                        value.status == CreateFamilyServiceStatus.loading,
+                    onPress: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      viewStore.send(const CreateFamilyAction.buttonTapped());
+                    },
+                    enableColor: Colors.deepPurple.shade300,
+                    disableColor: ColorMode.setColor(
+                      context: context,
+                      light: Colors.deepPurple.shade100,
+                      dark: Colors.deepPurple.shade500,
                     ),
-              ),
-            ),
+                    disabledChild: const CupertinoActivityIndicator(),
+                    child: Text(
+                      'Criar sua familia',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium! //
+                          .copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                    ),
+                  );
+                }),
           ),
         ],
       ),

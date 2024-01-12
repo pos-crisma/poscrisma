@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
 import '../../api/create_family_api.dart';
+import '../../dto/create_family_group_request_dto.dart';
 import '../../dto/create_family_request_dto.dart';
 import '../../dto/create_family_response_dto.dart';
 import '../action/create_family_action.dart';
@@ -111,7 +113,15 @@ class CreateFamilyReducer
 
   FutureOr<Effect> _successFamily(CreateFamilyResponseDTO family) {
     return Effect.run(() async {
-      state.context.pushReplacement('home');
+      // TODO: Need to upgrade this code
+
+      await CreateFamilyAPI.createGroupFamily(CreateFamilyGroupRequestDTO(
+        familyId: family.id,
+        year: state.yearFamilyController.text,
+      )).fold(
+        (_) => state.context.pushReplacement('home'),
+        (f) => send(CreateFamilyAction.failureFamilyService(f)),
+      );
     });
   }
 
@@ -119,20 +129,35 @@ class CreateFamilyReducer
     value.status = CreateFamilyServiceStatus.failure;
 
     return Effect.run(() async {
-      state.context.pushNamed(
-        '/error/',
-        queryParameters: {
-          'title': errorInfo.response.toString(),
-          'content': errorInfo.error?.message.toString() ?? "",
-          'backButton': () => state.context.pop(),
-          'onPress': () {
-            state.context.pop();
-            const CreateFamilyAction.familyService();
+      // state.context.pushNamed(
+      //   'error',
+      //   queryParameters: {
+      //     'title': errorInfo.response.toString(),
+      //     'content': errorInfo.error?.message.toString() ?? "",
+      //     'backButton': () => state.context.pop(),
+      //     'onPress': () {
+      //       state.context.pop();
+      //       const CreateFamilyAction.familyService();
+      //     },
+      //     'titleButton': 'Tentar novamente',
+      //     'isShowButton': false,
+      //     'enableColor': Colors.amber,
+      //   },
+      // );
+
+      Navigator.of(state.context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return ErrorPage(
+              title: errorInfo.response.toString(),
+              content: errorInfo.error?.message.toString() ?? "",
+              backButton: () => Navigator.of(state.context).pop(),
+              onPress: null,
+              isShowButton: false,
+              enableColor: Colors.transparent,
+            );
           },
-          'titleButton': 'Tentar novamente',
-          'isShowButton': false,
-          'enableColor': Colors.amber,
-        },
+        ),
       );
     });
   }

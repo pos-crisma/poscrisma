@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
   
+  error:
+    path: "../../error"
+    
   core:
     path: "../../../core"
   design:
