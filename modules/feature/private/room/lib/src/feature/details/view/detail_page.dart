@@ -20,7 +20,10 @@ void showDetail(
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (context) => ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
         child: DetailPage(
           room: room,
         ),
