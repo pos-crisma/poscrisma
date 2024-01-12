@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>aps-environment</key>
+	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>webcredentials:example.com</string>
@@ -9,6 +11,11 @@
 		<string>applinks:https://poscrisma.ddns.com.br/</string>
 		<string>applinks:https://poscrisma-be163.web.app/</string>
 		<string>applinks:poscrisma-be163.web.app</string>
+	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.org.poscrisma.poscrisma.onesignal</string>
+		<string>group.org.poscrisma.poscrisma.firebase</string>
 	</array>
 </dict>
 </plist>
