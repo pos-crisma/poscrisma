@@ -36,14 +36,11 @@ class _RoomMobileState extends State<RoomMobile> {
             valueListenable: viewStore,
             builder: (context, value, child) {
               return SliverAppBar(
-                backgroundColor: value.isCenterTitle
-                    ? ColorMode.setColor(
-                        context: context,
-                        light: lightBackground,
-                        dark: darkBackground,
-                      )
-                    : Colors.deepPurple,
-                // surfaceTintColor: Colors.transparent,
+                backgroundColor: ColorMode.setColor(
+                  context: context,
+                  light: lightBackground,
+                  dark: darkBackground,
+                ),
                 elevation: 0,
                 stretch: true,
                 pinned: true,
