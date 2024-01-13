@@ -70,14 +70,14 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       if (inviteCode != null && fromList) {
         await onShare(
           "Envie esse codigo ao seu jovem",
-          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/invite/$inviteCode",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/$inviteCode",
         );
 
         // send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite != null) {
         await onShare(
           "Envie esse codigo ao seu jovem",
-          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/invite/$invite.inviteCode",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/${invite.inviteCode}",
         );
         // send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite == null) {

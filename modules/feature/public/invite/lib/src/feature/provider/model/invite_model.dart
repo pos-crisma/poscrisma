@@ -5,6 +5,7 @@ import 'dart:convert';
 enum InviteType {
   CreateParish,
   CreateUser,
+  CreateParent,
 }
 
 enum UserType {
@@ -69,7 +70,9 @@ class Invite {
         parishId: json["parishId"],
         senderId: json["senderId"],
         type: InviteType.values.byName(json["type"]),
-        typeUser: json["type_user"] == null ? null : UserType.values.byName(json["type_user"]),
+        typeUser: json["type_user"] == null
+            ? null
+            : UserType.values.byName(json["type_user"]),
         status: json["status"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),

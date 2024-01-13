@@ -70,7 +70,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
     return Effect.runAndEmit(() async {
       await onShare(
         "Envie esse convite ao seu familiar",
-        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/invite/${dto.inviteCode}",
+        "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/${dto.inviteCode}",
       );
 
       send(const InviteAction.clipboardAdded());
@@ -180,7 +180,7 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
 
       await onShare(
         "Envie esse codigo ao $inviteSelector",
-        "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/invite/$inviteCode",
+        "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/$inviteCode",
       );
       send(const InviteAction.clipboardAdded());
     });
