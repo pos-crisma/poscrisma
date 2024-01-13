@@ -10,7 +10,6 @@ Future<void> main() async {
   await firebaseConfiguration();
   final analitycs = instanceAnalitycs();
   analitycs.logAppOpen();
-  // usePathUrlStrategy();
   crashlitycsListener();
 
   await MessagingInstance().initNotification();

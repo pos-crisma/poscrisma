@@ -77,7 +77,7 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       } else if (invite != null) {
         await onShare(
           "Envie esse codigo ao seu jovem",
-          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/##/invite/${invite.inviteCode}",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#/invite/${invite.inviteCode}",
         );
         // send(const FamilyGroupAction.inviteToClipboard());
       } else if (invite == null) {
