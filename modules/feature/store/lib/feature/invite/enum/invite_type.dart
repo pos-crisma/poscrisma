@@ -15,4 +15,5 @@ enum InviteUserType {
 enum InviteStatus {
   active,
   used,
+  inactive,
 }

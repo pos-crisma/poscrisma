@@ -12,8 +12,6 @@ Future<void> main() async {
   analitycs.logAppOpen();
   crashlitycsListener();
 
-  await MessagingInstance().initNotification();
-
   PushNotification.initialize();
 
   return runApp(const AppWidget());

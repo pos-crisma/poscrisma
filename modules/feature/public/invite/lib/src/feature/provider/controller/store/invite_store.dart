@@ -71,7 +71,8 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         });
       }
 
-      if (invite.type == InviteType.CreateUser) {
+      if (invite.type == InviteType.CreateUser ||
+          invite.type == InviteType.CreateParent) {
         state.context.pushReplacementNamed('create_user', queryParameters: {
           "parishId": invite.parishId,
           "senderId": invite.senderId,
