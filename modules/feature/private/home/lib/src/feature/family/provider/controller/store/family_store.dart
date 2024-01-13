@@ -64,7 +64,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       if (invite != null) {
         await onShare(
           "Envie esse convite ao seu familiar",
-          "Com esse link você poderá entrar no aplicativo: http://poscrisma.ddns.com.br/invite/${invite.inviteCode}",
+          "Com esse link você poderá entrar no aplicativo: https://poscrisma-be163.web.app/#invite/${invite.inviteCode}",
         );
         // send(const FamilyAction.inviteToClipboard());
       }
