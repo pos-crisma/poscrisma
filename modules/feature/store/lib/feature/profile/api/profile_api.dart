@@ -4,7 +4,9 @@ import '../model/profile.dart';
 
 mixin ProfileAPI {
   static AsyncResult<ProfileDTO, ErrorInfo> getProfile() async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .get('/auth/profile')
         .map(ProfileDTO.fromJson) //
         .map(_storage)

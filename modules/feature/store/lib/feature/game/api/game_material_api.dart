@@ -6,14 +6,18 @@ import '../dto/game_material_response_dto.dart';
 mixin GameMaterialAPI {
   static AsyncResult<DefaultResponseDTO, ErrorInfo> store(
       CreateGameMaterialRequestDTO dto) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/game/material', data: dto.toJson())
         .map(DefaultResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
   }
 
   static AsyncResult<GameMaterialResponseDTO, ErrorInfo> get() async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .get('/game/material')
         .map(GameMaterialResponseDTO.fromJson) //
         .map(_storage)

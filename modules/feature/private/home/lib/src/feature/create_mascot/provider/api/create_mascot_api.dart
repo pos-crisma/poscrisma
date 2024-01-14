@@ -6,7 +6,9 @@ import '../dto/create_mascot_response_dto.dart';
 mixin CreateMascotApi {
   static AsyncResult<CreateMascotResponseDTO, ErrorInfo> send(
       CreateMascotRequestDTO dto, String userId) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/mascot/$userId', data: dto.toJson())
         .map(CreateMascotResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
