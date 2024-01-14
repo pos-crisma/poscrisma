@@ -5,7 +5,9 @@ import '../dto/game_response_dto.dart';
 
 mixin GameAPI {
   static AsyncResult<GameResponseDTO, ErrorInfo> get() async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .get('/games')
         .map(GameResponseDTO.fromJson) //
         .map(_storage)
@@ -14,7 +16,9 @@ mixin GameAPI {
 
   static AsyncResult<DefaultResponseDTO, ErrorInfo> store(
       CreateGameRequestDTO dto) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/game', data: dto.toJson())
         .map(DefaultResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

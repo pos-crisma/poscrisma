@@ -6,7 +6,9 @@ import '../model/mascot.dart';
 
 mixin MascotApi {
   static AsyncResult<MascotsResponseDTO, ErrorInfo> get(String userId) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .get('/mascot/user/$userId')
         .map(MascotsResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
@@ -16,7 +18,9 @@ mixin MascotApi {
     String mascotId,
     MascotUpdateDTO dto,
   ) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .patch('/mascot/$mascotId', data: dto.toJson())
         .map(Mascot.fromJson)
         .fold(Success.new, Failure.new);

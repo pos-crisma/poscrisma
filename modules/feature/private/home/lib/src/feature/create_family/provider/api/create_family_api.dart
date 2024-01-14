@@ -9,7 +9,9 @@ mixin CreateFamilyAPI {
     CreateFamilyRequestDTO dto, {
     required String currentUserId,
   }) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/family/$currentUserId', data: dto.toJson())
         .map(CreateFamilyResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
@@ -17,7 +19,9 @@ mixin CreateFamilyAPI {
 
   static AsyncResult<DefaultResponseDTO, ErrorInfo> createGroupFamily(
       CreateFamilyGroupRequestDTO dto) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/group', data: dto.toJson())
         .map(DefaultResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

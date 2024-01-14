@@ -6,7 +6,9 @@ import '../dto/create_user_response_dto.dart';
 mixin CreateUserApi {
   static AsyncResult<CreateUserResponseDTO, ErrorInfo> send(
       CreateUserRequestDTO dto, String invite) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/invite/accept/$invite', data: dto.toJson())
         .map(CreateUserResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

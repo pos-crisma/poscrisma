@@ -6,7 +6,9 @@ import '../dto/invite_response_dto.dart';
 mixin InviteAPI {
   static AsyncResult<InviteResponseDTO, ErrorInfo> createInvite(
       InviteRequestDTO dto) async {
-    return baseRequest
+    final request = await baseRequest;
+
+    return request
         .post('/invite', data: dto.toJson())
         .map(InviteResponseDTO.fromJson)
         .fold(Success.new, Failure.new);

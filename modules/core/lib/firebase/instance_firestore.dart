@@ -11,5 +11,7 @@ FirebaseFirestore instanceStore() {
 
 DocumentReference version =
     FirebaseFirestore.instance.collection('setting').doc("version");
+DocumentReference environment =
+    FirebaseFirestore.instance.collection('setting').doc("environment");
 CollectionReference schedule =
     FirebaseFirestore.instance.collection('schedule');

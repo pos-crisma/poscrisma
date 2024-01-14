@@ -716,203 +716,213 @@ class HomeMobile extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: viewStore,
             builder: (context, value, child) {
-              return SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    value.user != null && value.user!.permissions != null
-                        ? const SizedBox(height: 8)
-                        : Container(),
+              return value.user != null &&
+                      value.user?.typeUser.toLowerCase() != 'young'
+                  ? SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          value.user != null && value.user!.permissions != null
+                              ? const SizedBox(height: 8)
+                              : Container(),
 
-                    //
-                    value.user != null && value.user!.permissions != null
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              'Punimentos', // TODO: move to i18n
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge! //
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
+                          //
+                          value.user != null && value.user!.permissions != null
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Text(
+                                    'Punimentos', // TODO: move to i18n
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge! //
+                                        .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
+                                )
+                              : Container(),
+
+                          //
+                          const SizedBox(height: 8),
+
+                          //
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  value.user != null &&
+                                          value.user!.permissions != null &&
+                                          value.user!.permissions!
+                                              .contains('view_punish')
+                                      ? CupertinoButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {},
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.grey.shade800,
+                                                ),
+                                                child: Icon(
+                                                  Icons.policy_rounded,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade700,
+                                                    dark: Colors.grey.shade300,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                "Lista\npunimentos",
+                                                textAlign: TextAlign.center,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall! //
+                                                    .copyWith(),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(),
+                                  value.user != null &&
+                                          value.user!.permissions != null &&
+                                          value.user!.permissions!
+                                              .contains('view_punish')
+                                      ? const SizedBox(width: 16)
+                                      : Container(),
+
+                                  // *
+                                  value.user != null &&
+                                          value.user!.permissions != null &&
+                                          value.user!.permissions!
+                                              .contains('jugde_punish')
+                                      ? CupertinoButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {},
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.grey.shade800,
+                                                ),
+                                                child: Image(
+                                                  alignment: Alignment.center,
+                                                  image: judgeMace,
+                                                  fit: BoxFit.scaleDown,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade700,
+                                                    dark: Colors.grey.shade300,
+                                                  ),
+                                                  height: 24,
+                                                  width: 24,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Julgar\npunimento",
+                                                textAlign: TextAlign.center,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall! //
+                                                    .copyWith(),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(),
+
+                                  // *
+                                  value.user != null &&
+                                          value.user!.permissions != null &&
+                                          value.user!.permissions!
+                                              .contains('jugde_punish')
+                                      ? const SizedBox(width: 16)
+                                      : Container(),
+
+                                  // *
+
+                                  value.user != null &&
+                                          value.user!.permissions != null &&
+                                          value.user!.permissions!
+                                              .contains('mark_punish')
+                                      ? CupertinoButton(
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {},
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.grey.shade800,
+                                                ),
+                                                child: Icon(
+                                                  CupertinoIcons
+                                                      .doc_person_fill,
+                                                  color: ColorMode.setColor(
+                                                    context: context,
+                                                    light: Colors.grey.shade700,
+                                                    dark: Colors.grey.shade300,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 8),
+                                              Text(
+                                                "Marcar\nPunimento",
+                                                textAlign: TextAlign.center,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall! //
+                                                    .copyWith(),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container()
+                                ],
+                              ),
                             ),
-                          )
-                        : Container(),
+                          ),
 
-                    //
-                    const SizedBox(height: 8),
+                          value.user != null &&
+                                  value.user!.permissions != null &&
+                                  !value.user!.permissions!
+                                      .contains('view_punish') &&
+                                  !value.user!.permissions!
+                                      .contains('jugde_punish') &&
+                                  !value.user!.permissions!
+                                      .contains('mark_punish')
+                              ? const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                  child: Text(
+                                    "Você não tem permissão de ver os punimentos",
+                                  ),
+                                )
+                              : Container(),
 
-                    //
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            value.user != null &&
-                                    value.user!.permissions != null &&
-                                    value.user!.permissions!
-                                        .contains('view_punish')
-                                ? CupertinoButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(16),
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey.shade800,
-                                          ),
-                                          child: Icon(
-                                            Icons.policy_rounded,
-                                            color: ColorMode.setColor(
-                                              context: context,
-                                              light: Colors.grey.shade700,
-                                              dark: Colors.grey.shade300,
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "Lista\npunimentos",
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall! //
-                                              .copyWith(),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Container(),
-                            value.user != null &&
-                                    value.user!.permissions != null &&
-                                    value.user!.permissions!
-                                        .contains('view_punish')
-                                ? const SizedBox(width: 16)
-                                : Container(),
+                          //
+                          const SizedBox(height: 8),
 
-                            // *
-                            value.user != null &&
-                                    value.user!.permissions != null &&
-                                    value.user!.permissions!
-                                        .contains('jugde_punish')
-                                ? CupertinoButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(16),
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey.shade800,
-                                          ),
-                                          child: Image(
-                                            alignment: Alignment.center,
-                                            image: judgeMace,
-                                            fit: BoxFit.scaleDown,
-                                            color: ColorMode.setColor(
-                                              context: context,
-                                              light: Colors.grey.shade700,
-                                              dark: Colors.grey.shade300,
-                                            ),
-                                            height: 24,
-                                            width: 24,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Julgar\npunimento",
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall! //
-                                              .copyWith(),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Container(),
-
-                            // *
-                            value.user != null &&
-                                    value.user!.permissions != null &&
-                                    value.user!.permissions!
-                                        .contains('jugde_punish')
-                                ? const SizedBox(width: 16)
-                                : Container(),
-
-                            // *
-
-                            value.user != null &&
-                                    value.user!.permissions != null &&
-                                    value.user!.permissions!
-                                        .contains('mark_punish')
-                                ? CupertinoButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {},
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(16),
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey.shade800,
-                                          ),
-                                          child: Icon(
-                                            CupertinoIcons.doc_person_fill,
-                                            color: ColorMode.setColor(
-                                              context: context,
-                                              light: Colors.grey.shade700,
-                                              dark: Colors.grey.shade300,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          "Marcar\nPunimento",
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall! //
-                                              .copyWith(),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Container()
-                          ],
-                        ),
+                          //
+                          value.user != null && value.user!.permissions != null
+                              ? const CustomDivider()
+                              : Container(),
+                        ],
                       ),
-                    ),
-
-                    value.user != null &&
-                            value.user!.permissions != null &&
-                            !value.user!.permissions!.contains('view_punish') &&
-                            !value.user!.permissions!
-                                .contains('jugde_punish') &&
-                            !value.user!.permissions!.contains('mark_punish')
-                        ? const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              "Você não tem permissão de ver os punimentos",
-                            ),
-                          )
-                        : Container(),
-
-                    //
-                    const SizedBox(height: 8),
-
-                    //
-                    value.user != null && value.user!.permissions != null
-                        ? const CustomDivider()
-                        : Container(),
-                  ],
-                ),
-              );
+                    )
+                  : const SliverToBoxAdapter();
             },
           ),
 

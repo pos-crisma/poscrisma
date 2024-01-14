@@ -276,18 +276,18 @@ class GroupInfoDTO {
 }
 
 class GroupDTO {
-  final String godchildrenId;
-  final String name;
-  final String gender;
-  final String birthdate;
-  final int age;
+  final String? godchildrenId;
+  final String? name;
+  final String? gender;
+  final String? birthdate;
+  final int? age;
 
   GroupDTO({
-    required this.godchildrenId,
-    required this.name,
-    required this.gender,
-    required this.birthdate,
-    required this.age,
+    this.godchildrenId,
+    this.name,
+    this.gender,
+    this.birthdate,
+    this.age,
   });
 
   GroupDTO copyWith({
