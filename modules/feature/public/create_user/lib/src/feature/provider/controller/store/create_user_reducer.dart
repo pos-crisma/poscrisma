@@ -124,7 +124,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
       if (state.type != null && state.parishId != null) {
         final type = state.type?.name ?? '';
-        // final parishId = state.parishId ?? '';
+        final inviteCode = _extractFromURL(state.invite ?? "");
 
         await CreateUserApi.send(
           CreateUserRequestDTO(
@@ -142,7 +142,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
               medicalRecord: state.medicalController.text,
             ),
           ),
-          state.invite ?? "",
+          inviteCode,
         ).fold(
           (success) {
             send(const UserMobileAction.loadingService());
@@ -165,12 +165,16 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo, BuildContext context) {
     return Effect.run(() async {
+      final message =
+          errorInfo.message?.toString().replaceAll("[", "").replaceAll("]", "");
+      final errorMessage = errorInfo.error?.message.toString();
+
       Navigator.of(state.context).push(
         MaterialPageRoute(
           builder: (context) {
             return ErrorPage(
-              title: errorInfo.response.toString(),
-              content: errorInfo.error?.message.toString() ?? "",
+              title: errorMessage ?? "",
+              content: message ?? "",
               backButton: () => Navigator.of(state.context).pop(),
               onPress: null,
               isShowButton: false,
@@ -187,20 +191,15 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
 
     return Effect.emit();
   }
-}
 
-      // state.context.pushNamed(
-      //   '/error/',
-      //   queryParameters: {
-      //     'title': errorInfo.response.toString(),
-      //     'content': errorInfo.error?.message.toString() ?? "",
-      //     'backButton': () => state.context.pop(),
-      //     'onPress': () {
-      //       state.context.pop();
-      //       UserMobileAction.service(context);
-      //     },
-      //     'titleButton': 'Tentar novamente',
-      //     'isShowButton': true,
-      //     'enableColor': Colors.amber,
-      //   },
-      // ),
+  String _extractFromURL(String inviteCode) {
+    // Expressão regular para encontrar a parte desejada da URL
+    RegExp regex = RegExp(r'/invite/([^/]+)');
+
+    // Tenta fazer o match da expressão regular na URL
+    Match? match = regex.firstMatch(inviteCode);
+
+    // Se houver um match, retorna a parte desejada, senão retorna null
+    return match?.group(1) ?? inviteCode;
+  }
+}
