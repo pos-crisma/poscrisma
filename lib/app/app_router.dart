@@ -200,6 +200,14 @@ final GoRouter appRouter = GoRouter(
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),
+    GoRoute(
+      name: "room_manager",
+      path: '/room_manager',
+      builder: (BuildContext context, GoRouterState state) =>
+          const DefaultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
   ],
 );
 
