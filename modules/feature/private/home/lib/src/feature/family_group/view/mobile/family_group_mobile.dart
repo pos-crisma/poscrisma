@@ -387,26 +387,26 @@ class FamilyGroupMobile extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        // TODO:
-                                        Container(
-                                          padding: const EdgeInsets.all(4),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            color: ColorMode.setColor(
-                                              context: context,
-                                              light: Colors.grey.shade200,
-                                              dark: Colors.grey.shade800,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Inativo",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall!
-                                                .copyWith(),
-                                          ),
-                                        ),
+                                        // // TODO:
+                                        // Container(
+                                        //   padding: const EdgeInsets.all(4),
+                                        //   decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(4),
+                                        //     color: ColorMode.setColor(
+                                        //       context: context,
+                                        //       light: Colors.grey.shade200,
+                                        //       dark: Colors.grey.shade800,
+                                        //     ),
+                                        //   ),
+                                        //   child: Text(
+                                        //     "Inativo",
+                                        //     style: Theme.of(context)
+                                        //         .textTheme
+                                        //         .labelSmall!
+                                        //         .copyWith(),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),

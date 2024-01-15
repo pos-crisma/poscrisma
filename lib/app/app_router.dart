@@ -13,6 +13,7 @@ import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
 import 'package:store/store.dart';
 import 'package:team/team.dart';
+import 'package:warehouse/warehouse.dart';
 
 final GoRouter appRouter = GoRouter(
   observers: [
@@ -47,7 +48,7 @@ final GoRouter appRouter = GoRouter(
           await PublicGuard.canActivate(state),
     ),
     GoRoute(
-      path: '/invite/:inviteCode',
+      path: '/#/invite/:inviteCode',
       builder: (BuildContext context, GoRouterState state) {
         return InvitePage(
           inviteCode: state.pathParameters['inviteCode'] ?? "",
@@ -159,5 +160,67 @@ final GoRouter appRouter = GoRouter(
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),
+    GoRoute(
+      name: "setting_config",
+      path: '/setting_config',
+      builder: (BuildContext context, GoRouterState state) =>
+          const SettingsConfigPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "game_manager",
+      path: '/game_manager',
+      builder: (BuildContext context, GoRouterState state) =>
+          const DefaultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "config_access_manager",
+      path: '/config_access_manager',
+      builder: (BuildContext context, GoRouterState state) =>
+          const DefaultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "nursing",
+      path: '/nursing',
+      builder: (BuildContext context, GoRouterState state) =>
+          const DefaultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "warehouse",
+      path: '/warehouse',
+      builder: (BuildContext context, GoRouterState state) =>
+          const WarehousePage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "room_manager",
+      path: '/room_manager',
+      builder: (BuildContext context, GoRouterState state) =>
+          const DefaultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
   ],
 );
+
+class DefaultPage extends StatelessWidget {
+  const DefaultPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+    );
+  }
+}
+
+
+// https://poscrisma-be163.web.app/#/invite/w8gniW2XHYipWEN8uWW2HC
