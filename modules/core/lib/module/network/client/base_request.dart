@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:core/core.dart';
-import 'package:locale_plus/locale_plus.dart';
 
 import '../model/network_response.dart';
 
@@ -25,12 +23,12 @@ class BaseRequest {
   });
 
   AsyncResult<Entity, ErrorInfo> get(String path) async {
-    String languageCode = "";
-    if (kIsWeb) {
-      languageCode = "pt-BR";
-    } else {
-      languageCode = (await LocalePlus().getLanguageCode())!;
-    }
+    String languageCode = "pt-BR";
+    // if (kIsWeb) {
+    //   languageCode = "pt-BR";
+    // } else {
+    //   languageCode = (await LocalePlus().getLanguageCode())!;
+    // }
 
     final accessToken = await storage.get<String>('@token');
 
@@ -101,12 +99,12 @@ class BaseRequest {
     String path, {
     dynamic data,
   }) async {
-    String languageCode = "";
-    if (kIsWeb) {
-      languageCode = "pt-BR";
-    } else {
-      languageCode = (await LocalePlus().getLanguageCode())!;
-    }
+    String languageCode = "pt-BR";
+    // if (kIsWeb) {
+    //   languageCode = "pt-BR";
+    // } else {
+    //   languageCode = (await LocalePlus().getLanguageCode())!;
+    // }
 
     final accessToken = await storage.get<String>('@token');
 
@@ -178,12 +176,12 @@ class BaseRequest {
     String path, {
     dynamic data,
   }) async {
-    String languageCode = "";
-    if (kIsWeb) {
-      languageCode = "pt-BR";
-    } else {
-      languageCode = (await LocalePlus().getLanguageCode())!;
-    }
+    String languageCode = "pt-BR";
+    // if (kIsWeb) {
+    //   languageCode = "pt-BR";
+    // } else {
+    //   languageCode = (await LocalePlus().getLanguageCode())!;
+    // }
 
     final accessToken = await storage.get<String>('@token');
 

@@ -58,6 +58,16 @@ final GoRouter appRouter = GoRouter(
           await PublicGuard.canActivate(state),
     ),
     GoRoute(
+      path: '/invite/:inviteCode',
+      builder: (BuildContext context, GoRouterState state) {
+        return InvitePage(
+          inviteCode: state.pathParameters['inviteCode'] ?? "",
+        );
+      },
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PublicGuard.canActivate(state),
+    ),
+    GoRoute(
       name: "feed",
       path: '/feed',
       builder: (BuildContext context, GoRouterState state) {

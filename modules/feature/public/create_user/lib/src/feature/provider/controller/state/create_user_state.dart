@@ -80,8 +80,8 @@ enum CreateUserType {
     text: 'Vamos começar pelo o seu nome de usuario',
     inputText: 'Nome de usuario',
     tipTitle:
-        'Aqui voce pode criar seu nome de usuario unico\nPode seguir no exemplo abaixo:',
-    tipContent: '- usuario.123\n- usuario_123',
+        'Aqui voce pode criar seu nome de usuario unico\nRecomendação: Seu nome de usuario deve ser apenas em minusculo sem caracter especial\nPode seguir no exemplo abaixo:',
+    tipContent: '- usuario123\n- 123usuario',
   ),
   gender(
     text: 'Agora o seu genero',
