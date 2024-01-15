@@ -41,7 +41,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
       if (user != null &&
           (user.family?.fatherId == null || user.family?.motherId == null)) {
         final dto = InviteRequestDTO(
-          type: InviteType.CreateParent,
+          type: InviteType.CreateUser,
           typeUser: InviteUserType.GodParent,
           familyId: profileStore.user?.familyId ?? "",
           groupId: null,
