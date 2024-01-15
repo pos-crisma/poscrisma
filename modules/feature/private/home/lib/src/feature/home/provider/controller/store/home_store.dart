@@ -64,7 +64,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       return state.internetCheck
           ? await ProfileAPI.getProfile().fold(
               (success) => send(HomeAction.successUserService(success)),
-              (failure) => send(HomeAction.failureUserService(failure)),
+              (failure) => send(const HomeAction.offlineService()),
             )
           : send(const HomeAction.offlineService());
     });
@@ -190,8 +190,9 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
           error: ErrorData(
             type: "Storage",
             statusCode: -1,
-            message:
-                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
+            message: state.internetCheck
+                ? "Problema no servidor, espere a equipe de TI responder"
+                : "Tente novamente mais tarde, quando sua conexão com a internet retornar",
           ),
         );
 

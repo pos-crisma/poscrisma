@@ -46,7 +46,9 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
   FutureOr<Effect> _service() {
     return Effect.run<void>(() async {
       await send(const InviteAction.loadingInviteService());
-      final result = await InviteApi.invite(state.textEditingController.text);
+      final inviteCode = _extractFromURL(state.textEditingController.text);
+
+      final result = await InviteApi.invite(inviteCode);
 
       result.fold(
         (success) => send(InviteAction.successInviteService(success)),
@@ -118,5 +120,16 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         ),
       );
     });
+  }
+
+  String _extractFromURL(String inviteCode) {
+    // Expressão regular para encontrar a parte desejada da URL
+    RegExp regex = RegExp(r'/invite/([^/]+)');
+
+    // Tenta fazer o match da expressão regular na URL
+    Match? match = regex.firstMatch(inviteCode);
+
+    // Se houver um match, retorna a parte desejada, senão retorna null
+    return match?.group(1) ?? inviteCode;
   }
 }
