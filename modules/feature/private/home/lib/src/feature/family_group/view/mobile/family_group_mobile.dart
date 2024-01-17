@@ -185,7 +185,7 @@ class FamilyGroupMobile extends StatelessWidget {
                     horizontal: 16,
                   ),
                   child: Text(
-                    "Com o codigo copiado você pode enviar a seu jovem do grupo do poscrisma",
+                    "Com o codigo copiado você pode enviar a seu jovem do grupo do poscrisma.",
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -201,13 +201,18 @@ class FamilyGroupMobile extends StatelessWidget {
                     horizontal: 16,
                   ),
                   child: Text(
-                    "O invite so pode ser usado por um jovem, cada um outro e gerado.",
+                    "Cada convite só pode ser usado por um jovem, sendo gerado um novo para cada destinatário.",
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyMedium! //
+                        .bodyLarge! //
                         .copyWith(
                           fontWeight: FontWeight.bold,
+                          color: ColorMode.setColor(
+                            context: context,
+                            light: Colors.deepPurple.shade900,
+                            dark: Colors.deepPurple.shade200,
+                          ),
                         ),
                   ),
                 ),
@@ -499,45 +504,9 @@ class FamilyGroupMobile extends StatelessWidget {
                                     Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Codigo: ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium! //
-                                                .copyWith(
-                                                  color: ColorMode.setColor(
-                                                    context: context,
-                                                    light: Colors.black,
-                                                    dark: Colors.white,
-                                                  ),
-                                                ),
-                                            children: [
-                                              TextSpan(
-                                                text: invite.inviteCode,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge! //
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: ColorMode.setColor(
-                                                        context: context,
-                                                        light: Colors.deepPurple
-                                                            .shade900,
-                                                        dark: Colors.deepPurple
-                                                            .shade200,
-                                                      ),
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                         Container(
-                                          padding: const EdgeInsets.all(4),
+                                          padding: const EdgeInsets.all(6),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(4),
@@ -559,20 +528,139 @@ class FamilyGroupMobile extends StatelessWidget {
                                                       : Colors.grey.shade800,
                                             ),
                                           ),
-                                          child: Text(
+                                          child: Icon(
                                             invite.status == InviteStatus.active
-                                                ? "Ativo"
+                                                ? CupertinoIcons.tickets_fill
                                                 : invite.status ==
                                                         InviteStatus.used
-                                                    ? "Usado"
-                                                    : "Inativo",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall!
-                                                .copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                    ? CupertinoIcons.ticket
+                                                    : CupertinoIcons.tickets,
                                           ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                text: 'Codigo: ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium! //
+                                                    .copyWith(
+                                                      color: ColorMode.setColor(
+                                                        context: context,
+                                                        light: Colors.black,
+                                                        dark: Colors.white,
+                                                      ),
+                                                    ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: invite.inviteCode,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors
+                                                                .deepPurple
+                                                                .shade900,
+                                                            dark: Colors
+                                                                .deepPurple
+                                                                .shade200,
+                                                          ),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                text: 'Usado: ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium! //
+                                                    .copyWith(
+                                                      color: ColorMode.setColor(
+                                                        context: context,
+                                                        light: Colors.black,
+                                                        dark: Colors.white,
+                                                      ),
+                                                    ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: invite.status ==
+                                                            InviteStatus.active
+                                                        ? "Pode re-utilizar"
+                                                        : invite.status ==
+                                                                InviteStatus
+                                                                    .used
+                                                            ? "Usado"
+                                                            : "Bloqueado",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors
+                                                                .deepPurple
+                                                                .shade900,
+                                                            dark: Colors
+                                                                .deepPurple
+                                                                .shade200,
+                                                          ),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                text: 'Jovem: ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium! //
+                                                    .copyWith(
+                                                      color: ColorMode.setColor(
+                                                        context: context,
+                                                        light: Colors.black,
+                                                        dark: Colors.white,
+                                                      ),
+                                                    ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: "Vai exibir o nome",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium! //
+                                                        .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: ColorMode
+                                                              .setColor(
+                                                            context: context,
+                                                            light: Colors
+                                                                .deepPurple
+                                                                .shade900,
+                                                            dark: Colors
+                                                                .deepPurple
+                                                                .shade200,
+                                                          ),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

@@ -140,7 +140,8 @@ class _DetailPageState extends State<DetailPage> {
                           widget.room.images!.isNotEmpty)
                       ? CarouselSlider(
                           options: CarouselOptions(
-                            aspectRatio: 16 / 9,
+                            aspectRatio:
+                                Responsive.isMobile(context) ? 16 / 9 : 1,
                             viewportFraction: 1,
                             enlargeFactor: 0.2,
                             initialPage: 0,
@@ -159,7 +160,7 @@ class _DetailPageState extends State<DetailPage> {
                                   height: constraints.maxHeight,
                                   child: Image.network(
                                     image,
-                                    fit: BoxFit.fitWidth,
+                                    fit: BoxFit.cover,
                                     alignment: Alignment.center,
                                     loadingBuilder: (BuildContext context,
                                         Widget child,
@@ -323,7 +324,9 @@ class _DetailPageState extends State<DetailPage> {
                         TextSpan(
                           text: widget.room.roomType == "Couple"
                               ? 'Casal'
-                              : "Jovens",
+                              : widget.room.roomType == "Single"
+                                  ? "Solteiro"
+                                  : "Sem definição",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //

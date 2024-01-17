@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
@@ -39,6 +40,8 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         context: state.context,
         isScrollControlled: true,
         useSafeArea: true,
+        enableDrag: kIsWeb ? false : true,
+        isDismissible: kIsWeb ? false : true,
         barrierColor: Colors.transparent,
         builder: (context) {
           return const RoomManagerAdd();
