@@ -22,7 +22,7 @@ mixin _$RoomManagarAddAction {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -35,7 +35,7 @@ mixin _$RoomManagarAddAction {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -48,7 +48,7 @@ mixin _$RoomManagarAddAction {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -186,7 +186,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -202,7 +202,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -218,7 +218,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -336,7 +336,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -352,7 +352,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -368,7 +368,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -480,7 +480,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -496,7 +496,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -512,7 +512,7 @@ class _$ServiceImpl implements _Service {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -624,7 +624,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -640,7 +640,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -656,7 +656,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -732,7 +732,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RoomSettingResponseDTO dto});
+  $Res call({DefaultResponseDTO dto});
 }
 
 /// @nodoc
@@ -752,7 +752,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == dto
           ? _value.dto
           : dto // ignore: cast_nullable_to_non_nullable
-              as RoomSettingResponseDTO,
+              as DefaultResponseDTO,
     ));
   }
 }
@@ -763,7 +763,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.dto);
 
   @override
-  final RoomSettingResponseDTO dto;
+  final DefaultResponseDTO dto;
 
   @override
   String toString() {
@@ -794,7 +794,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -810,7 +810,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -826,7 +826,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -893,9 +893,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements RoomManagarAddAction {
-  const factory _Success(final RoomSettingResponseDTO dto) = _$SuccessImpl;
+  const factory _Success(final DefaultResponseDTO dto) = _$SuccessImpl;
 
-  RoomSettingResponseDTO get dto;
+  DefaultResponseDTO get dto;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -969,7 +969,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -985,7 +985,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -1001,7 +1001,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -1146,7 +1146,7 @@ class _$ChangeCheckBoxImpl implements _ChangeCheckBox {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -1162,7 +1162,7 @@ class _$ChangeCheckBoxImpl implements _ChangeCheckBox {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -1178,7 +1178,7 @@ class _$ChangeCheckBoxImpl implements _ChangeCheckBox {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -1322,7 +1322,7 @@ class _$AddImageImpl implements _AddImage {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -1338,7 +1338,7 @@ class _$AddImageImpl implements _AddImage {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -1354,7 +1354,7 @@ class _$AddImageImpl implements _AddImage {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,
@@ -1497,7 +1497,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function() buttonTapped,
     required TResult Function() service,
     required TResult Function() loading,
-    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(DefaultResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(RoomManagarAddType contentOnPage) changeCheckBox,
     required TResult Function(String images) addImage,
@@ -1513,7 +1513,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function()? buttonTapped,
     TResult? Function()? service,
     TResult? Function()? loading,
-    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(DefaultResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult? Function(String images)? addImage,
@@ -1529,7 +1529,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function()? buttonTapped,
     TResult Function()? service,
     TResult Function()? loading,
-    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(DefaultResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(RoomManagarAddType contentOnPage)? changeCheckBox,
     TResult Function(String images)? addImage,

@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:store/store.dart';
 
 import '../state/room_managar_add_state.dart';
 
@@ -13,7 +12,7 @@ abstract class RoomManagarAddAction with _$RoomManagarAddAction {
   const factory RoomManagarAddAction.buttonTapped() = _ButtonTapped;
   const factory RoomManagarAddAction.service() = _Service;
   const factory RoomManagarAddAction.loading() = _Loading;
-  const factory RoomManagarAddAction.success(RoomSettingResponseDTO dto) =
+  const factory RoomManagarAddAction.success(DefaultResponseDTO dto) =
       _Success;
   const factory RoomManagarAddAction.failure(ErrorInfo error) = _Failure;
   const factory RoomManagarAddAction.changeCheckBox(

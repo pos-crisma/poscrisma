@@ -1,9 +1,10 @@
 import 'package:design/color/color.dart';
+import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
-class CardRoom extends StatelessWidget {
+class CardRoom extends StatefulWidget {
   const CardRoom({
     super.key,
     required this.room,
@@ -14,56 +15,126 @@ class CardRoom extends StatelessWidget {
   final VoidCallback tapped;
 
   @override
+  State<CardRoom> createState() => _CardRoomState();
+}
+
+class _CardRoomState extends State<CardRoom> {
+  final CarouselController _controller = CarouselController();
+  int _current = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 16.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-          ),
-          child: GestureDetector(
-            onTap: tapped,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                LayoutBuilder(
+        GestureDetector(
+          onTap: widget.tapped,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: LayoutBuilder(
                   builder: (context, constraints) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: SizedBox(
-                        width: constraints.maxWidth,
-                        height: 300,
-                        child: Image.network(
-                          'https://raw.githubusercontent.com/augustineayeh/airbnb_ui_clone/main/assets/images/abiansemal.webp',
-                          fit: BoxFit.fitHeight,
-                          alignment: Alignment.center,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
+                    return (widget.room.images != null &&
+                            widget.room.images!.isNotEmpty)
+                        ? CarouselSlider(
+                            carouselController: _controller,
+                            options: CarouselOptions(
+                              aspectRatio: 16 / 9,
+                              viewportFraction: 0.9,
+                              enlargeFactor: 0.2,
+                              initialPage: 0,
+                              enableInfiniteScroll: true,
+                              pageSnapping: true,
+                              autoPlay: false,
+                              scrollDirection: Axis.horizontal,
+                              enlargeCenterPage: true,
+                              enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                              onPageChanged: (index, reason) =>
+                                  setState(() => _current = index),
+                            ),
+                            items: widget.room.images!.map((image) {
+                              final isImage = (_current ==
+                                  widget.room.images!.indexWhere(
+                                      (element) => element == image));
+
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    width: constraints.maxWidth,
+                                    height: 300,
+                                    child: ClipRRect(
+                                      borderRadius: isImage
+                                          ? BorderRadius.circular(8)
+                                          : BorderRadius.zero,
+                                      child: Image.network(
+                                        image,
+                                        fit: BoxFit.fitWidth,
+                                        alignment: Alignment.center,
+                                        loadingBuilder: (BuildContext context,
+                                            Widget child,
+                                            ImageChunkEvent? loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                              value: loadingProgress
+                                                          .expectedTotalBytes !=
+                                                      null
+                                                  ? loadingProgress
+                                                          .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                  : null,
+                                            ),
+                                          );
+                                        },
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Container(
+                                            alignment: Alignment.center,
+                                            color: Colors.grey,
+                                            child: Text(
+                                              "Problema para abrir a imagem",
+                                              maxLines: 3,
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineMedium!
+                                                  .copyWith(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          )
+                        : Container(
+                            color: Colors.grey,
+                            height: 300,
+                          );
                   },
                 ),
-                const SizedBox(height: 8),
-                Row(
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      room.blockName ?? "Não adicionado",
+                      widget.room.blockName ?? "Não adicionado",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium! //
@@ -81,14 +152,14 @@ class CardRoom extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(
-                          room.roomType == "Couple"
+                          widget.room.roomType == "Couple"
                               ? Icons.family_restroom_rounded
                               : CupertinoIcons.person_3_fill,
                           size: 16,
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          room.vacancies?.toString() ?? "0",
+                          widget.room.vacancies?.toString() ?? "0",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium! //
@@ -104,7 +175,10 @@ class CardRoom extends StatelessWidget {
                     )
                   ],
                 ),
-                RichText(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: RichText(
                   text: TextSpan(
                     text: 'Nome: ',
                     style: Theme.of(context)
@@ -120,7 +194,7 @@ class CardRoom extends StatelessWidget {
                         ),
                     children: [
                       TextSpan(
-                        text: room.roomName ?? "Não adicionado",
+                        text: widget.room.roomName ?? "Não adicionado",
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall! //
@@ -136,7 +210,10 @@ class CardRoom extends StatelessWidget {
                     ],
                   ),
                 ),
-                RichText(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: RichText(
                   text: TextSpan(
                     text: 'Quarto para: ',
                     style: Theme.of(context)
@@ -152,7 +229,9 @@ class CardRoom extends StatelessWidget {
                         ),
                     children: [
                       TextSpan(
-                        text: room.roomType == "Couple" ? 'Casal' : "Jovens",
+                        text: widget.room.roomType == "Couple"
+                            ? 'Casal'
+                            : "Jovens",
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall! //
@@ -168,8 +247,11 @@ class CardRoom extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(
-                  room.observations ?? "Não adicionado",
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  widget.room.observations ?? "Não adicionado",
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall! //
@@ -182,8 +264,8 @@ class CardRoom extends StatelessWidget {
                         ),
                       ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],

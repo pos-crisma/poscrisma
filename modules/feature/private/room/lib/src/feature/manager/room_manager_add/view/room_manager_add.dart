@@ -3,10 +3,10 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:room/src/feature/manager/room_manager_add/provider/action/room_manager_add_action.dart';
 
-import '../provider/state/room_managar_add_state.dart';
-import '../provider/store/room_manager_add_store.dart';
+import '../provider/controller/action/room_manager_add_action.dart';
+import '../provider/controller/state/room_managar_add_state.dart';
+import '../provider/controller/store/room_manager_add_store.dart';
 
 class RoomManagerAdd extends StatefulWidget {
   const RoomManagerAdd({
@@ -316,6 +316,11 @@ class CarouselCard extends StatelessWidget {
                                 loadingProgress.expectedTotalBytes!
                             : null,
                       ),
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey,
                     );
                   },
                 ),

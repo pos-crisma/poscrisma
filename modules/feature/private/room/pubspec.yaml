@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  error:
+    path: "../../error"
   store:
     path: "../../store"
 
