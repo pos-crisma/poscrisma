@@ -81,7 +81,7 @@ class _SettingMobileState extends State<SettingMobile> {
                         onPressed: () => context.pop(),
                         child: const Icon(
                           CupertinoIcons.clear_circled_solid,
-                          size: 26,
+                          size: 30,
                           color: Colors.grey,
                         ),
                       ),

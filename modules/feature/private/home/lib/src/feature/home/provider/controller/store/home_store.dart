@@ -124,15 +124,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
         final package = await PackageData.getInfo();
         if (!(int.parse(package.buildNumber) >= version.build) &&
             version.forceUpdate) {
-          final context = state.context;
           if (state.showUpdatedModal == false) {
             Future.delayed(Durations.short1).then((value) {
               showModalBottomSheet(
-                context: context,
+                context: state.context,
                 useSafeArea: true,
                 isScrollControlled: true,
-                isDismissible: false,
-                enableDrag: false,
                 builder: (context) => UpdatePage(
                   version: version,
                   action: () {

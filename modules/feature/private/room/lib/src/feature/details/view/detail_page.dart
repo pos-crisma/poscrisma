@@ -19,6 +19,7 @@ void showDetail(
       isScrollControlled: true,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
+      barrierColor: Colors.transparent,
       builder: (context) => ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12),
@@ -133,10 +134,83 @@ class _DetailPageState extends State<DetailPage> {
                     : 250,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
-              background: Image.network(
-                'https://raw.githubusercontent.com/augustineayeh/airbnb_ui_clone/main/assets/images/abiansemal.webp',
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
+              background: LayoutBuilder(
+                builder: (context, constraints) {
+                  return (widget.room.images != null &&
+                          widget.room.images!.isNotEmpty)
+                      ? CarouselSlider(
+                          options: CarouselOptions(
+                            aspectRatio:
+                                Responsive.isMobile(context) ? 16 / 9 : 1,
+                            viewportFraction: 1,
+                            enlargeFactor: 0.2,
+                            initialPage: 0,
+                            enableInfiniteScroll: true,
+                            pageSnapping: true,
+                            autoPlay: false,
+                            scrollDirection: Axis.horizontal,
+                            // enlargeCenterPage: true,
+                            enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                          ),
+                          items: widget.room.images!.map((image) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  width: constraints.maxWidth,
+                                  height: constraints.maxHeight,
+                                  child: Image.network(
+                                    image,
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.center,
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      }
+
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      );
+                                    },
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        alignment: Alignment.center,
+                                        color: Colors.grey,
+                                        child: Text(
+                                          "Problema para abrir a imagem",
+                                          maxLines: 3,
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium!
+                                              .copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
+                        )
+                      : Container(
+                          color: Colors.grey,
+                          height: 300,
+                        );
+                },
               ),
             ),
           ),
@@ -250,7 +324,9 @@ class _DetailPageState extends State<DetailPage> {
                         TextSpan(
                           text: widget.room.roomType == "Couple"
                               ? 'Casal'
-                              : "Jovens",
+                              : widget.room.roomType == "Single"
+                                  ? "Solteiro"
+                                  : "Sem definição",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //

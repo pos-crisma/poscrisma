@@ -16,6 +16,8 @@ import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
 
 final GoRouter appRouter = GoRouter(
+  navigatorKey: navigatorKey,
+  initialLocation: "/",
   observers: [
     RouterObserver(),
   ],
@@ -32,6 +34,15 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       name: "auth",
       path: '/auth',
+      builder: (BuildContext context, GoRouterState state) {
+        return AuthPage();
+      },
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PublicGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "forget",
+      path: '/forget',
       builder: (BuildContext context, GoRouterState state) {
         return AuthPage();
       },
@@ -214,7 +225,7 @@ final GoRouter appRouter = GoRouter(
       name: "room_manager",
       path: '/room_manager',
       builder: (BuildContext context, GoRouterState state) =>
-          const DefaultPage(),
+          const RoomManagerPage(),
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),

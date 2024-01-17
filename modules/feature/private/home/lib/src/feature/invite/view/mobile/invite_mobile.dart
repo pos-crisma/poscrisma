@@ -533,9 +533,47 @@ class _InviteMobileState extends State<InviteMobile> {
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(6),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                color: ColorMode.setColor(
+                                                  context: context,
+                                                  light: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade200
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade200
+                                                          : Colors
+                                                              .grey.shade200,
+                                                  dark: invite.status ==
+                                                          InviteStatus.active
+                                                      ? Colors.green.shade800
+                                                      : invite.status ==
+                                                              InviteStatus.used
+                                                          ? Colors
+                                                              .orange.shade800
+                                                          : Colors
+                                                              .grey.shade800,
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                invite.status ==
+                                                        InviteStatus.active
+                                                    ? CupertinoIcons
+                                                        .tickets_fill
+                                                    : invite.status ==
+                                                            InviteStatus.used
+                                                        ? CupertinoIcons.ticket
+                                                        : CupertinoIcons
+                                                            .tickets,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 4),
                                             Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -561,7 +599,7 @@ class _InviteMobileState extends State<InviteMobile> {
                                                         text: invite.inviteCode,
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyLarge! //
+                                                            .bodyMedium! //
                                                             .copyWith(
                                                               fontWeight:
                                                                   FontWeight
@@ -628,51 +666,6 @@ class _InviteMobileState extends State<InviteMobile> {
                                                   ),
                                                 ),
                                               ],
-                                            ),
-                                            // TODO:
-                                            Container(
-                                              padding: const EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: invite.status ==
-                                                          InviteStatus.active
-                                                      ? Colors.green.shade200
-                                                      : invite.status ==
-                                                              InviteStatus.used
-                                                          ? Colors
-                                                              .orange.shade200
-                                                          : Colors
-                                                              .grey.shade200,
-                                                  dark: invite.status ==
-                                                          InviteStatus.active
-                                                      ? Colors.green.shade800
-                                                      : invite.status ==
-                                                              InviteStatus.used
-                                                          ? Colors
-                                                              .orange.shade800
-                                                          : Colors
-                                                              .grey.shade800,
-                                                ),
-                                              ),
-                                              child: Text(
-                                                invite.status ==
-                                                        InviteStatus.active
-                                                    ? "Ativo"
-                                                    : invite.status ==
-                                                            InviteStatus.used
-                                                        ? "Usado"
-                                                        : "Inativo",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .labelSmall!
-                                                    .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                              ),
                                             ),
                                           ],
                                         ),

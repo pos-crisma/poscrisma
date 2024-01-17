@@ -85,27 +85,13 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
           errorInfo.message?.toString().replaceAll("[", "").replaceAll("]", "");
       final errorMessage = errorInfo.error?.message.toString();
 
-      // state.context.pushNamed(
-      //   'error',
-      //   queryParameters: {
-      //     'title': errorMessage,
-      //     'content': (message ?? ""),
-      //     'backButton': () => state.context.pop(),
-      //     'onPress': () {
-      //       state.context.pop();
-      //     },
-      //     'titleButton': 'Tentar novamente',
-      //     'isShowButton': false,
-      //     'enableColor': Colors.transparent,
-      //   },
-      // );
-
       Navigator.of(state.context).push(
         MaterialPageRoute(
           builder: (context) {
             return ErrorPage(
-              title: errorMessage ?? "",
-              content: message ?? "",
+              title: errorMessage ?? "Tente novamente",
+              content: message ??
+                  "Tente novamente mais tarde, ou contate a equipe responsavel",
               backButton: () => Navigator.of(state.context).pop(),
               onPress: null,
               isShowButton: false,
