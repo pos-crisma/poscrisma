@@ -138,6 +138,18 @@ class _DetailPageState extends State<DetailPage> {
                 'https://raw.githubusercontent.com/augustineayeh/airbnb_ui_clone/main/assets/images/abiansemal.webp',
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
               ),
             ),
           ),
