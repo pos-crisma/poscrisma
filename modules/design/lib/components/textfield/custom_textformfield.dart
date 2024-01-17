@@ -24,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     FocusNode? focusNote,
     this.obscureOnPress,
     EdgeInsets edgeInsets = const EdgeInsets.symmetric(horizontal: 8.0),
+    Function(String)? onSubmit,
   })  : _borderRadiusGeometry = borderRadiusGeometry,
         _boxDecorationColor = boxDecorationColor,
         _autoFocus = autoFocus,
@@ -33,7 +34,8 @@ class CustomTextFormField extends StatelessWidget {
         _maxLine = maxLine,
         _isSecurity = isSecurity,
         _obscureText = obscureText,
-        _borderColor = borderColor;
+        _borderColor = borderColor,
+        _onSubmit = onSubmit;
 
   final EdgeInsets _edgeInsets;
   final String labelText;
@@ -58,6 +60,8 @@ class CustomTextFormField extends StatelessWidget {
   final FocusNode? _focusNode;
 
   final int? _maxLine;
+
+  final Function(String)? _onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +91,7 @@ class CustomTextFormField extends StatelessWidget {
         style: TextStyle(
           color: SystemMode.isDark(context) ? Colors.white : Colors.black,
         ),
+        onSubmitted: _onSubmit,
         suffix: _isSecurity
             ? CupertinoButton(
                 padding: EdgeInsets.zero,

@@ -131,8 +131,6 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
                 context: context,
                 useSafeArea: true,
                 isScrollControlled: true,
-                isDismissible: false,
-                enableDrag: false,
                 builder: (context) => UpdatePage(
                   version: version,
                   action: () {

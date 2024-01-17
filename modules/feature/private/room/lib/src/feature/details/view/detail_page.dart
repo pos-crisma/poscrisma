@@ -19,6 +19,7 @@ void showDetail(
       isScrollControlled: true,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
+      barrierColor: Colors.transparent,
       builder: (context) => ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12),

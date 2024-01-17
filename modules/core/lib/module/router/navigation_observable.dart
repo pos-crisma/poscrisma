@@ -13,3 +13,5 @@ class RouterObserver extends NavigatorObserver {
     log('Pop Route -> ${route.settings.name} - ${route.settings.toString()}');
   }
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

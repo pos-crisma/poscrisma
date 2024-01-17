@@ -35,7 +35,7 @@ class NetworkInterceptor extends Interceptor {
     if (response != null) {
       if (response.statusCode == 401) {
         await hiveStorage.delete("@token");
-        // Modular.to.navigate('/');
+        navigatorKey.currentState?.pushReplacementNamed('/');
       }
     }
     handler.next(err);

@@ -13,16 +13,17 @@ mixin ConfigurationModule {
 }
 
 mixin EnvironmentAPI {
-  static Future<Env> getEnv() {
-    final envRef = environment.withConverter<Env>(
-      fromFirestore: (snapshot, _) => Env.fromJson(snapshot.data()!),
-      toFirestore: (env, _) => env.toJson(),
-    );
+  static Future<Env> getEnv() async {
+    try {
+      final envRef = environment.withConverter<Env>(
+        fromFirestore: (snapshot, _) => Env.fromJson(snapshot.data()!),
+        toFirestore: (env, _) => env.toJson(),
+      );
 
-    return envRef
-        .get() //
-        .then((value) =>
-            value.data() ??
-            Env(url: "https://poscrisma-service-production.up.railway.app/v1"));
+      final env = await envRef.get();
+      return env.data()!;
+    } catch (e) {
+      return Env(url: "https://poscrisma-service-production.up.railway.app/v1");
+    }
   }
 }
