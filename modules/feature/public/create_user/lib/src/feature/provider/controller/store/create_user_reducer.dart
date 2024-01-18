@@ -173,8 +173,8 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
         MaterialPageRoute(
           builder: (context) {
             return ErrorPage(
-              title: errorMessage ?? "",
-              content: message ?? "",
+              title: errorMessage,
+              content: message,
               backButton: () => Navigator.of(state.context).pop(),
               onPress: null,
               isShowButton: false,

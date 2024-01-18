@@ -32,6 +32,7 @@ class NetworkClient with Network {
   @override
   Future<Response> get(
     String url, {
+    data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
@@ -40,6 +41,7 @@ class NetworkClient with Network {
     try {
       final Response response = await _dio.get(
         url,
+        data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,

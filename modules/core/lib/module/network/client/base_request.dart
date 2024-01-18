@@ -22,7 +22,10 @@ class BaseRequest {
     required this.storage,
   });
 
-  AsyncResult<Entity, ErrorInfo> get(String path) async {
+  AsyncResult<Entity, ErrorInfo> get(
+    String path, {
+    dynamic data,
+  }) async {
     String languageCode = "pt-BR";
     // if (kIsWeb) {
     //   languageCode = "pt-BR";
@@ -44,6 +47,7 @@ class BaseRequest {
     try {
       final result = await client.get(
         path,
+        data: data,
         options: options,
       );
 
