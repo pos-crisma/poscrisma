@@ -1,3 +1,4 @@
+import 'package:design/color/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,15 @@ class HostedYoungCard extends StatelessWidget {
         isLabelVisible: isGuest,
         child: Text(
           name,
+          style: CupertinoTheme.of(context).textTheme.textStyle.merge(
+                TextStyle(
+                  color: ColorMode.setColor(
+                    context: context,
+                    light: CupertinoColors.black,
+                    dark: CupertinoColors.white,
+                  ),
+                ),
+              ),
         ),
       ),
       subtitle: Column(

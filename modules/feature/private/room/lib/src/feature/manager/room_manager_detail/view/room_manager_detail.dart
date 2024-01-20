@@ -65,6 +65,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Nome: ${widget.room.roomName}",
@@ -88,7 +89,9 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                         (widget.room.roomType != null &&
                                 widget.room.roomType == "Couple")
                             ? "Casal"
-                            : "Solteiro",
+                            : widget.room.roomType == "Single"
+                                ? "Solteiro"
+                                : "Não definido",
                       ),
                     ],
                   ),
@@ -308,7 +311,11 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 builder: (context, value, child) {
                   final hosted = value.room.hosted;
 
-                  if (hosted != null) {
+                  if (value.isLoading) {
+                    return const SliverToBoxAdapter(
+                      child: CupertinoActivityIndicator(),
+                    );
+                  } else if (hosted != null) {
                     return SliverList.builder(
                       itemCount: value.room.hosted!.length,
                       itemBuilder: (context, index) {
@@ -321,7 +328,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 roomId: widget.room.roomId ?? "",
                                 callback: () => viewStore.send(
                                   RoomManagarDetailAction.checkOutTapped(
-                                    user.roomId ?? "",
+                                    user.userId ?? "",
                                   ),
                                 ),
                               )
@@ -330,13 +337,13 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 userRoomId: user.roomId ?? "",
                                 roomId: widget.room.roomId ?? "",
                                 type: switch (user.userType) {
-                                  "GodParent" => "Padrinho",
-                                  "Voluntary" => "Voluntario",
+                                  "GodParent" => "Padrinho | Madrinha",
+                                  "Voluntary" => "Voluntario(a)",
                                   _ => "Jovem"
                                 },
                                 callback: () => viewStore.send(
                                   RoomManagarDetailAction.checkOutTapped(
-                                    user.roomId ?? "",
+                                    user.userId ?? "",
                                   ),
                                 ),
                               );
@@ -375,11 +382,44 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 ),
               ),
 
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 8),
+              ),
+
+              ValueListenableBuilder(
+                valueListenable: viewStore,
+                builder: (context, value, child) {
+                  if (value.isLoading) {
+                    return Container();
+                  }
+
+                  return SliverToBoxAdapter(
+                    child: CustomTextFormField(
+                      labelText: "Pesquisa usuário",
+                      controller: viewStore.state.filterUserController,
+                      focusNote: viewStore.state.filterUserFocus,
+                      boxDecorationColor: SystemMode.isDark(context)
+                          ? Colors.black
+                          : Colors.grey.shade200,
+                    ),
+                  );
+                },
+              ),
+
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 8),
+              ),
+
               ValueListenableBuilder(
                 valueListenable: viewStore,
                 builder: (context, value, child) {
                   final filtersUsers = value.filtersUsers;
-                  if (filtersUsers != null) {
+
+                  if (value.isLoading) {
+                    return const SliverToBoxAdapter(
+                      child: CupertinoActivityIndicator(),
+                    );
+                  } else if (filtersUsers != null) {
                     return SliverList.builder(
                       itemCount: filtersUsers.length,
                       itemBuilder: (context, index) {
@@ -407,7 +447,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 roomId: widget.room.roomId ?? "",
                                 type: switch (value.selector) {
                                   1 => "Padrinho | Madrinha",
-                                  2 => "Voluntario",
+                                  2 => "Voluntario(a)",
                                   _ => "Jovem"
                                 },
                                 callback: () => viewStore.send(
@@ -419,6 +459,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                       },
                     );
                   }
+
                   return const SliverToBoxAdapter();
                 },
               ),

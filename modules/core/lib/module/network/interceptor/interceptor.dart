@@ -58,6 +58,7 @@ class NetworkInterceptor extends Interceptor {
       toastification.show(
         context: context,
         type: ToastificationType.success,
+        showProgressBar: false,
         title: const Text(
           "Você precisa refazer seu login",
         ),

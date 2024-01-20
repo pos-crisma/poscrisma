@@ -1,3 +1,4 @@
+import 'package:design/color/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,21 @@ class HostedCard extends StatelessWidget {
       leadingSize: 0,
       title: Badge(
         isLabelVisible: isGuest,
-        child: Text(name),
+        child: Text(
+          name,
+          style: CupertinoTheme.of(context)
+              .textTheme
+              .textStyle //
+              .merge(
+                TextStyle(
+                  color: ColorMode.setColor(
+                    context: context,
+                    light: CupertinoColors.black,
+                    dark: CupertinoColors.white,
+                  ),
+                ),
+              ),
+        ),
       ),
       subtitle: Text(type),
       onTap: callback,
