@@ -15,18 +15,21 @@ class HostedUser {
   bool? isActive;
   GodParents? godParents;
   BasicHosted? hosted;
+  int? age;
+  String? birthdate;
 
-  HostedUser({
-    this.userId,
-    this.name,
-    this.nickName,
-    this.gender,
-    this.guest,
-    this.typeHostedUser,
-    this.isActive,
-    this.godParents,
-    this.hosted,
-  });
+  HostedUser(
+      {this.userId,
+      this.name,
+      this.nickName,
+      this.gender,
+      this.guest,
+      this.typeHostedUser,
+      this.isActive,
+      this.godParents,
+      this.hosted,
+      this.age,
+      this.birthdate});
 
   HostedUser copyWith({
     String? userId,
@@ -38,6 +41,8 @@ class HostedUser {
     bool? isActive,
     GodParents? godParents,
     BasicHosted? hosted,
+    String? birthdate,
+    int? age,
   }) =>
       HostedUser(
         userId: userId ?? this.userId,
@@ -49,6 +54,8 @@ class HostedUser {
         isActive: isActive ?? this.isActive,
         godParents: godParents ?? this.godParents,
         hosted: hosted ?? this.hosted,
+        birthdate: birthdate ?? this.birthdate,
+        age: age ?? this.age,
       );
 
   factory HostedUser.fromRawJson(String str) =>
@@ -68,6 +75,8 @@ class HostedUser {
             ? null
             : InviteUserType.values.byName(json["typeHostedUser"]),
         isActive: json["isActive"],
+        birthdate: json["birthdate"],
+        age: json["age"],
         godParents: json["godParents"] == null
             ? null
             : GodParents.fromJson(json["godParents"]),
@@ -86,5 +95,7 @@ class HostedUser {
         "isActive": isActive,
         "godParents": godParents?.toJson(),
         "hosted": hosted,
+        "birthdate": birthdate,
+        "age": age,
       };
 }

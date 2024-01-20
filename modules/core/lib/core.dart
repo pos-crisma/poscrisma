@@ -50,3 +50,4 @@ export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:go_router/go_router.dart';
 
 // !
+export 'package:diacritic/diacritic.dart';

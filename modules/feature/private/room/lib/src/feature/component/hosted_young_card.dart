@@ -1,3 +1,4 @@
+import 'package:design/color/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class HostedYoungCard extends StatelessWidget {
     this.isGuest = false,
     required this.name,
     required this.userRoomId,
+    required this.birthday,
   });
 
   final String roomId;
@@ -18,6 +20,7 @@ class HostedYoungCard extends StatelessWidget {
   final String godFather;
   final String name;
   final String userRoomId;
+  final String birthday;
   final bool isGuest;
   // final HostedUser user;
 
@@ -32,6 +35,15 @@ class HostedYoungCard extends StatelessWidget {
         isLabelVisible: isGuest,
         child: Text(
           name,
+          style: CupertinoTheme.of(context).textTheme.textStyle.merge(
+                TextStyle(
+                  color: ColorMode.setColor(
+                    context: context,
+                    light: CupertinoColors.black,
+                    dark: CupertinoColors.white,
+                  ),
+                ),
+              ),
         ),
       ),
       subtitle: Column(
@@ -42,6 +54,19 @@ class HostedYoungCard extends StatelessWidget {
           ),
           Text(
             godFather,
+          ),
+          Row(
+            children: [
+              const Text(
+                "Idade: ",
+              ),
+              Text(
+                birthday,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ],
       ),

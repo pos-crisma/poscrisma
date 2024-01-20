@@ -42,6 +42,7 @@ class Invite {
   final InviteUserType userType;
   final dynamic guest;
   final InviteStatus status;
+  final String? usedBy;
 
   Invite({
     required this.inviteCode,
@@ -53,6 +54,7 @@ class Invite {
     required this.userType,
     required this.guest,
     required this.status,
+    required this.usedBy,
   });
 
   Invite copyWith({
@@ -65,6 +67,7 @@ class Invite {
     InviteUserType? userType,
     InviteStatus? status,
     dynamic guest,
+    String? usedBy,
   }) =>
       Invite(
         inviteCode: inviteCode ?? this.inviteCode,
@@ -76,6 +79,7 @@ class Invite {
         userType: userType ?? this.userType,
         guest: guest ?? this.guest,
         status: status ?? this.status,
+        usedBy: usedBy ?? this.usedBy,
       );
 
   factory Invite.fromRawJson(String str) => Invite.fromJson(json.decode(str));
@@ -92,6 +96,7 @@ class Invite {
         userType: InviteUserType.values.byName(json["userType"]),
         guest: json["guest"],
         status: InviteStatus.values.byName(json["status"]),
+        usedBy: json["usedBy"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -104,5 +109,6 @@ class Invite {
         "userType": userType.name,
         "guest": guest,
         "status": status.name,
+        "usedBy": usedBy,
       };
 }

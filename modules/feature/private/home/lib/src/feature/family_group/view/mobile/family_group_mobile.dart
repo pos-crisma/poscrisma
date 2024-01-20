@@ -638,7 +638,8 @@ class FamilyGroupMobile extends StatelessWidget {
                                                     ),
                                                 children: [
                                                   TextSpan(
-                                                    text: "Vai exibir o nome",
+                                                    text: invite.usedBy ??
+                                                        "Vai exibir o nome",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium! //
@@ -664,41 +665,6 @@ class FamilyGroupMobile extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    // Row(
-                                    //   children: [
-                                    //     Text(
-                                    //       'Jovem: ',
-                                    //       style: Theme.of(context)
-                                    //           .textTheme
-                                    //           .bodyMedium! //
-                                    //           .copyWith(
-                                    //             color: ColorMode.setColor(
-                                    //               context: context,
-                                    //               light: Colors.black,
-                                    //               dark: Colors.white,
-                                    //             ),
-                                    //           ),
-                                    //     ),
-                                    //     Text(
-                                    //       "", //invite.inviteType.name,
-                                    //       overflow: TextOverflow.clip,
-                                    //       maxLines: 5,
-                                    //       style: Theme.of(context)
-                                    //           .textTheme
-                                    //           .bodyLarge! //
-                                    //           .copyWith(
-                                    //             fontWeight: FontWeight.bold,
-                                    //             color: ColorMode.setColor(
-                                    //               context: context,
-                                    //               light: Colors
-                                    //                   .deepPurple.shade900,
-                                    //               dark: Colors
-                                    //                   .deepPurple.shade200,
-                                    //             ),
-                                    //           ),
-                                    //     ),
-                                    //   ],
-                                    // ),
                                   ],
                                 ),
                               ),

@@ -1,5 +1,5 @@
 import 'environment.dart';
 
 mixin EnvironmentModule {
-  static Environment setup() => Environment.qa;
+  static Environment setup() => Environment.production;
 }

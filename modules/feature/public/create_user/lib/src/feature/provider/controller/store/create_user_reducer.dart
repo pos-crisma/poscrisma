@@ -165,6 +165,7 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
       toastification.show(
         context: state.context,
         type: ToastificationType.success,
+        showProgressBar: false,
         title: const Text(
           'Sucesso para criação do quarto',
         ),

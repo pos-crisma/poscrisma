@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 import 'package:room/src/feature/manager/room_manager_detail/provider/api/relocation_api.dart';
@@ -31,18 +32,27 @@ class RoomManagarDetailReducer
         successGetRoom: _successGetRoom,
         checkInTapped: _checkInTapped,
         checkOutTapped: _checkOutTapped,
+        filterUserByText: _filterUserByText,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
     state.context = context;
 
     return Effect.runAndEmit(() async {
+      send(const RoomManagarDetailAction.loading(true));
       send(const RoomManagarDetailAction.service());
+
+      state.filterUserController.addListener(() {
+        final text = state.filterUserController.text;
+
+        send(RoomManagarDetailAction.filterUserByText(text));
+      });
     });
   }
 
   FutureOr<Effect> _buttonTapped() {
     return Effect.run(() async {
+      send(const RoomManagarDetailAction.loading(true));
       send(const RoomManagarDetailAction.service());
     });
   }
@@ -51,6 +61,7 @@ class RoomManagarDetailReducer
     state.selector = value;
 
     return Effect.runAndEmit(() async {
+      send(const RoomManagarDetailAction.loading(true));
       send(const RoomManagarDetailAction.service());
     });
   }
@@ -59,6 +70,7 @@ class RoomManagarDetailReducer
     state.selectorGender = value;
 
     return Effect.runAndEmit(() async {
+      send(const RoomManagarDetailAction.loading(true));
       send(const RoomManagarDetailAction.service());
     });
   }
@@ -102,8 +114,8 @@ class RoomManagarDetailReducer
     });
   }
 
-  FutureOr<Effect> _loading() {
-    state.isLoading = !state.isLoading;
+  FutureOr<Effect> _loading(bool isLoading) {
+    state.isLoading = isLoading;
     return Effect.emit();
   }
 
@@ -113,17 +125,22 @@ class RoomManagarDetailReducer
       state.filtersUsers = dto.users!;
     }
 
-    return Effect.emit();
+    return Effect.runAndEmit(() async {
+      send(const RoomManagarDetailAction.loading(false));
+    });
   }
 
   FutureOr<Effect> _successGetRoom(Room dto) {
     state.room = dto;
 
-    return Effect.emit();
+    return Effect.runAndEmit(() async {
+      send(const RoomManagarDetailAction.loading(false));
+    });
   }
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo) {
     return Effect.run(() async {
+      send(const RoomManagarDetailAction.loading(false));
       showModalBottomSheet(
         useSafeArea: true,
         isScrollControlled: true,
@@ -151,10 +168,46 @@ class RoomManagarDetailReducer
         ),
       ).fold(
         (success) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.success,
+            style: ToastificationStyle.flat,
+            title: const Text(
+              "Sucesso de entrada no quarto",
+            ),
+            description: Text(
+              "Quarto ${state.room.roomName} com novo integrante",
+            ),
+            alignment: Alignment.bottomCenter,
+            autoCloseDuration: const Duration(seconds: 4),
+            animationBuilder: (
+              context,
+              animation,
+              alignment,
+              child,
+            ) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: highModeShadow,
+            applyBlurEffect: true,
+          );
+
           send(const RoomManagarDetailAction.serviceGetRoom());
           send(const RoomManagarDetailAction.service());
         },
-        (error) => send(RoomManagarDetailAction.failure(error)),
+        (error) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.error,
+            showProgressBar: false,
+            title: Text("${error.response?.toString()}"),
+            description: Text("${error.error?.message.toString()}"),
+          );
+        },
       );
     });
   }
@@ -168,11 +221,46 @@ class RoomManagarDetailReducer
         ),
       ).fold(
         (success) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.success,
+            style: ToastificationStyle.minimal,
+            showProgressBar: false,
+            title: const Text(
+              "Sucesso no saida do quarto",
+            ),
+          );
+
           send(const RoomManagarDetailAction.serviceGetRoom());
           send(const RoomManagarDetailAction.service());
         },
-        (error) => send(RoomManagarDetailAction.failure(error)),
+        (error) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.error,
+            showProgressBar: false,
+            title: Text("${error.response?.toString()}"),
+            description: Text("${error.error?.message.toString()}"),
+          );
+        },
       );
     });
+  }
+
+  FutureOr<Effect> _filterUserByText(String text) {
+    if (state.users != null && text.isNotEmpty) {
+      state.filtersUsers = state.users!
+          .where(
+            (element) =>
+                element.name != null &&
+                removeDiacritics(element.name!.toLowerCase())
+                    .contains(removeDiacritics(text.toLowerCase())),
+          )
+          .toList();
+    } else {
+      state.filtersUsers = state.users;
+    }
+
+    return Effect.emit();
   }
 }

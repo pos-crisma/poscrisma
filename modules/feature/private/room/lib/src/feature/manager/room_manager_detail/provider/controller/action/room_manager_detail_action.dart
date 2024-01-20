@@ -13,7 +13,7 @@ abstract class RoomManagarDetailAction with _$RoomManagarDetailAction {
       _SegmentedControlTapped;
   const factory RoomManagarDetailAction.segmentedControlGenderTapped(
       int value) = _SegmentedControlGenderTapped;
-  const factory RoomManagarDetailAction.loading() = _Loading;
+  const factory RoomManagarDetailAction.loading(bool isLoading) = _Loading;
   const factory RoomManagarDetailAction.service() = _Service;
   const factory RoomManagarDetailAction.success(HostedUserDTO dto) = _Success;
   const factory RoomManagarDetailAction.serviceGetRoom() = _ServiceGetRoom;
@@ -24,4 +24,6 @@ abstract class RoomManagarDetailAction with _$RoomManagarDetailAction {
       _ButtonCheckOutTapped;
   const factory RoomManagarDetailAction.checkInTapped(String id) =
       _ButtonCheckInTapped;
+  const factory RoomManagarDetailAction.filterUserByText(String userName) =
+      _FilterUserByText;
 }

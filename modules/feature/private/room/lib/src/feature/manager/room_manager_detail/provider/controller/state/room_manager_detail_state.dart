@@ -5,6 +5,9 @@ import 'package:store/store.dart';
 interface class RoomManagarDetailState {
   late BuildContext context;
 
+  TextEditingController filterUserController = TextEditingController(text: "");
+  FocusNode filterUserFocus = FocusNode();
+
   Room room;
 
   List<HostedUser>? users;
