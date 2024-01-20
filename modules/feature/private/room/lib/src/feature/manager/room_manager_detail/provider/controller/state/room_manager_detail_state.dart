@@ -1,0 +1,25 @@
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:store/store.dart';
+
+interface class RoomManagarDetailState {
+  late BuildContext context;
+
+  Room room;
+
+  List<HostedUser>? users;
+  List<HostedUser>? filtersUsers;
+
+  ErrorInfo? errorInfo;
+
+  int selector;
+  int selectorGender;
+
+  bool isLoading = false;
+
+  RoomManagarDetailState({
+    required this.room,
+    this.selector = 3,
+    this.selectorGender = 1,
+  });
+}

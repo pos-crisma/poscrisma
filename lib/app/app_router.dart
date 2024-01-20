@@ -242,6 +242,3 @@ class DefaultPage extends StatelessWidget {
     );
   }
 }
-
-
-// https://poscrisma-be163.web.app/#/invite/w8gniW2XHYipWEN8uWW2HC

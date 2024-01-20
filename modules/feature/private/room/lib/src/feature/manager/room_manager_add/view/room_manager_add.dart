@@ -183,6 +183,9 @@ class _RoomManagerAddState extends State<RoomManagerAdd> {
                                     ],
                                   _ => null,
                                 },
+                                boxDecorationColor: SystemMode.isDark(context)
+                                    ? Colors.black
+                                    : Colors.grey.shade200,
                                 onSubmit: (value) => viewStore
                                     .send(RoomManagarAddAction.addImage(value)),
                               )

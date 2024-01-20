@@ -46,7 +46,12 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         builder: (context) {
           return const RoomManagerAdd();
         },
-      );
+      ).then((value) {
+        if (value is bool && value == true) {
+          send(const RoomManagerAction.loading());
+          send(const RoomManagerAction.service());
+        }
+      });
     });
   }
 

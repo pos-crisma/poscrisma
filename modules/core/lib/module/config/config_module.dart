@@ -8,7 +8,10 @@ mixin ConfigurationModule {
   static Future<Config> setup(Environment env, String url) async {
     final envAPI = await EnvironmentAPI.getEnv();
 
-    return Config(flavor: env, url: envAPI.url);
+    return Config(
+      flavor: env,
+      url: env != Environment.develop ? envAPI.url : "http://localhost:3001/v1",
+    );
   }
 }
 
@@ -21,6 +24,7 @@ mixin EnvironmentAPI {
       );
 
       final env = await envRef.get();
+
       return env.data()!;
     } catch (e) {
       return Env(url: "https://poscrisma-service-production.up.railway.app/v1");

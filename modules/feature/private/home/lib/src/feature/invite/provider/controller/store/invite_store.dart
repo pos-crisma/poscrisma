@@ -89,9 +89,8 @@ class InviteReducer extends Reducer<InviteAction, InviteState> {
         MaterialPageRoute(
           builder: (context) {
             return ErrorPage(
-              title: errorMessage ?? "Tente novamente",
-              content: message ??
-                  "Tente novamente mais tarde, ou contate a equipe responsavel",
+              title: errorMessage,
+              content: message == "" ? null : message,
               backButton: () => Navigator.of(state.context).pop(),
               onPress: null,
               isShowButton: false,

@@ -32,4 +32,15 @@ mixin RoomAPI {
         .map(Room.fromJson)
         .fold(Success.new, Failure.new);
   }
+
+  static AsyncResult<Room, ErrorInfo> getRoomById(
+    String roomId,
+  ) async {
+    final request = await baseRequest;
+
+    return request
+        .get('/room-setting/$roomId')
+        .map(Room.fromJson)
+        .fold(Success.new, Failure.new);
+  }
 }

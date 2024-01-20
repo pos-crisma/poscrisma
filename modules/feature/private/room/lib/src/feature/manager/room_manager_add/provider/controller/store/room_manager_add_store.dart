@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 
@@ -67,6 +68,14 @@ class RoomManagarAddReducer
 
   FutureOr<Effect> _success(DefaultResponseDTO dto) {
     return Effect.run(() async {
+      toastification.show(
+        context: state.context,
+        type: ToastificationType.success,
+        title: const Text(
+          'Sucesso para criação do quarto',
+        ),
+        autoCloseDuration: const Duration(seconds: 5),
+      );
       state.context.pop(true);
     });
   }
@@ -79,8 +88,8 @@ class RoomManagarAddReducer
         context: state.context,
         builder: (context) {
           return ErrorPage(
-            title: errorInfo.response.toString(),
-            content: errorInfo.error?.message.toString() ?? "",
+            title: errorInfo.response?.toString(),
+            content: errorInfo.error?.message.toString(),
             backButton: () => Navigator.of(state.context).pop(),
             onPress: null,
             isShowButton: false,

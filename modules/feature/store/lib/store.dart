@@ -28,3 +28,13 @@ export 'feature/room/dto/room_setting_response_dto.dart';
 
 export 'feature/room/model/hosted.dart';
 export 'feature/room/model/room.dart';
+
+//* Hosted
+export 'feature/hosted/api/hosted_api.dart';
+
+export 'feature/hosted/dto/hosted_request_dto.dart';
+export 'feature/hosted/dto/hosted_user_dto.dart';
+
+export 'feature/hosted/model/god_parent.dart';
+export 'feature/hosted/model/basic_hosted.dart';
+export 'feature/hosted/model/hosted_user.dart';

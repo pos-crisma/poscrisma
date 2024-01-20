@@ -97,8 +97,8 @@ class AuthReducer extends Reducer<AuthAction, AuthState> {
         MaterialPageRoute(
           builder: (context) {
             return ErrorPage(
-              title: errorInfo.response.toString(),
-              content: errorInfo.error?.message.toString() ?? "",
+              title: errorInfo.response?.toString(),
+              content: errorInfo.error?.message.toString(),
               backButton: () => Navigator.of(state.context).pop(),
               onPress: null,
               isShowButton: false,

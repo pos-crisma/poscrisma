@@ -9,16 +9,16 @@ class ErrorPage extends StatelessWidget {
   const ErrorPage({
     super.key,
     this.enableColor,
-    required this.title,
-    required this.content,
+    this.title,
+    this.content,
     required this.backButton,
     required this.onPress,
     this.isShowButton = true,
     this.titleButton = 'Tentar novamente',
   });
 
-  final String title;
-  final String content;
+  final String? title;
+  final String? content;
 
   final Color? enableColor;
 
@@ -40,16 +40,18 @@ class ErrorPage extends StatelessWidget {
       mobile: ErrorMobile(
         backButton: backButton,
         onPress: onPress,
-        title: title,
-        content: content,
+        title: title ?? "Tente novamente mais tarde",
+        content: content ??
+            "Tente novamente mais tarde,\nMotivo algum erro interno no sistema.\nContatar algum responsavel da plataforma",
         isShowButton: isShowButton,
         titleButton: titleButton,
       ),
       desktop: ErrorMobile(
         backButton: backButton,
         onPress: onPress,
-        title: title,
-        content: content,
+        title: title ?? "Tente novamente mais tarde",
+        content: content ??
+            "Tente novamente mais tarde,\nMotivo algum erro interno no sistema.\nContatar algum responsavel da plataforma",
         isShowButton: isShowButton,
         titleButton: titleButton,
       ),
