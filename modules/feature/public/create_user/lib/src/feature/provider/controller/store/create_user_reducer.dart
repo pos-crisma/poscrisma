@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
 
@@ -160,7 +161,17 @@ class UserMobileReducer extends Reducer<UserMobileAction, CreateUserState> {
   }
 
   FutureOr<Effect> _success(CreateUserResponseDTO createUserResponseDTO) {
-    return Effect.run(() async => state.context.goNamed('auth'));
+    return Effect.run(() async {
+      toastification.show(
+        context: state.context,
+        type: ToastificationType.success,
+        title: const Text(
+          'Sucesso para criação do quarto',
+        ),
+        autoCloseDuration: const Duration(seconds: 5),
+      );
+      state.context.goNamed('auth');
+    });
   }
 
   FutureOr<Effect> _failure(ErrorInfo errorInfo, BuildContext context) {

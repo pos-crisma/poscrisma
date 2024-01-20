@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:design/design.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../config/config_config.dart';
 import '../../environment/environment.dart';
@@ -35,7 +37,8 @@ class NetworkInterceptor extends Interceptor {
     if (response != null) {
       if (response.statusCode == 401) {
         await hiveStorage.delete("@token");
-        navigatorKey.currentState?.pushReplacementNamed('/');
+        showToast();
+        moveToOtherPage();
       }
     }
     handler.next(err);
@@ -46,5 +49,28 @@ class NetworkInterceptor extends Interceptor {
     t2 = DateTime.now().millisecondsSinceEpoch;
 
     handler.next(response);
+  }
+
+  void showToast() {
+    final context = navigatorKey.currentContext;
+
+    if (context != null) {
+      toastification.show(
+        context: context,
+        type: ToastificationType.success,
+        title: const Text(
+          "Você precisa refazer seu login",
+        ),
+        autoCloseDuration: const Duration(seconds: 5),
+      );
+    }
+  }
+
+  void moveToOtherPage() {
+    final context = navigatorKey.currentContext;
+
+    if (context != null) {
+      context.goNamed('splash_screen');
+    }
   }
 }
