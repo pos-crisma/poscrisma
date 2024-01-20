@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:core/core.dart';
 import 'package:design/design.dart';
@@ -169,6 +168,34 @@ class RoomManagarDetailReducer
         ),
       ).fold(
         (success) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.success,
+            style: ToastificationStyle.flat,
+            title: const Text(
+              "Sucesso de entrada no quarto",
+            ),
+            description: Text(
+              "Quarto ${state.room.roomName} com novo integrante",
+            ),
+            alignment: Alignment.bottomCenter,
+            autoCloseDuration: const Duration(seconds: 4),
+            animationBuilder: (
+              context,
+              animation,
+              alignment,
+              child,
+            ) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: highModeShadow,
+            applyBlurEffect: true,
+          );
+
           send(const RoomManagarDetailAction.serviceGetRoom());
           send(const RoomManagarDetailAction.service());
         },
@@ -194,6 +221,16 @@ class RoomManagarDetailReducer
         ),
       ).fold(
         (success) {
+          toastification.show(
+            context: state.context,
+            type: ToastificationType.success,
+            style: ToastificationStyle.minimal,
+            showProgressBar: false,
+            title: const Text(
+              "Sucesso no saida do quarto",
+            ),
+          );
+
           send(const RoomManagarDetailAction.serviceGetRoom());
           send(const RoomManagarDetailAction.service());
         },
@@ -214,7 +251,10 @@ class RoomManagarDetailReducer
     if (state.users != null && text.isNotEmpty) {
       state.filtersUsers = state.users!
           .where(
-            (element) => element.name != null && element.name!.contains(text),
+            (element) =>
+                element.name != null &&
+                removeDiacritics(element.name!.toLowerCase())
+                    .contains(removeDiacritics(text.toLowerCase())),
           )
           .toList();
     } else {

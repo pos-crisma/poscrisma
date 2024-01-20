@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../hosted/model/god_parent.dart';
+
 class Hosted {
   final String? roomId;
   final DateTime? checkIn;
@@ -8,6 +10,9 @@ class Hosted {
   final String? userName;
   final String? userType;
   final String? userGender;
+  String? birthdate;
+  int? age;
+  GodParents? godParents;
 
   Hosted({
     this.roomId,
@@ -17,17 +22,22 @@ class Hosted {
     this.userName,
     this.userType,
     this.userGender,
+    this.birthdate,
+    this.age,
+    this.godParents,
   });
 
-  Hosted copyWith({
-    String? roomId,
-    DateTime? checkIn,
-    dynamic checkOut,
-    String? userId,
-    String? userName,
-    String? userType,
-    String? userGender,
-  }) =>
+  Hosted copyWith(
+          {String? roomId,
+          DateTime? checkIn,
+          dynamic checkOut,
+          String? userId,
+          String? userName,
+          String? userType,
+          String? userGender,
+          String? birthdate,
+          int? age,
+          GodParents? godParents}) =>
       Hosted(
         roomId: roomId ?? this.roomId,
         checkIn: checkIn ?? this.checkIn,
@@ -36,6 +46,9 @@ class Hosted {
         userName: userName ?? this.userName,
         userType: userType ?? this.userType,
         userGender: userGender ?? this.userGender,
+        birthdate: birthdate ?? this.birthdate,
+        age: age ?? this.age,
+        godParents: godParents ?? this.godParents,
       );
 
   factory Hosted.fromRawJson(String str) => Hosted.fromJson(json.decode(str));
@@ -51,6 +64,11 @@ class Hosted {
         userName: json["userName"],
         userType: json["userType"],
         userGender: json["userGender"],
+        birthdate: json["birthdate"],
+        age: json["age"],
+        godParents: json["godParents"] == null
+            ? null
+            : GodParents.fromJson(json["godParents"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -61,5 +79,8 @@ class Hosted {
         "userName": userName,
         "userType": userType,
         "userGender": userGender,
+        "birthdate": birthdate,
+        "age": age,
+        "godParents": godParents?.toJson(),
       };
 }

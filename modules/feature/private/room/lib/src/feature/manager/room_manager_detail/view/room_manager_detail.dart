@@ -3,6 +3,7 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:room/src/feature/component/hosted_card.dart';
+import 'package:store/feature/user/model/user.dart';
 import 'package:store/store.dart';
 
 import '../../../component/hosted_young_card.dart';
@@ -326,6 +327,11 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 name: user.userName ?? "",
                                 userRoomId: user.roomId ?? "",
                                 roomId: widget.room.roomId ?? "",
+                                birthday: user.age.toString(),
+                                godFather:
+                                    user.godParents?.godFather ?? "Padrinho",
+                                godMother:
+                                    user.godParents?.godMother ?? "Madrinha",
                                 callback: () => viewStore.send(
                                   RoomManagarDetailAction.checkOutTapped(
                                     user.userId ?? "",
@@ -337,8 +343,16 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 userRoomId: user.roomId ?? "",
                                 roomId: widget.room.roomId ?? "",
                                 type: switch (user.userType) {
-                                  "GodParent" => "Padrinho | Madrinha",
-                                  "Voluntary" => "Voluntario(a)",
+                                  "GodParent" =>
+                                    user.userGender?.toLowerCase() ==
+                                            UserGender.Male.name.toLowerCase()
+                                        ? "Padrinho"
+                                        : "Madrinha",
+                                  "Voluntary" =>
+                                    user.userGender?.toLowerCase() ==
+                                            UserGender.Male.name.toLowerCase()
+                                        ? "Voluntario"
+                                        : "Voluntaria",
                                   _ => "Jovem"
                                 },
                                 callback: () => viewStore.send(
@@ -390,7 +404,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 valueListenable: viewStore,
                 builder: (context, value, child) {
                   if (value.isLoading) {
-                    return Container();
+                    return const SliverToBoxAdapter();
                   }
 
                   return SliverToBoxAdapter(
@@ -434,6 +448,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 godMother:
                                     user.godParents?.godMother ?? "Madrinha",
                                 roomId: widget.room.roomId ?? "",
+                                birthday: user.age.toString(),
                                 callback: () => viewStore.send(
                                   RoomManagarDetailAction.checkInTapped(
                                     user.userId ?? "",
@@ -446,8 +461,12 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                 isGuest: user.guest ?? false,
                                 roomId: widget.room.roomId ?? "",
                                 type: switch (value.selector) {
-                                  1 => "Padrinho | Madrinha",
-                                  2 => "Voluntario(a)",
+                                  1 => user.gender == UserGender.Male
+                                      ? "Padrinho"
+                                      : "Madrinha",
+                                  2 => user.gender == UserGender.Male
+                                      ? "Voluntario"
+                                      : "Voluntaria",
                                   _ => "Jovem"
                                 },
                                 callback: () => viewStore.send(
