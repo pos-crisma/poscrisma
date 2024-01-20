@@ -173,10 +173,10 @@ class RoomManagarDetailReducer
             type: ToastificationType.success,
             style: ToastificationStyle.flat,
             title: const Text(
-              "Sucesso de entrada no quarto",
+              "Sucesso de entrada no quarto.",
             ),
             description: Text(
-              "Quarto ${state.room.roomName} com novo integrante",
+              "Quarto ${state.room.roomName} com novo integrante.",
             ),
             alignment: Alignment.bottomCenter,
             autoCloseDuration: const Duration(seconds: 4),
@@ -193,7 +193,8 @@ class RoomManagarDetailReducer
             },
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: highModeShadow,
-            applyBlurEffect: true,
+            applyBlurEffect: false,
+            showProgressBar: false,
           );
 
           send(const RoomManagarDetailAction.serviceGetRoom());
@@ -214,21 +215,37 @@ class RoomManagarDetailReducer
 
   FutureOr<Effect> _checkOutTapped(String id) {
     return Effect.run(() async {
-      await RelocationAPI.relocation(
-        RelocationDTO(
-          userId: id,
-          roomSettingId: state.room.roomId,
-        ),
+      await RelocationAPI.checkOut(
+        id,
       ).fold(
         (success) {
           toastification.show(
             context: state.context,
             type: ToastificationType.success,
-            style: ToastificationStyle.minimal,
-            showProgressBar: false,
+            style: ToastificationStyle.flat,
             title: const Text(
-              "Sucesso no saida do quarto",
+              "Sucesso de saida do quarto.",
             ),
+            description: Text(
+              "Removido integrante do quarto ${state.room.roomName}.",
+            ),
+            alignment: Alignment.bottomCenter,
+            autoCloseDuration: const Duration(seconds: 4),
+            animationBuilder: (
+              context,
+              animation,
+              alignment,
+              child,
+            ) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: highModeShadow,
+            applyBlurEffect: false,
+            showProgressBar: false,
           );
 
           send(const RoomManagarDetailAction.serviceGetRoom());
