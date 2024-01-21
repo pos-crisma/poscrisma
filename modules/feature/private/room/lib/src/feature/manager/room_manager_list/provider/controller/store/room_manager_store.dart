@@ -23,6 +23,7 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         loading: _loading,
         success: _success,
         failure: _failure,
+        filterRoomByText: _filterRoomByText,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -31,6 +32,12 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
     return Effect.runAndEmit(() async {
       send(const RoomManagerAction.loading());
       send(const RoomManagerAction.service());
+
+      state.filterRoomController.addListener(() {
+        final text = state.filterRoomController.text;
+
+        send(RoomManagerAction.filterRoomByText(text));
+      });
     });
   }
 
@@ -85,7 +92,8 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
   }
 
   FutureOr<Effect> _success(RoomSettingResponseDTO dto) {
-    state.response = dto;
+    state.rooms = dto.rooms;
+    state.filterRooms = dto.rooms;
     return Effect.runAndEmit(() async {
       send(const RoomManagerAction.loading());
     });
@@ -97,5 +105,22 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
     return Effect.runAndEmit(() async {
       send(const RoomManagerAction.loading());
     });
+  }
+
+  FutureOr<Effect> _filterRoomByText(String text) {
+    if (state.rooms != null && text.isNotEmpty) {
+      state.filterRooms = state.rooms!
+          .where(
+            (element) =>
+                element.roomName != null &&
+                removeDiacritics(element.roomName!.toLowerCase())
+                    .contains(removeDiacritics(text.toLowerCase())),
+          )
+          .toList();
+    } else {
+      state.filterRooms = state.rooms;
+    }
+
+    return Effect.emit();
   }
 }

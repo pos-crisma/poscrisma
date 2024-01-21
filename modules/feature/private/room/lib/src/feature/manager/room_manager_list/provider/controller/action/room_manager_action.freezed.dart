@@ -25,6 +25,7 @@ mixin _$RoomManagerAction {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$RoomManagerAction {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$RoomManagerAction {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +62,7 @@ mixin _$RoomManagerAction {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +74,7 @@ mixin _$RoomManagerAction {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,7 @@ mixin _$RoomManagerAction {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,6 +182,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return onAppear(context);
   }
@@ -190,6 +197,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return onAppear?.call(context);
   }
@@ -204,6 +212,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -222,6 +231,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return onAppear(this);
   }
@@ -236,6 +246,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return onAppear?.call(this);
   }
@@ -250,6 +261,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -340,6 +352,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return buttonTapped(room);
   }
@@ -354,6 +367,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return buttonTapped?.call(room);
   }
@@ -368,6 +382,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -386,6 +401,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return buttonTapped(this);
   }
@@ -400,6 +416,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return buttonTapped?.call(this);
   }
@@ -414,6 +431,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -478,6 +496,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return buttonAddRoomTapped();
   }
@@ -492,6 +511,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return buttonAddRoomTapped?.call();
   }
@@ -506,6 +526,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (buttonAddRoomTapped != null) {
@@ -524,6 +545,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return buttonAddRoomTapped(this);
   }
@@ -538,6 +560,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return buttonAddRoomTapped?.call(this);
   }
@@ -552,6 +575,7 @@ class _$ButtonAddRoomTappedImpl implements _ButtonAddRoomTapped {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (buttonAddRoomTapped != null) {
@@ -610,6 +634,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return service();
   }
@@ -624,6 +649,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return service?.call();
   }
@@ -638,6 +664,7 @@ class _$ServiceImpl implements _Service {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -656,6 +683,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return service(this);
   }
@@ -670,6 +698,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return service?.call(this);
   }
@@ -684,6 +713,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -742,6 +772,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return loading();
   }
@@ -756,6 +787,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return loading?.call();
   }
@@ -770,6 +802,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -788,6 +821,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return loading(this);
   }
@@ -802,6 +836,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return loading?.call(this);
   }
@@ -816,6 +851,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -900,6 +936,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return success(dto);
   }
@@ -914,6 +951,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return success?.call(dto);
   }
@@ -928,6 +966,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -946,6 +985,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return success(this);
   }
@@ -960,6 +1000,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return success?.call(this);
   }
@@ -974,6 +1015,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1063,6 +1105,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() loading,
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
   }) {
     return failure(error);
   }
@@ -1077,6 +1120,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? loading,
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
   }) {
     return failure?.call(error);
   }
@@ -1091,6 +1135,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? loading,
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1109,6 +1154,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
   }) {
     return failure(this);
   }
@@ -1123,6 +1169,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
   }) {
     return failure?.call(this);
   }
@@ -1137,6 +1184,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1152,5 +1200,177 @@ abstract class _Failure implements RoomManagerAction {
   ErrorInfo get error;
   @JsonKey(ignore: true)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterRoomByTextImplCopyWith<$Res> {
+  factory _$$FilterRoomByTextImplCopyWith(_$FilterRoomByTextImpl value,
+          $Res Function(_$FilterRoomByTextImpl) then) =
+      __$$FilterRoomByTextImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userName});
+}
+
+/// @nodoc
+class __$$FilterRoomByTextImplCopyWithImpl<$Res>
+    extends _$RoomManagerActionCopyWithImpl<$Res, _$FilterRoomByTextImpl>
+    implements _$$FilterRoomByTextImplCopyWith<$Res> {
+  __$$FilterRoomByTextImplCopyWithImpl(_$FilterRoomByTextImpl _value,
+      $Res Function(_$FilterRoomByTextImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userName = null,
+  }) {
+    return _then(_$FilterRoomByTextImpl(
+      null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterRoomByTextImpl implements _FilterRoomByText {
+  const _$FilterRoomByTextImpl(this.userName);
+
+  @override
+  final String userName;
+
+  @override
+  String toString() {
+    return 'RoomManagerAction.filterRoomByText(userName: $userName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterRoomByTextImpl &&
+            (identical(other.userName, userName) ||
+                other.userName == userName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterRoomByTextImplCopyWith<_$FilterRoomByTextImpl> get copyWith =>
+      __$$FilterRoomByTextImplCopyWithImpl<_$FilterRoomByTextImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function(Room room) buttonTapped,
+    required TResult Function() buttonAddRoomTapped,
+    required TResult Function() service,
+    required TResult Function() loading,
+    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String userName) filterRoomByText,
+  }) {
+    return filterRoomByText(userName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? buttonAddRoomTapped,
+    TResult? Function()? service,
+    TResult? Function()? loading,
+    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String userName)? filterRoomByText,
+  }) {
+    return filterRoomByText?.call(userName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function(Room room)? buttonTapped,
+    TResult Function()? buttonAddRoomTapped,
+    TResult Function()? service,
+    TResult Function()? loading,
+    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(String userName)? filterRoomByText,
+    required TResult orElse(),
+  }) {
+    if (filterRoomByText != null) {
+      return filterRoomByText(userName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_ButtonAddRoomTapped value) buttonAddRoomTapped,
+    required TResult Function(_Service value) service,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_FilterRoomByText value) filterRoomByText,
+  }) {
+    return filterRoomByText(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_ButtonAddRoomTapped value)? buttonAddRoomTapped,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_FilterRoomByText value)? filterRoomByText,
+  }) {
+    return filterRoomByText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_ButtonAddRoomTapped value)? buttonAddRoomTapped,
+    TResult Function(_Service value)? service,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_FilterRoomByText value)? filterRoomByText,
+    required TResult orElse(),
+  }) {
+    if (filterRoomByText != null) {
+      return filterRoomByText(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterRoomByText implements RoomManagerAction {
+  const factory _FilterRoomByText(final String userName) =
+      _$FilterRoomByTextImpl;
+
+  String get userName;
+  @JsonKey(ignore: true)
+  _$$FilterRoomByTextImplCopyWith<_$FilterRoomByTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

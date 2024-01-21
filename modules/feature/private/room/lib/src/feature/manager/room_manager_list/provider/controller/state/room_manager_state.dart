@@ -5,7 +5,12 @@ import 'package:store/store.dart';
 interface class RoomManagerState {
   late BuildContext context;
 
-  RoomSettingResponseDTO? response;
+  TextEditingController filterRoomController = TextEditingController(text: "");
+  FocusNode filterRoomFocus = FocusNode();
+
+  List<Room>? rooms;
+  List<Room>? filterRooms;
+
   ErrorInfo? info;
 
   bool isLoading;

@@ -33,6 +33,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       offlineService: _offlineService,
       managerRoom: () => Effect.emit(),
       internetUpdate: _internetUpdate,
+      pullToRefresh: _pullToRefresh,
     );
   }
 
@@ -53,6 +54,12 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       };
 
       await send(HomeAction.internetChecker(resultStatus));
+      await send(const HomeAction.userService());
+    });
+  }
+
+  FutureOr<Effect> _pullToRefresh() {
+    return Effect.run(() async {
       await send(const HomeAction.userService());
     });
   }
