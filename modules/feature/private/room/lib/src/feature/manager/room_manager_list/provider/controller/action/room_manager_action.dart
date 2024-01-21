@@ -15,4 +15,6 @@ abstract class RoomManagerAction with _$RoomManagerAction {
   const factory RoomManagerAction.success(RoomSettingResponseDTO dto) =
       _Success;
   const factory RoomManagerAction.failure(ErrorInfo error) = _Failure;
+    const factory RoomManagerAction.filterRoomByText(String userName) =
+      _FilterRoomByText;
 }

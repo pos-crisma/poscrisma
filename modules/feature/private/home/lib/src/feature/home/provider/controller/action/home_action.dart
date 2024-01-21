@@ -20,6 +20,5 @@ abstract class HomeAction with _$HomeAction {
   const factory HomeAction.offlineService() = _OfflineService;
   const factory HomeAction.managerRoom() = _ManagerRoomTapped;
   const factory HomeAction.internetUpdate(bool status) = _InternetStatus;
-  // const factory HomeAction.getPackageData(PackageData package) = _GetPackageData;
-  // const factory HomeAction.internetUpdate(bool status) = _InternetStatus;
+  const factory HomeAction.pullToRefresh() = _PullToRefresh;
 }

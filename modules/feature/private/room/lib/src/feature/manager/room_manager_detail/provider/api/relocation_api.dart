@@ -17,6 +17,19 @@ mixin RelocationAPI {
         .fold(Success.new, Failure.new);
   }
 
+  static AsyncResult<DefaultResponseDTO, ErrorInfo> checkOut(
+    String id,
+  ) async {
+    final request = await baseRequest;
+
+    return request
+        .patch(
+          '/hosting/check-out/$id',
+        )
+        .map(DefaultResponseDTO.fromJson)
+        .fold(Success.new, Failure.new);
+  }
+
   static AsyncResult<DefaultResponseDTO, ErrorInfo> checkIn(
     RelocationDTO dto,
   ) async {
