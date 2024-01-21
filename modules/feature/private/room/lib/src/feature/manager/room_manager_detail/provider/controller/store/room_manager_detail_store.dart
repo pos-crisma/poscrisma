@@ -33,6 +33,7 @@ class RoomManagarDetailReducer
         checkInTapped: _checkInTapped,
         checkOutTapped: _checkOutTapped,
         filterUserByText: _filterUserByText,
+        expandedRoomSettings: _roomSettingExpansion,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -277,6 +278,12 @@ class RoomManagarDetailReducer
     } else {
       state.filtersUsers = state.users;
     }
+
+    return Effect.emit();
+  }
+
+  FutureOr<Effect> _roomSettingExpansion() {
+    state.roomSettingExpansion = !state.roomSettingExpansion;
 
     return Effect.emit();
   }

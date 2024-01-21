@@ -24,6 +24,7 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         success: _success,
         failure: _failure,
         filterRoomByText: _filterRoomByText,
+        pullToRefresh: _pullToRefresh,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -121,5 +122,12 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
     }
 
     return Effect.emit();
+  }
+
+  FutureOr<Effect> _pullToRefresh() {
+    return Effect.run(() async {
+      await send(const RoomManagerAction.loading());
+      await send(const RoomManagerAction.service());
+    });
   }
 }

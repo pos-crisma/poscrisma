@@ -83,7 +83,7 @@ class HomeMobile extends StatelessWidget {
     );
 
     return Scaffold(
-      body: RefreshIndicator(
+      body: RefreshIndicator.adaptive(
         edgeOffset: 16,
         onRefresh: () {
           return viewStore.send(const HomeAction.pullToRefresh());

@@ -26,4 +26,5 @@ abstract class RoomManagarDetailAction with _$RoomManagarDetailAction {
       _ButtonCheckInTapped;
   const factory RoomManagarDetailAction.filterUserByText(String userName) =
       _FilterUserByText;
+  const factory RoomManagarDetailAction.expandedRoomSettings() = _ExpandedRoomSetting;
 }

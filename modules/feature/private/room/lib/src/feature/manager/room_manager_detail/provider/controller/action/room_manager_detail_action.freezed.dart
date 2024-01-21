@@ -31,6 +31,7 @@ mixin _$RoomManagarDetailAction {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +49,7 @@ mixin _$RoomManagarDetailAction {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +67,7 @@ mixin _$RoomManagarDetailAction {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +88,7 @@ mixin _$RoomManagarDetailAction {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,6 +107,7 @@ mixin _$RoomManagarDetailAction {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -121,6 +126,7 @@ mixin _$RoomManagarDetailAction {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -223,6 +229,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return onAppear(context);
   }
@@ -243,6 +250,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return onAppear?.call(context);
   }
@@ -263,6 +271,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -289,6 +298,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return onAppear(this);
   }
@@ -310,6 +320,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return onAppear?.call(this);
   }
@@ -331,6 +342,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -401,6 +413,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return buttonTapped();
   }
@@ -421,6 +434,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return buttonTapped?.call();
   }
@@ -441,6 +455,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -467,6 +482,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return buttonTapped(this);
   }
@@ -488,6 +504,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return buttonTapped?.call(this);
   }
@@ -509,6 +526,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -603,6 +621,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return segmentedControlTapped(value);
   }
@@ -623,6 +642,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return segmentedControlTapped?.call(value);
   }
@@ -643,6 +663,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (segmentedControlTapped != null) {
@@ -669,6 +690,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return segmentedControlTapped(this);
   }
@@ -690,6 +712,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return segmentedControlTapped?.call(this);
   }
@@ -711,6 +734,7 @@ class _$SegmentedControlTappedImpl implements _SegmentedControlTapped {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (segmentedControlTapped != null) {
@@ -813,6 +837,7 @@ class _$SegmentedControlGenderTappedImpl
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return segmentedControlGenderTapped(value);
   }
@@ -833,6 +858,7 @@ class _$SegmentedControlGenderTappedImpl
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return segmentedControlGenderTapped?.call(value);
   }
@@ -853,6 +879,7 @@ class _$SegmentedControlGenderTappedImpl
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (segmentedControlGenderTapped != null) {
@@ -879,6 +906,7 @@ class _$SegmentedControlGenderTappedImpl
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return segmentedControlGenderTapped(this);
   }
@@ -900,6 +928,7 @@ class _$SegmentedControlGenderTappedImpl
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return segmentedControlGenderTapped?.call(this);
   }
@@ -921,6 +950,7 @@ class _$SegmentedControlGenderTappedImpl
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (segmentedControlGenderTapped != null) {
@@ -1020,6 +1050,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return loading(isLoading);
   }
@@ -1040,6 +1071,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return loading?.call(isLoading);
   }
@@ -1060,6 +1092,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1086,6 +1119,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return loading(this);
   }
@@ -1107,6 +1141,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return loading?.call(this);
   }
@@ -1128,6 +1163,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1197,6 +1233,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return service();
   }
@@ -1217,6 +1254,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return service?.call();
   }
@@ -1237,6 +1275,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -1263,6 +1302,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return service(this);
   }
@@ -1284,6 +1324,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return service?.call(this);
   }
@@ -1305,6 +1346,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -1395,6 +1437,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return success(dto);
   }
@@ -1415,6 +1458,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return success?.call(dto);
   }
@@ -1435,6 +1479,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1461,6 +1506,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return success(this);
   }
@@ -1482,6 +1528,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return success?.call(this);
   }
@@ -1503,6 +1550,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1572,6 +1620,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return serviceGetRoom();
   }
@@ -1592,6 +1641,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return serviceGetRoom?.call();
   }
@@ -1612,6 +1662,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (serviceGetRoom != null) {
@@ -1638,6 +1689,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return serviceGetRoom(this);
   }
@@ -1659,6 +1711,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return serviceGetRoom?.call(this);
   }
@@ -1680,6 +1733,7 @@ class _$ServiceGetRoomImpl implements _ServiceGetRoom {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (serviceGetRoom != null) {
@@ -1771,6 +1825,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return successGetRoom(dto);
   }
@@ -1791,6 +1846,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return successGetRoom?.call(dto);
   }
@@ -1811,6 +1867,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (successGetRoom != null) {
@@ -1837,6 +1894,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return successGetRoom(this);
   }
@@ -1858,6 +1916,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return successGetRoom?.call(this);
   }
@@ -1879,6 +1938,7 @@ class _$SuccessGetRoomImpl implements _SuccessGetRoom {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (successGetRoom != null) {
@@ -1974,6 +2034,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return failure(error);
   }
@@ -1994,6 +2055,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return failure?.call(error);
   }
@@ -2014,6 +2076,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -2040,6 +2103,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return failure(this);
   }
@@ -2061,6 +2125,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return failure?.call(this);
   }
@@ -2082,6 +2147,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -2180,6 +2246,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return checkOutTapped(id);
   }
@@ -2200,6 +2267,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return checkOutTapped?.call(id);
   }
@@ -2220,6 +2288,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (checkOutTapped != null) {
@@ -2246,6 +2315,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return checkOutTapped(this);
   }
@@ -2267,6 +2337,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return checkOutTapped?.call(this);
   }
@@ -2288,6 +2359,7 @@ class _$ButtonCheckOutTappedImpl implements _ButtonCheckOutTapped {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (checkOutTapped != null) {
@@ -2386,6 +2458,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return checkInTapped(id);
   }
@@ -2406,6 +2479,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return checkInTapped?.call(id);
   }
@@ -2426,6 +2500,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (checkInTapped != null) {
@@ -2452,6 +2527,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return checkInTapped(this);
   }
@@ -2473,6 +2549,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return checkInTapped?.call(this);
   }
@@ -2494,6 +2571,7 @@ class _$ButtonCheckInTappedImpl implements _ButtonCheckInTapped {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (checkInTapped != null) {
@@ -2592,6 +2670,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     required TResult Function(String id) checkOutTapped,
     required TResult Function(String id) checkInTapped,
     required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
   }) {
     return filterUserByText(userName);
   }
@@ -2612,6 +2691,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     TResult? Function(String id)? checkOutTapped,
     TResult? Function(String id)? checkInTapped,
     TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
   }) {
     return filterUserByText?.call(userName);
   }
@@ -2632,6 +2712,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     TResult Function(String id)? checkOutTapped,
     TResult Function(String id)? checkInTapped,
     TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (filterUserByText != null) {
@@ -2658,6 +2739,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
     required TResult Function(_ButtonCheckInTapped value) checkInTapped,
     required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
   }) {
     return filterUserByText(this);
   }
@@ -2679,6 +2761,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
   }) {
     return filterUserByText?.call(this);
   }
@@ -2700,6 +2783,7 @@ class _$FilterUserByTextImpl implements _FilterUserByText {
     TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
     TResult Function(_ButtonCheckInTapped value)? checkInTapped,
     TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
     required TResult orElse(),
   }) {
     if (filterUserByText != null) {
@@ -2717,4 +2801,184 @@ abstract class _FilterUserByText implements RoomManagarDetailAction {
   @JsonKey(ignore: true)
   _$$FilterUserByTextImplCopyWith<_$FilterUserByTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ExpandedRoomSettingImplCopyWith<$Res> {
+  factory _$$ExpandedRoomSettingImplCopyWith(_$ExpandedRoomSettingImpl value,
+          $Res Function(_$ExpandedRoomSettingImpl) then) =
+      __$$ExpandedRoomSettingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExpandedRoomSettingImplCopyWithImpl<$Res>
+    extends _$RoomManagarDetailActionCopyWithImpl<$Res,
+        _$ExpandedRoomSettingImpl>
+    implements _$$ExpandedRoomSettingImplCopyWith<$Res> {
+  __$$ExpandedRoomSettingImplCopyWithImpl(_$ExpandedRoomSettingImpl _value,
+      $Res Function(_$ExpandedRoomSettingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ExpandedRoomSettingImpl implements _ExpandedRoomSetting {
+  const _$ExpandedRoomSettingImpl();
+
+  @override
+  String toString() {
+    return 'RoomManagarDetailAction.expandedRoomSettings()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ExpandedRoomSettingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() buttonTapped,
+    required TResult Function(int value) segmentedControlTapped,
+    required TResult Function(int value) segmentedControlGenderTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function() service,
+    required TResult Function(HostedUserDTO dto) success,
+    required TResult Function() serviceGetRoom,
+    required TResult Function(Room dto) successGetRoom,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(String id) checkOutTapped,
+    required TResult Function(String id) checkInTapped,
+    required TResult Function(String userName) filterUserByText,
+    required TResult Function() expandedRoomSettings,
+  }) {
+    return expandedRoomSettings();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? buttonTapped,
+    TResult? Function(int value)? segmentedControlTapped,
+    TResult? Function(int value)? segmentedControlGenderTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function()? service,
+    TResult? Function(HostedUserDTO dto)? success,
+    TResult? Function()? serviceGetRoom,
+    TResult? Function(Room dto)? successGetRoom,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(String id)? checkOutTapped,
+    TResult? Function(String id)? checkInTapped,
+    TResult? Function(String userName)? filterUserByText,
+    TResult? Function()? expandedRoomSettings,
+  }) {
+    return expandedRoomSettings?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? buttonTapped,
+    TResult Function(int value)? segmentedControlTapped,
+    TResult Function(int value)? segmentedControlGenderTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function()? service,
+    TResult Function(HostedUserDTO dto)? success,
+    TResult Function()? serviceGetRoom,
+    TResult Function(Room dto)? successGetRoom,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(String id)? checkOutTapped,
+    TResult Function(String id)? checkInTapped,
+    TResult Function(String userName)? filterUserByText,
+    TResult Function()? expandedRoomSettings,
+    required TResult orElse(),
+  }) {
+    if (expandedRoomSettings != null) {
+      return expandedRoomSettings();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_SegmentedControlTapped value)
+        segmentedControlTapped,
+    required TResult Function(_SegmentedControlGenderTapped value)
+        segmentedControlGenderTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Service value) service,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ServiceGetRoom value) serviceGetRoom,
+    required TResult Function(_SuccessGetRoom value) successGetRoom,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ButtonCheckOutTapped value) checkOutTapped,
+    required TResult Function(_ButtonCheckInTapped value) checkInTapped,
+    required TResult Function(_FilterUserByText value) filterUserByText,
+    required TResult Function(_ExpandedRoomSetting value) expandedRoomSettings,
+  }) {
+    return expandedRoomSettings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_SegmentedControlTapped value)? segmentedControlTapped,
+    TResult? Function(_SegmentedControlGenderTapped value)?
+        segmentedControlGenderTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ServiceGetRoom value)? serviceGetRoom,
+    TResult? Function(_SuccessGetRoom value)? successGetRoom,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_ButtonCheckOutTapped value)? checkOutTapped,
+    TResult? Function(_ButtonCheckInTapped value)? checkInTapped,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
+    TResult? Function(_ExpandedRoomSetting value)? expandedRoomSettings,
+  }) {
+    return expandedRoomSettings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_SegmentedControlTapped value)? segmentedControlTapped,
+    TResult Function(_SegmentedControlGenderTapped value)?
+        segmentedControlGenderTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Service value)? service,
+    TResult Function(_Success value)? success,
+    TResult Function(_ServiceGetRoom value)? serviceGetRoom,
+    TResult Function(_SuccessGetRoom value)? successGetRoom,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ButtonCheckOutTapped value)? checkOutTapped,
+    TResult Function(_ButtonCheckInTapped value)? checkInTapped,
+    TResult Function(_FilterUserByText value)? filterUserByText,
+    TResult Function(_ExpandedRoomSetting value)? expandedRoomSettings,
+    required TResult orElse(),
+  }) {
+    if (expandedRoomSettings != null) {
+      return expandedRoomSettings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExpandedRoomSetting implements RoomManagarDetailAction {
+  const factory _ExpandedRoomSetting() = _$ExpandedRoomSettingImpl;
 }

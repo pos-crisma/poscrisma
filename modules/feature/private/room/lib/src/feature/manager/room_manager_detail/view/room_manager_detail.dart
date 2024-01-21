@@ -74,25 +74,45 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                       Text(
                         "Bloco: ${widget.room.blockName}",
                       ),
-                      Text(
-                        "Vagas: ${widget.room.vacancies}",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Text(
+                            "Vagas: ${value.room.vacancies}",
+                          );
+                        },
                       ),
-                      Text(
-                        "Numero de hospedes: ${widget.room.hosted?.length}",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Text(
+                            "Numero de hospedes: ${value.room.hosted?.length}",
+                          );
+                        },
                       ),
-                      Text(
-                        (widget.room.availability != null &&
-                                widget.room.availability!)
-                            ? "Disponivel"
-                            : "Indisponivel",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Text(
+                            (value.room.availability != null &&
+                                    value.room.availability!)
+                                ? "Disponivel"
+                                : "Indisponivel",
+                          );
+                        },
                       ),
-                      Text(
-                        (widget.room.roomType != null &&
-                                widget.room.roomType == "Couple")
-                            ? "Casal"
-                            : widget.room.roomType == "Single"
-                                ? "Solteiro"
-                                : "Não definido",
+                      ValueListenableBuilder(
+                        valueListenable: viewStore,
+                        builder: (context, value, child) {
+                          return Text(
+                            (value.room.roomType != null &&
+                                    value.room.roomType == "Couple")
+                                ? "Casal"
+                                : value.room.roomType == "Single"
+                                    ? "Solteiro"
+                                    : "Sem ocupantes",
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -112,172 +132,199 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
               ),
 
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    "Quarto para: ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge! //
-                        .copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-              ),
-
-              SliverToBoxAdapter(
                 child: ValueListenableBuilder(
                   valueListenable: viewStore,
                   builder: (context, value, _) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        children: [
-                          CustomSlidingSegmentedControl<int>(
-                            fromMax: true,
-                            isStretch: true,
-                            padding: 16,
-                            initialValue: value.selector,
-                            children: {
-                              1: Text(
-                                'Padrinho',
+                    return ExpansionPanelList(
+                      expansionCallback: (panelIndex, isExpanded) =>
+                          viewStore.send(const RoomManagarDetailAction
+                              .expandedRoomSettings()),
+                      expandedHeaderPadding: EdgeInsets.zero,
+                      materialGapSize: 0,
+                      elevation: 0,
+                      children: [
+                        ExpansionPanel(
+                          canTapOnHeader: true,
+                          isExpanded: value.roomSettingExpansion,
+                          headerBuilder: (context, isExpanded) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                top: 12.0,
+                                left: 16.0,
+                              ),
+                              child: Text(
+                                "Quarto para: ",
+                                textAlign: TextAlign.left,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium! //
+                                    .bodyLarge! //
                                     .copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                              2: Text(
-                                'Voluntario',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium! //
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              3: Text(
-                                'Jovem',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium! //
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            },
-                            innerPadding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              color: ColorMode.setColor(
-                                context: context,
-                                light: CupertinoColors.lightBackgroundGray,
-                                dark: CupertinoColors.darkBackgroundGray,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
+                            );
+                          },
+                          body: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
                             ),
-                            thumbDecoration: BoxDecoration(
-                              color: ColorMode.setColor(
-                                context: context,
-                                light: Colors.grey.shade100,
-                                dark: Colors.grey.shade900,
-                              ),
-                              borderRadius: BorderRadius.circular(6),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(.3),
-                                  blurRadius: 4.0,
-                                  spreadRadius: 1.0,
-                                  offset: const Offset(
-                                    0.0,
-                                    2.0,
+                            child: Column(
+                              children: [
+                                CustomSlidingSegmentedControl<int>(
+                                  fromMax: true,
+                                  isStretch: true,
+                                  padding: 16,
+                                  initialValue: value.selector,
+                                  children: {
+                                    1: Text(
+                                      'Padrinho',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium! //
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    2: Text(
+                                      'Voluntario',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium! //
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    3: Text(
+                                      'Jovem',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium! //
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  },
+                                  innerPadding: const EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    color: ColorMode.setColor(
+                                      context: context,
+                                      light:
+                                          CupertinoColors.lightBackgroundGray,
+                                      dark: CupertinoColors.darkBackgroundGray,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  thumbDecoration: BoxDecoration(
+                                    color: ColorMode.setColor(
+                                      context: context,
+                                      light: Colors.grey.shade100,
+                                      dark: Colors.grey.shade900,
+                                    ),
+                                    borderRadius: BorderRadius.circular(6),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(.3),
+                                        blurRadius: 4.0,
+                                        spreadRadius: 1.0,
+                                        offset: const Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  duration: Durations.medium4,
+                                  curve: Curves.easeInToLinear,
+                                  onValueChanged: (v) => viewStore.send(
+                                    RoomManagarDetailAction
+                                        .segmentedControlTapped(v),
                                   ),
                                 ),
-                              ],
-                            ),
-                            duration: Durations.medium4,
-                            curve: Curves.easeInToLinear,
-                            onValueChanged: (v) => viewStore.send(
-                              RoomManagarDetailAction.segmentedControlTapped(v),
-                            ),
-                          ),
-                          value.selector == 3
-                              ? Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: CustomSlidingSegmentedControl<int>(
-                                    fromMax: true,
-                                    isStretch: true,
-                                    padding: 16,
-                                    initialValue: value.selectorGender,
-                                    children: {
-                                      1: Text(
-                                        'Masculino',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium! //
-                                            .copyWith(
-                                              fontWeight: FontWeight.bold,
+                                value.selector == 3
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
+                                        child:
+                                            CustomSlidingSegmentedControl<int>(
+                                          fromMax: true,
+                                          isStretch: true,
+                                          padding: 16,
+                                          initialValue: value.selectorGender,
+                                          children: {
+                                            1: Text(
+                                              'Masculino',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium! //
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
-                                      ),
-                                      2: Text(
-                                        'Feminino',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium! //
-                                            .copyWith(
-                                              fontWeight: FontWeight.bold,
+                                            2: Text(
+                                              'Feminino',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium! //
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
-                                      ),
-                                    },
-                                    innerPadding: const EdgeInsets.all(3),
-                                    decoration: BoxDecoration(
-                                      color: ColorMode.setColor(
-                                        context: context,
-                                        light:
-                                            CupertinoColors.lightBackgroundGray,
-                                        dark:
-                                            CupertinoColors.darkBackgroundGray,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    thumbDecoration: BoxDecoration(
-                                      color: ColorMode.setColor(
-                                        context: context,
-                                        light: Colors.grey.shade100,
-                                        dark: Colors.grey.shade900,
-                                      ),
-                                      borderRadius: BorderRadius.circular(6),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(.3),
-                                          blurRadius: 4.0,
-                                          spreadRadius: 1.0,
-                                          offset: const Offset(
-                                            0.0,
-                                            2.0,
+                                          },
+                                          innerPadding: const EdgeInsets.all(3),
+                                          decoration: BoxDecoration(
+                                            color: ColorMode.setColor(
+                                              context: context,
+                                              light: CupertinoColors
+                                                  .lightBackgroundGray,
+                                              dark: CupertinoColors
+                                                  .darkBackgroundGray,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          thumbDecoration: BoxDecoration(
+                                            color: ColorMode.setColor(
+                                              context: context,
+                                              light: Colors.grey.shade100,
+                                              dark: Colors.grey.shade900,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(.3),
+                                                blurRadius: 4.0,
+                                                spreadRadius: 1.0,
+                                                offset: const Offset(
+                                                  0.0,
+                                                  2.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          duration: Durations.medium4,
+                                          curve: Curves.easeInToLinear,
+                                          onValueChanged: (v) => viewStore.send(
+                                            RoomManagarDetailAction
+                                                .segmentedControlGenderTapped(
+                                                    v),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    duration: Durations.medium4,
-                                    curve: Curves.easeInToLinear,
-                                    onValueChanged: (v) => viewStore.send(
-                                      RoomManagarDetailAction
-                                          .segmentedControlGenderTapped(v),
-                                    ),
-                                  ),
-                                )
-                              : const SizedBox(),
-                        ],
-                      ),
+                                      )
+                                    : const SizedBox(),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     );
                   },
                 ),
               ),
 
               const SliverToBoxAdapter(
-                child: SizedBox(height: 8),
+                child: SizedBox(height: 4),
               ),
 
               const SliverToBoxAdapter(
