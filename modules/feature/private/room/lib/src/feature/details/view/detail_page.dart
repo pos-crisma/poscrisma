@@ -134,7 +134,7 @@ class _DetailPageState extends State<DetailPage> {
             expandedHeight: kIsWeb
                 ? 300
                 : Responsive.isSmallScreen(context)
-                    ? 100
+                    ? 200
                     : 250,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,

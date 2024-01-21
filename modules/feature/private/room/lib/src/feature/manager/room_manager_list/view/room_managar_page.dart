@@ -83,107 +83,66 @@ class _RoomManagerPageState extends State<RoomManagerPage> {
                     itemBuilder: (context, index) {
                       final room = rooms[index];
 
-                      return ItemButton(
-                        onPress: () => viewStore
-                            .send(RoomManagerAction.buttonTapped(room)),
-                        child: Padding(
+                      return Hero(
+                        tag: room.roomId ?? "room_id",
+                        child: CupertinoListTile.notched(
+                          onTap: () => viewStore
+                              .send(RoomManagerAction.buttonTapped(room)),
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
+                            horizontal: 16.0,
+                            vertical: 8,
                           ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    room.roomName ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  Text(
-                                    room.blockName ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Tipo: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: roomTypeDescription(
-                                            room.roomType,
-                                          ),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                          title: Text(
+                            room.roomName ?? "",
+                            style: TextStyle(
+                              color: ColorMode.setColor(
+                                context: context,
+                                light: Colors.black,
+                                dark: Colors.white,
                               ),
-                              const Spacer(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Vagas: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: "${room.vacancies}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
+                            ),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                room.blockName ?? "",
+                              ),
+                              Text(
+                                roomTypeDescription(
+                                  room.roomType,
+                                ),
+                              )
+                            ],
+                          ),
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  text: "Vagas: ",
+                                  children: [
+                                    TextSpan(
+                                      text: "${room.vacancies}",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Pessoas: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: "${room.hosted!.length}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Pessoas: ",
+                                  children: [
+                                    TextSpan(
+                                      text: "${room.hosted!.length}",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),

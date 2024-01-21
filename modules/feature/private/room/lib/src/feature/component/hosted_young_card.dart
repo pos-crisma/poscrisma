@@ -28,53 +28,55 @@ class HostedYoungCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoListTile.notched(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      leadingSize: 0,
-      title: Badge(
-        isLabelVisible: isGuest,
-        child: Text(
-          name,
-          style: CupertinoTheme.of(context).textTheme.textStyle.merge(
-                TextStyle(
-                  color: ColorMode.setColor(
-                    context: context,
-                    light: CupertinoColors.black,
-                    dark: CupertinoColors.white,
+    return InkWell(
+      onLongPress: callback,
+      child: CupertinoListTile.notched(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leadingSize: 0,
+        title: Badge(
+          isLabelVisible: isGuest,
+          child: Text(
+            name,
+            style: CupertinoTheme.of(context).textTheme.textStyle.merge(
+                  TextStyle(
+                    color: ColorMode.setColor(
+                      context: context,
+                      light: CupertinoColors.black,
+                      dark: CupertinoColors.white,
+                    ),
                   ),
                 ),
-              ),
+          ),
         ),
-      ),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            godMother,
-          ),
-          Text(
-            godFather,
-          ),
-          Row(
-            children: [
-              const Text(
-                "Idade: ",
-              ),
-              Text(
-                birthday,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              godMother,
+            ),
+            Text(
+              godFather,
+            ),
+            Row(
+              children: [
+                const Text(
+                  "Idade: ",
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-      onTap: callback,
-      trailing: Icon(
-        userRoomId == roomId
-            ? CupertinoIcons.checkmark_seal_fill
-            : CupertinoIcons.xmark_seal,
+                Text(
+                  birthday,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        trailing: Icon(
+          userRoomId == roomId
+              ? CupertinoIcons.checkmark_seal_fill
+              : CupertinoIcons.xmark_seal,
+        ),
       ),
     );
   }

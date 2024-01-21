@@ -64,18 +64,17 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
 
   FutureOr<Effect> _buttonTapped(Room room) {
     return Effect.run(() async {
-      showModalBottomSheet(
-        context: state.context,
-        isScrollControlled: true,
-        useSafeArea: true,
-        barrierColor: Colors.transparent,
-        builder: (context) {
-          return RoomManagerDetail(room: room);
-        },
-      ).then((_) {
-        send(const RoomManagerAction.loading());
-        send(const RoomManagerAction.service());
-      });
+      Navigator.push(
+        state.context,
+        MaterialPageRoute(
+          builder: (context) {
+            return Hero(
+              tag: room.roomId ?? "room_id",
+              child: RoomManagerDetail(room: room),
+            );
+          },
+        ),
+      );
     });
   }
 
