@@ -15,7 +15,8 @@ abstract class RoomManagerAction with _$RoomManagerAction {
   const factory RoomManagerAction.success(RoomSettingResponseDTO dto) =
       _Success;
   const factory RoomManagerAction.failure(ErrorInfo error) = _Failure;
-    const factory RoomManagerAction.filterRoomByText(String userName) =
+  const factory RoomManagerAction.filterRoomByText(String userName) =
       _FilterRoomByText;
   const factory RoomManagerAction.pullToRefresh() = _PullToRefresh;
+  const factory RoomManagerAction.offlineService() = _OfflineService;
 }

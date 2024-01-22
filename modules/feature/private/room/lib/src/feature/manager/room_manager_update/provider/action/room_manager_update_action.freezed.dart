@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'detail_action.dart';
+part of 'room_manager_update_action.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,37 +15,35 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DetailAction {
+mixin _$RoomManagarUpdateAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) =>
@@ -54,7 +52,6 @@ mixin _$DetailAction {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -65,7 +62,6 @@ mixin _$DetailAction {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -76,7 +72,6 @@ mixin _$DetailAction {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -87,16 +82,17 @@ mixin _$DetailAction {
 }
 
 /// @nodoc
-abstract class $DetailActionCopyWith<$Res> {
-  factory $DetailActionCopyWith(
-          DetailAction value, $Res Function(DetailAction) then) =
-      _$DetailActionCopyWithImpl<$Res, DetailAction>;
+abstract class $RoomManagarUpdateActionCopyWith<$Res> {
+  factory $RoomManagarUpdateActionCopyWith(RoomManagarUpdateAction value,
+          $Res Function(RoomManagarUpdateAction) then) =
+      _$RoomManagarUpdateActionCopyWithImpl<$Res, RoomManagarUpdateAction>;
 }
 
 /// @nodoc
-class _$DetailActionCopyWithImpl<$Res, $Val extends DetailAction>
-    implements $DetailActionCopyWith<$Res> {
-  _$DetailActionCopyWithImpl(this._value, this._then);
+class _$RoomManagarUpdateActionCopyWithImpl<$Res,
+        $Val extends RoomManagarUpdateAction>
+    implements $RoomManagarUpdateActionCopyWith<$Res> {
+  _$RoomManagarUpdateActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -109,105 +105,76 @@ abstract class _$$OnAppearTappedImplCopyWith<$Res> {
   factory _$$OnAppearTappedImplCopyWith(_$OnAppearTappedImpl value,
           $Res Function(_$OnAppearTappedImpl) then) =
       __$$OnAppearTappedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({BuildContext context});
 }
 
 /// @nodoc
 class __$$OnAppearTappedImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$OnAppearTappedImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$OnAppearTappedImpl>
     implements _$$OnAppearTappedImplCopyWith<$Res> {
   __$$OnAppearTappedImplCopyWithImpl(
       _$OnAppearTappedImpl _value, $Res Function(_$OnAppearTappedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? context = null,
-  }) {
-    return _then(_$OnAppearTappedImpl(
-      null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$OnAppearTappedImpl implements _OnAppearTapped {
-  const _$OnAppearTappedImpl(this.context);
-
-  @override
-  final BuildContext context;
+  const _$OnAppearTappedImpl();
 
   @override
   String toString() {
-    return 'DetailAction.onAppear(context: $context)';
+    return 'RoomManagarUpdateAction.onAppear()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OnAppearTappedImpl &&
-            (identical(other.context, context) || other.context == context));
+        (other.runtimeType == runtimeType && other is _$OnAppearTappedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
-      __$$OnAppearTappedImplCopyWithImpl<_$OnAppearTappedImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
-    return onAppear(context);
+    return onAppear();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
-    return onAppear?.call(context);
+    return onAppear?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
-      return onAppear(context);
+      return onAppear();
     }
     return orElse();
   }
@@ -217,7 +184,6 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -231,7 +197,6 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -245,7 +210,6 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -259,14 +223,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   }
 }
 
-abstract class _OnAppearTapped implements DetailAction {
-  const factory _OnAppearTapped(final BuildContext context) =
-      _$OnAppearTappedImpl;
-
-  BuildContext get context;
-  @JsonKey(ignore: true)
-  _$$OnAppearTappedImplCopyWith<_$OnAppearTappedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _OnAppearTapped implements RoomManagarUpdateAction {
+  const factory _OnAppearTapped() = _$OnAppearTappedImpl;
 }
 
 /// @nodoc
@@ -275,12 +233,12 @@ abstract class _$$ButtonTappedImplCopyWith<$Res> {
           _$ButtonTappedImpl value, $Res Function(_$ButtonTappedImpl) then) =
       __$$ButtonTappedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Room room});
+  $Res call({RoomManagerUpdateInputType inputType});
 }
 
 /// @nodoc
 class __$$ButtonTappedImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$ButtonTappedImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$ButtonTappedImpl>
     implements _$$ButtonTappedImplCopyWith<$Res> {
   __$$ButtonTappedImplCopyWithImpl(
       _$ButtonTappedImpl _value, $Res Function(_$ButtonTappedImpl) _then)
@@ -289,13 +247,13 @@ class __$$ButtonTappedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? room = null,
+    Object? inputType = null,
   }) {
     return _then(_$ButtonTappedImpl(
-      null == room
-          ? _value.room
-          : room // ignore: cast_nullable_to_non_nullable
-              as Room,
+      null == inputType
+          ? _value.inputType
+          : inputType // ignore: cast_nullable_to_non_nullable
+              as RoomManagerUpdateInputType,
     ));
   }
 }
@@ -303,14 +261,14 @@ class __$$ButtonTappedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ButtonTappedImpl implements _ButtonTapped {
-  const _$ButtonTappedImpl(this.room);
+  const _$ButtonTappedImpl(this.inputType);
 
   @override
-  final Room room;
+  final RoomManagerUpdateInputType inputType;
 
   @override
   String toString() {
-    return 'DetailAction.buttonTapped(room: $room)';
+    return 'RoomManagarUpdateAction.buttonTapped(inputType: $inputType)';
   }
 
   @override
@@ -318,11 +276,12 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ButtonTappedImpl &&
-            (identical(other.room, room) || other.room == room));
+            (identical(other.inputType, inputType) ||
+                other.inputType == inputType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, room);
+  int get hashCode => Object.hash(runtimeType, inputType);
 
   @JsonKey(ignore: true)
   @override
@@ -333,45 +292,43 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
-    return buttonTapped(room);
+    return buttonTapped(inputType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
-    return buttonTapped?.call(room);
+    return buttonTapped?.call(inputType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
-      return buttonTapped(room);
+      return buttonTapped(inputType);
     }
     return orElse();
   }
@@ -381,7 +338,6 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -395,7 +351,6 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -409,7 +364,6 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -423,176 +377,13 @@ class _$ButtonTappedImpl implements _ButtonTapped {
   }
 }
 
-abstract class _ButtonTapped implements DetailAction {
-  const factory _ButtonTapped(final Room room) = _$ButtonTappedImpl;
+abstract class _ButtonTapped implements RoomManagarUpdateAction {
+  const factory _ButtonTapped(final RoomManagerUpdateInputType inputType) =
+      _$ButtonTappedImpl;
 
-  Room get room;
+  RoomManagerUpdateInputType get inputType;
   @JsonKey(ignore: true)
   _$$ButtonTappedImplCopyWith<_$ButtonTappedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ButtonUserTappedImplCopyWith<$Res> {
-  factory _$$ButtonUserTappedImplCopyWith(_$ButtonUserTappedImpl value,
-          $Res Function(_$ButtonUserTappedImpl) then) =
-      __$$ButtonUserTappedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String userId});
-}
-
-/// @nodoc
-class __$$ButtonUserTappedImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$ButtonUserTappedImpl>
-    implements _$$ButtonUserTappedImplCopyWith<$Res> {
-  __$$ButtonUserTappedImplCopyWithImpl(_$ButtonUserTappedImpl _value,
-      $Res Function(_$ButtonUserTappedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$ButtonUserTappedImpl(
-      null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ButtonUserTappedImpl implements _ButtonUserTapped {
-  const _$ButtonUserTappedImpl(this.userId);
-
-  @override
-  final String userId;
-
-  @override
-  String toString() {
-    return 'DetailAction.buttonUserTapped(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ButtonUserTappedImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ButtonUserTappedImplCopyWith<_$ButtonUserTappedImpl> get copyWith =>
-      __$$ButtonUserTappedImplCopyWithImpl<_$ButtonUserTappedImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
-    required TResult Function(bool isLoading) loading,
-    required TResult Function() service,
-    required TResult Function(Room dto) success,
-    required TResult Function(ErrorInfo error) failure,
-  }) {
-    return buttonUserTapped(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
-    TResult? Function(bool isLoading)? loading,
-    TResult? Function()? service,
-    TResult? Function(Room dto)? success,
-    TResult? Function(ErrorInfo error)? failure,
-  }) {
-    return buttonUserTapped?.call(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
-    TResult Function(bool isLoading)? loading,
-    TResult Function()? service,
-    TResult Function(Room dto)? success,
-    TResult Function(ErrorInfo error)? failure,
-    required TResult orElse(),
-  }) {
-    if (buttonUserTapped != null) {
-      return buttonUserTapped(userId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_OnAppearTapped value) onAppear,
-    required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Service value) service,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return buttonUserTapped(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_OnAppearTapped value)? onAppear,
-    TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Service value)? service,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return buttonUserTapped?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_OnAppearTapped value)? onAppear,
-    TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Service value)? service,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (buttonUserTapped != null) {
-      return buttonUserTapped(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ButtonUserTapped implements DetailAction {
-  const factory _ButtonUserTapped(final String userId) = _$ButtonUserTappedImpl;
-
-  String get userId;
-  @JsonKey(ignore: true)
-  _$$ButtonUserTappedImplCopyWith<_$ButtonUserTappedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -607,7 +398,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -637,7 +428,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'DetailAction.loading(isLoading: $isLoading)';
+    return 'RoomManagarUpdateAction.loading(isLoading: $isLoading)';
   }
 
   @override
@@ -661,12 +452,12 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
     return loading(isLoading);
@@ -675,12 +466,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
     return loading?.call(isLoading);
@@ -689,12 +479,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
@@ -709,7 +498,6 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -723,7 +511,6 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -737,7 +524,6 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -751,7 +537,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements DetailAction {
+abstract class _Loading implements RoomManagarUpdateAction {
   const factory _Loading(final bool isLoading) = _$LoadingImpl;
 
   bool get isLoading;
@@ -769,7 +555,7 @@ abstract class _$$ServiceImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ServiceImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$ServiceImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$ServiceImpl>
     implements _$$ServiceImplCopyWith<$Res> {
   __$$ServiceImplCopyWithImpl(
       _$ServiceImpl _value, $Res Function(_$ServiceImpl) _then)
@@ -783,7 +569,7 @@ class _$ServiceImpl implements _Service {
 
   @override
   String toString() {
-    return 'DetailAction.service()';
+    return 'RoomManagarUpdateAction.service()';
   }
 
   @override
@@ -798,12 +584,12 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
     return service();
@@ -812,12 +598,11 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
     return service?.call();
@@ -826,12 +611,11 @@ class _$ServiceImpl implements _Service {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
@@ -846,7 +630,6 @@ class _$ServiceImpl implements _Service {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -860,7 +643,6 @@ class _$ServiceImpl implements _Service {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -874,7 +656,6 @@ class _$ServiceImpl implements _Service {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -888,7 +669,7 @@ class _$ServiceImpl implements _Service {
   }
 }
 
-abstract class _Service implements DetailAction {
+abstract class _Service implements RoomManagarUpdateAction {
   const factory _Service() = _$ServiceImpl;
 }
 
@@ -898,12 +679,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Room dto});
+  $Res call({HostedUserDTO dto});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -918,7 +699,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == dto
           ? _value.dto
           : dto // ignore: cast_nullable_to_non_nullable
-              as Room,
+              as HostedUserDTO,
     ));
   }
 }
@@ -929,11 +710,11 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.dto);
 
   @override
-  final Room dto;
+  final HostedUserDTO dto;
 
   @override
   String toString() {
-    return 'DetailAction.success(dto: $dto)';
+    return 'RoomManagarUpdateAction.success(dto: $dto)';
   }
 
   @override
@@ -956,12 +737,12 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
     return success(dto);
@@ -970,12 +751,11 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
     return success?.call(dto);
@@ -984,12 +764,11 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
@@ -1004,7 +783,6 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -1018,7 +796,6 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -1032,7 +809,6 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -1046,10 +822,10 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements DetailAction {
-  const factory _Success(final Room dto) = _$SuccessImpl;
+abstract class _Success implements RoomManagarUpdateAction {
+  const factory _Success(final HostedUserDTO dto) = _$SuccessImpl;
 
-  Room get dto;
+  HostedUserDTO get dto;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1066,7 +842,7 @@ abstract class _$$FailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$DetailActionCopyWithImpl<$Res, _$FailureImpl>
+    extends _$RoomManagarUpdateActionCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
@@ -1096,7 +872,7 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'DetailAction.failure(error: $error)';
+    return 'RoomManagarUpdateAction.failure(error: $error)';
   }
 
   @override
@@ -1119,12 +895,12 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BuildContext context) onAppear,
-    required TResult Function(Room room) buttonTapped,
-    required TResult Function(String userId) buttonUserTapped,
+    required TResult Function() onAppear,
+    required TResult Function(RoomManagerUpdateInputType inputType)
+        buttonTapped,
     required TResult Function(bool isLoading) loading,
     required TResult Function() service,
-    required TResult Function(Room dto) success,
+    required TResult Function(HostedUserDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
   }) {
     return failure(error);
@@ -1133,12 +909,11 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BuildContext context)? onAppear,
-    TResult? Function(Room room)? buttonTapped,
-    TResult? Function(String userId)? buttonUserTapped,
+    TResult? Function()? onAppear,
+    TResult? Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
-    TResult? Function(Room dto)? success,
+    TResult? Function(HostedUserDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
   }) {
     return failure?.call(error);
@@ -1147,12 +922,11 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BuildContext context)? onAppear,
-    TResult Function(Room room)? buttonTapped,
-    TResult Function(String userId)? buttonUserTapped,
+    TResult Function()? onAppear,
+    TResult Function(RoomManagerUpdateInputType inputType)? buttonTapped,
     TResult Function(bool isLoading)? loading,
     TResult Function()? service,
-    TResult Function(Room dto)? success,
+    TResult Function(HostedUserDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     required TResult orElse(),
   }) {
@@ -1167,7 +941,6 @@ class _$FailureImpl implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
     required TResult Function(_ButtonTapped value) buttonTapped,
-    required TResult Function(_ButtonUserTapped value) buttonUserTapped,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Success value) success,
@@ -1181,7 +954,6 @@ class _$FailureImpl implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
     TResult? Function(_ButtonTapped value)? buttonTapped,
-    TResult? Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Success value)? success,
@@ -1195,7 +967,6 @@ class _$FailureImpl implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
     TResult Function(_ButtonTapped value)? buttonTapped,
-    TResult Function(_ButtonUserTapped value)? buttonUserTapped,
     TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Success value)? success,
@@ -1209,7 +980,7 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements DetailAction {
+abstract class _Failure implements RoomManagarUpdateAction {
   const factory _Failure(final ErrorInfo error) = _$FailureImpl;
 
   ErrorInfo get error;

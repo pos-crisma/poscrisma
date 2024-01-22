@@ -161,17 +161,6 @@ class _InviteMobileState extends State<InviteMobile> {
                             dark: Colors.grey.shade900,
                           ),
                           borderRadius: BorderRadius.circular(6),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(.3),
-                              blurRadius: 4.0,
-                              spreadRadius: 1.0,
-                              offset: const Offset(
-                                0.0,
-                                2.0,
-                              ),
-                            ),
-                          ],
                         ),
                         duration: Durations.medium4,
                         curve: Curves.easeInToLinear,

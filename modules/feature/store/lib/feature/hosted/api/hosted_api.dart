@@ -9,7 +9,7 @@ mixin HostedUserAPI {
     final request = await baseRequest;
 
     return request
-        .get('/user/hosted/$isHosted', data: requestDto.toJson())
+        .post('/user/hosted/$isHosted', data: requestDto.toJson())
         .map(HostedUserDTO.fromJson)
         .fold(Success.new, Failure.new);
   }

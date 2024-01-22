@@ -4,11 +4,12 @@ import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
-import 'package:room/src/feature/manager/room_manager_detail/provider/api/relocation_api.dart';
-import 'package:room/src/feature/manager/room_manager_detail/provider/dto/relocation_dto.dart';
 import 'package:store/feature/user/model/user.dart';
 import 'package:store/store.dart';
 
+import '../../../../room_manager_update/view/room_manager_update.dart';
+import '../../api/relocation_api.dart';
+import '../../dto/relocation_dto.dart';
 import '../action/room_manager_detail_action.dart';
 import '../state/room_manager_detail_state.dart';
 
@@ -34,6 +35,7 @@ class RoomManagarDetailReducer
         checkOutTapped: _checkOutTapped,
         filterUserByText: _filterUserByText,
         expandedRoomSettings: _roomSettingExpansion,
+        updateRoomInfo: _updateRoomInfo,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -286,5 +288,20 @@ class RoomManagarDetailReducer
     state.roomSettingExpansion = !state.roomSettingExpansion;
 
     return Effect.emit();
+  }
+
+  FutureOr<Effect> _updateRoomInfo() {
+    return Effect.run(() async {
+      showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
+        context: state.context,
+        builder: (context) {
+          return RoomManagerUpdate(
+            room: state.room,
+          );
+        },
+      ).then((value) {});
+    });
   }
 }

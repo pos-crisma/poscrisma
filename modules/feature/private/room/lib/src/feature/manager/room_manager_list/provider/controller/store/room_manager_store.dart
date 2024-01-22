@@ -25,6 +25,7 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         failure: _failure,
         filterRoomByText: _filterRoomByText,
         pullToRefresh: _pullToRefresh,
+        offlineService: _offlineService,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -80,10 +81,14 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
   }
 
   FutureOr<Effect> _service() => Effect.run(() async {
-        await RoomAPI.getRooms().fold(
-          (success) => send(RoomManagerAction.success(success)),
-          (error) => send(RoomManagerAction.failure(error)),
-        );
+        final resultStatus = await checkConnectivity();
+
+        resultStatus
+            ? await RoomAPI.getRooms().fold(
+                (success) => send(RoomManagerAction.success(success)),
+                (error) => send(RoomManagerAction.failure(error)),
+              )
+            : await send(const RoomManagerAction.offlineService());
       });
 
   FutureOr<Effect> _loading() {
@@ -128,6 +133,33 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
     return Effect.run(() async {
       await send(const RoomManagerAction.loading());
       await send(const RoomManagerAction.service());
+    });
+  }
+
+  FutureOr<Effect> _offlineService() {
+    return Effect.run(() async {
+      final value = await hiveStorage.get<String>("@room-setting(get-rooms)");
+
+      try {
+        if (value != null) {
+          final room = RoomSettingResponseDTO.fromRawJson(value);
+
+          send(RoomManagerAction.success(room));
+        }
+      } catch (e) {
+        final error = ErrorInfo(
+          code: -1,
+          response: "Tente novamente",
+          error: ErrorData(
+            type: "Storage",
+            statusCode: -1,
+            message:
+                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
+          ),
+        );
+
+        send(RoomManagerAction.failure(error));
+      }
     });
   }
 }

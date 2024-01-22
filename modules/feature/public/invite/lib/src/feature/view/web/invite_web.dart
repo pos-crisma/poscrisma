@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -161,15 +163,21 @@ class InviteWeb extends StatelessWidget {
                             isDisabled: textController.text.length > 3
                                 ? value.status == InviteServiceStatus.loading
                                 : true,
-                            onPress: () =>
-                                viewStore.send(InviteAction.buttonTapped()),
+                            onPress: () => viewStore
+                                .send(const InviteAction.buttonTapped()),
                             enableColor: Colors.deepPurple.shade500,
                             disableColor: SystemMode.isDark(context)
                                 ? Colors.deepPurple.shade300
                                 : Colors.deepPurple.shade100,
                             disabledChild:
                                 value.status == InviteServiceStatus.loading
-                                    ? const CircularProgressIndicator.adaptive()
+                                    ? Center(
+                                        child: Transform.scale(
+                                          scale: Platform.isIOS ? 1.5 : 1,
+                                          child: const CircularProgressIndicator
+                                              .adaptive(),
+                                        ),
+                                      )
                                     : Text(
                                         'Verifica convite',
                                         style: Theme.of(context)

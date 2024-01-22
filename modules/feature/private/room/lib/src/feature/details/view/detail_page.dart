@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,12 +54,13 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  final DetailReducer viewStore = DetailReducer();
+  late final DetailReducer viewStore;
 
   @override
   void initState() {
     super.initState();
-    viewStore.send(DetailAction.onAppear(context, widget.room));
+    viewStore = DetailReducer(widget.room);
+    viewStore.send(DetailAction.onAppear(context));
   }
 
   @override
@@ -85,9 +88,8 @@ class _DetailPageState extends State<DetailPage> {
 
                         // *
                         CupertinoButton(
-                          onPressed: () => viewStore.send(
-                              DetailAction.buttonTapped(
-                                  widget.room.roomId ?? "")),
+                          onPressed: () => viewStore
+                              .send(DetailAction.buttonTapped(widget.room)),
                           padding: EdgeInsets.zero,
                           color: Colors.transparent,
                           child: Container(
@@ -486,155 +488,64 @@ class _DetailPageState extends State<DetailPage> {
           ),
 
           (widget.room.hosted != null && widget.room.hosted!.isNotEmpty)
-              ? SliverList.builder(
-                  itemCount: widget.room.hosted?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    final user = widget.room.hosted?[index];
-
-                    if (user != null) {
-                      return user.userType == "Young"
-                          ? HostedYoungCard(
-                              name: user.userName ?? "",
-                              userRoomId: widget.room.roomId ?? "",
-                              // isGuest: user?. ?? false,
-                              godFather:
-                                  user.godParents?.godFather ?? "Padrinho",
-                              godMother:
-                                  user.godParents?.godMother ?? "Madrinha",
-                              roomId: widget.room.roomId ?? "",
-                              birthday: user.age.toString(),
-                              callback: () {},
-                            )
-                          : HostedCard(
-                              name: user.userName ?? "",
-                              userRoomId: widget.room.roomId ?? "",
-                              // isGuest: user.guest ?? false,
-                              roomId: widget.room.roomId ?? "",
-                              type: switch (user.userType) {
-                                "GodParent" => user.userGender?.toLowerCase() ==
-                                        UserGender.Male.name.toLowerCase()
-                                    ? "Padrinho"
-                                    : "Madrinha",
-                                "Voluntary" => user.userGender?.toLowerCase() ==
-                                        UserGender.Male.name.toLowerCase()
-                                    ? "Voluntario"
-                                    : "Voluntaria",
-                                _ => "Jovem"
-                              },
-                              callback: () {},
-                            );
+              ? ValueListenableBuilder(
+                  valueListenable: viewStore,
+                  builder: (context, value, child) {
+                    if (value.isLoading) {
+                      return SliverToBoxAdapter(
+                        child: Center(
+                          child: Transform.scale(
+                            scale: Platform.isIOS ? 1.5 : 1,
+                            child: const CircularProgressIndicator.adaptive(),
+                          ),
+                        ),
+                      );
                     }
 
-                    return const SizedBox();
+                    return SliverList.builder(
+                      itemCount: value.room.hosted?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        final user = value.room.hosted?[index];
 
-                    // Column(
-                    //   children: [
-                    //     const SizedBox(height: 8),
-                    //     ItemButton(
-                    //       onPress: () => viewStore.send(
-                    //           DetailAction.buttonUserTapped(
-                    //               host!.userId ?? "")),
-                    //       child: Container(
-                    //         padding: const EdgeInsets.symmetric(
-                    //           horizontal: 16.0,
-                    //           vertical: 0,
-                    //         ),
-                    //         width: MediaQuery.of(context).size.width,
-                    //         child: Column(
-                    //           mainAxisAlignment: MainAxisAlignment.center,
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             Text(
-                    //               host?.userName ?? "",
-                    //               style: Theme.of(context)
-                    //                   .textTheme
-                    //                   .bodyMedium! //
-                    //                   .copyWith(
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: ColorMode.setColor(
-                    //                       context: context,
-                    //                       light: Colors.grey.shade800,
-                    //                       dark: Colors.grey.shade200,
-                    //                     ),
-                    //                   ),
-                    //             ),
-                    //             RichText(
-                    //               text: TextSpan(
-                    //                 text: 'Genero: ',
-                    //                 style: Theme.of(context)
-                    //                     .textTheme
-                    //                     .bodyMedium! //
-                    //                     .copyWith(
-                    //                       color: ColorMode.setColor(
-                    //                         context: context,
-                    //                         light: Colors.grey.shade800,
-                    //                         dark: Colors.grey.shade200,
-                    //                       ),
-                    //                     ),
-                    //                 children: [
-                    //                   TextSpan(
-                    //                     text: host?.userGender?.toLowerCase() ==
-                    //                             "male"
-                    //                         ? 'Homem'
-                    //                         : "Mulher",
-                    //                     style: Theme.of(context)
-                    //                         .textTheme
-                    //                         .bodyMedium! //
-                    //                         .copyWith(
-                    //                           fontWeight: FontWeight.bold,
-                    //                           color: ColorMode.setColor(
-                    //                             context: context,
-                    //                             light: Colors.grey.shade800,
-                    //                             dark: Colors.grey.shade200,
-                    //                           ),
-                    //                         ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //             RichText(
-                    //               text: TextSpan(
-                    //                 text: 'Tipo de usuario: ',
-                    //                 style: Theme.of(context)
-                    //                     .textTheme
-                    //                     .bodyMedium! //
-                    //                     .copyWith(
-                    //                       color: ColorMode.setColor(
-                    //                         context: context,
-                    //                         light: Colors.grey.shade800,
-                    //                         dark: Colors.grey.shade200,
-                    //                       ),
-                    //                     ),
-                    //                 children: [
-                    //                   TextSpan(
-                    //                     text: host?.userType?.toLowerCase() ==
-                    //                             "godparent"
-                    //                         ? 'Padrinho'
-                    //                         : host?.userType?.toLowerCase() ==
-                    //                                 "young"
-                    //                             ? "Jovem"
-                    //                             : "Voluntario",
-                    //                     style: Theme.of(context)
-                    //                         .textTheme
-                    //                         .bodyMedium! //
-                    //                         .copyWith(
-                    //                           fontWeight: FontWeight.bold,
-                    //                           color: ColorMode.setColor(
-                    //                             context: context,
-                    //                             light: Colors.grey.shade800,
-                    //                             dark: Colors.grey.shade200,
-                    //                           ),
-                    //                         ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // );
+                        if (user != null) {
+                          return user.userType == "Young"
+                              ? HostedYoungCard(
+                                  name: user.userName ?? "",
+                                  userRoomId: widget.room.roomId ?? "",
+                                  // isGuest: user?. ?? false,
+                                  godFather:
+                                      user.godParents?.godFather ?? "Padrinho",
+                                  godMother:
+                                      user.godParents?.godMother ?? "Madrinha",
+                                  roomId: widget.room.roomId ?? "",
+                                  birthday: user.age.toString(),
+                                  callback: () {},
+                                )
+                              : HostedCard(
+                                  name: user.userName ?? "",
+                                  userRoomId: widget.room.roomId ?? "",
+                                  // isGuest: user.guest ?? false,
+                                  roomId: widget.room.roomId ?? "",
+                                  type: switch (user.userType) {
+                                    "GodParent" =>
+                                      user.userGender?.toLowerCase() ==
+                                              UserGender.Male.name.toLowerCase()
+                                          ? "Padrinho"
+                                          : "Madrinha",
+                                    "Voluntary" =>
+                                      user.userGender?.toLowerCase() ==
+                                              UserGender.Male.name.toLowerCase()
+                                          ? "Voluntario"
+                                          : "Voluntaria",
+                                    _ => "Jovem"
+                                  },
+                                  callback: () {},
+                                );
+                        }
+
+                        return const SizedBox();
+                      },
+                    );
                   },
                 )
               : const SliverToBoxAdapter(

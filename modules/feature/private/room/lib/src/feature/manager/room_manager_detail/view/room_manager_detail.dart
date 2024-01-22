@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,92 +45,45 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
         appBar: AppBar(
           leadingWidth: 100,
           leading: const CustomBackButton(),
+          title: Text(
+            widget.room.roomName ?? "Nome do quarto",
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge! //
+                .copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
         ),
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    "Quarto informações",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge! //
-                        .copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                child: InkWell(
+                  onTap: () => viewStore
+                      .send(const RoomManagarDetailAction.updateRoomInfo()),
+                  child: CupertinoListTile.notched(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    title: Text(
+                      "Quarto informações",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge! //
+                          .copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    subtitle: const Text("Visualizar e editar"),
+                    trailing: const Icon(
+                      CupertinoIcons.chevron_right,
+                      size: 18,
+                    ),
                   ),
                 ),
-              ),
-
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Nome: ${widget.room.roomName}",
-                      ),
-                      Text(
-                        "Bloco: ${widget.room.blockName}",
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
-                          return Text(
-                            "Vagas: ${value.room.vacancies}",
-                          );
-                        },
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
-                          return Text(
-                            "Numero de hospedes: ${value.room.hosted?.length}",
-                          );
-                        },
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
-                          return Text(
-                            (value.room.availability != null &&
-                                    value.room.availability!)
-                                ? "Disponivel"
-                                : "Indisponivel",
-                          );
-                        },
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: viewStore,
-                        builder: (context, value, child) {
-                          return Text(
-                            (value.room.roomType != null &&
-                                    value.room.roomType == "Couple")
-                                ? "Casal"
-                                : value.room.roomType == "Single"
-                                    ? "Solteiro"
-                                    : "Sem ocupantes",
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 8),
               ),
 
               const SliverToBoxAdapter(
                 child: CustomDivider(),
-              ),
-
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 4),
               ),
 
               SliverToBoxAdapter(
@@ -144,6 +99,7 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                       elevation: 0,
                       children: [
                         ExpansionPanel(
+                          backgroundColor: Colors.transparent,
                           canTapOnHeader: true,
                           isExpanded: value.roomSettingExpansion,
                           headerBuilder: (context, isExpanded) {
@@ -221,17 +177,6 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                       dark: Colors.grey.shade900,
                                     ),
                                     borderRadius: BorderRadius.circular(6),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(.3),
-                                        blurRadius: 4.0,
-                                        spreadRadius: 1.0,
-                                        offset: const Offset(
-                                          0.0,
-                                          2.0,
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                   duration: Durations.medium4,
                                   curve: Curves.easeInToLinear,
@@ -290,18 +235,6 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(6),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(.3),
-                                                blurRadius: 4.0,
-                                                spreadRadius: 1.0,
-                                                offset: const Offset(
-                                                  0.0,
-                                                  2.0,
-                                                ),
-                                              ),
-                                            ],
                                           ),
                                           duration: Durations.medium4,
                                           curve: Curves.easeInToLinear,
@@ -321,10 +254,6 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                     );
                   },
                 ),
-              ),
-
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 4),
               ),
 
               const SliverToBoxAdapter(
@@ -360,8 +289,15 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                   final hosted = value.room.hosted;
 
                   if (value.isLoading) {
-                    return const SliverToBoxAdapter(
-                      child: CupertinoActivityIndicator(),
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Transform.scale(
+                          scale: Platform.isIOS ? 1.5 : 1,
+                          child: const CircularProgressIndicator.adaptive(
+                              // backgroundColor: context.primaryColors.primary100,
+                              ),
+                        ),
+                      ),
                     );
                   } else if (hosted != null) {
                     return SliverList.builder(
@@ -477,8 +413,15 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                   final filtersUsers = value.filtersUsers;
 
                   if (value.isLoading) {
-                    return const SliverToBoxAdapter(
-                      child: CupertinoActivityIndicator(),
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Transform.scale(
+                          scale: Platform.isIOS ? 1.5 : 1,
+                          child: const CircularProgressIndicator.adaptive(
+                              // backgroundColor: context.primaryColors.primary100,
+                              ),
+                        ),
+                      ),
                     );
                   } else if (filtersUsers != null) {
                     return SliverList.builder(

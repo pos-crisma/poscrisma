@@ -152,7 +152,7 @@ class InviteMobile extends StatelessWidget {
                           ? value.status == InviteServiceStatus.loading
                           : true,
                       onPress: () =>
-                          viewStore.send(InviteAction.buttonTapped()),
+                          viewStore.send(const InviteAction.buttonTapped()),
                       enableColor: Colors.deepPurple.shade500,
                       disableColor: SystemMode.isDark(context)
                           ? Colors.deepPurple.shade300

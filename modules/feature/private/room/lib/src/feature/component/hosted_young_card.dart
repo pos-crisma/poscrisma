@@ -30,6 +30,7 @@ class HostedYoungCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onLongPress: callback,
+      onDoubleTap: callback,
       child: CupertinoListTile.notched(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         leadingSize: 0,

@@ -125,8 +125,12 @@ class _RoomManagerPageState extends State<RoomManagerPage> {
                                 RichText(
                                   text: TextSpan(
                                     text: "Vagas: ",
-                                    style: const TextStyle(
-                                      color: CupertinoColors.secondaryLabel,
+                                    style: TextStyle(
+                                      color: ColorMode.setColor(
+                                        context: context,
+                                        light: CupertinoColors.secondaryLabel,
+                                        dark: CupertinoColors.systemGrey2,
+                                      ),
                                     ),
                                     children: [
                                       TextSpan(
@@ -141,8 +145,12 @@ class _RoomManagerPageState extends State<RoomManagerPage> {
                                 RichText(
                                   text: TextSpan(
                                     text: "Pessoas: ",
-                                    style: const TextStyle(
-                                      color: CupertinoColors.secondaryLabel,
+                                    style: TextStyle(
+                                      color: ColorMode.setColor(
+                                        context: context,
+                                        light: CupertinoColors.secondaryLabel,
+                                        dark: CupertinoColors.systemGrey2,
+                                      ),
                                     ),
                                     children: [
                                       TextSpan(

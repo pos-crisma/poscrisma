@@ -33,6 +33,7 @@ mixin _$RoomAction {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +53,7 @@ mixin _$RoomAction {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +73,7 @@ mixin _$RoomAction {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,6 +92,7 @@ mixin _$RoomAction {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,6 +110,7 @@ mixin _$RoomAction {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -123,6 +128,7 @@ mixin _$RoomAction {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -243,6 +249,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return onAppear(areaPage, type, context);
   }
@@ -265,6 +272,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return onAppear?.call(areaPage, type, context);
   }
@@ -287,6 +295,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -311,6 +320,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return onAppear(this);
   }
@@ -331,6 +341,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return onAppear?.call(this);
   }
@@ -351,6 +362,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -425,6 +437,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return updateRoomImage();
   }
@@ -447,6 +460,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return updateRoomImage?.call();
   }
@@ -469,6 +483,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (updateRoomImage != null) {
@@ -493,6 +508,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return updateRoomImage(this);
   }
@@ -513,6 +529,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return updateRoomImage?.call(this);
   }
@@ -533,6 +550,7 @@ class _$UpdateRoomImageImpl implements _UpdateRoomImage {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (updateRoomImage != null) {
@@ -599,6 +617,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return roomAreaFull();
   }
@@ -621,6 +640,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return roomAreaFull?.call();
   }
@@ -643,6 +663,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaFull != null) {
@@ -667,6 +688,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return roomAreaFull(this);
   }
@@ -687,6 +709,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return roomAreaFull?.call(this);
   }
@@ -707,6 +730,7 @@ class _$RoomAreaFullImpl implements _RoomAreaFull {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaFull != null) {
@@ -773,6 +797,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return roomAreaSearch();
   }
@@ -795,6 +820,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return roomAreaSearch?.call();
   }
@@ -817,6 +843,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaSearch != null) {
@@ -841,6 +868,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return roomAreaSearch(this);
   }
@@ -861,6 +889,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return roomAreaSearch?.call(this);
   }
@@ -881,6 +910,7 @@ class _$RoomAreaSearchImpl implements _RoomAreaSearch {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaSearch != null) {
@@ -974,6 +1004,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return roomAreaByType(type);
   }
@@ -996,6 +1027,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return roomAreaByType?.call(type);
   }
@@ -1018,6 +1050,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaByType != null) {
@@ -1042,6 +1075,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return roomAreaByType(this);
   }
@@ -1062,6 +1096,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return roomAreaByType?.call(this);
   }
@@ -1082,6 +1117,7 @@ class _$RoomAreaByTypeImpl implements _RoomAreaByType {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (roomAreaByType != null) {
@@ -1154,6 +1190,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return serviceFull();
   }
@@ -1176,6 +1213,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return serviceFull?.call();
   }
@@ -1198,6 +1236,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (serviceFull != null) {
@@ -1222,6 +1261,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return serviceFull(this);
   }
@@ -1242,6 +1282,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return serviceFull?.call(this);
   }
@@ -1262,6 +1303,7 @@ class _$ServiceFullImpl implements _ServiceFull {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (serviceFull != null) {
@@ -1328,6 +1370,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return serviceSearch();
   }
@@ -1350,6 +1393,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return serviceSearch?.call();
   }
@@ -1372,6 +1416,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (serviceSearch != null) {
@@ -1396,6 +1441,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return serviceSearch(this);
   }
@@ -1416,6 +1462,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return serviceSearch?.call(this);
   }
@@ -1436,6 +1483,7 @@ class _$ServiceSearchImpl implements _ServiceSearch {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (serviceSearch != null) {
@@ -1528,6 +1576,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return serviceByType(type);
   }
@@ -1550,6 +1599,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return serviceByType?.call(type);
   }
@@ -1572,6 +1622,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (serviceByType != null) {
@@ -1596,6 +1647,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return serviceByType(this);
   }
@@ -1616,6 +1668,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return serviceByType?.call(this);
   }
@@ -1636,6 +1689,7 @@ class _$ServiceByTypeImpl implements _ServiceByType {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (serviceByType != null) {
@@ -1707,6 +1761,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return scrollListener();
   }
@@ -1729,6 +1784,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return scrollListener?.call();
   }
@@ -1751,6 +1807,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (scrollListener != null) {
@@ -1775,6 +1832,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return scrollListener(this);
   }
@@ -1795,6 +1853,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return scrollListener?.call(this);
   }
@@ -1815,6 +1874,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (scrollListener != null) {
@@ -1881,6 +1941,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return loading();
   }
@@ -1903,6 +1964,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return loading?.call();
   }
@@ -1925,6 +1987,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1949,6 +2012,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return loading(this);
   }
@@ -1969,6 +2033,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return loading?.call(this);
   }
@@ -1989,6 +2054,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -2081,6 +2147,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return success(dto);
   }
@@ -2103,6 +2170,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return success?.call(dto);
   }
@@ -2125,6 +2193,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -2149,6 +2218,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return success(this);
   }
@@ -2169,6 +2239,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return success?.call(this);
   }
@@ -2189,6 +2260,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -2286,6 +2358,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return failure(error);
   }
@@ -2308,6 +2381,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return failure?.call(error);
   }
@@ -2330,6 +2404,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -2354,6 +2429,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return failure(this);
   }
@@ -2374,6 +2450,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return failure?.call(this);
   }
@@ -2394,6 +2471,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -2491,6 +2569,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(RoomSettingResponseDTO dto) success,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
   }) {
     return buttonTapped(room);
   }
@@ -2513,6 +2592,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(RoomSettingResponseDTO dto)? success,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
   }) {
     return buttonTapped?.call(room);
   }
@@ -2535,6 +2615,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(RoomSettingResponseDTO dto)? success,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -2559,6 +2640,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
   }) {
     return buttonTapped(this);
   }
@@ -2579,6 +2661,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
   }) {
     return buttonTapped?.call(this);
   }
@@ -2599,6 +2682,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -2615,4 +2699,184 @@ abstract class _ButtonTapped implements RoomAction {
   @JsonKey(ignore: true)
   _$$ButtonTappedImplCopyWith<_$ButtonTappedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OfflineServiceImplCopyWith<$Res> {
+  factory _$$OfflineServiceImplCopyWith(_$OfflineServiceImpl value,
+          $Res Function(_$OfflineServiceImpl) then) =
+      __$$OfflineServiceImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OfflineServiceImplCopyWithImpl<$Res>
+    extends _$RoomActionCopyWithImpl<$Res, _$OfflineServiceImpl>
+    implements _$$OfflineServiceImplCopyWith<$Res> {
+  __$$OfflineServiceImplCopyWithImpl(
+      _$OfflineServiceImpl _value, $Res Function(_$OfflineServiceImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$OfflineServiceImpl implements _OfflineService {
+  const _$OfflineServiceImpl();
+
+  @override
+  String toString() {
+    return 'RoomAction.offlineService()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OfflineServiceImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)
+        onAppear,
+    required TResult Function() updateRoomImage,
+    required TResult Function() roomAreaFull,
+    required TResult Function() roomAreaSearch,
+    required TResult Function(InviteUserType type) roomAreaByType,
+    required TResult Function() serviceFull,
+    required TResult Function() serviceSearch,
+    required TResult Function(InviteUserType type) serviceByType,
+    required TResult Function() scrollListener,
+    required TResult Function() loading,
+    required TResult Function(RoomSettingResponseDTO dto) success,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(Room room) buttonTapped,
+    required TResult Function() offlineService,
+  }) {
+    return offlineService();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
+    TResult? Function()? updateRoomImage,
+    TResult? Function()? roomAreaFull,
+    TResult? Function()? roomAreaSearch,
+    TResult? Function(InviteUserType type)? roomAreaByType,
+    TResult? Function()? serviceFull,
+    TResult? Function()? serviceSearch,
+    TResult? Function(InviteUserType type)? serviceByType,
+    TResult? Function()? scrollListener,
+    TResult? Function()? loading,
+    TResult? Function(RoomSettingResponseDTO dto)? success,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(Room room)? buttonTapped,
+    TResult? Function()? offlineService,
+  }) {
+    return offlineService?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            RoomAreaPage areaPage, InviteUserType? type, BuildContext context)?
+        onAppear,
+    TResult Function()? updateRoomImage,
+    TResult Function()? roomAreaFull,
+    TResult Function()? roomAreaSearch,
+    TResult Function(InviteUserType type)? roomAreaByType,
+    TResult Function()? serviceFull,
+    TResult Function()? serviceSearch,
+    TResult Function(InviteUserType type)? serviceByType,
+    TResult Function()? scrollListener,
+    TResult Function()? loading,
+    TResult Function(RoomSettingResponseDTO dto)? success,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(Room room)? buttonTapped,
+    TResult Function()? offlineService,
+    required TResult orElse(),
+  }) {
+    if (offlineService != null) {
+      return offlineService();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppear value) onAppear,
+    required TResult Function(_UpdateRoomImage value) updateRoomImage,
+    required TResult Function(_RoomAreaFull value) roomAreaFull,
+    required TResult Function(_RoomAreaSearch value) roomAreaSearch,
+    required TResult Function(_RoomAreaByType value) roomAreaByType,
+    required TResult Function(_ServiceFull value) serviceFull,
+    required TResult Function(_ServiceSearch value) serviceSearch,
+    required TResult Function(_ServiceByType value) serviceByType,
+    required TResult Function(_ScrollListener value) scrollListener,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_OfflineService value) offlineService,
+  }) {
+    return offlineService(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppear value)? onAppear,
+    TResult? Function(_UpdateRoomImage value)? updateRoomImage,
+    TResult? Function(_RoomAreaFull value)? roomAreaFull,
+    TResult? Function(_RoomAreaSearch value)? roomAreaSearch,
+    TResult? Function(_RoomAreaByType value)? roomAreaByType,
+    TResult? Function(_ServiceFull value)? serviceFull,
+    TResult? Function(_ServiceSearch value)? serviceSearch,
+    TResult? Function(_ServiceByType value)? serviceByType,
+    TResult? Function(_ScrollListener value)? scrollListener,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_OfflineService value)? offlineService,
+  }) {
+    return offlineService?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppear value)? onAppear,
+    TResult Function(_UpdateRoomImage value)? updateRoomImage,
+    TResult Function(_RoomAreaFull value)? roomAreaFull,
+    TResult Function(_RoomAreaSearch value)? roomAreaSearch,
+    TResult Function(_RoomAreaByType value)? roomAreaByType,
+    TResult Function(_ServiceFull value)? serviceFull,
+    TResult Function(_ServiceSearch value)? serviceSearch,
+    TResult Function(_ServiceByType value)? serviceByType,
+    TResult Function(_ScrollListener value)? scrollListener,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_OfflineService value)? offlineService,
+    required TResult orElse(),
+  }) {
+    if (offlineService != null) {
+      return offlineService(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OfflineService implements RoomAction {
+  const factory _OfflineService() = _$OfflineServiceImpl;
 }

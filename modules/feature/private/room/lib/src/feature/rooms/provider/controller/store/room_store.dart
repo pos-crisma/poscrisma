@@ -33,6 +33,7 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
         success: _success,
         failure: _failure,
         buttonTapped: _buttonTapped,
+        offlineService: _offlineService,
       );
 
   FutureOr<Effect> _onAppear(
@@ -98,10 +99,14 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
   }
 
   FutureOr<Effect> _serviceFull() => Effect.run(() async {
-        await RoomAPI.getRooms().fold(
-          (success) => send(RoomAction.success(success)),
-          (error) => send(RoomAction.failure(error)),
-        );
+        final resultStatus = await checkConnectivity();
+
+        resultStatus
+            ? await RoomAPI.getRooms().fold(
+                (success) => send(RoomAction.success(success)),
+                (error) => send(RoomAction.failure(error)),
+              )
+            : await send(const RoomAction.offlineService());
       });
 
   FutureOr<Effect> _serviceSearch() {
@@ -153,6 +158,33 @@ class RoomReducer extends Reducer<RoomAction, RoomState> {
         room: room,
         onClose: (bool? value) {},
       );
+    });
+  }
+
+  FutureOr<Effect> _offlineService() {
+    return Effect.run(() async {
+      final value = await hiveStorage.get<String>("@room-setting(get-rooms)");
+
+      try {
+        if (value != null) {
+          final room = RoomSettingResponseDTO.fromRawJson(value);
+
+          send(RoomAction.success(room));
+        }
+      } catch (e) {
+        final error = ErrorInfo(
+          code: -1,
+          response: "Tente novamente",
+          error: ErrorData(
+            type: "Storage",
+            statusCode: -1,
+            message:
+                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
+          ),
+        );
+
+        send(RoomAction.failure(error));
+      }
     });
   }
 }
