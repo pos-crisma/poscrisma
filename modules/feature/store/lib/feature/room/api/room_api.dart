@@ -59,4 +59,15 @@ mixin RoomAPI {
         .map(Room.fromJson)
         .fold(Success.new, Failure.new);
   }
+
+  static AsyncResult<DefaultResponseDTO, ErrorInfo> updateRoom(
+    Room room,
+  ) async {
+    final request = await baseRequest;
+
+    return request
+        .patch('/room-setting/${room.roomId}', data: room.toJson())
+        .map(DefaultResponseDTO.fromJson)
+        .fold(Success.new, Failure.new);
+  }
 }

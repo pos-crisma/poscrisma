@@ -104,7 +104,7 @@ class Room {
       );
 
   Map<String, dynamic> toJson() => {
-        "roomId": roomId,
+        // "roomId": roomId,
         "blockName": blockName,
         "roomName": roomName,
         "bathrooms": bathrooms,
@@ -118,10 +118,10 @@ class Room {
         "observations": observations,
         "images":
             images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
-        "availability": availability,
-        "vacancies": vacancies,
-        "hosted": hosted == null
-            ? []
-            : List<dynamic>.from(hosted!.map((x) => x.toJson())),
+        // "availability": availability,
+        // "vacancies": vacancies,
+        // "hosted": hosted == null
+        //     ? []
+        //     : List<dynamic>.from(hosted!.map((x) => x.toJson())),
       };
 }

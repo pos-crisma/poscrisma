@@ -7,9 +7,15 @@ enum InviteType {
 }
 
 enum InviteUserType {
-  GodParent,
-  Young,
-  Voluntary,
+  GodParent(text: "Padrinho/Madrinha"),
+  Young(text: "Jovem"),
+  Voluntary(text: "Voluntario(a)");
+
+  const InviteUserType({
+    required this.text,
+  });
+
+  final String text;
 }
 
 enum InviteStatus {

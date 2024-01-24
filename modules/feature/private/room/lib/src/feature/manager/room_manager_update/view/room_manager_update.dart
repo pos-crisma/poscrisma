@@ -77,7 +77,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.roomName ?? ""),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) =>
+                              Text(value.room.roomName ?? ""),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -88,7 +92,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.block,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -102,7 +110,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.blockName ?? ""),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) =>
+                              Text(value.room.blockName ?? ""),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -113,7 +125,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.coupleBed,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -127,7 +143,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.doubleBed.toString()),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) =>
+                              Text(value.room.doubleBed.toString()),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -138,7 +158,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.singleBed,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -152,7 +176,12 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.singleBed.toString()),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) => Text(
+                            value.room.singleBed.toString(),
+                          ),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -163,7 +192,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.supportedBed,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -177,7 +210,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.supportBed.toString()),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) =>
+                              Text(value.room.supportBed.toString()),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -188,7 +225,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.couchBed,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -202,7 +243,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.couchBed.toString()),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) =>
+                              Text(value.room.couchBed.toString()),
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -213,7 +258,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.minibar,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -227,11 +276,18 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.minibar != null
-                            ? widget.room.minibar!
-                                ? "Possui"
-                                : "Não possui"
-                            : "Não possui"),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) {
+                            return Text(
+                              value.room.minibar != null
+                                  ? value.room.minibar!
+                                      ? "Possui"
+                                      : "Não possui"
+                                  : "Não possui",
+                            );
+                          },
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -242,7 +298,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.air,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -256,11 +316,18 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.airConditioning != null
-                            ? widget.room.airConditioning!
-                                ? "Possui"
-                                : "Não possui"
-                            : "Não possui"),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) {
+                            return Text(
+                              widget.room.airConditioning != null
+                                  ? widget.room.airConditioning!
+                                      ? "Possui"
+                                      : "Não possui"
+                                  : "Não possui",
+                            );
+                          },
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -271,7 +338,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.availability,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -285,11 +356,18 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                             ),
                           ),
                         ),
-                        additionalInfo: Text(widget.room.availability != null
-                            ? widget.room.availability!
-                                ? "Disponivel"
-                                : "Indisponivel"
-                            : "Indisponivel"),
+                        additionalInfo: ValueListenableBuilder(
+                          valueListenable: viewStore,
+                          builder: (context, value, child) {
+                            return Text(
+                              widget.room.availability != null
+                                  ? widget.room.availability!
+                                      ? "Disponivel"
+                                      : "Indisponivel"
+                                  : "Indisponivel",
+                            );
+                          },
+                        ),
                         trailing: const Icon(
                           CupertinoIcons.chevron_right,
                           size: 18,
@@ -300,7 +378,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.observation,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(
@@ -324,7 +406,11 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                       height: 0.5,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => viewStore.send(
+                        const RoomManagarUpdateAction.buttonTapped(
+                          RoomManagerUpdateInputType.image,
+                        ),
+                      ),
                       child: CupertinoListTile.notched(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         title: Text(

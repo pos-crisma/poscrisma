@@ -11,7 +11,11 @@ abstract class RoomManagarUpdateAction with _$RoomManagarUpdateAction {
   const factory RoomManagarUpdateAction.buttonTapped(
       RoomManagerUpdateInputType inputType) = _ButtonTapped;
   const factory RoomManagarUpdateAction.loading(bool isLoading) = _Loading;
-  const factory RoomManagarUpdateAction.service() = _Service;
-  const factory RoomManagarUpdateAction.success(HostedUserDTO dto) = _Success;
+  const factory RoomManagarUpdateAction.service(Room room) = _Service;
+  const factory RoomManagarUpdateAction.success(Room room) = _Success;
   const factory RoomManagarUpdateAction.failure(ErrorInfo error) = _Failure;
+  const factory RoomManagarUpdateAction.addImages(String image) = _AddImages;
+  const factory RoomManagarUpdateAction.removeImages(String image) =
+      _RemoveImages;
+  const factory RoomManagarUpdateAction.copyImage(String image) = _CopyImage;
 }
