@@ -8,8 +8,11 @@ abstract class ListPunishAction with _$ListPunishAction {
   const factory ListPunishAction.onAppear() = _OnAppearTapped;
   const factory ListPunishAction.getUserService() = _UserService;
   const factory ListPunishAction.loading(bool isLoading) = _LoadingUserService;
-  const factory ListPunishAction.success(
-      List<DocumentSnapshot<PunishDTO>> user) = _SuccessUserService;
+  const factory ListPunishAction.addedPunish(
+      DocumentSnapshot<PunishDTO> punish) = _AddedPunish;
+  const factory ListPunishAction.removePunish(
+      DocumentSnapshot<PunishDTO> punish) = _RemovePunish;
   const factory ListPunishAction.failure(ErrorInfo error) = _FailureUserService;
-  const factory ListPunishAction.markDone(String id, bool isDone) = _MarkPunish;
+  const factory ListPunishAction.markDone(DocumentSnapshot<PunishDTO> doc) =
+      _MarkPunish;
 }

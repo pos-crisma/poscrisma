@@ -235,8 +235,15 @@ class _MarkPunishState extends State<MarkPunish> {
 
                           return Container(
                             decoration: BoxDecoration(
-                              color:
-                                  isPunished ? Colors.deepPurple.shade50 : null,
+                              color: isPunished
+                                  ? ColorMode.setColor(
+                                      context: context,
+                                      light: Colors.deepPurple.shade200
+                                          .withOpacity(0.3),
+                                      dark: Colors.deepPurple.shade900
+                                          .withOpacity(0.2),
+                                    )
+                                  : null,
                               border: isPunished
                                   ? Border.all(
                                       color: Colors.deepPurple.shade800,
@@ -248,16 +255,30 @@ class _MarkPunishState extends State<MarkPunish> {
                               onTap: () => isPunished
                                   ? viewStore.send(
                                       MarkPunishAction.removePunish(
-                                          user.userId ?? ""))
-                                  : viewStore.send(MarkPunishAction.markPunish(
-                                      user.userId ?? "")),
+                                        user.userId ?? "",
+                                      ),
+                                    )
+                                  : viewStore.send(
+                                      MarkPunishAction.markPunish(
+                                        user.userId ?? "",
+                                      ),
+                                    ),
                               padding: const EdgeInsets.only(
                                 left: 8,
                                 top: 4,
                                 bottom: 4,
                                 right: 4,
                               ),
-                              title: Text(user.name ?? ""),
+                              title: Text(
+                                user.name ?? "",
+                                style: TextStyle(
+                                  color: ColorMode.setColor(
+                                    context: context,
+                                    light: Colors.black,
+                                    dark: Colors.white,
+                                  ),
+                                ),
+                              ),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

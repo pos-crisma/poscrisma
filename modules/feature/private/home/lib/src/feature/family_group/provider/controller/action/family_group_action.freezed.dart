@@ -23,9 +23,13 @@ mixin _$FamilyGroupAction {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,9 +39,13 @@ mixin _$FamilyGroupAction {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +55,13 @@ mixin _$FamilyGroupAction {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +73,13 @@ mixin _$FamilyGroupAction {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,9 +89,12 @@ mixin _$FamilyGroupAction {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,9 +104,12 @@ mixin _$FamilyGroupAction {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,9 +203,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return onAppear(context);
   }
@@ -196,9 +222,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return onAppear?.call(context);
   }
@@ -211,9 +241,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -231,9 +265,13 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return onAppear(this);
   }
@@ -246,9 +284,12 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return onAppear?.call(this);
   }
@@ -261,9 +302,12 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -326,9 +370,13 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return inviteButtonTapped();
   }
@@ -341,9 +389,13 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return inviteButtonTapped?.call();
   }
@@ -356,9 +408,13 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (inviteButtonTapped != null) {
@@ -376,9 +432,13 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return inviteButtonTapped(this);
   }
@@ -391,9 +451,12 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return inviteButtonTapped?.call(this);
   }
@@ -406,9 +469,12 @@ class _$GenerateTappedImpl implements _GenerateTapped {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (inviteButtonTapped != null) {
@@ -465,9 +531,13 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return generateTapped();
   }
@@ -480,9 +550,13 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return generateTapped?.call();
   }
@@ -495,9 +569,13 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (generateTapped != null) {
@@ -515,9 +593,13 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return generateTapped(this);
   }
@@ -530,9 +612,12 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return generateTapped?.call(this);
   }
@@ -545,9 +630,12 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (generateTapped != null) {
@@ -632,9 +720,13 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return successInviteGenerate(dto);
   }
@@ -647,9 +739,13 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return successInviteGenerate?.call(dto);
   }
@@ -662,9 +758,13 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (successInviteGenerate != null) {
@@ -682,9 +782,13 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return successInviteGenerate(this);
   }
@@ -697,9 +801,12 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return successInviteGenerate?.call(this);
   }
@@ -712,9 +819,12 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (successInviteGenerate != null) {
@@ -804,9 +914,13 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return successListInvite(dto);
   }
@@ -819,9 +933,13 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return successListInvite?.call(dto);
   }
@@ -834,9 +952,13 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (successListInvite != null) {
@@ -854,9 +976,13 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return successListInvite(this);
   }
@@ -869,9 +995,12 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return successListInvite?.call(this);
   }
@@ -884,9 +1013,12 @@ class _$SuccessListInviteImpl implements _SuccessListInvite {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (successListInvite != null) {
@@ -903,6 +1035,198 @@ abstract class _SuccessListInvite implements FamilyGroupAction {
   ListInviteByUserDTO get dto;
   @JsonKey(ignore: true)
   _$$SuccessListInviteImplCopyWith<_$SuccessListInviteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DetailGroupDto dto});
+}
+
+/// @nodoc
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$FamilyGroupActionCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dto = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == dto
+          ? _value.dto
+          : dto // ignore: cast_nullable_to_non_nullable
+              as DetailGroupDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl(this.dto);
+
+  @override
+  final DetailGroupDto dto;
+
+  @override
+  String toString() {
+    return 'FamilyGroupAction.success(dto: $dto)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.dto, dto) || other.dto == dto));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dto);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() inviteButtonTapped,
+    required TResult Function() generateTapped,
+    required TResult Function(InviteResponseDTO dto) successInviteGenerate,
+    required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
+    required TResult Function(ErrorInfo error) failureAPI,
+    required TResult Function() inviteToClipboard,
+    required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
+  }) {
+    return success(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? inviteButtonTapped,
+    TResult? Function()? generateTapped,
+    TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
+    TResult? Function(ErrorInfo error)? failureAPI,
+    TResult? Function()? inviteToClipboard,
+    TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+  }) {
+    return success?.call(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? inviteButtonTapped,
+    TResult Function()? generateTapped,
+    TResult Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
+    TResult Function(ErrorInfo error)? failureAPI,
+    TResult Function()? inviteToClipboard,
+    TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(dto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_GenerateTapped value) inviteButtonTapped,
+    required TResult Function(_InviteButtonTapped value) generateTapped,
+    required TResult Function(_SuccessInviteGenerate value)
+        successInviteGenerate,
+    required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
+    required TResult Function(_FailureAPI value) failureAPI,
+    required TResult Function(_InviteToClipboard value) inviteToClipboard,
+    required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult? Function(_InviteButtonTapped value)? generateTapped,
+    TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_FailureAPI value)? failureAPI,
+    TResult? Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult Function(_InviteButtonTapped value)? generateTapped,
+    TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
+    TResult Function(_FailureAPI value)? failureAPI,
+    TResult Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Success implements FamilyGroupAction {
+  const factory _Success(final DetailGroupDto dto) = _$SuccessImpl;
+
+  DetailGroupDto get dto;
+  @JsonKey(ignore: true)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -975,9 +1299,13 @@ class _$FailureAPIImpl implements _FailureAPI {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return failureAPI(error);
   }
@@ -990,9 +1318,13 @@ class _$FailureAPIImpl implements _FailureAPI {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return failureAPI?.call(error);
   }
@@ -1005,9 +1337,13 @@ class _$FailureAPIImpl implements _FailureAPI {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (failureAPI != null) {
@@ -1025,9 +1361,13 @@ class _$FailureAPIImpl implements _FailureAPI {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return failureAPI(this);
   }
@@ -1040,9 +1380,12 @@ class _$FailureAPIImpl implements _FailureAPI {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return failureAPI?.call(this);
   }
@@ -1055,9 +1398,12 @@ class _$FailureAPIImpl implements _FailureAPI {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (failureAPI != null) {
@@ -1119,9 +1465,13 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return inviteToClipboard();
   }
@@ -1134,9 +1484,13 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return inviteToClipboard?.call();
   }
@@ -1149,9 +1503,13 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (inviteToClipboard != null) {
@@ -1169,9 +1527,13 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return inviteToClipboard(this);
   }
@@ -1184,9 +1546,12 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return inviteToClipboard?.call(this);
   }
@@ -1199,9 +1564,12 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (inviteToClipboard != null) {
@@ -1294,9 +1662,13 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     required TResult Function() generateTapped,
     required TResult Function(InviteResponseDTO dto) successInviteGenerate,
     required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
     required TResult Function(ErrorInfo error) failureAPI,
     required TResult Function() inviteToClipboard,
     required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
   }) {
     return clipboardTapped(invite, fromList);
   }
@@ -1309,9 +1681,13 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     TResult? Function()? generateTapped,
     TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
     TResult? Function(ErrorInfo error)? failureAPI,
     TResult? Function()? inviteToClipboard,
     TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
   }) {
     return clipboardTapped?.call(invite, fromList);
   }
@@ -1324,9 +1700,13 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     TResult Function()? generateTapped,
     TResult Function(InviteResponseDTO dto)? successInviteGenerate,
     TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
     TResult Function(ErrorInfo error)? failureAPI,
     TResult Function()? inviteToClipboard,
     TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (clipboardTapped != null) {
@@ -1344,9 +1724,13 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     required TResult Function(_SuccessInviteGenerate value)
         successInviteGenerate,
     required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
     required TResult Function(_FailureAPI value) failureAPI,
     required TResult Function(_InviteToClipboard value) inviteToClipboard,
     required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
   }) {
     return clipboardTapped(this);
   }
@@ -1359,9 +1743,12 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     TResult? Function(_InviteButtonTapped value)? generateTapped,
     TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
     TResult? Function(_FailureAPI value)? failureAPI,
     TResult? Function(_InviteToClipboard value)? inviteToClipboard,
     TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
   }) {
     return clipboardTapped?.call(this);
   }
@@ -1374,9 +1761,12 @@ class _$ClipboardTappedImpl implements _ClipboardTapped {
     TResult Function(_InviteButtonTapped value)? generateTapped,
     TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
     TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
     TResult Function(_FailureAPI value)? failureAPI,
     TResult Function(_InviteToClipboard value)? inviteToClipboard,
     TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
     required TResult orElse(),
   }) {
     if (clipboardTapped != null) {
@@ -1395,4 +1785,413 @@ abstract class _ClipboardTapped implements FamilyGroupAction {
   @JsonKey(ignore: true)
   _$$ClipboardTappedImplCopyWith<_$ClipboardTappedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isLoading});
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$FamilyGroupActionCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+  }) {
+    return _then(_$LoadingImpl(
+      null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl(this.isLoading);
+
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'FamilyGroupAction.loading(isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() inviteButtonTapped,
+    required TResult Function() generateTapped,
+    required TResult Function(InviteResponseDTO dto) successInviteGenerate,
+    required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
+    required TResult Function(ErrorInfo error) failureAPI,
+    required TResult Function() inviteToClipboard,
+    required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
+  }) {
+    return loading(isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? inviteButtonTapped,
+    TResult? Function()? generateTapped,
+    TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
+    TResult? Function(ErrorInfo error)? failureAPI,
+    TResult? Function()? inviteToClipboard,
+    TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+  }) {
+    return loading?.call(isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? inviteButtonTapped,
+    TResult Function()? generateTapped,
+    TResult Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
+    TResult Function(ErrorInfo error)? failureAPI,
+    TResult Function()? inviteToClipboard,
+    TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_GenerateTapped value) inviteButtonTapped,
+    required TResult Function(_InviteButtonTapped value) generateTapped,
+    required TResult Function(_SuccessInviteGenerate value)
+        successInviteGenerate,
+    required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
+    required TResult Function(_FailureAPI value) failureAPI,
+    required TResult Function(_InviteToClipboard value) inviteToClipboard,
+    required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult? Function(_InviteButtonTapped value)? generateTapped,
+    TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_FailureAPI value)? failureAPI,
+    TResult? Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult Function(_InviteButtonTapped value)? generateTapped,
+    TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
+    TResult Function(_FailureAPI value)? failureAPI,
+    TResult Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements FamilyGroupAction {
+  const factory _Loading(final bool isLoading) = _$LoadingImpl;
+
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ActiveAndInactiveYoungImplCopyWith<$Res> {
+  factory _$$ActiveAndInactiveYoungImplCopyWith(
+          _$ActiveAndInactiveYoungImpl value,
+          $Res Function(_$ActiveAndInactiveYoungImpl) then) =
+      __$$ActiveAndInactiveYoungImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, bool isActive, String groupId});
+}
+
+/// @nodoc
+class __$$ActiveAndInactiveYoungImplCopyWithImpl<$Res>
+    extends _$FamilyGroupActionCopyWithImpl<$Res, _$ActiveAndInactiveYoungImpl>
+    implements _$$ActiveAndInactiveYoungImplCopyWith<$Res> {
+  __$$ActiveAndInactiveYoungImplCopyWithImpl(
+      _$ActiveAndInactiveYoungImpl _value,
+      $Res Function(_$ActiveAndInactiveYoungImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? isActive = null,
+    Object? groupId = null,
+  }) {
+    return _then(_$ActiveAndInactiveYoungImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ActiveAndInactiveYoungImpl implements _ActiveAndInactiveYoung {
+  const _$ActiveAndInactiveYoungImpl(this.id, this.isActive, this.groupId);
+
+  @override
+  final String id;
+  @override
+  final bool isActive;
+  @override
+  final String groupId;
+
+  @override
+  String toString() {
+    return 'FamilyGroupAction.activeAndInactiveYoung(id: $id, isActive: $isActive, groupId: $groupId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ActiveAndInactiveYoungImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.groupId, groupId) || other.groupId == groupId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, isActive, groupId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ActiveAndInactiveYoungImplCopyWith<_$ActiveAndInactiveYoungImpl>
+      get copyWith => __$$ActiveAndInactiveYoungImplCopyWithImpl<
+          _$ActiveAndInactiveYoungImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() inviteButtonTapped,
+    required TResult Function() generateTapped,
+    required TResult Function(InviteResponseDTO dto) successInviteGenerate,
+    required TResult Function(ListInviteByUserDTO dto) successListInvite,
+    required TResult Function(DetailGroupDto dto) success,
+    required TResult Function(ErrorInfo error) failureAPI,
+    required TResult Function() inviteToClipboard,
+    required TResult Function(String invite, bool fromList) clipboardTapped,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(String id, bool isActive, String groupId)
+        activeAndInactiveYoung,
+  }) {
+    return activeAndInactiveYoung(id, isActive, groupId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? inviteButtonTapped,
+    TResult? Function()? generateTapped,
+    TResult? Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult? Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult? Function(DetailGroupDto dto)? success,
+    TResult? Function(ErrorInfo error)? failureAPI,
+    TResult? Function()? inviteToClipboard,
+    TResult? Function(String invite, bool fromList)? clipboardTapped,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+  }) {
+    return activeAndInactiveYoung?.call(id, isActive, groupId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? inviteButtonTapped,
+    TResult Function()? generateTapped,
+    TResult Function(InviteResponseDTO dto)? successInviteGenerate,
+    TResult Function(ListInviteByUserDTO dto)? successListInvite,
+    TResult Function(DetailGroupDto dto)? success,
+    TResult Function(ErrorInfo error)? failureAPI,
+    TResult Function()? inviteToClipboard,
+    TResult Function(String invite, bool fromList)? clipboardTapped,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(String id, bool isActive, String groupId)?
+        activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (activeAndInactiveYoung != null) {
+      return activeAndInactiveYoung(id, isActive, groupId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_GenerateTapped value) inviteButtonTapped,
+    required TResult Function(_InviteButtonTapped value) generateTapped,
+    required TResult Function(_SuccessInviteGenerate value)
+        successInviteGenerate,
+    required TResult Function(_SuccessListInvite value) successListInvite,
+    required TResult Function(_Success value) success,
+    required TResult Function(_FailureAPI value) failureAPI,
+    required TResult Function(_InviteToClipboard value) inviteToClipboard,
+    required TResult Function(_ClipboardTapped value) clipboardTapped,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ActiveAndInactiveYoung value)
+        activeAndInactiveYoung,
+  }) {
+    return activeAndInactiveYoung(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult? Function(_InviteButtonTapped value)? generateTapped,
+    TResult? Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult? Function(_SuccessListInvite value)? successListInvite,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_FailureAPI value)? failureAPI,
+    TResult? Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult? Function(_ClipboardTapped value)? clipboardTapped,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+  }) {
+    return activeAndInactiveYoung?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_GenerateTapped value)? inviteButtonTapped,
+    TResult Function(_InviteButtonTapped value)? generateTapped,
+    TResult Function(_SuccessInviteGenerate value)? successInviteGenerate,
+    TResult Function(_SuccessListInvite value)? successListInvite,
+    TResult Function(_Success value)? success,
+    TResult Function(_FailureAPI value)? failureAPI,
+    TResult Function(_InviteToClipboard value)? inviteToClipboard,
+    TResult Function(_ClipboardTapped value)? clipboardTapped,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ActiveAndInactiveYoung value)? activeAndInactiveYoung,
+    required TResult orElse(),
+  }) {
+    if (activeAndInactiveYoung != null) {
+      return activeAndInactiveYoung(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ActiveAndInactiveYoung implements FamilyGroupAction {
+  const factory _ActiveAndInactiveYoung(
+          final String id, final bool isActive, final String groupId) =
+      _$ActiveAndInactiveYoungImpl;
+
+  String get id;
+  bool get isActive;
+  String get groupId;
+  @JsonKey(ignore: true)
+  _$$ActiveAndInactiveYoungImplCopyWith<_$ActiveAndInactiveYoungImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/feature/family_group/provider/api/group_api.dart';
+import 'package:home/src/feature/family_group/provider/dto/detail_group_dto.dart';
 import 'package:store/store.dart';
 
 import '../action/family_group_action.dart';
@@ -18,10 +20,13 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
         generateTapped: () => _generateTapped(),
         successInviteGenerate: (dto) => _successInviteGenerate(dto),
         successListInvite: (dto) => _successListInvite(dto),
+        success: _success,
         failureAPI: (error) => _failureInviteGenerate(error),
         inviteToClipboard: () => _inviteToClipboard(),
         clipboardTapped: (invite, fromList) =>
             _inviteButtonTapped(invite, fromList),
+        loading: _isLoading,
+        activeAndInactiveYoung: _activeAndInactiveYoung,
       );
 
   _onAppear(BuildContext context) {
@@ -32,7 +37,13 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
       final user = state.user;
 
       if (user != null) {
-        ListInviteAPI.list(user.userId, InviteUserType.Young).fold(
+        await send(const FamilyGroupAction.loading(true));
+        await GroupAPI.get(user.family?.groups?.first.groupId ?? "").fold(
+          (success) => send(FamilyGroupAction.success(success)),
+          (error) => send(FamilyGroupAction.failureAPI(error)),
+        );
+
+        await ListInviteAPI.list(user.userId, InviteUserType.Young).fold(
           (success) => send(FamilyGroupAction.successListInvite(success)),
           (error) => send(FamilyGroupAction.failureAPI(error)),
         );
@@ -97,33 +108,61 @@ class FamilyGroupReducer extends Reducer<FamilyGroupAction, FamilyGroupState> {
     });
   }
 
-  _successListInvite(ListInviteByUserDTO dto) {
+  FutureOr<Effect> _isLoading(bool isLoading) {
+    state.isLoading = isLoading;
+    return Effect.emit();
+  }
+
+  FutureOr<Effect> _activeAndInactiveYoung(
+      String id, bool isActive, String groupId) {
+    return Effect.run(() async {
+      send(const FamilyGroupAction.loading(true));
+      UserAPI.activeYoung(id, isActive).fold(
+        (success) async {
+          await GroupAPI.get(groupId).fold(
+            (success) => send(FamilyGroupAction.success(success)),
+            (error) => send(FamilyGroupAction.failureAPI(error)),
+          );
+        },
+        (error) => send(FamilyGroupAction.failureAPI(error)),
+      );
+    });
+  }
+
+  FutureOr<Effect> _successListInvite(ListInviteByUserDTO dto) {
     state.listInvite = dto;
     return Effect.emit();
   }
 
-  _successInviteGenerate(InviteResponseDTO dto) {
+  FutureOr<Effect> _success(DetailGroupDto dto) {
+    state.detailGroup = dto;
+    return Effect.runAndEmit(() async {
+      send(const FamilyGroupAction.loading(false));
+    });
+  }
+
+  FutureOr<Effect> _successInviteGenerate(InviteResponseDTO dto) {
     state.invite = dto;
     return Effect.emit();
   }
 
-  _failureInviteGenerate(ErrorInfo errorInfo) {
+  FutureOr<Effect> _failureInviteGenerate(ErrorInfo errorInfo) {
     value.status = FamilyGroupInviteStatus.failure;
 
     return Effect.run(() async {
-      Navigator.of(state.context).push(
-        MaterialPageRoute(
-          builder: (context) {
-            return ErrorPage(
-              title: errorInfo.response?.toString(),
-              content: errorInfo.error?.message.toString(),
-              backButton: () => Navigator.of(state.context).pop(),
-              onPress: null,
-              isShowButton: false,
-              enableColor: Colors.transparent,
-            );
-          },
-        ),
+      send(const FamilyGroupAction.loading(false));
+      showModalBottomSheet(
+        context: state.context,
+        builder: (context) {
+          return ErrorPage(
+            title: errorInfo.response?.toString(),
+            content: errorInfo.error?.message.toString(),
+            backButton: () => Navigator.of(state.context).pop(),
+            onPress: null,
+            isShowButton: false,
+            enableColor: Colors.transparent,
+          );
+        },
       );
     });
   }

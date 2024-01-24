@@ -56,6 +56,13 @@ class MarkPunishStore extends Reducer<MarkPunishAction, MarkPunishState> {
   }
 
   FutureOr<Effect> _success(ListUserDTO user) {
+    user.users?.removeWhere((element) =>
+        (element.userId == "11485ab2-c410-45b7-96ae-542bde7f194d" ||
+            element.userId == "14be5a01-60dc-401c-b2bb-797c9108518f" ||
+            element.userId == "4e36e97a-52dc-4d07-8f77-cfc5958a1abb" ||
+            element.userId == "ee3eab95-1b81-4ceb-87b8-41ea26389980" ||
+            element.userId == "fbabb0ea-4ed0-4b7e-a05c-2c519c4fe9be"));
+
     state.user = user.users;
     state.filterUser = user.users;
 
@@ -82,7 +89,7 @@ class MarkPunishStore extends Reducer<MarkPunishAction, MarkPunishState> {
 
   FutureOr<Effect> _finishPunish() {
     return Effect.run(() async {
-      final result = await PunishAPI.createPunish(
+      await PunishAPI.createPunish(
         PunishDTO(
           id: const Uuid().v4(),
           punish: state.user!
@@ -95,7 +102,8 @@ class MarkPunishStore extends Reducer<MarkPunishAction, MarkPunishState> {
         ),
       );
 
-      print("created ${result.toString()}");
+      // ignore: use_build_context_synchronously
+      state.context.pop();
     });
   }
 
