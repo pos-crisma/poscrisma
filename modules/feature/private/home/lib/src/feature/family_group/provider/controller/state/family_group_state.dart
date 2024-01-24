@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:home/src/feature/family_group/provider/dto/detail_group_dto.dart';
 import 'package:store/store.dart';
 
 interface class FamilyGroupState {
@@ -7,8 +8,11 @@ interface class FamilyGroupState {
 
   InviteResponseDTO? invite;
   ListInviteByUserDTO? listInvite;
+  DetailGroupDto? detailGroup;
 
   FamilyGroupInviteStatus status;
+
+  bool isLoading = false;
 
   FamilyGroupState({
     this.status = FamilyGroupInviteStatus.idle,

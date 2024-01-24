@@ -37,4 +37,16 @@ mixin UserAPI {
         .map(ListUserDTO.fromJson)
         .fold(Success.new, Failure.new);
   }
+
+  static AsyncResult<DefaultResponseDTO, ErrorInfo> activeYoung(
+      String id, bool isActive) async {
+    final request = await baseRequest;
+
+    return request
+        .put('/user/$id', data: {
+          "isActive": isActive,
+        })
+        .map(DefaultResponseDTO.fromJson)
+        .fold(Success.new, Failure.new);
+  }
 }

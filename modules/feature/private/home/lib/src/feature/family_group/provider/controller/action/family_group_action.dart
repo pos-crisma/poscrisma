@@ -3,6 +3,7 @@
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/feature/family_group/provider/dto/detail_group_dto.dart';
 import 'package:store/store.dart';
 
 part 'family_group_action.freezed.dart';
@@ -17,8 +18,13 @@ abstract class FamilyGroupAction with _$FamilyGroupAction {
       _SuccessInviteGenerate;
   const factory FamilyGroupAction.successListInvite(ListInviteByUserDTO dto) =
       _SuccessListInvite;
+  const factory FamilyGroupAction.success(DetailGroupDto dto) = _Success;
   const factory FamilyGroupAction.failureAPI(ErrorInfo error) = _FailureAPI;
   const factory FamilyGroupAction.inviteToClipboard() = _InviteToClipboard;
   const factory FamilyGroupAction.clipboardTapped(
       String invite, bool fromList) = _ClipboardTapped;
+
+  const factory FamilyGroupAction.loading(bool isLoading) = _Loading;
+  const factory FamilyGroupAction.activeAndInactiveYoung(
+      String id, bool isActive, String groupId) = _ActiveAndInactiveYoung;
 }

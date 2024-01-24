@@ -85,7 +85,7 @@ class _ListPunishState extends State<ListPunish> {
             ),
 
             // *
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(height: 8),
             ),
 
@@ -97,76 +97,95 @@ class _ListPunishState extends State<ListPunish> {
                   itemBuilder: (context, index) {
                     final punishRef = value.listPunish[index];
                     final punish = value.listPunish[index].data()!;
-                    return CupertinoListTile.notched(
-                      onTap: () => viewStore.send(
-                        ListPunishAction.markDone(punishRef.id, !punish.done),
-                      ),
-                      leading: Icon(
-                        punish.done
-                            ? CupertinoIcons.bookmark_fill
-                            : CupertinoIcons.bookmark,
-                      ),
-                      title: const Text(
-                        "Visualizar punição",
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(punish.justifyPunish ?? ""),
-                          RichText(
-                            text: TextSpan(
-                              text: "Criado por: ",
-                              style: TextStyle(
-                                color: Colors.grey.shade500,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: punish.createBy,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey.shade500,
-                                  ),
-                                ),
-                              ],
+                    return Dismissible(
+                      key: Key(punish.id),
+                      confirmDismiss: (direction) async {
+                        // todo: Move to store reducer
+
+                        await punishRef.reference.delete();
+
+                        return Future.value(true);
+                      },
+                      child: CupertinoListTile.notched(
+                        onTap: () => viewStore.send(
+                          ListPunishAction.markDone(punishRef),
+                        ),
+                        leading: Icon(
+                          punish.done
+                              ? CupertinoIcons.bookmark_fill
+                              : CupertinoIcons.bookmark,
+                        ),
+                        title: Text(
+                          "Visualizar punição",
+                          style: TextStyle(
+                            color: ColorMode.setColor(
+                              context: context,
+                              light: Colors.black,
+                              dark: Colors.white,
                             ),
                           ),
-                          RichText(
-                            text: TextSpan(
-                              text: "Pessoas punidas: ",
-                              style: TextStyle(
-                                color: Colors.grey.shade500,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: "\n${punish.punish.map((e) => e.name)}"
-                                      .replaceAll("(", "")
-                                      .replaceAll(")", ""),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey.shade500,
-                                  ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(punish.justifyPunish ?? ""),
+                            RichText(
+                              text: TextSpan(
+                                text: "Criado por: ",
+                                style: TextStyle(
+                                  color: Colors.grey.shade500,
                                 ),
-                              ],
-                            ),
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              text: "Feito: ",
-                              style: TextStyle(
-                                color: Colors.grey.shade500,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: punish.done ? "Feito" : "Não realizado",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey.shade500,
+                                children: [
+                                  TextSpan(
+                                    text: punish.createBy,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade500,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                            RichText(
+                              text: TextSpan(
+                                text: "Pessoas punidas: ",
+                                style: TextStyle(
+                                  color: Colors.grey.shade500,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        "\n${punish.punish.map((e) => e.name)}"
+                                            .replaceAll("(", "")
+                                            .replaceAll(")", ""),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                text: "Feito: ",
+                                style: TextStyle(
+                                  color: Colors.grey.shade500,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        punish.done ? "Feito" : "Não realizado",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

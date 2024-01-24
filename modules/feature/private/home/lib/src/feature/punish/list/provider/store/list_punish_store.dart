@@ -19,7 +19,8 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
       onAppear: _onAppear,
       getUserService: _service,
       loading: _loading,
-      success: _success,
+      addedPunish: _addedPunish,
+      removePunish: _removePunish,
       failure: _failure,
       markDone: _markDone,
     );
@@ -39,16 +40,13 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
       result.listen((event) {
         final events = event.docChanges;
 
-        List<DocumentSnapshot<PunishDTO>> listPunish = [];
-
         for (var element in events) {
-          if (element.doc.exists) {
-            final punish = element.doc;
-            listPunish.add(punish);
+          if (element.type != DocumentChangeType.removed) {
+            send(ListPunishAction.addedPunish(element.doc));
+          } else {
+            send(ListPunishAction.removePunish(element.doc));
           }
         }
-
-        send(ListPunishAction.success(listPunish));
       });
     });
   }
@@ -58,10 +56,17 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
     return Effect.emit();
   }
 
-  FutureOr<Effect> _success(List<DocumentSnapshot<PunishDTO>> dto) {
-    state.listPunish.removeWhere((element) =>
-        dto.where((x) => x.data()!.id == element.data()!.id).isNotEmpty);
-    state.listPunish.addAll(dto);
+  FutureOr<Effect> _addedPunish(DocumentSnapshot<PunishDTO> dto) {
+    state.listPunish.add(dto);
+
+    state.listPunish
+        .sort((a, b) => a.data()!.createdAt.compareTo(b.data()!.createdAt));
+
+    return Effect.emit();
+  }
+
+  FutureOr<Effect> _removePunish(DocumentSnapshot<PunishDTO> dto) {
+    state.listPunish.removeWhere((element) => element.id == dto.id);
 
     state.listPunish
         .sort((a, b) => a.data()!.createdAt.compareTo(b.data()!.createdAt));
@@ -75,9 +80,15 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
     });
   }
 
-  FutureOr<Effect> _markDone(String id, bool isDone) {
+  FutureOr<Effect> _markDone(DocumentSnapshot<PunishDTO> doc) {
     return Effect.run(() async {
-      PunishAPI.updatePunish(id, isDone);
+      // final a = state.listPunish.where((element) => element.id == id).toList();
+
+      // PunishAPI.updatePunish(id, isDone);
+
+      doc.reference.update({
+        "done": !(doc.data()!.done),
+      });
     });
   }
 }
