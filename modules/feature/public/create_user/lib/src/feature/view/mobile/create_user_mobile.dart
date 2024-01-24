@@ -63,7 +63,7 @@ class UserMobile extends StatelessWidget {
                               };
 
                               return Text(
-                                'Seu convite e para $result do acampamento', // TODO: move to i18n
+                                'Seu convite e para $result do acampamento',
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme

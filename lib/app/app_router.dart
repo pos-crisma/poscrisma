@@ -209,7 +209,7 @@ final GoRouter appRouter = GoRouter(
       name: "nursing",
       path: '/nursing',
       builder: (BuildContext context, GoRouterState state) =>
-          const DefaultPage(),
+          const NursingPage(),
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),
@@ -226,6 +226,14 @@ final GoRouter appRouter = GoRouter(
       path: '/room_manager',
       builder: (BuildContext context, GoRouterState state) =>
           const RoomManagerPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "families",
+      path: '/families',
+      builder: (BuildContext context, GoRouterState state) =>
+          const FamiliesPage(),
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),

@@ -5,7 +5,6 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:room/src/feature/component/hosted_card.dart';
-import 'package:store/feature/user/model/user.dart';
 import 'package:store/store.dart';
 
 import '../../../component/hosted_young_card.dart';

@@ -59,7 +59,7 @@ class InviteWeb extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                'Voce possui um convite?', // TODO: move to i18n
+                                'Voce possui um convite?',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge! //
@@ -69,7 +69,7 @@ class InviteWeb extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Tendo o convite voce poderar acessar ao acampamento do poscrisma', // TODO: move to i18n
+                                'Tendo o convite voce poderar acessar ao acampamento do poscrisma',
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
@@ -91,7 +91,7 @@ class InviteWeb extends StatelessWidget {
                           boxDecorationColor: SystemMode.isDark(context)
                               ? Colors.black
                               : Colors.grey.shade200,
-                          labelText: 'Link do convite', // TODO: Move to i18n
+                          labelText: 'Link do convite',
                         ),
                       ),
                       const SliverPadding(
@@ -103,7 +103,7 @@ class InviteWeb extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Os convites devem ser parecidos', // TODO: move to i18n
+                                'Os convites devem ser parecidos',
                                 style: Theme.of(context).textTheme.labelLarge,
                               ),
                               const SizedBox(height: 8),

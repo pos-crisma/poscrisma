@@ -44,7 +44,7 @@ class UpdatePage extends StatelessWidget {
                           children: [
                             RichText(
                               text: TextSpan(
-                                text: 'Nova ', // TODO: move to i18n
+                                text: 'Nova ',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge! //
@@ -57,7 +57,7 @@ class UpdatePage extends StatelessWidget {
                                     ),
                                 children: [
                                   TextSpan(
-                                    text: "Atualização", // TODO: move to i18n
+                                    text: "Atualização",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineMedium! //
@@ -75,7 +75,7 @@ class UpdatePage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Poderá ver as notas da atualização e clicando no botão sera redirecionado ao fluxo de atualização do aplicativo.', // TODO: move to i18n
+                              'Poderá ver as notas da atualização e clicando no botão sera redirecionado ao fluxo de atualização do aplicativo.',
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme

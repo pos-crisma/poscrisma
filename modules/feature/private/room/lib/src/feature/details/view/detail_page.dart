@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:room/src/feature/details/provider/action/detail_action.dart';
 import 'package:room/src/feature/details/provider/store/detail_store.dart';
-import 'package:store/feature/user/model/user.dart';
 import 'package:store/store.dart';
 
 import '../../component/hosted_card.dart';
@@ -81,7 +80,6 @@ class _DetailPageState extends State<DetailPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // TODO: Upgrade this text
                         const Text(
                           "Visão gerencial do quarto",
                         ),

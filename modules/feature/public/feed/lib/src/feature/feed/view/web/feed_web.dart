@@ -48,7 +48,7 @@ class FeedWeb extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Inicio", // TODO: Move to i18n
+                            "Inicio",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge! //
@@ -118,7 +118,7 @@ class FeedWeb extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "2023", // TODO: Move to i18n
+                                      "2023",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -128,7 +128,7 @@ class FeedWeb extends StatelessWidget {
                                           ),
                                     ),
                                     Text(
-                                      "Acampamento poscrisma", // TODO: Move to i18n
+                                      "Acampamento poscrisma",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -195,7 +195,7 @@ class FeedWeb extends StatelessWidget {
                 vertical: 8,
               ),
               child: Text(
-                "Principais", // TODO: Move to i18n
+                "Principais",
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge! //
@@ -239,7 +239,7 @@ class FeedWeb extends StatelessWidget {
                 vertical: 8,
               ),
               child: Text(
-                "Noticias", // TODO: Move to i18n
+                "Noticias",
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge! //
@@ -256,7 +256,6 @@ class FeedWeb extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               childCount: 10,
               (context, index) {
-                // TODO: Create card to show noticies
                 return ListTile(
                   title: Text(
                     "Item $index",

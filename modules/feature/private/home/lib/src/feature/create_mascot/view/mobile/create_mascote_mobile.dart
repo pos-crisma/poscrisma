@@ -51,7 +51,7 @@ class CreateMascotMobile extends StatelessWidget {
                         children: [
                           RichText(
                             text: TextSpan(
-                              text: 'Seus ', // TODO: move to i18n
+                              text: 'Seus ',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge! //
@@ -64,7 +64,7 @@ class CreateMascotMobile extends StatelessWidget {
                                   ),
                               children: [
                                 TextSpan(
-                                  text: "Filhos", // TODO: move to i18n
+                                  text: "Filhos",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium! //
@@ -82,7 +82,7 @@ class CreateMascotMobile extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Aqui você poderá adicionar seus filhos mascotes.', // TODO: move to i18n
+                            'Aqui você poderá adicionar seus filhos mascotes.',
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme

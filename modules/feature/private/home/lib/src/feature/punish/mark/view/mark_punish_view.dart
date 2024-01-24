@@ -98,7 +98,7 @@ class _MarkPunishState extends State<MarkPunish> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: 'Vamos ', // TODO: move to i18n
+                          text: 'Vamos ',
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -111,7 +111,7 @@ class _MarkPunishState extends State<MarkPunish> {
                               ),
                           children: [
                             TextSpan(
-                              text: "Punir", // TODO: move to i18n
+                              text: "Punir",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium! //

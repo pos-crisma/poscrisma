@@ -150,7 +150,6 @@ class _RoomTypeMobileState extends State<RoomTypeMobile> {
                   );
                 }
               } else if (errorInfo != null) {
-                // TODO: Upgrade screen error info
                 return SliverToBoxAdapter(
                   child: Column(
                     children: [

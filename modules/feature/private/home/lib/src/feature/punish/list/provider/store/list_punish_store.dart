@@ -82,10 +82,6 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
 
   FutureOr<Effect> _markDone(DocumentSnapshot<PunishDTO> doc) {
     return Effect.run(() async {
-      // final a = state.listPunish.where((element) => element.id == id).toList();
-
-      // PunishAPI.updatePunish(id, isDone);
-
       doc.reference.update({
         "done": !(doc.data()!.done),
       });
