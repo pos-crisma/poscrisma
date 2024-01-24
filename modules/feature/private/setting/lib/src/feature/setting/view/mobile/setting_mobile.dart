@@ -391,6 +391,43 @@ class _SettingMobileState extends State<SettingMobile> {
             },
           ),
 
+          // * Families
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                ItemButton(
+                  onPress: () => context.pushNamed('setting_family'),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 24,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          CupertinoIcons.person_3_fill,
+                          size: 30,
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          "Familias",
+                          style: Theme.of(context)
+                              .textTheme //
+                              .bodyLarge,
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          CupertinoIcons.chevron_forward,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const CustomDivider(),
+              ],
+            ),
+          ),
+
           // * Settings
           SliverToBoxAdapter(
             child: Column(

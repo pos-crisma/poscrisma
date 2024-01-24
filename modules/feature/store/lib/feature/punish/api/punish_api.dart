@@ -17,4 +17,24 @@ mixin PunishAPI {
 
     return punished;
   }
+
+  static Future updatePunish(String id, bool isDone) async {
+    final punishRef = punish.withConverter<PunishDTO>(
+      fromFirestore: (snapshot, _) => PunishDTO.fromJson(snapshot.data()!),
+      toFirestore: (punish, _) => punish.toJson(),
+    );
+
+    punishRef.doc(id).update({
+      "done": isDone,
+    });
+  }
+
+  static Stream<QuerySnapshot<PunishDTO>> stream() {
+    final punishRef = punish.withConverter<PunishDTO>(
+      fromFirestore: (snapshot, _) => PunishDTO.fromJson(snapshot.data()!),
+      toFirestore: (punish, _) => punish.toJson(),
+    );
+
+    return punishRef.snapshots();
+  }
 }

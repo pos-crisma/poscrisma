@@ -47,3 +47,5 @@ export 'feature/user/model/user.dart';
 // *
 export 'feature/punish/api/punish_api.dart';
 export 'feature/punish/dto/punish_dto.dart';
+
+export 'package:uuid/uuid.dart';

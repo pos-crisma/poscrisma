@@ -11,7 +11,6 @@ import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
 import '../../../invite/view/mobile/invite_mobile.dart';
 import '../../../notification/view/mobile/notification_mobile.dart';
-import '../../../punish/judge/view/judge_punish_view.dart';
 import '../../../punish/list/view/list_punish_view.dart';
 import '../../../punish/mark/view/mark_punish_view.dart';
 import '../../provider/controller/action/home_action.dart';
@@ -85,18 +84,6 @@ class HomeMobile extends StatelessWidget {
         isScrollControlled: true,
         barrierColor: Colors.transparent,
         builder: (context) => const ListPunish(),
-      );
-    });
-  }
-
-  void judgePunish(BuildContext context) {
-    Future.delayed(Durations.short1).then((value) {
-      showModalBottomSheet(
-        context: context,
-        useSafeArea: true,
-        isScrollControlled: true,
-        barrierColor: Colors.transparent,
-        builder: (context) => const JudgePunish(),
       );
     });
   }
@@ -718,6 +705,28 @@ class HomeMobile extends StatelessWidget {
                             )
                           : Container(),
 
+                      // value.user != null &&
+                      //         value.user!.permissions != null &&
+                      //         value.user!.permissions!.contains('view_room') &&
+                      //         value.internetCheck
+                      //     ? Container(
+                      //         padding: const EdgeInsets.only(
+                      //           top: 8,
+                      //           left: 16,
+                      //           right: 16,
+                      //         ),
+                      //         width: MediaQuery.of(context).size.width,
+                      //         child: ComplexButton(
+                      //           onPress: () => context.pushNamed('room_search'),
+                      //           text: "Pesquisar quarto", // TODO: move to i18n
+                      //           iconData: CupertinoIcons.search,
+                      //           light: Colors.grey.shade300,
+                      //           dark: Colors.grey.shade800,
+                      //           showIsNew: false,
+                      //         ),
+                      //       )
+                      //     : Container(),
+
                       value.user != null &&
                               value.user!.permissions != null &&
                               value.user!.permissions!.contains('view_room') &&
@@ -730,34 +739,10 @@ class HomeMobile extends StatelessWidget {
                               ),
                               width: MediaQuery.of(context).size.width,
                               child: ComplexButton(
-                                onPress: () => context.pushNamed('room_search'),
-                                text: "Pesquisar quarto", // TODO: move to i18n
-                                iconData: CupertinoIcons.search,
-                                light: Colors.grey.shade300,
-                                dark: Colors.grey.shade800,
-                                showIsNew: false,
-                              ),
-                            )
-                          : Container(),
-
-                      value.user != null &&
-                              value.user!.permissions != null &&
-                              value.user!.permissions!
-                                  .contains('manager_room') &&
-                              value.internetCheck
-                          ? Container(
-                              padding: const EdgeInsets.only(
-                                top: 8,
-                                left: 16,
-                                right: 16,
-                              ),
-                              width: MediaQuery.of(context).size.width,
-                              child: ComplexButton(
                                 onPress: () =>
                                     context.pushNamed('room_manager'),
-                                text:
-                                    "Gerenciar os quartos", // TODO: move to i18n
-                                iconData: CupertinoIcons.house_fill,
+                                text: "Pesquisar quartos", // TODO: move to i18n
+                                iconData: CupertinoIcons.search,
                                 light: Colors.grey.shade300,
                                 dark: Colors.grey.shade800,
                                 showIsNew: false,
@@ -870,66 +855,6 @@ class HomeMobile extends StatelessWidget {
                                             value.user!.permissions != null &&
                                             value.user!.permissions!
                                                 .contains('view_punish')
-                                        ? const SizedBox(width: 16)
-                                        : Container(),
-
-                                    // *
-                                    value.user != null &&
-                                            value.user!.permissions != null &&
-                                            value.user!.permissions!
-                                                .contains('jugde_punish')
-                                        ? CupertinoButton(
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () =>
-                                                judgePunish(context),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(16),
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light:
-                                                          Colors.grey.shade300,
-                                                      dark:
-                                                          Colors.grey.shade900,
-                                                    ),
-                                                  ),
-                                                  child: Image(
-                                                    alignment: Alignment.center,
-                                                    image: judgeMace,
-                                                    fit: BoxFit.scaleDown,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light:
-                                                          Colors.grey.shade500,
-                                                      dark:
-                                                          Colors.grey.shade700,
-                                                    ),
-                                                    height: 24,
-                                                    width: 24,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Julgar\npunimento",
-                                                  textAlign: TextAlign.center,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .labelSmall! //
-                                                      .copyWith(),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        : Container(),
-
-                                    // *
-                                    value.user != null &&
-                                            value.user!.permissions != null &&
-                                            value.user!.permissions!
-                                                .contains('jugde_punish')
                                         ? const SizedBox(width: 16)
                                         : Container(),
 

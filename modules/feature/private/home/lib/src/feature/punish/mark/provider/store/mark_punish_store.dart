@@ -84,6 +84,7 @@ class MarkPunishStore extends Reducer<MarkPunishAction, MarkPunishState> {
     return Effect.run(() async {
       final result = await PunishAPI.createPunish(
         PunishDTO(
+          id: const Uuid().v4(),
           punish: state.user!
               .where((element) =>
                   state.punishUser.where((x) => element.userId == x).isNotEmpty)
