@@ -33,6 +33,7 @@ export './module/network/client/base_request.dart';
 export './module/package/package.dart';
 export './module/package/open_browser.dart';
 export './module/package/share.dart';
+export './module/package/check_connectivity.dart';
 
 // *
 export 'module/storage/local_storage.dart';

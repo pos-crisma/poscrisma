@@ -26,178 +26,156 @@ class _RoomManagerPageState extends State<RoomManagerPage> {
   String roomTypeDescription(String? roomType) {
     return switch (roomType) {
       "Couple" => "Casal",
-      "Young" => "Jovem",
-      "Voluntary" => "Voluntario",
-      _ => "Não definido"
+      "Single" => "Solteiro",
+      _ => "Sem ocupantes"
     };
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          //*
-          SliverAppBar(
-            forceElevated: false,
-            pinned: true,
-            elevation: 0,
-            stretch: true,
-            backgroundColor: ColorMode.setColor(
-              context: context,
-              light: Colors.grey.shade200,
-              dark: Colors.grey.shade800,
+      body: RefreshIndicator.adaptive(
+        edgeOffset: 16,
+        onRefresh: () {
+          return viewStore.send(const RoomManagerAction.pullToRefresh());
+        },
+        child: CustomScrollView(
+          slivers: [
+            //*
+            SliverAppBar(
+              forceElevated: false,
+              pinned: true,
+              elevation: 0,
+              stretch: true,
+              backgroundColor: ColorMode.setColor(
+                context: context,
+                light: Colors.grey.shade200,
+                dark: Colors.grey.shade800,
+              ),
+              expandedHeight: 0,
+              collapsedHeight: 0,
+              toolbarHeight: 0,
             ),
-            expandedHeight: 0,
-            collapsedHeight: 0,
-            toolbarHeight: 0,
-          ),
 
-          //*
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: _SliverSecondAppBarDelegate(
-              viewStore: viewStore,
+            //*
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: _SliverSecondAppBarDelegate(
+                viewStore: viewStore,
+              ),
+              floating: true,
             ),
-            floating: true,
-          ),
 
-          //*
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.isLoading) {
-                return const SliverToBoxAdapter(
-                  child: CupertinoActivityIndicator(),
-                );
-              }
+            //*
+            ValueListenableBuilder(
+              valueListenable: viewStore,
+              builder: (context, value, child) {
+                if (value.isLoading) {
+                  return const SliverToBoxAdapter(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
 
-              final rooms = value.filterRooms;
-              if (rooms != null && rooms.isNotEmpty) {
-                return SliverPadding(
-                  padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewPadding.bottom,
-                  ),
-                  sliver: SliverList.builder(
-                    itemCount: rooms.length,
-                    itemBuilder: (context, index) {
-                      final room = rooms[index];
+                final rooms = value.filterRooms;
+                if (rooms != null && rooms.isNotEmpty) {
+                  return SliverPadding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewPadding.bottom,
+                    ),
+                    sliver: SliverList.builder(
+                      itemCount: rooms.length,
+                      itemBuilder: (context, index) {
+                        final room = rooms[index];
 
-                      return ItemButton(
-                        onPress: () => viewStore
-                            .send(RoomManagerAction.buttonTapped(room)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    room.roomName ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
+                        return Hero(
+                          tag: room.roomId ?? "room_id",
+                          child: CupertinoListTile.notched(
+                            onTap: () => viewStore
+                                .send(RoomManagerAction.buttonTapped(room)),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                              vertical: 8,
+                            ),
+                            title: Text(
+                              room.roomName ?? "",
+                              style: TextStyle(
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.black,
+                                  dark: Colors.white,
+                                ),
+                              ),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  room.blockName ?? "",
+                                ),
+                                Text(
+                                  roomTypeDescription(
+                                    room.roomType,
+                                  ),
+                                )
+                              ],
+                            ),
+                            trailing: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                RichText(
+                                  text: TextSpan(
+                                    text: "Vagas: ",
+                                    style: TextStyle(
+                                      color: ColorMode.setColor(
+                                        context: context,
+                                        light: CupertinoColors.secondaryLabel,
+                                        dark: CupertinoColors.systemGrey2,
+                                      ),
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "${room.vacancies}",
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    room.blockName ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .copyWith(
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: "Pessoas: ",
+                                    style: TextStyle(
+                                      color: ColorMode.setColor(
+                                        context: context,
+                                        light: CupertinoColors.secondaryLabel,
+                                        dark: CupertinoColors.systemGrey2,
+                                      ),
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "${room.hosted!.length}",
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
+                                      ),
+                                    ],
                                   ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Tipo: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: roomTypeDescription(
-                                            room.roomType,
-                                          ),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const Spacer(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Vagas: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: "${room.vacancies}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Pessoas: ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(),
-                                      children: [
-                                        TextSpan(
-                                          text: "${room.hosted!.length}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                );
-              }
+                        );
+                      },
+                    ),
+                  );
+                }
 
-              return const SliverToBoxAdapter();
-            },
-          ),
-        ],
+                return const SliverToBoxAdapter();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -308,7 +286,7 @@ class _SliverSecondAppBarDelegate extends SliverPersistentHeaderDelegate {
                   focusNote: viewStore.state.filterRoomFocus,
                   boxDecorationColor: SystemMode.isDark(context)
                       ? Colors.black
-                      : Colors.grey.shade200,
+                      : Colors.grey.shade100,
                 );
               },
             ),

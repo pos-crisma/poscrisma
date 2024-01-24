@@ -113,8 +113,6 @@ class CreateFamilyReducer
 
   FutureOr<Effect> _successFamily(CreateFamilyResponseDTO family) {
     return Effect.run(() async {
-      // TODO: Need to upgrade this code
-
       await CreateFamilyAPI.createGroupFamily(CreateFamilyGroupRequestDTO(
         familyId: family.id,
         year: state.yearFamilyController.text,

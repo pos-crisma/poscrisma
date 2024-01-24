@@ -24,6 +24,8 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
         success: _success,
         failure: _failure,
         filterRoomByText: _filterRoomByText,
+        pullToRefresh: _pullToRefresh,
+        offlineService: _offlineService,
       );
 
   FutureOr<Effect> _onAppear(BuildContext context) {
@@ -64,26 +66,29 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
 
   FutureOr<Effect> _buttonTapped(Room room) {
     return Effect.run(() async {
-      showModalBottomSheet(
-        context: state.context,
-        isScrollControlled: true,
-        useSafeArea: true,
-        barrierColor: Colors.transparent,
-        builder: (context) {
-          return RoomManagerDetail(room: room);
-        },
-      ).then((_) {
-        send(const RoomManagerAction.loading());
-        send(const RoomManagerAction.service());
-      });
+      Navigator.push(
+        state.context,
+        MaterialPageRoute(
+          builder: (context) {
+            return Hero(
+              tag: room.roomId ?? "room_id",
+              child: RoomManagerDetail(room: room),
+            );
+          },
+        ),
+      );
     });
   }
 
   FutureOr<Effect> _service() => Effect.run(() async {
-        await RoomAPI.getRooms().fold(
-          (success) => send(RoomManagerAction.success(success)),
-          (error) => send(RoomManagerAction.failure(error)),
-        );
+        final resultStatus = await checkConnectivity();
+
+        resultStatus
+            ? await RoomAPI.getRooms().fold(
+                (success) => send(RoomManagerAction.success(success)),
+                (error) => send(RoomManagerAction.failure(error)),
+              )
+            : await send(const RoomManagerAction.offlineService());
       });
 
   FutureOr<Effect> _loading() {
@@ -122,5 +127,39 @@ class RoomManagerReducer extends Reducer<RoomManagerAction, RoomManagerState> {
     }
 
     return Effect.emit();
+  }
+
+  FutureOr<Effect> _pullToRefresh() {
+    return Effect.run(() async {
+      await send(const RoomManagerAction.loading());
+      await send(const RoomManagerAction.service());
+    });
+  }
+
+  FutureOr<Effect> _offlineService() {
+    return Effect.run(() async {
+      final value = await hiveStorage.get<String>("@room-setting(get-rooms)");
+
+      try {
+        if (value != null) {
+          final room = RoomSettingResponseDTO.fromRawJson(value);
+
+          send(RoomManagerAction.success(room));
+        }
+      } catch (e) {
+        final error = ErrorInfo(
+          code: -1,
+          response: "Tente novamente",
+          error: ErrorData(
+            type: "Storage",
+            statusCode: -1,
+            message:
+                "Tente novamente mais tarde, quando sua conexão com a internet retornar",
+          ),
+        );
+
+        send(RoomManagerAction.failure(error));
+      }
+    });
   }
 }

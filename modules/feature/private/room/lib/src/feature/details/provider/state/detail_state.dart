@@ -3,7 +3,10 @@ import 'package:store/store.dart';
 
 interface class DetailState {
   late BuildContext context;
-  late Room room;
+  Room room;
+  bool isLoading = false;
 
   late ProfileDTO user;
+
+  DetailState(this.room);
 }

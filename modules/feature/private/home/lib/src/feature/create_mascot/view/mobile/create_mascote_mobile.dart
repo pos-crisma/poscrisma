@@ -2,6 +2,7 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:store/store.dart';
 
 import '../../provider/controller/action/create_mascot_action.dart';
 import '../../provider/controller/state/create_mascot_state.dart';

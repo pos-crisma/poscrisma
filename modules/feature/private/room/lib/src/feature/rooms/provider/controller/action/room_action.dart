@@ -24,4 +24,5 @@ abstract class RoomAction with _$RoomAction {
   const factory RoomAction.success(RoomSettingResponseDTO dto) = _Success;
   const factory RoomAction.failure(ErrorInfo error) = _Failure;
   const factory RoomAction.buttonTapped(Room room) = _ButtonTapped;
+  const factory RoomAction.offlineService() = _OfflineService;
 }

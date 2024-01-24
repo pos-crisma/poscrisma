@@ -23,33 +23,36 @@ class HostedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoListTile.notched(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      leadingSize: 0,
-      title: Badge(
-        isLabelVisible: isGuest,
-        child: Text(
-          name,
-          style: CupertinoTheme.of(context)
-              .textTheme
-              .textStyle //
-              .merge(
-                TextStyle(
-                  color: ColorMode.setColor(
-                    context: context,
-                    light: CupertinoColors.black,
-                    dark: CupertinoColors.white,
+    return InkWell(
+      onLongPress: callback,
+      onDoubleTap: callback,
+      child: CupertinoListTile.notched(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leadingSize: 0,
+        title: Badge(
+          isLabelVisible: isGuest,
+          child: Text(
+            name,
+            style: CupertinoTheme.of(context)
+                .textTheme
+                .textStyle //
+                .merge(
+                  TextStyle(
+                    color: ColorMode.setColor(
+                      context: context,
+                      light: CupertinoColors.black,
+                      dark: CupertinoColors.white,
+                    ),
                   ),
                 ),
-              ),
+          ),
         ),
-      ),
-      subtitle: Text(type),
-      onTap: callback,
-      trailing: Icon(
-        userRoomId == roomId
-            ? CupertinoIcons.checkmark_seal_fill
-            : CupertinoIcons.xmark_seal,
+        subtitle: Text(type),
+        trailing: Icon(
+          userRoomId == roomId
+              ? CupertinoIcons.checkmark_seal_fill
+              : CupertinoIcons.xmark_seal,
+        ),
       ),
     );
   }

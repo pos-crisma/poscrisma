@@ -38,3 +38,14 @@ export 'feature/hosted/dto/hosted_user_dto.dart';
 export 'feature/hosted/model/god_parent.dart';
 export 'feature/hosted/model/basic_hosted.dart';
 export 'feature/hosted/model/hosted_user.dart';
+
+//* User
+export 'feature/user/api/user_api.dart';
+export 'feature/user/dto/list_user_dto.dart';
+export 'feature/user/model/user.dart';
+
+// *
+export 'feature/punish/api/punish_api.dart';
+export 'feature/punish/dto/punish_dto.dart';
+
+export 'package:uuid/uuid.dart';

@@ -15,3 +15,5 @@ DocumentReference environment =
     FirebaseFirestore.instance.collection('setting').doc("environment");
 CollectionReference schedule =
     FirebaseFirestore.instance.collection('schedule');
+CollectionReference punish =
+    FirebaseFirestore.instance.collection('punish');

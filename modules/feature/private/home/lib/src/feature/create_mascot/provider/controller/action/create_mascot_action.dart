@@ -2,9 +2,9 @@
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:store/store.dart';
 
 import '../../dto/create_mascot_response_dto.dart';
-import '../state/create_mascot_state.dart';
 
 part 'create_mascot_action.freezed.dart';
 

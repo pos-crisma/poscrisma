@@ -4,7 +4,6 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home/src/feature/home/provider/controller/action/home_action.dart';
 import 'package:store/store.dart';
 
 import '../../../create_family/view/mobile/create_family_mobile.dart';
@@ -12,6 +11,9 @@ import '../../../family/view/mobile/family_mobile.dart';
 import '../../../family_group/view/mobile/family_group_mobile.dart';
 import '../../../invite/view/mobile/invite_mobile.dart';
 import '../../../notification/view/mobile/notification_mobile.dart';
+import '../../../punish/list/view/list_punish_view.dart';
+import '../../../punish/mark/view/mark_punish_view.dart';
+import '../../provider/controller/action/home_action.dart';
 import '../../provider/controller/store/home_store.dart';
 
 class HomeMobile extends StatelessWidget {
@@ -74,6 +76,30 @@ class HomeMobile extends StatelessWidget {
     });
   }
 
+  void listPunish(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        barrierColor: Colors.transparent,
+        builder: (context) => const ListPunish(),
+      );
+    });
+  }
+
+  void markPunish(BuildContext context) {
+    Future.delayed(Durations.short1).then((value) {
+      showModalBottomSheet(
+        context: context,
+        useSafeArea: true,
+        isScrollControlled: true,
+        barrierColor: Colors.transparent,
+        builder: (context) => const MarkPunish(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -83,7 +109,7 @@ class HomeMobile extends StatelessWidget {
     );
 
     return Scaffold(
-      body: RefreshIndicator(
+      body: RefreshIndicator.adaptive(
         edgeOffset: 16,
         onRefresh: () {
           return viewStore.send(const HomeAction.pullToRefresh());
@@ -679,6 +705,28 @@ class HomeMobile extends StatelessWidget {
                             )
                           : Container(),
 
+                      // value.user != null &&
+                      //         value.user!.permissions != null &&
+                      //         value.user!.permissions!.contains('view_room') &&
+                      //         value.internetCheck
+                      //     ? Container(
+                      //         padding: const EdgeInsets.only(
+                      //           top: 8,
+                      //           left: 16,
+                      //           right: 16,
+                      //         ),
+                      //         width: MediaQuery.of(context).size.width,
+                      //         child: ComplexButton(
+                      //           onPress: () => context.pushNamed('room_search'),
+                      //           text: "Pesquisar quarto", // TODO: move to i18n
+                      //           iconData: CupertinoIcons.search,
+                      //           light: Colors.grey.shade300,
+                      //           dark: Colors.grey.shade800,
+                      //           showIsNew: false,
+                      //         ),
+                      //       )
+                      //     : Container(),
+
                       value.user != null &&
                               value.user!.permissions != null &&
                               value.user!.permissions!.contains('view_room') &&
@@ -691,34 +739,10 @@ class HomeMobile extends StatelessWidget {
                               ),
                               width: MediaQuery.of(context).size.width,
                               child: ComplexButton(
-                                onPress: () => context.pushNamed('room_search'),
-                                text: "Pesquisar quarto", // TODO: move to i18n
-                                iconData: CupertinoIcons.search,
-                                light: Colors.grey.shade300,
-                                dark: Colors.grey.shade800,
-                                showIsNew: false,
-                              ),
-                            )
-                          : Container(),
-
-                      value.user != null &&
-                              value.user!.permissions != null &&
-                              value.user!.permissions!
-                                  .contains('manager_room') &&
-                              value.internetCheck
-                          ? Container(
-                              padding: const EdgeInsets.only(
-                                top: 8,
-                                left: 16,
-                                right: 16,
-                              ),
-                              width: MediaQuery.of(context).size.width,
-                              child: ComplexButton(
                                 onPress: () =>
                                     context.pushNamed('room_manager'),
-                                text:
-                                    "Gerenciar os quartos", // TODO: move to i18n
-                                iconData: CupertinoIcons.house_fill,
+                                text: "Pesquisar quartos", // TODO: move to i18n
+                                iconData: CupertinoIcons.search,
                                 light: Colors.grey.shade300,
                                 dark: Colors.grey.shade800,
                                 showIsNew: false,
@@ -785,7 +809,8 @@ class HomeMobile extends StatelessWidget {
                                                 .contains('view_punish')
                                         ? CupertinoButton(
                                             padding: EdgeInsets.zero,
-                                            onPressed: () {},
+                                            onPressed: () =>
+                                                listPunish(context),
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
@@ -795,16 +820,22 @@ class HomeMobile extends StatelessWidget {
                                                       const EdgeInsets.all(16),
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
-                                                    color: Colors.grey.shade800,
+                                                    color: ColorMode.setColor(
+                                                      context: context,
+                                                      light:
+                                                          Colors.grey.shade300,
+                                                      dark:
+                                                          Colors.grey.shade900,
+                                                    ),
                                                   ),
                                                   child: Icon(
                                                     Icons.policy_rounded,
                                                     color: ColorMode.setColor(
                                                       context: context,
                                                       light:
-                                                          Colors.grey.shade700,
+                                                          Colors.grey.shade500,
                                                       dark:
-                                                          Colors.grey.shade300,
+                                                          Colors.grey.shade700,
                                                     ),
                                                   ),
                                                 ),
@@ -828,59 +859,6 @@ class HomeMobile extends StatelessWidget {
                                         : Container(),
 
                                     // *
-                                    value.user != null &&
-                                            value.user!.permissions != null &&
-                                            value.user!.permissions!
-                                                .contains('jugde_punish')
-                                        ? CupertinoButton(
-                                            padding: EdgeInsets.zero,
-                                            onPressed: () {},
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(16),
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.grey.shade800,
-                                                  ),
-                                                  child: Image(
-                                                    alignment: Alignment.center,
-                                                    image: judgeMace,
-                                                    fit: BoxFit.scaleDown,
-                                                    color: ColorMode.setColor(
-                                                      context: context,
-                                                      light:
-                                                          Colors.grey.shade700,
-                                                      dark:
-                                                          Colors.grey.shade300,
-                                                    ),
-                                                    height: 24,
-                                                    width: 24,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Julgar\npunimento",
-                                                  textAlign: TextAlign.center,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .labelSmall! //
-                                                      .copyWith(),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        : Container(),
-
-                                    // *
-                                    value.user != null &&
-                                            value.user!.permissions != null &&
-                                            value.user!.permissions!
-                                                .contains('jugde_punish')
-                                        ? const SizedBox(width: 16)
-                                        : Container(),
-
-                                    // *
 
                                     value.user != null &&
                                             value.user!.permissions != null &&
@@ -888,7 +866,8 @@ class HomeMobile extends StatelessWidget {
                                                 .contains('mark_punish')
                                         ? CupertinoButton(
                                             padding: EdgeInsets.zero,
-                                            onPressed: () {},
+                                            onPressed: () =>
+                                                markPunish(context),
                                             child: Column(
                                               children: [
                                                 Container(
@@ -896,7 +875,13 @@ class HomeMobile extends StatelessWidget {
                                                       const EdgeInsets.all(16),
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
-                                                    color: Colors.grey.shade800,
+                                                    color: ColorMode.setColor(
+                                                      context: context,
+                                                      light:
+                                                          Colors.grey.shade300,
+                                                      dark:
+                                                          Colors.grey.shade900,
+                                                    ),
                                                   ),
                                                   child: Icon(
                                                     CupertinoIcons
@@ -904,9 +889,9 @@ class HomeMobile extends StatelessWidget {
                                                     color: ColorMode.setColor(
                                                       context: context,
                                                       light:
-                                                          Colors.grey.shade700,
+                                                          Colors.grey.shade500,
                                                       dark:
-                                                          Colors.grey.shade300,
+                                                          Colors.grey.shade700,
                                                     ),
                                                   ),
                                                 ),

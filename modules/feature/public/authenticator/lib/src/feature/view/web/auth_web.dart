@@ -195,7 +195,7 @@ class _AuthWebState extends State<AuthWeb> {
                             isFocus: View.of(context).viewInsets.bottom > 0.0,
                             isDisabled: value.isLoading,
                             onPress: () => widget.viewStore
-                                .send(AuthAction.handlerTapped()),
+                                .send(const AuthAction.handlerTapped()),
                             enableColor: Colors.deepPurple.shade300,
                             disableColor: SystemMode.isDark(context)
                                 ? Colors.deepPurple.shade500

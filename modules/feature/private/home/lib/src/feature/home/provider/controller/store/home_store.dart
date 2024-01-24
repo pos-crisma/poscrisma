@@ -42,16 +42,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
     return Effect.runAndEmit(() async {
       await send(const HomeAction.versionService());
 
-      final result = await Connectivity().checkConnectivity();
-      final resultStatus = switch (result) {
-        ConnectivityResult.mobile => true,
-        ConnectivityResult.bluetooth => true,
-        ConnectivityResult.ethernet => true,
-        ConnectivityResult.wifi => true,
-        ConnectivityResult.vpn => true,
-        ConnectivityResult.other => true,
-        ConnectivityResult.none => false,
-      };
+      final resultStatus = await checkConnectivity();
 
       await send(HomeAction.internetChecker(resultStatus));
       await send(const HomeAction.userService());
@@ -73,7 +64,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
               (success) => send(HomeAction.successUserService(success)),
               (failure) => send(const HomeAction.offlineService()),
             )
-          : send(const HomeAction.offlineService());
+          : await send(const HomeAction.offlineService());
     });
   }
 

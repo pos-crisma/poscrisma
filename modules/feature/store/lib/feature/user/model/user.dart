@@ -5,8 +5,14 @@ import 'dart:convert';
 import '../../invite/enum/invite_type.dart';
 
 enum UserGender {
-  Male,
-  Female,
+  Male(text: "Masculino"),
+  Female(text: "Feminino");
+
+  const UserGender({
+    required this.text,
+  });
+
+  final String text;
 }
 
 class User {
