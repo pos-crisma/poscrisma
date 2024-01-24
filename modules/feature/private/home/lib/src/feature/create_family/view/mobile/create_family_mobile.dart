@@ -47,7 +47,7 @@ class CreateFamilyMobile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Vamos criar sua', // TODO: move to i18n
+                              'Vamos criar sua',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge! //
@@ -56,7 +56,7 @@ class CreateFamilyMobile extends StatelessWidget {
                                   ),
                             ),
                             Text(
-                              ' Familia', // TODO: move to i18n
+                              ' Familia',
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium! //
@@ -73,7 +73,7 @@ class CreateFamilyMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'A parti da sua familia, você poderá gerenciar seus filhos e seu grupo do poscrisma.', // TODO: move to i18n
+                          'A parti da sua familia, você poderá gerenciar seus filhos e seu grupo do poscrisma.',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -97,7 +97,7 @@ class CreateFamilyMobile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          'Nome da familia', // TODO: move to i18n
+                          'Nome da familia',
                           textAlign: TextAlign.start,
                           style: Theme.of(context)
                               .textTheme
@@ -169,7 +169,7 @@ class CreateFamilyMobile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          'Ano da familia no acampamento', // TODO: move to i18n
+                          'Ano da familia no acampamento',
                           textAlign: TextAlign.start,
                           style: Theme.of(context)
                               .textTheme

@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
-import 'package:store/feature/user/model/user.dart';
 import 'package:store/store.dart';
 
 import '../../../../room_manager_update/view/room_manager_update.dart';

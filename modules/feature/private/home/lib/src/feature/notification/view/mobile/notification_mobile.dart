@@ -38,7 +38,7 @@ class NotificationMobile extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Notificação", // TODO: move to i18n
+                      "Notificação",
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium! //
@@ -53,7 +53,7 @@ class NotificationMobile extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Lista as notificações que você recebe.', // TODO: move to i18n
+                      'Lista as notificações que você recebe.',
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme

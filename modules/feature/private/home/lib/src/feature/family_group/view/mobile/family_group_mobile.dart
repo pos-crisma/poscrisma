@@ -49,7 +49,7 @@ class FamilyGroupMobile extends StatelessWidget {
                       children: [
                         RichText(
                           text: TextSpan(
-                            text: 'Seu ', // TODO: move to i18n
+                            text: 'Seu ',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge! //
@@ -62,7 +62,7 @@ class FamilyGroupMobile extends StatelessWidget {
                                 ),
                             children: [
                               TextSpan(
-                                text: "Grupo", // TODO: move to i18n
+                                text: "Grupo",
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineMedium! //
@@ -80,7 +80,7 @@ class FamilyGroupMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Aqui você poderá ver o seu grupo do poscrisma.', // TODO: move to i18n
+                          'Aqui você poderá ver o seu grupo do poscrisma.',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme

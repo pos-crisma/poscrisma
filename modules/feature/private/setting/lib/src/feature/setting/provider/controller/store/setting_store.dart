@@ -27,6 +27,7 @@ class SettingReducer extends Reducer<SettingAction, SettingState> {
   FutureOr<Effect> _logoutButtonTapped() {
     return Effect.run(() async {
       await hiveStorage.delete("@token");
+      // ignore: use_build_context_synchronously
       state.context.go('/');
     });
   }

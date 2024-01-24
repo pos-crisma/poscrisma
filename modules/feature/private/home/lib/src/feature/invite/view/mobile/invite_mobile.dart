@@ -57,7 +57,7 @@ class _InviteMobileState extends State<InviteMobile> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: 'Gerar ', // TODO: move to i18n
+                          text: 'Gerar ',
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -70,7 +70,7 @@ class _InviteMobileState extends State<InviteMobile> {
                               ),
                           children: [
                             TextSpan(
-                              text: "Convite", // TODO: move to i18n
+                              text: "Convite",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium! //
@@ -88,7 +88,7 @@ class _InviteMobileState extends State<InviteMobile> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Aqui você poderá gerar convite aos padrinhos e voluntarios.', // TODO: move to i18n
+                        'Aqui você poderá gerar convite aos padrinhos e voluntarios.',
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
@@ -446,7 +446,6 @@ class _InviteMobileState extends State<InviteMobile> {
                                                 ),
                                               ],
                                             ),
-                                            // TODO:
                                             Container(
                                               padding: const EdgeInsets.all(4),
                                               decoration: BoxDecoration(

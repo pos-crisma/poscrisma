@@ -198,54 +198,6 @@ class _SettingMobileState extends State<SettingMobile> {
             },
           ),
 
-          // * Warehouse
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_warehouse')) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ItemButton(
-                        onPress: () => context.pushNamed('warehouse'),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 24,
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                CupertinoIcons.cube_box_fill,
-                                size: 30,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(
-                                "Almoxarifado",
-                                style: Theme.of(context)
-                                    .textTheme //
-                                    .bodyLarge,
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                CupertinoIcons.chevron_forward,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const CustomDivider(),
-                    ],
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
-            },
-          ),
-
           // * Nursing
           ValueListenableBuilder(
             valueListenable: viewStore,
@@ -294,109 +246,12 @@ class _SettingMobileState extends State<SettingMobile> {
             },
           ),
 
-          // * Access manager
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('set_permissions')) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ItemButton(
-                        onPress: () =>
-                            context.pushNamed('config_access_manager'),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 24,
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                CupertinoIcons.lock_shield_fill,
-                                size: 30,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(
-                                "Controler de acesso",
-                                style: Theme.of(context)
-                                    .textTheme //
-                                    .bodyLarge,
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                CupertinoIcons.chevron_forward,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const CustomDivider(),
-                    ],
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
-            },
-          ),
-
-          // * Games
-          ValueListenableBuilder(
-            valueListenable: viewStore,
-            builder: (context, value, child) {
-              if (value.user != null &&
-                  value.user!.permissions != null &&
-                  value.user!.permissions!.contains('manager_game')) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ItemButton(
-                        onPress: () => context.pushNamed('game_manager'),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 24,
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                CupertinoIcons.rocket_fill,
-                                size: 30,
-                              ),
-                              const SizedBox(width: 16),
-                              Text(
-                                "Jogos",
-                                style: Theme.of(context)
-                                    .textTheme //
-                                    .bodyLarge,
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                CupertinoIcons.chevron_forward,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const CustomDivider(),
-                    ],
-                  ),
-                );
-              } else {
-                return const SliverToBoxAdapter();
-              }
-            },
-          ),
-
           // * Families
           SliverToBoxAdapter(
             child: Column(
               children: [
                 ItemButton(
-                  onPress: () => context.pushNamed('setting_family'),
+                  onPress: () => context.pushNamed('families'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

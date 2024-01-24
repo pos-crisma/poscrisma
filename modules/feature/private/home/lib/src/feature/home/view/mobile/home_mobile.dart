@@ -203,7 +203,7 @@ class HomeMobile extends StatelessWidget {
                         valueListenable: viewStore,
                         builder: (context, value, child) => RichText(
                           text: TextSpan(
-                            text: 'Olá, ', // TODO: move to i18n
+                            text: 'Olá, ',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -213,8 +213,7 @@ class HomeMobile extends StatelessWidget {
                                 ),
                             children: [
                               TextSpan(
-                                text: value.user?.name ??
-                                    'Carregando ...', // TODO: move to i18n
+                                text: value.user?.name ?? 'Carregando ...',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -275,8 +274,7 @@ class HomeMobile extends StatelessWidget {
                                 const SizedBox(height: 8),
                                 ComplexButton(
                                   onPress: () => generateFamily(context),
-                                  text:
-                                      'Crie sua familia', // TODO: move to i18n
+                                  text: 'Crie sua familia',
                                   iconData: CupertinoIcons
                                       .person_crop_circle_badge_plus,
                                   light: Colors.grey.shade200,
@@ -290,8 +288,7 @@ class HomeMobile extends StatelessWidget {
                                 const SizedBox(height: 8),
                                 ComplexButton(
                                   onPress: () => showFamilyGroup(context),
-                                  text:
-                                      'Seu grupo poscrisma', // TODO: move to i18n
+                                  text: 'Seu grupo poscrisma',
                                   iconData: CupertinoIcons.person_3_fill,
                                   light: Colors.grey.shade200,
                                   dark: Colors.grey.shade800,
@@ -373,7 +370,7 @@ class HomeMobile extends StatelessWidget {
                           horizontal: 16,
                         ),
                         child: Text(
-                          'Quartos', // TODO: move to i18n
+                          'Quartos',
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge! //
@@ -401,7 +398,7 @@ class HomeMobile extends StatelessWidget {
                             ),
                             child: RichText(
                               text: TextSpan(
-                                text: 'Seu quarto: ', // TODO: move to i18n
+                                text: 'Seu quarto: ',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge! //
@@ -416,7 +413,7 @@ class HomeMobile extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: hosted?.roomName ??
-                                        "Ainda não possui quarto definido", // TODO: move to i18n
+                                        "Ainda não possui quarto definido",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge!
@@ -469,7 +466,7 @@ class HomeMobile extends StatelessWidget {
                                               RichText(
                                                 text: TextSpan(
                                                   text:
-                                                      'Total de quartos usados: ', // TODO: move to i18n
+                                                      'Total de quartos usados: ',
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyLarge!
@@ -563,7 +560,7 @@ class HomeMobile extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Padrinho", // TODO: move to i18n
+                                                "Padrinho",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -622,7 +619,7 @@ class HomeMobile extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Jovem", // TODO: move to i18n
+                                                "Jovem",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -681,7 +678,7 @@ class HomeMobile extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Voluntarios", // TODO: move to i18n
+                                                "Voluntarios",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium!
@@ -718,7 +715,7 @@ class HomeMobile extends StatelessWidget {
                       //         width: MediaQuery.of(context).size.width,
                       //         child: ComplexButton(
                       //           onPress: () => context.pushNamed('room_search'),
-                      //           text: "Pesquisar quarto", // TODO: move to i18n
+                      //           text: "Pesquisar quarto",
                       //           iconData: CupertinoIcons.search,
                       //           light: Colors.grey.shade300,
                       //           dark: Colors.grey.shade800,
@@ -741,7 +738,7 @@ class HomeMobile extends StatelessWidget {
                               child: ComplexButton(
                                 onPress: () =>
                                     context.pushNamed('room_manager'),
-                                text: "Pesquisar quartos", // TODO: move to i18n
+                                text: "Pesquisar quartos",
                                 iconData: CupertinoIcons.search,
                                 light: Colors.grey.shade300,
                                 dark: Colors.grey.shade800,
@@ -781,7 +778,7 @@ class HomeMobile extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     child: Text(
-                                      'Punimentos', // TODO: move to i18n
+                                      'Punimentos',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -962,7 +959,7 @@ class HomeMobile extends StatelessWidget {
                             horizontal: 16,
                           ),
                           child: Text(
-                            'Acampamento', // TODO: move to i18n
+                            'Acampamento',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -981,7 +978,7 @@ class HomeMobile extends StatelessWidget {
                           child: ComplexButton(
                             badge: true,
                             onPress: () => context.pushNamed('team'),
-                            text: "Gerenciar times", // TODO: move to i18n
+                            text: "Gerenciar times",
                             iconData: CupertinoIcons.sportscourt_fill,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -999,7 +996,7 @@ class HomeMobile extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: ComplexButton(
                             onPress: () => context.pushNamed('team'),
-                            text: "Equipes", // TODO: move to i18n
+                            text: "Equipes",
                             iconData: CupertinoIcons.group_solid,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -1013,7 +1010,7 @@ class HomeMobile extends StatelessWidget {
                             right: 16,
                           ),
                           child: Text(
-                            'Jogos', // TODO: move to i18n
+                            'Jogos',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -1030,7 +1027,7 @@ class HomeMobile extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: ComplexButton(
                             onPress: () => context.pushNamed('team'),
-                            text: "Pesquisar Jogos", // TODO: move to i18n
+                            text: "Pesquisar Jogos",
                             iconData: CupertinoIcons.gamecontroller_alt_fill,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -1045,7 +1042,7 @@ class HomeMobile extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: ComplexButton(
                             onPress: () => context.pushNamed('schedule'),
-                            text: "Tabela de jogos", // TODO: move to i18n
+                            text: "Tabela de jogos",
                             iconData: CupertinoIcons.calendar,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -1059,7 +1056,7 @@ class HomeMobile extends StatelessWidget {
                             horizontal: 16,
                           ),
                           child: Text(
-                            'Caça ao tesouros', // TODO: move to i18n
+                            'Caça ao tesouros',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -1078,7 +1075,7 @@ class HomeMobile extends StatelessWidget {
                           child: ComplexButton(
                             badge: true,
                             onPress: () => context.pushNamed('team'),
-                            text: "Tendas", // TODO: move to i18n
+                            text: "Tendas",
                             iconData: Icons.emoji_events,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -1090,7 +1087,7 @@ class HomeMobile extends StatelessWidget {
                             horizontal: 16,
                           ),
                           child: Text(
-                            'Show de talentos', // TODO: move to i18n
+                            'Show de talentos',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge! //
@@ -1109,7 +1106,7 @@ class HomeMobile extends StatelessWidget {
                           child: ComplexButton(
                             badge: true,
                             onPress: () => context.pushNamed('team'),
-                            text: "Talentos", // TODO: move to i18n
+                            text: "Talentos",
                             iconData: CupertinoIcons.today,
                             light: Colors.grey.shade300,
                             dark: Colors.grey.shade800,
@@ -1145,7 +1142,7 @@ class HomeMobile extends StatelessWidget {
                         children: [
                           SizedBox(
                             child: Text(
-                              'Itens do acampamento', // TODO: move to i18n
+                              'Itens do acampamento',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -1189,7 +1186,7 @@ class HomeMobile extends StatelessWidget {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: 'Versão: ', // TODO: move to i18n
+                        text: 'Versão: ',
                         style: Theme.of(context)
                             .textTheme
                             .labelSmall! //

@@ -112,7 +112,7 @@ class _AuthWebState extends State<AuthWeb> {
                         boxDecorationColor: SystemMode.isDark(context)
                             ? Colors.black
                             : Colors.grey.shade200,
-                        labelText: 'Preencha sua senha', // TODO: Move to i18n
+                        labelText: 'Preencha sua senha',
                       ),
 
                       const SizedBox(height: 8),

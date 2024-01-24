@@ -59,7 +59,7 @@ class RoomManagerEditor extends StatelessWidget {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: 'Vamos ', // TODO: move to i18n
+                          text: 'Vamos ',
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -72,7 +72,7 @@ class RoomManagerEditor extends StatelessWidget {
                               ),
                           children: [
                             TextSpan(
-                              text: "Atualizar", // TODO: move to i18n
+                              text: "Atualizar",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium! //

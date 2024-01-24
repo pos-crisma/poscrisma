@@ -64,7 +64,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: 'Sua ', // TODO: move to i18n
+                        text: 'Sua ',
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge! //
@@ -77,7 +77,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                             ),
                         children: [
                           TextSpan(
-                            text: "Familia", // TODO: move to i18n
+                            text: "Familia",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium! //
@@ -95,7 +95,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Aqui você poderá ver a sua familia.', // TODO: move to i18n
+                      'Aqui você poderá ver a sua familia.',
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
@@ -316,7 +316,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                         children: [
                           RichText(
                             text: TextSpan(
-                              text: 'Mãe: ', // TODO: move to i18n
+                              text: 'Mãe: ',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium! //
@@ -347,7 +347,7 @@ class _FamilyMobileState extends State<FamilyMobile> {
                           ),
                           RichText(
                             text: TextSpan(
-                              text: 'Pai: ', // TODO: move to i18n
+                              text: 'Pai: ',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium! //

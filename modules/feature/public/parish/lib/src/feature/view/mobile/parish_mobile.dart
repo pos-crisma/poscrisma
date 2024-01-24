@@ -64,7 +64,7 @@ class ParishMobile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Vamos criar a', // TODO: move to i18n
+                              'Vamos criar a',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge! //
@@ -74,7 +74,7 @@ class ParishMobile extends StatelessWidget {
                                   ),
                             ),
                             Text(
-                              ' Paroquia', // TODO: move to i18n
+                              ' Paroquia',
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium! //
@@ -89,7 +89,7 @@ class ParishMobile extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Essa paroquia, sera a base de todos os acampamentos do poscrisma.', // TODO: move to i18n
+                          'Essa paroquia, sera a base de todos os acampamentos do poscrisma.',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -116,7 +116,7 @@ class ParishMobile extends StatelessWidget {
                           ? Colors.black
                           : Colors.grey.shade200,
                       autoFocus: true,
-                      labelText: 'Criar nome da paroquia', // TODO: Move to i18n
+                      labelText: 'Criar nome da paroquia',
                     ),
                   ),
                 ),
@@ -134,7 +134,7 @@ class ParishMobile extends StatelessWidget {
                           ? Colors.black
                           : Colors.grey.shade200,
                       autoFocus: true,
-                      labelText: 'Endereço paroquia', // TODO: Move to i18n
+                      labelText: 'Endereço paroquia',
                     ),
                   ),
                 ),

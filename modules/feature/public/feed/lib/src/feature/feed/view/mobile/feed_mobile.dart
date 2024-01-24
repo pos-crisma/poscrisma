@@ -48,7 +48,7 @@ class FeedMobile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Inicio", // TODO: Move to i18n
+                            "Inicio",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge! //
@@ -118,7 +118,7 @@ class FeedMobile extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "2023", // TODO: Move to i18n
+                                      "2023",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -128,7 +128,7 @@ class FeedMobile extends StatelessWidget {
                                           ),
                                     ),
                                     Text(
-                                      "Acampamento poscrisma", // TODO: Move to i18n
+                                      "Acampamento poscrisma",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -195,7 +195,7 @@ class FeedMobile extends StatelessWidget {
                 vertical: 8,
               ),
               child: Text(
-                "Principais", // TODO: Move to i18n
+                "Principais",
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge! //
@@ -230,42 +230,6 @@ class FeedMobile extends StatelessWidget {
               ),
             ),
           ),
-
-          // * Box Header
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     padding: EdgeInsets.symmetric(
-          //       horizontal: Responsive.isSmallScreen(context) ? 8 : 16,
-          //       vertical: 8,
-          //     ),
-          //     child: Text(
-          //       "Noticias", // TODO: Move to i18n
-          //       style: Theme.of(context)
-          //           .textTheme
-          //           .bodyLarge! //
-          //           .copyWith(
-          //             fontWeight: FontWeight.bold,
-          //             fontSize: 18,
-          //           ),
-          //     ),
-          //   ),
-          // ),
-
-          // // * Box List
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate(
-          //     childCount: 10,
-          //     (context, index) {
-          //       // TODO: Create card to show noticies
-          //       return ListTile(
-          //         title: Text(
-          //           "Item $index",
-          //           style: Theme.of(context).textTheme.bodyMedium,
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
 
           // * Bottom Space
           SliverToBoxAdapter(

@@ -45,7 +45,7 @@ class _ListPunishState extends State<ListPunish> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: 'Visualizar ', // TODO: move to i18n
+                        text: 'Visualizar ',
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge! //
@@ -58,7 +58,7 @@ class _ListPunishState extends State<ListPunish> {
                             ),
                         children: [
                           TextSpan(
-                            text: "Punições", // TODO: move to i18n
+                            text: "Punições",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium! //
