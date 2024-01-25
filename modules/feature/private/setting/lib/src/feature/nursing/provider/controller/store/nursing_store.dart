@@ -49,6 +49,7 @@ class NursingReducer extends Reducer<NursingAction, NursingState> {
 
   FutureOr<Effect> _success(ListUserDTO data) {
     state.listUsers = data.users;
+    state.filterUsers = data.users;
     state.isLoading = false;
 
     return Effect.emit();

@@ -39,6 +39,7 @@ class RoomManagarDetailReducer
 
   FutureOr<Effect> _onAppear(BuildContext context) {
     state.context = context;
+    state.user = profileStore.user;
 
     return Effect.runAndEmit(() async {
       send(const RoomManagarDetailAction.loading(true));

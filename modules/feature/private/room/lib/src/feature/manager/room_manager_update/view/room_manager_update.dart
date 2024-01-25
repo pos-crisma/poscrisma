@@ -41,14 +41,23 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
         appBar: AppBar(
           leadingWidth: 100,
           leading: const CustomBackButton(),
-          title: Text(
-            "Editor",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge! //
-                .copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+          title: ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              return Text(
+                value.user != null &&
+                        value.user!.permissions != null &&
+                        value.user!.permissions!.contains("manager_room")
+                    ? "Editor"
+                    : "Detalhes",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge! //
+                    .copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              );
+            },
           ),
         ),
         body: SafeArea(
@@ -58,377 +67,477 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.name,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Nome do quarto",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.name,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Nome do quarto",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo: Text(value.room.roomName ?? ""),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) =>
-                              Text(value.room.roomName ?? ""),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.block,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Nome do bloco",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.block,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Nome do bloco",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo: Text(value.room.blockName ?? ""),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) =>
-                              Text(value.room.blockName ?? ""),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.coupleBed,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Cama de casal",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.coupleBed,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Cama de casal",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo:
+                                Text(value.room.doubleBed.toString()),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) =>
-                              Text(value.room.doubleBed.toString()),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.singleBed,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Cama de solteiro",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.singleBed,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Cama de solteiro",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo:
+                                Text(value.room.singleBed.toString()),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) => Text(
-                            value.room.singleBed.toString(),
-                          ),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.supportedBed,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Cama de auxiliar",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.supportedBed,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Cama de auxiliar",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo:
+                                Text(value.room.supportBed.toString()),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) =>
-                              Text(value.room.supportBed.toString()),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.couchBed,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Sofá cama",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.couchBed,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Sofá cama",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo:
+                                Text(value.room.couchBed.toString()),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) =>
-                              Text(value.room.couchBed.toString()),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.minibar,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Minibar",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.minibar,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Minibar",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo: ValueListenableBuilder(
+                              valueListenable: viewStore,
+                              builder: (context, value, child) {
+                                return Text(
+                                  value.room.minibar != null
+                                      ? value.room.minibar!
+                                          ? "Possui"
+                                          : "Não possui"
+                                      : "Não possui",
+                                );
+                              },
+                            ),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) {
-                            return Text(
-                              value.room.minibar != null
-                                  ? value.room.minibar!
-                                      ? "Possui"
-                                      : "Não possui"
-                                  : "Não possui",
-                            );
-                          },
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.air,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Ar condicionado",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.air,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Ar condicionado",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo: ValueListenableBuilder(
+                              valueListenable: viewStore,
+                              builder: (context, value, child) {
+                                return Text(
+                                  widget.room.airConditioning != null
+                                      ? widget.room.airConditioning!
+                                          ? "Possui"
+                                          : "Não possui"
+                                      : "Não possui",
+                                );
+                              },
+                            ),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) {
-                            return Text(
-                              widget.room.airConditioning != null
-                                  ? widget.room.airConditioning!
-                                      ? "Possui"
-                                      : "Não possui"
-                                  : "Não possui",
-                            );
-                          },
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.availability,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Disponibilidade",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.availability,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Disponibilidade",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            additionalInfo: ValueListenableBuilder(
+                              valueListenable: viewStore,
+                              builder: (context, value, child) {
+                                return Text(
+                                  widget.room.availability != null
+                                      ? widget.room.availability!
+                                          ? "Disponivel"
+                                          : "Indisponivel"
+                                      : "Indisponivel",
+                                );
+                              },
+                            ),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        additionalInfo: ValueListenableBuilder(
-                          valueListenable: viewStore,
-                          builder: (context, value, child) {
-                            return Text(
-                              widget.room.availability != null
-                                  ? widget.room.availability!
-                                      ? "Disponivel"
-                                      : "Indisponivel"
-                                  : "Indisponivel",
-                            );
-                          },
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.observation,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Observações",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.observation,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Observações",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,
                     ),
-                    InkWell(
-                      onTap: () => viewStore.send(
-                        const RoomManagarUpdateAction.buttonTapped(
-                          RoomManagerUpdateInputType.image,
-                        ),
-                      ),
-                      child: CupertinoListTile.notched(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        title: Text(
-                          "Fotos do quarto",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.grey.shade800,
-                              dark: Colors.grey.shade200,
+                    ValueListenableBuilder(
+                      valueListenable: viewStore,
+                      builder: (context, value, child) {
+                        return InkWell(
+                          onTap: () => value.user != null &&
+                                  value.user!.permissions != null &&
+                                  value.user!.permissions!
+                                      .contains("manager_room")
+                              ? viewStore.send(
+                                  const RoomManagarUpdateAction.buttonTapped(
+                                    RoomManagerUpdateInputType.image,
+                                  ),
+                                )
+                              : null,
+                          child: CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              "Fotos do quarto",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.grey.shade800,
+                                  dark: Colors.grey.shade200,
+                                ),
+                              ),
+                            ),
+                            trailing: const Icon(
+                              CupertinoIcons.chevron_right,
+                              size: 18,
                             ),
                           ),
-                        ),
-                        trailing: const Icon(
-                          CupertinoIcons.chevron_right,
-                          size: 18,
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const CustomDivider(
                       height: 0.5,

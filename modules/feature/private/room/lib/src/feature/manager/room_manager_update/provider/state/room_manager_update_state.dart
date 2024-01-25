@@ -6,6 +6,8 @@ import '../enum/room_manager_update_input_type.dart';
 interface class RoomManagarUpdateState {
   BuildContext context;
 
+  ProfileDTO? user;
+
   TextEditingController filterUserController = TextEditingController(text: "");
   FocusNode filterUserFocus = FocusNode();
 
