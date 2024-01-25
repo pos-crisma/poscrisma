@@ -15,6 +15,9 @@ dependencies:
   store:
     path: "../../store"
 
+  error:
+    path: "../../error"
+
   core:
     path: "../../../core"
     

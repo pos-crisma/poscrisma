@@ -830,14 +830,14 @@ class HomeMobile extends StatelessWidget {
                                                     color: ColorMode.setColor(
                                                       context: context,
                                                       light:
-                                                          Colors.grey.shade500,
+                                                          Colors.grey.shade800,
                                                       dark:
-                                                          Colors.grey.shade700,
+                                                          Colors.grey.shade200,
                                                     ),
                                                   ),
                                                 ),
                                                 Text(
-                                                  "Lista\npunimentos",
+                                                  "Lista\ncastigo",
                                                   textAlign: TextAlign.center,
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -886,15 +886,15 @@ class HomeMobile extends StatelessWidget {
                                                     color: ColorMode.setColor(
                                                       context: context,
                                                       light:
-                                                          Colors.grey.shade500,
+                                                          Colors.grey.shade800,
                                                       dark:
-                                                          Colors.grey.shade700,
+                                                          Colors.grey.shade200,
                                                     ),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 8),
                                                 Text(
-                                                  "Marcar\nPunimento",
+                                                  "Marcar\ncastigo",
                                                   textAlign: TextAlign.center,
                                                   style: Theme.of(context)
                                                       .textTheme

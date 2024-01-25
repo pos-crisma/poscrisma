@@ -19,31 +19,39 @@ mixin _$FamiliesAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(FamiliesResponseDTO dto) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(FamiliesResponseDTO dto)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(FamiliesResponseDTO dto)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -52,6 +60,8 @@ mixin _$FamiliesAction {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
@@ -60,6 +70,8 @@ mixin _$FamiliesAction {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -125,9 +137,11 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(FamiliesResponseDTO dto) success,
   }) {
     return onAppear();
   }
@@ -136,9 +150,11 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(FamiliesResponseDTO dto)? success,
   }) {
     return onAppear?.call();
   }
@@ -147,9 +163,11 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(FamiliesResponseDTO dto)? success,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -162,6 +180,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -173,6 +193,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
@@ -184,6 +206,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -198,6 +222,290 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
 
 abstract class _OnAppearTapped implements FamiliesAction {
   const factory _OnAppearTapped() = _$OnAppearTappedImpl;
+}
+
+/// @nodoc
+abstract class _$$PullToRefreshImplCopyWith<$Res> {
+  factory _$$PullToRefreshImplCopyWith(
+          _$PullToRefreshImpl value, $Res Function(_$PullToRefreshImpl) then) =
+      __$$PullToRefreshImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PullToRefreshImplCopyWithImpl<$Res>
+    extends _$FamiliesActionCopyWithImpl<$Res, _$PullToRefreshImpl>
+    implements _$$PullToRefreshImplCopyWith<$Res> {
+  __$$PullToRefreshImplCopyWithImpl(
+      _$PullToRefreshImpl _value, $Res Function(_$PullToRefreshImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PullToRefreshImpl implements _PullToRefresh {
+  const _$PullToRefreshImpl();
+
+  @override
+  String toString() {
+    return 'FamiliesAction.pullToRefresh()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PullToRefreshImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function() service,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(FamiliesResponseDTO dto) success,
+  }) {
+    return pullToRefresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function()? service,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(FamiliesResponseDTO dto)? success,
+  }) {
+    return pullToRefresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
+    TResult Function()? service,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(FamiliesResponseDTO dto)? success,
+    required TResult orElse(),
+  }) {
+    if (pullToRefresh != null) {
+      return pullToRefresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Service value) service,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return pullToRefresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Success value)? success,
+  }) {
+    return pullToRefresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Service value)? service,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (pullToRefresh != null) {
+      return pullToRefresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PullToRefresh implements FamiliesAction {
+  const factory _PullToRefresh() = _$PullToRefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isLoading});
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$FamiliesActionCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+  }) {
+    return _then(_$LoadingImpl(
+      null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl(this.isLoading);
+
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'FamiliesAction.loading(isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function() service,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(FamiliesResponseDTO dto) success,
+  }) {
+    return loading(isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function()? service,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(FamiliesResponseDTO dto)? success,
+  }) {
+    return loading?.call(isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
+    TResult Function()? service,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(FamiliesResponseDTO dto)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Service value) service,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Success value)? success,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Service value)? service,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements FamiliesAction {
+  const factory _Loading(final bool isLoading) = _$LoadingImpl;
+
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -239,9 +547,11 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(FamiliesResponseDTO dto) success,
   }) {
     return service();
   }
@@ -250,9 +560,11 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(FamiliesResponseDTO dto)? success,
   }) {
     return service?.call();
   }
@@ -261,9 +573,11 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(FamiliesResponseDTO dto)? success,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -276,6 +590,8 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -287,6 +603,8 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
@@ -298,6 +616,8 @@ class _$ServiceImpl implements _Service {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -379,9 +699,11 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(FamiliesResponseDTO dto) success,
   }) {
     return failure(error);
   }
@@ -390,9 +712,11 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(FamiliesResponseDTO dto)? success,
   }) {
     return failure?.call(error);
   }
@@ -401,9 +725,11 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(FamiliesResponseDTO dto)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -416,6 +742,8 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -427,6 +755,8 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
@@ -438,6 +768,8 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -465,7 +797,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({dynamic dto});
+  $Res call({FamiliesResponseDTO dto});
 }
 
 /// @nodoc
@@ -479,13 +811,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dto = freezed,
+    Object? dto = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == dto
+      null == dto
           ? _value.dto
           : dto // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as FamiliesResponseDTO,
     ));
   }
 }
@@ -496,7 +828,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.dto);
 
   @override
-  final dynamic dto;
+  final FamiliesResponseDTO dto;
 
   @override
   String toString() {
@@ -508,12 +840,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other.dto, dto));
+            (identical(other.dto, dto) || other.dto == dto));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(dto));
+  int get hashCode => Object.hash(runtimeType, dto);
 
   @JsonKey(ignore: true)
   @override
@@ -525,9 +856,11 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onAppear,
+    required TResult Function() pullToRefresh,
+    required TResult Function(bool isLoading) loading,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(FamiliesResponseDTO dto) success,
   }) {
     return success(dto);
   }
@@ -536,9 +869,11 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppear,
+    TResult? Function()? pullToRefresh,
+    TResult? Function(bool isLoading)? loading,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(FamiliesResponseDTO dto)? success,
   }) {
     return success?.call(dto);
   }
@@ -547,9 +882,11 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppear,
+    TResult Function()? pullToRefresh,
+    TResult Function(bool isLoading)? loading,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(FamiliesResponseDTO dto)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -562,6 +899,8 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -573,6 +912,8 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
@@ -584,6 +925,8 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -597,9 +940,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements FamiliesAction {
-  const factory _Success(final dynamic dto) = _$SuccessImpl;
+  const factory _Success(final FamiliesResponseDTO dto) = _$SuccessImpl;
 
-  dynamic get dto;
+  FamiliesResponseDTO get dto;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
