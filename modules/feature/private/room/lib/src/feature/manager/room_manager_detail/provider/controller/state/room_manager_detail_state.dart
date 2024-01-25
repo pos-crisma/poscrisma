@@ -10,6 +10,8 @@ interface class RoomManagarDetailState {
 
   Room room;
 
+  ProfileDTO? user;
+
   List<HostedUser>? users;
   List<HostedUser>? filtersUsers;
 

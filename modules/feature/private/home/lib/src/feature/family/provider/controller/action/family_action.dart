@@ -24,7 +24,7 @@ abstract class FamilyAction with _$FamilyAction {
   const factory FamilyAction.serviceMascot() = _MascotService;
   const factory FamilyAction.mascotSuccess(MascotsResponseDTO mascotResponse) =
       _MascotServiceSuccess;
-  const factory FamilyAction.serviceUpdateMascotTapped(String mascotId) =
+  const factory FamilyAction.serviceUpdateMascotTapped(String mascotId, bool joinGames) =
       _MascotUpdateService;
   const factory FamilyAction.successUpdateMascot(Mascot response) =
       _MascotUpdateServiceSuccess;

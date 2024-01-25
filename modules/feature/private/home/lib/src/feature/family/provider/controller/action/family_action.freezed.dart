@@ -27,7 +27,8 @@ mixin _$FamilyAction {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ mixin _$FamilyAction {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,7 +59,8 @@ mixin _$FamilyAction {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) =>
@@ -206,7 +209,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return onAppear(context);
@@ -224,7 +228,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return onAppear?.call(context);
@@ -242,7 +247,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -400,7 +406,8 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return successInviteGenerate(dto);
@@ -418,7 +425,8 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return successInviteGenerate?.call(dto);
@@ -436,7 +444,8 @@ class _$SuccessInviteGenerateImpl implements _SuccessInviteGenerate {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -594,7 +603,8 @@ class _$FailureInviteGenerateImpl implements _FailureInviteGenerate {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return failureInviteGenerate(error);
@@ -612,7 +622,8 @@ class _$FailureInviteGenerateImpl implements _FailureInviteGenerate {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return failureInviteGenerate?.call(error);
@@ -630,7 +641,8 @@ class _$FailureInviteGenerateImpl implements _FailureInviteGenerate {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -786,7 +798,8 @@ class _$FailureMascotImpl implements _FailureMascot {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return failureMascot(error);
@@ -804,7 +817,8 @@ class _$FailureMascotImpl implements _FailureMascot {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return failureMascot?.call(error);
@@ -822,7 +836,8 @@ class _$FailureMascotImpl implements _FailureMascot {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -951,7 +966,8 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return inviteButtonTapped();
@@ -969,7 +985,8 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return inviteButtonTapped?.call();
@@ -987,7 +1004,8 @@ class _$InviteButtonTappedImpl implements _InviteButtonTapped {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -1111,7 +1129,8 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return inviteToClipboard();
@@ -1129,7 +1148,8 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return inviteToClipboard?.call();
@@ -1147,7 +1167,8 @@ class _$InviteToClipboardImpl implements _InviteToClipboard {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -1271,7 +1292,8 @@ class _$MascotButtonTappedImpl implements _MascotButtonTapped {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return mascotButtonTapped();
@@ -1289,7 +1311,8 @@ class _$MascotButtonTappedImpl implements _MascotButtonTapped {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return mascotButtonTapped?.call();
@@ -1307,7 +1330,8 @@ class _$MascotButtonTappedImpl implements _MascotButtonTapped {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -1431,7 +1455,8 @@ class _$MascotServiceImpl implements _MascotService {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return serviceMascot();
@@ -1449,7 +1474,8 @@ class _$MascotServiceImpl implements _MascotService {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return serviceMascot?.call();
@@ -1467,7 +1493,8 @@ class _$MascotServiceImpl implements _MascotService {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -1620,7 +1647,8 @@ class _$MascotServiceSuccessImpl implements _MascotServiceSuccess {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return mascotSuccess(mascotResponse);
@@ -1638,7 +1666,8 @@ class _$MascotServiceSuccessImpl implements _MascotServiceSuccess {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return mascotSuccess?.call(mascotResponse);
@@ -1656,7 +1685,8 @@ class _$MascotServiceSuccessImpl implements _MascotServiceSuccess {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
@@ -1745,7 +1775,7 @@ abstract class _$$MascotUpdateServiceImplCopyWith<$Res> {
           $Res Function(_$MascotUpdateServiceImpl) then) =
       __$$MascotUpdateServiceImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String mascotId});
+  $Res call({String mascotId, bool joinGames});
 }
 
 /// @nodoc
@@ -1760,12 +1790,17 @@ class __$$MascotUpdateServiceImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? mascotId = null,
+    Object? joinGames = null,
   }) {
     return _then(_$MascotUpdateServiceImpl(
       null == mascotId
           ? _value.mascotId
           : mascotId // ignore: cast_nullable_to_non_nullable
               as String,
+      null == joinGames
+          ? _value.joinGames
+          : joinGames // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1773,14 +1808,16 @@ class __$$MascotUpdateServiceImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MascotUpdateServiceImpl implements _MascotUpdateService {
-  const _$MascotUpdateServiceImpl(this.mascotId);
+  const _$MascotUpdateServiceImpl(this.mascotId, this.joinGames);
 
   @override
   final String mascotId;
+  @override
+  final bool joinGames;
 
   @override
   String toString() {
-    return 'FamilyAction.serviceUpdateMascotTapped(mascotId: $mascotId)';
+    return 'FamilyAction.serviceUpdateMascotTapped(mascotId: $mascotId, joinGames: $joinGames)';
   }
 
   @override
@@ -1789,11 +1826,13 @@ class _$MascotUpdateServiceImpl implements _MascotUpdateService {
         (other.runtimeType == runtimeType &&
             other is _$MascotUpdateServiceImpl &&
             (identical(other.mascotId, mascotId) ||
-                other.mascotId == mascotId));
+                other.mascotId == mascotId) &&
+            (identical(other.joinGames, joinGames) ||
+                other.joinGames == joinGames));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mascotId);
+  int get hashCode => Object.hash(runtimeType, mascotId, joinGames);
 
   @JsonKey(ignore: true)
   @override
@@ -1814,10 +1853,11 @@ class _$MascotUpdateServiceImpl implements _MascotUpdateService {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
-    return serviceUpdateMascotTapped(mascotId);
+    return serviceUpdateMascotTapped(mascotId, joinGames);
   }
 
   @override
@@ -1832,10 +1872,11 @@ class _$MascotUpdateServiceImpl implements _MascotUpdateService {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
-    return serviceUpdateMascotTapped?.call(mascotId);
+    return serviceUpdateMascotTapped?.call(mascotId, joinGames);
   }
 
   @override
@@ -1850,12 +1891,13 @@ class _$MascotUpdateServiceImpl implements _MascotUpdateService {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {
     if (serviceUpdateMascotTapped != null) {
-      return serviceUpdateMascotTapped(mascotId);
+      return serviceUpdateMascotTapped(mascotId, joinGames);
     }
     return orElse();
   }
@@ -1924,10 +1966,11 @@ class _$MascotUpdateServiceImpl implements _MascotUpdateService {
 }
 
 abstract class _MascotUpdateService implements FamilyAction {
-  const factory _MascotUpdateService(final String mascotId) =
-      _$MascotUpdateServiceImpl;
+  const factory _MascotUpdateService(
+      final String mascotId, final bool joinGames) = _$MascotUpdateServiceImpl;
 
   String get mascotId;
+  bool get joinGames;
   @JsonKey(ignore: true)
   _$$MascotUpdateServiceImplCopyWith<_$MascotUpdateServiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2010,7 +2053,8 @@ class _$MascotUpdateServiceSuccessImpl implements _MascotUpdateServiceSuccess {
     required TResult Function() mascotButtonTapped,
     required TResult Function() serviceMascot,
     required TResult Function(MascotsResponseDTO mascotResponse) mascotSuccess,
-    required TResult Function(String mascotId) serviceUpdateMascotTapped,
+    required TResult Function(String mascotId, bool joinGames)
+        serviceUpdateMascotTapped,
     required TResult Function(Mascot response) successUpdateMascot,
   }) {
     return successUpdateMascot(response);
@@ -2028,7 +2072,8 @@ class _$MascotUpdateServiceSuccessImpl implements _MascotUpdateServiceSuccess {
     TResult? Function()? mascotButtonTapped,
     TResult? Function()? serviceMascot,
     TResult? Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult? Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult? Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult? Function(Mascot response)? successUpdateMascot,
   }) {
     return successUpdateMascot?.call(response);
@@ -2046,7 +2091,8 @@ class _$MascotUpdateServiceSuccessImpl implements _MascotUpdateServiceSuccess {
     TResult Function()? mascotButtonTapped,
     TResult Function()? serviceMascot,
     TResult Function(MascotsResponseDTO mascotResponse)? mascotSuccess,
-    TResult Function(String mascotId)? serviceUpdateMascotTapped,
+    TResult Function(String mascotId, bool joinGames)?
+        serviceUpdateMascotTapped,
     TResult Function(Mascot response)? successUpdateMascot,
     required TResult orElse(),
   }) {

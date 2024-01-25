@@ -31,7 +31,8 @@ class RoomManagarUpdateReducer
       );
 
   FutureOr<Effect> _onAppear() {
-    return Effect.runAndEmit(() async {});
+    state.user = profileStore.user;
+    return Effect.emit();
   }
 
   FutureOr<Effect> _buttonTapped(RoomManagerUpdateInputType inputType) {

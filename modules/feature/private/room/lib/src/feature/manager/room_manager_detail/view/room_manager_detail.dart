@@ -81,14 +81,31 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 ),
               ),
 
-              const SliverToBoxAdapter(
-                child: CustomDivider(),
+              ValueListenableBuilder(
+                valueListenable: viewStore,
+                builder: (context, value, child) {
+                  if (value.user != null &&
+                      value.user!.permissions != null &&
+                      !value.user!.permissions!.contains("manager_room")) {
+                    return const SliverToBoxAdapter();
+                  }
+
+                  return const SliverToBoxAdapter(
+                    child: CustomDivider(),
+                  );
+                },
               ),
 
               SliverToBoxAdapter(
                 child: ValueListenableBuilder(
                   valueListenable: viewStore,
                   builder: (context, value, _) {
+                    if (value.user != null &&
+                        value.user!.permissions != null &&
+                        !value.user!.permissions!.contains("manager_room")) {
+                      return Container();
+                    }
+
                     return ExpansionPanelList(
                       expansionCallback: (panelIndex, isExpanded) =>
                           viewStore.send(const RoomManagarDetailAction
@@ -314,11 +331,16 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                     user.godParents?.godFather ?? "Padrinho",
                                 godMother:
                                     user.godParents?.godMother ?? "Madrinha",
-                                callback: () => viewStore.send(
-                                  RoomManagarDetailAction.checkOutTapped(
-                                    user.userId ?? "",
-                                  ),
-                                ),
+                                callback: () => value.user != null &&
+                                        value.user!.permissions != null &&
+                                        value.user!.permissions!
+                                            .contains("manager_room")
+                                    ? viewStore.send(
+                                        RoomManagarDetailAction.checkOutTapped(
+                                          user.userId ?? "",
+                                        ),
+                                      )
+                                    : null,
                               )
                             : HostedCard(
                                 name: user.userName ?? "",
@@ -337,11 +359,16 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                                         : "Voluntaria",
                                   _ => "Jovem"
                                 },
-                                callback: () => viewStore.send(
-                                  RoomManagarDetailAction.checkOutTapped(
-                                    user.userId ?? "",
-                                  ),
-                                ),
+                                callback: () => value.user != null &&
+                                        value.user!.permissions != null &&
+                                        value.user!.permissions!
+                                            .contains("manager_room")
+                                    ? viewStore.send(
+                                        RoomManagarDetailAction.checkOutTapped(
+                                          user.userId ?? "",
+                                        ),
+                                      )
+                                    : null,
                               );
                       },
                     );
@@ -385,20 +412,33 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
               ValueListenableBuilder(
                 valueListenable: viewStore,
                 builder: (context, value, child) {
-                  if (value.isLoading) {
+                  if (value.user != null &&
+                      value.user!.permissions != null &&
+                      value.user!.permissions!.contains("manager_room")) {
+                    if (value.isLoading) {
+                      return SliverToBoxAdapter(
+                        child: Center(
+                          child: Transform.scale(
+                            scale: 1,
+                            child: const CircularProgressIndicator.adaptive(),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return SliverToBoxAdapter(
+                      child: CustomTextFormField(
+                        labelText: "Pesquisa pelo nome",
+                        controller: viewStore.state.filterUserController,
+                        focusNote: viewStore.state.filterUserFocus,
+                        boxDecorationColor: SystemMode.isDark(context)
+                            ? Colors.black
+                            : Colors.grey.shade200,
+                      ),
+                    );
+                  } else {
                     return const SliverToBoxAdapter();
                   }
-
-                  return SliverToBoxAdapter(
-                    child: CustomTextFormField(
-                      labelText: "Pesquisa usuário",
-                      controller: viewStore.state.filterUserController,
-                      focusNote: viewStore.state.filterUserFocus,
-                      boxDecorationColor: SystemMode.isDark(context)
-                          ? Colors.black
-                          : Colors.grey.shade200,
-                    ),
-                  );
                 },
               ),
 
@@ -410,6 +450,12 @@ class _RoomManagerDetailState extends State<RoomManagerDetail> {
                 valueListenable: viewStore,
                 builder: (context, value, child) {
                   final filtersUsers = value.filtersUsers;
+
+                  if (value.user != null &&
+                      value.user!.permissions != null &&
+                      !value.user!.permissions!.contains("manager_room")) {
+                    return const SliverToBoxAdapter();
+                  }
 
                   if (value.isLoading) {
                     return SliverToBoxAdapter(
