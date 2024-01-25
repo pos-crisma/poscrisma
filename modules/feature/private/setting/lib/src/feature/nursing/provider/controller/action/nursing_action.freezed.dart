@@ -21,7 +21,8 @@ mixin _$NursingAction {
     required TResult Function() onAppear,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$NursingAction {
     TResult? Function()? onAppear,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$NursingAction {
     TResult Function()? onAppear,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$NursingAction {
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$NursingAction {
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$NursingAction {
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +133,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() onAppear,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
   }) {
     return onAppear();
   }
@@ -138,7 +145,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? onAppear,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
   }) {
     return onAppear?.call();
   }
@@ -149,7 +157,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? onAppear,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -165,6 +174,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
   }) {
     return onAppear(this);
   }
@@ -176,6 +186,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
   }) {
     return onAppear?.call(this);
   }
@@ -187,6 +198,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -241,7 +253,8 @@ class _$ServiceImpl implements _Service {
     required TResult Function() onAppear,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
   }) {
     return service();
   }
@@ -252,7 +265,8 @@ class _$ServiceImpl implements _Service {
     TResult? Function()? onAppear,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
   }) {
     return service?.call();
   }
@@ -263,7 +277,8 @@ class _$ServiceImpl implements _Service {
     TResult Function()? onAppear,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -279,6 +294,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
   }) {
     return service(this);
   }
@@ -290,6 +306,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
   }) {
     return service?.call(this);
   }
@@ -301,6 +318,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -381,7 +399,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function() onAppear,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
   }) {
     return failure(error);
   }
@@ -392,7 +411,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? onAppear,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
   }) {
     return failure?.call(error);
   }
@@ -403,7 +423,8 @@ class _$FailureImpl implements _Failure {
     TResult Function()? onAppear,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -419,6 +440,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
   }) {
     return failure(this);
   }
@@ -430,6 +452,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
   }) {
     return failure?.call(this);
   }
@@ -441,6 +464,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -465,7 +489,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({dynamic dto});
+  $Res call({ListUserDTO data});
 }
 
 /// @nodoc
@@ -479,13 +503,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dto = freezed,
+    Object? data = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == dto
-          ? _value.dto
-          : dto // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ListUserDTO,
     ));
   }
 }
@@ -493,14 +517,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.dto);
+  const _$SuccessImpl(this.data);
 
   @override
-  final dynamic dto;
+  final ListUserDTO data;
 
   @override
   String toString() {
-    return 'NursingAction.success(dto: $dto)';
+    return 'NursingAction.success(data: $data)';
   }
 
   @override
@@ -508,12 +532,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other.dto, dto));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(dto));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -527,9 +550,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function() onAppear,
     required TResult Function() service,
     required TResult Function(ErrorInfo error) failure,
-    required TResult Function(dynamic dto) success,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
   }) {
-    return success(dto);
+    return success(data);
   }
 
   @override
@@ -538,9 +562,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? onAppear,
     TResult? Function()? service,
     TResult? Function(ErrorInfo error)? failure,
-    TResult? Function(dynamic dto)? success,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
   }) {
-    return success?.call(dto);
+    return success?.call(data);
   }
 
   @override
@@ -549,11 +574,12 @@ class _$SuccessImpl implements _Success {
     TResult Function()? onAppear,
     TResult Function()? service,
     TResult Function(ErrorInfo error)? failure,
-    TResult Function(dynamic dto)? success,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(dto);
+      return success(data);
     }
     return orElse();
   }
@@ -565,6 +591,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Service value) service,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
   }) {
     return success(this);
   }
@@ -576,6 +603,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Service value)? service,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
   }) {
     return success?.call(this);
   }
@@ -587,6 +615,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Service value)? service,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -597,10 +626,164 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements NursingAction {
-  const factory _Success(final dynamic dto) = _$SuccessImpl;
+  const factory _Success(final ListUserDTO data) = _$SuccessImpl;
 
-  dynamic get dto;
+  ListUserDTO get data;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterUserByTextImplCopyWith<$Res> {
+  factory _$$FilterUserByTextImplCopyWith(_$FilterUserByTextImpl value,
+          $Res Function(_$FilterUserByTextImpl) then) =
+      __$$FilterUserByTextImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userName});
+}
+
+/// @nodoc
+class __$$FilterUserByTextImplCopyWithImpl<$Res>
+    extends _$NursingActionCopyWithImpl<$Res, _$FilterUserByTextImpl>
+    implements _$$FilterUserByTextImplCopyWith<$Res> {
+  __$$FilterUserByTextImplCopyWithImpl(_$FilterUserByTextImpl _value,
+      $Res Function(_$FilterUserByTextImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userName = null,
+  }) {
+    return _then(_$FilterUserByTextImpl(
+      null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterUserByTextImpl implements _FilterUserByText {
+  const _$FilterUserByTextImpl(this.userName);
+
+  @override
+  final String userName;
+
+  @override
+  String toString() {
+    return 'NursingAction.filterUserByText(userName: $userName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterUserByTextImpl &&
+            (identical(other.userName, userName) ||
+                other.userName == userName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterUserByTextImplCopyWith<_$FilterUserByTextImpl> get copyWith =>
+      __$$FilterUserByTextImplCopyWithImpl<_$FilterUserByTextImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() service,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(ListUserDTO data) success,
+    required TResult Function(String userName) filterUserByText,
+  }) {
+    return filterUserByText(userName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? service,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(ListUserDTO data)? success,
+    TResult? Function(String userName)? filterUserByText,
+  }) {
+    return filterUserByText?.call(userName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? service,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(ListUserDTO data)? success,
+    TResult Function(String userName)? filterUserByText,
+    required TResult orElse(),
+  }) {
+    if (filterUserByText != null) {
+      return filterUserByText(userName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_Service value) service,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+    required TResult Function(_FilterUserByText value) filterUserByText,
+  }) {
+    return filterUserByText(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_FilterUserByText value)? filterUserByText,
+  }) {
+    return filterUserByText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_Service value)? service,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    TResult Function(_FilterUserByText value)? filterUserByText,
+    required TResult orElse(),
+  }) {
+    if (filterUserByText != null) {
+      return filterUserByText(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterUserByText implements NursingAction {
+  const factory _FilterUserByText(final String userName) =
+      _$FilterUserByTextImpl;
+
+  String get userName;
+  @JsonKey(ignore: true)
+  _$$FilterUserByTextImplCopyWith<_$FilterUserByTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
