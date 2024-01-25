@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:error/error.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/feature/family/provider/dto/macot_update_request_dto.dart';
 import 'package:store/store.dart';
 
 import '../../../../create_mascot/view/mobile/create_mascote_mobile.dart';
@@ -26,8 +27,7 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
         mascotButtonTapped: () => _mascotButtonTapped(),
         serviceMascot: () => _mascotService(),
         mascotSuccess: (mascotResponse) => _mascotSuccess(mascotResponse),
-        serviceUpdateMascotTapped: (mascotId) =>
-            _serviceUpdateMascotTapped(mascotId),
+        serviceUpdateMascotTapped: _serviceUpdateMascotTapped,
         successUpdateMascot: (response) => _successUpdateMascot(response),
       );
 
@@ -145,11 +145,19 @@ class FamilyReducer extends Reducer<FamilyAction, FamilyState> {
     return Effect.emit();
   }
 
-  _serviceUpdateMascotTapped(String mascotId) {
-    return Effect.emit();
+  FutureOr<Effect> _serviceUpdateMascotTapped(String mascotId, bool joinGames) {
+    return Effect.run(() async {
+      MascotApi.update(
+        mascotId,
+        MascotUpdateDTO(joinGames: joinGames),
+      ).fold(
+        (success) => send(const FamilyAction.serviceMascot()),
+        (error) => send(FamilyAction.failureMascot(error)),
+      );
+    });
   }
 
   _successUpdateMascot(Mascot response) {
-    return Effect.send(const FamilyAction.serviceMascot());
+    return Effect.emit();
   }
 }

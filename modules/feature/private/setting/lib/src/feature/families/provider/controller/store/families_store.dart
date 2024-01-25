@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/design.dart';
 import 'package:error/error.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/family_api.dart';
@@ -22,6 +24,7 @@ class FamiliesReducer extends Reducer<FamiliesAction, FamiliesState> {
         service: _service,
         success: _success,
         failure: _failure,
+        showMore: _showMore,
       );
 
   FutureOr<Effect> _onAppear() {
@@ -80,5 +83,39 @@ class FamiliesReducer extends Reducer<FamiliesAction, FamiliesState> {
   FutureOr<Effect> _success(FamiliesResponseDTO data) {
     state.families = data.families;
     return Effect.send(const FamiliesAction.loading(false));
+  }
+
+  FutureOr<Effect> _showMore(Family family) {
+    return Effect.run(() async {
+      showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
+        context: state.context,
+        barrierColor: Colors.transparent,
+        builder: (context) => ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.grey.shade800,
+            appBar: AppBar(
+              backgroundColor: Colors.grey.shade800,
+              leading: Container(
+                margin: const EdgeInsets.only(left: 8.0),
+                child: const CustomBackButton(
+                  backTitle: "",
+                  backIcon: CupertinoIcons.clear_circled_solid,
+                ),
+              ),
+              title: Text("Detalhe da familia"),
+            ),
+            body: const CustomScrollView(
+              slivers: [],
+            ),
+          ),
+        ),
+      );
+    });
   }
 }

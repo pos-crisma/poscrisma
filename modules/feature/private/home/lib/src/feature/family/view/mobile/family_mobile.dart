@@ -423,7 +423,12 @@ class _FamilyMobileState extends State<FamilyMobile> {
                         return Column(
                           children: [
                             ItemButton(
-                              onPress: () {},
+                              onPress: () => viewStore.send(
+                                FamilyAction.serviceUpdateMascotTapped(
+                                  mascot.childrenId ?? "",
+                                  !mascot.joinGames,
+                                ),
+                              ),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 16,

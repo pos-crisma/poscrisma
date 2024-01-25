@@ -109,9 +109,9 @@ class _FamiliesPageState extends State<FamiliesPage> {
                       itemBuilder: (context, index) {
                         final family = families[index];
                         return GestureDetector(
-                          onTap: () {
-                            print("${family.familyId}");
-                          },
+                          onTap: () => viewStore.send(
+                            FamiliesAction.showMore(family),
+                          ),
                           child: CupertinoListSection.insetGrouped(
                             backgroundColor: darkBackground,
                             header: Column(
@@ -201,7 +201,7 @@ class _FamiliesPageState extends State<FamiliesPage> {
                                   ),
                                 ),
                                 additionalInfo: Text(
-                                  "${family.groups?.length ?? 0}",
+                                  "${family.childrens?.length ?? 0}",
                                 ),
                               ),
                               family.groups != null && family.groups!.isNotEmpty

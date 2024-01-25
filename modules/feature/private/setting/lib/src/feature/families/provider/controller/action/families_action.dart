@@ -12,4 +12,5 @@ abstract class FamiliesAction with _$FamiliesAction {
   const factory FamiliesAction.service() = _Service;
   const factory FamiliesAction.failure(ErrorInfo error) = _Failure;
   const factory FamiliesAction.success(FamiliesResponseDTO dto) = _Success;
+  const factory FamiliesAction.showMore(Family family) = _ShowMore;
 }
