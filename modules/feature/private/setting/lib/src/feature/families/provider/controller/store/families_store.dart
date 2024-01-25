@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:error/error.dart';
 import 'package:flutter/cupertino.dart';
@@ -98,9 +99,9 @@ class FamiliesReducer extends Reducer<FamiliesAction, FamiliesState> {
             topRight: Radius.circular(12),
           ),
           child: Scaffold(
-            backgroundColor: Colors.grey.shade800,
+            backgroundColor: Colors.grey.shade900,
             appBar: AppBar(
-              backgroundColor: Colors.grey.shade800,
+              backgroundColor: Colors.grey.shade900,
               leading: Container(
                 margin: const EdgeInsets.only(left: 8.0),
                 child: const CustomBackButton(
@@ -108,10 +109,154 @@ class FamiliesReducer extends Reducer<FamiliesAction, FamiliesState> {
                   backIcon: CupertinoIcons.clear_circled_solid,
                 ),
               ),
-              title: Text("Detalhe da familia"),
+              title: Text(
+                "Detalhe da familia",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge! //
+                    .copyWith(),
+              ),
             ),
-            body: const CustomScrollView(
-              slivers: [],
+            body: CustomScrollView(
+              slivers: [
+                family.childrens != null
+                    ? SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ),
+                          child: Text(
+                            "Mascotes",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorMode.setColor(
+                                    context: context,
+                                    light: Colors.black,
+                                    dark: Colors.white,
+                                  ),
+                                ),
+                          ),
+                        ),
+                      )
+                    : const SliverToBoxAdapter(),
+
+                // * Children
+                family.childrens != null
+                    ? SliverList.builder(
+                        itemCount: family.childrens?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          final child = family.childrens![index];
+                          return CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              child.name ?? "",
+                              style: TextStyle(
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.black,
+                                  dark: Colors.white,
+                                ),
+                              ),
+                            ),
+                            subtitle: RichText(
+                                text: TextSpan(
+                              text: "Idade: ",
+                              children: [
+                                TextSpan(
+                                  text: child.age.toString(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            )),
+                            additionalInfo: Text(
+                              child.gender?.text ?? "",
+                            ),
+                          );
+                        },
+                      )
+                    : const SliverToBoxAdapter(),
+
+                family.groups != null && family.groups!.first.grupo != null
+                    ? const SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 8,
+                          ),
+                          child: CustomDivider(),
+                        ),
+                      )
+                    : const SliverToBoxAdapter(),
+
+                // * Youngs
+                family.groups != null && family.groups!.first.grupo != null
+                    ? SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ),
+                          child: Text(
+                            "Jovens do poscrisma",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge! //
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorMode.setColor(
+                                    context: context,
+                                    light: Colors.black,
+                                    dark: Colors.white,
+                                  ),
+                                ),
+                          ),
+                        ),
+                      )
+                    : const SliverToBoxAdapter(),
+
+                // * Youngs
+                family.groups != null && family.groups!.first.grupo != null
+                    ? SliverList.builder(
+                        itemCount: family.groups!.first.grupo?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          final young = family.groups!.first.grupo![index];
+                          return CupertinoListTile.notched(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            title: Text(
+                              young.name ?? "",
+                              style: TextStyle(
+                                color: ColorMode.setColor(
+                                  context: context,
+                                  light: Colors.black,
+                                  dark: Colors.white,
+                                ),
+                              ),
+                            ),
+                            subtitle: RichText(
+                                text: TextSpan(
+                              text: "Idade: ",
+                              children: [
+                                TextSpan(
+                                  text: young.age.toString(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            )),
+                            additionalInfo: Text(
+                              young.gender?.text ?? "",
+                            ),
+                          );
+                        },
+                      )
+                    : const SliverToBoxAdapter(),
+              ],
             ),
           ),
         ),
