@@ -20,6 +20,7 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
       getUserService: _service,
       loading: _loading,
       addedPunish: _addedPunish,
+      modifierPunish: _modifierPunish,
       removePunish: _removePunish,
       failure: _failure,
       markDone: _markDone,
@@ -41,8 +42,10 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
         final events = event.docChanges;
 
         for (var element in events) {
-          if (element.type != DocumentChangeType.removed) {
+          if (element.type == DocumentChangeType.added) {
             send(ListPunishAction.addedPunish(element.doc));
+          } else if (element.type == DocumentChangeType.modified) {
+            send(ListPunishAction.modifierPunish(element.doc));
           } else {
             send(ListPunishAction.removePunish(element.doc));
           }
@@ -58,6 +61,19 @@ class ListPunishStore extends Reducer<ListPunishAction, ListPunishState> {
 
   FutureOr<Effect> _addedPunish(DocumentSnapshot<PunishDTO> dto) {
     state.listPunish.add(dto);
+
+    state.listPunish
+        .sort((a, b) => a.data()!.createdAt.compareTo(b.data()!.createdAt));
+
+    return Effect.emit();
+  }
+
+  FutureOr<Effect> _modifierPunish(DocumentSnapshot<PunishDTO> dto) {
+    final index =
+        state.listPunish.indexWhere((element) => element.id == dto.id);
+    state.listPunish.removeWhere((element) => element.id == dto.id);
+
+    state.listPunish.insert(index, dto);
 
     state.listPunish
         .sort((a, b) => a.data()!.createdAt.compareTo(b.data()!.createdAt));
