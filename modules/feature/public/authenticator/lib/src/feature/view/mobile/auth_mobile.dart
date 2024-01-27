@@ -62,7 +62,7 @@ class _AuthMobileState extends State<AuthMobile> {
                     child: Column(
                       children: [
                         Text(
-                          'Vamos fazer o login',
+                          'Vamos fazer o login', // TODO: move to i18n
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge! //
@@ -74,7 +74,7 @@ class _AuthMobileState extends State<AuthMobile> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Text(
-                            'Tendo sua conta, abaixo você pode fazer o login dentro do acampamento da paroquia',
+                            'Tendo sua conta, abaixo você pode fazer o login dentro do acampamento da paroquia', // TODO: move to i18n
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -94,7 +94,8 @@ class _AuthMobileState extends State<AuthMobile> {
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
-                    labelText: 'Preencha seu nome de usuario',
+                    labelText:
+                        'Preencha seu nome de usuario', // TODO: Move to i18n
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -109,7 +110,7 @@ class _AuthMobileState extends State<AuthMobile> {
                     boxDecorationColor: SystemMode.isDark(context)
                         ? Colors.black
                         : Colors.grey.shade200,
-                    labelText: 'Preencha sua senha',
+                    labelText: 'Preencha sua senha', // TODO: Move to i18n
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -162,6 +163,29 @@ class _AuthMobileState extends State<AuthMobile> {
                               text: 'acessar area de convite',
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => context.pushNamed('invite'),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Colors.purple.shade500,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Esqueceu a senha? ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall! //
+                              .copyWith(),
+                          children: [
+                            TextSpan(
+                              text: 'Recuperar a senha',
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => context.pushNamed('forgot_password'),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!

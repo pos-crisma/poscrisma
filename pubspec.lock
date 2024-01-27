@@ -390,6 +390,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  forgot_password:
+    dependency: "direct main"
+    description:
+      path: "modules/feature/public/forgot_password"
+      relative: true
+    source: path
+    version: "0.0.1"
   freezed_annotation:
     dependency: transitive
     description:

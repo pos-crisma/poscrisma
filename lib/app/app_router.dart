@@ -14,6 +14,7 @@ import 'package:splash_screen/splash_screen.dart';
 import 'package:store/store.dart';
 import 'package:team/team.dart';
 import 'package:warehouse/warehouse.dart';
+import 'package:forgot_password/forgot_password.dart';
 
 final GoRouter appRouter = GoRouter(
   navigatorKey: navigatorKey,
@@ -27,6 +28,15 @@ final GoRouter appRouter = GoRouter(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return const SplashScreenPage();
+      },
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PublicGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "forgot_password",
+      path: '/forgot_password',
+      builder: (BuildContext context, GoRouterState state) {
+        return const ForgotPage();
       },
       redirect: (BuildContext context, GoRouterState state) async =>
           await PublicGuard.canActivate(state),

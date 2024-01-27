@@ -63,6 +63,9 @@ dependencies:
     path: "./modules/feature/public/authenticator"
   splash_screen:
     path: "./modules/feature/public/splash_screen"
+  forgot_password:
+    path: "./modules/feature/public/forgot_password"
+
 
   game:
     path: "./modules/feature/private/game"
