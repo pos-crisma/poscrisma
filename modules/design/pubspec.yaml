@@ -17,6 +17,7 @@ dependencies:
   custom_sliding_segmented_control: ^1.8.1
   appflowy_board: ^0.1.1
   toastification: ^1.2.0
+  lottie: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +32,7 @@ flutter:
 
   assets:
     - assets/image/
+    - assets/animation/
   #   - assets/svg/solid/
   #   - assets/svg/outline/
   #   - assets/images/

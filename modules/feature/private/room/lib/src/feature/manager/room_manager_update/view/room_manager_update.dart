@@ -28,6 +28,7 @@ class _RoomManagerUpdateState extends State<RoomManagerUpdate> {
     super.initState();
 
     viewStore = RoomManagarUpdateReducer(context, widget.room);
+    viewStore.send(const RoomManagarUpdateAction.onAppear());
   }
 
   @override

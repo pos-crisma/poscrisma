@@ -40,7 +40,9 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
   FutureOr<Effect> _onAppear(BuildContext context) {
     state.context = context;
     return Effect.runAndEmit(() async {
-      await send(const HomeAction.versionService());
+      if (kReleaseMode) {
+        await send(const HomeAction.versionService());
+      }
 
       final resultStatus = await checkConnectivity();
 

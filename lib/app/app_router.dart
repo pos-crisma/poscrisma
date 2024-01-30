@@ -9,6 +9,7 @@ import 'package:home/home.dart';
 import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
 import 'package:room/room.dart';
+import 'package:schedule/schedule.dart';
 import 'package:setting/setting.dart';
 import 'package:splash_screen/splash_screen.dart';
 import 'package:store/store.dart';
@@ -234,6 +235,14 @@ final GoRouter appRouter = GoRouter(
       path: '/families',
       builder: (BuildContext context, GoRouterState state) =>
           const FamiliesPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "schedule",
+      path: '/schedule',
+      builder: (BuildContext context, GoRouterState state) =>
+          const SchedulePage(),
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),

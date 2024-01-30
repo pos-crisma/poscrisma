@@ -14,7 +14,10 @@ void crashlitycsListener() {
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
     if (kDebugMode) {
-      log(stack.toString(), name: "Log -> PlatformDispatcher.instance.onError");
+      log(stack.toString(),
+          name: "Log -> PlatformDispatcher.instance.onError => Stack");
+      log(error.toString(),
+          name: "Log -> PlatformDispatcher.instance.onError => Error");
     } else {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     }
