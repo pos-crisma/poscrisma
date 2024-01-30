@@ -22,6 +22,8 @@ mixin _$ListPunishAction {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -33,6 +35,7 @@ mixin _$ListPunishAction {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -44,6 +47,7 @@ mixin _$ListPunishAction {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -56,6 +60,7 @@ mixin _$ListPunishAction {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -67,6 +72,7 @@ mixin _$ListPunishAction {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -78,6 +84,7 @@ mixin _$ListPunishAction {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -146,6 +153,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -160,6 +169,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -174,6 +184,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -192,6 +203,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -206,6 +218,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -220,6 +233,7 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -278,6 +292,8 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -292,6 +308,7 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -306,6 +323,7 @@ class _$UserServiceImpl implements _UserService {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -324,6 +342,7 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -338,6 +357,7 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -352,6 +372,7 @@ class _$UserServiceImpl implements _UserService {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -438,6 +459,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -452,6 +475,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -466,6 +490,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -484,6 +509,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -498,6 +524,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -512,6 +539,7 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -602,6 +630,8 @@ class _$AddedPunishImpl implements _AddedPunish {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -616,6 +646,7 @@ class _$AddedPunishImpl implements _AddedPunish {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -630,6 +661,7 @@ class _$AddedPunishImpl implements _AddedPunish {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -648,6 +680,7 @@ class _$AddedPunishImpl implements _AddedPunish {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -662,6 +695,7 @@ class _$AddedPunishImpl implements _AddedPunish {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -676,6 +710,7 @@ class _$AddedPunishImpl implements _AddedPunish {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -695,6 +730,178 @@ abstract class _AddedPunish implements ListPunishAction {
   DocumentSnapshot<PunishDTO> get punish;
   @JsonKey(ignore: true)
   _$$AddedPunishImplCopyWith<_$AddedPunishImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ModifierPunishImplCopyWith<$Res> {
+  factory _$$ModifierPunishImplCopyWith(_$ModifierPunishImpl value,
+          $Res Function(_$ModifierPunishImpl) then) =
+      __$$ModifierPunishImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DocumentSnapshot<PunishDTO> punish});
+}
+
+/// @nodoc
+class __$$ModifierPunishImplCopyWithImpl<$Res>
+    extends _$ListPunishActionCopyWithImpl<$Res, _$ModifierPunishImpl>
+    implements _$$ModifierPunishImplCopyWith<$Res> {
+  __$$ModifierPunishImplCopyWithImpl(
+      _$ModifierPunishImpl _value, $Res Function(_$ModifierPunishImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? punish = null,
+  }) {
+    return _then(_$ModifierPunishImpl(
+      null == punish
+          ? _value.punish
+          : punish // ignore: cast_nullable_to_non_nullable
+              as DocumentSnapshot<PunishDTO>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ModifierPunishImpl implements _ModifierPunish {
+  const _$ModifierPunishImpl(this.punish);
+
+  @override
+  final DocumentSnapshot<PunishDTO> punish;
+
+  @override
+  String toString() {
+    return 'ListPunishAction.modifierPunish(punish: $punish)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModifierPunishImpl &&
+            (identical(other.punish, punish) || other.punish == punish));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, punish);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModifierPunishImplCopyWith<_$ModifierPunishImpl> get copyWith =>
+      __$$ModifierPunishImplCopyWithImpl<_$ModifierPunishImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() getUserService,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
+  }) {
+    return modifierPunish(punish);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? getUserService,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
+  }) {
+    return modifierPunish?.call(punish);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? getUserService,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
+    required TResult orElse(),
+  }) {
+    if (modifierPunish != null) {
+      return modifierPunish(punish);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_UserService value) getUserService,
+    required TResult Function(_LoadingUserService value) loading,
+    required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
+    required TResult Function(_RemovePunish value) removePunish,
+    required TResult Function(_FailureUserService value) failure,
+    required TResult Function(_MarkPunish value) markDone,
+  }) {
+    return modifierPunish(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_UserService value)? getUserService,
+    TResult? Function(_LoadingUserService value)? loading,
+    TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
+    TResult? Function(_RemovePunish value)? removePunish,
+    TResult? Function(_FailureUserService value)? failure,
+    TResult? Function(_MarkPunish value)? markDone,
+  }) {
+    return modifierPunish?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_UserService value)? getUserService,
+    TResult Function(_LoadingUserService value)? loading,
+    TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
+    TResult Function(_RemovePunish value)? removePunish,
+    TResult Function(_FailureUserService value)? failure,
+    TResult Function(_MarkPunish value)? markDone,
+    required TResult orElse(),
+  }) {
+    if (modifierPunish != null) {
+      return modifierPunish(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ModifierPunish implements ListPunishAction {
+  const factory _ModifierPunish(final DocumentSnapshot<PunishDTO> punish) =
+      _$ModifierPunishImpl;
+
+  DocumentSnapshot<PunishDTO> get punish;
+  @JsonKey(ignore: true)
+  _$$ModifierPunishImplCopyWith<_$ModifierPunishImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -766,6 +973,8 @@ class _$RemovePunishImpl implements _RemovePunish {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -780,6 +989,7 @@ class _$RemovePunishImpl implements _RemovePunish {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -794,6 +1004,7 @@ class _$RemovePunishImpl implements _RemovePunish {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -812,6 +1023,7 @@ class _$RemovePunishImpl implements _RemovePunish {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -826,6 +1038,7 @@ class _$RemovePunishImpl implements _RemovePunish {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -840,6 +1053,7 @@ class _$RemovePunishImpl implements _RemovePunish {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -931,6 +1145,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -945,6 +1161,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -959,6 +1176,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -977,6 +1195,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -991,6 +1210,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -1005,6 +1225,7 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,
@@ -1095,6 +1316,8 @@ class _$MarkPunishImpl implements _MarkPunish {
     required TResult Function() getUserService,
     required TResult Function(bool isLoading) loading,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) addedPunish,
+    required TResult Function(DocumentSnapshot<PunishDTO> punish)
+        modifierPunish,
     required TResult Function(DocumentSnapshot<PunishDTO> punish) removePunish,
     required TResult Function(ErrorInfo error) failure,
     required TResult Function(DocumentSnapshot<PunishDTO> doc) markDone,
@@ -1109,6 +1332,7 @@ class _$MarkPunishImpl implements _MarkPunish {
     TResult? Function()? getUserService,
     TResult? Function(bool isLoading)? loading,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult? Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult? Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -1123,6 +1347,7 @@ class _$MarkPunishImpl implements _MarkPunish {
     TResult Function()? getUserService,
     TResult Function(bool isLoading)? loading,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? addedPunish,
+    TResult Function(DocumentSnapshot<PunishDTO> punish)? modifierPunish,
     TResult Function(DocumentSnapshot<PunishDTO> punish)? removePunish,
     TResult Function(ErrorInfo error)? failure,
     TResult Function(DocumentSnapshot<PunishDTO> doc)? markDone,
@@ -1141,6 +1366,7 @@ class _$MarkPunishImpl implements _MarkPunish {
     required TResult Function(_UserService value) getUserService,
     required TResult Function(_LoadingUserService value) loading,
     required TResult Function(_AddedPunish value) addedPunish,
+    required TResult Function(_ModifierPunish value) modifierPunish,
     required TResult Function(_RemovePunish value) removePunish,
     required TResult Function(_FailureUserService value) failure,
     required TResult Function(_MarkPunish value) markDone,
@@ -1155,6 +1381,7 @@ class _$MarkPunishImpl implements _MarkPunish {
     TResult? Function(_UserService value)? getUserService,
     TResult? Function(_LoadingUserService value)? loading,
     TResult? Function(_AddedPunish value)? addedPunish,
+    TResult? Function(_ModifierPunish value)? modifierPunish,
     TResult? Function(_RemovePunish value)? removePunish,
     TResult? Function(_FailureUserService value)? failure,
     TResult? Function(_MarkPunish value)? markDone,
@@ -1169,6 +1396,7 @@ class _$MarkPunishImpl implements _MarkPunish {
     TResult Function(_UserService value)? getUserService,
     TResult Function(_LoadingUserService value)? loading,
     TResult Function(_AddedPunish value)? addedPunish,
+    TResult Function(_ModifierPunish value)? modifierPunish,
     TResult Function(_RemovePunish value)? removePunish,
     TResult Function(_FailureUserService value)? failure,
     TResult Function(_MarkPunish value)? markDone,

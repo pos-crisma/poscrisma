@@ -10,6 +10,8 @@ abstract class ListPunishAction with _$ListPunishAction {
   const factory ListPunishAction.loading(bool isLoading) = _LoadingUserService;
   const factory ListPunishAction.addedPunish(
       DocumentSnapshot<PunishDTO> punish) = _AddedPunish;
+  const factory ListPunishAction.modifierPunish(
+      DocumentSnapshot<PunishDTO> punish) = _ModifierPunish;
   const factory ListPunishAction.removePunish(
       DocumentSnapshot<PunishDTO> punish) = _RemovePunish;
   const factory ListPunishAction.failure(ErrorInfo error) = _FailureUserService;

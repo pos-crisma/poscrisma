@@ -13,4 +13,14 @@ mixin AuthApi {
         .map(AuthResponseDTO.fromJson)
         .fold(Success.new, Failure.new);
   }
+
+  static AsyncResult<AuthResponseDTO, ErrorInfo> resetPassword(
+      AuthRequestDTO dto) async {
+    final request = await baseRequest;
+
+    return request
+        .post('/auth/login', data: dto.toJson())
+        .map(AuthResponseDTO.fromJson)
+        .fold(Success.new, Failure.new);
+  }
 }

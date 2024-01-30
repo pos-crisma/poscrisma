@@ -106,85 +106,88 @@ class _ListPunishState extends State<ListPunish> {
 
                         return Future.value(true);
                       },
-                      child: CupertinoListTile.notched(
+                      child: InkWell(
                         onTap: () => viewStore.send(
                           ListPunishAction.markDone(punishRef),
                         ),
-                        leading: Icon(
-                          punish.done
-                              ? CupertinoIcons.bookmark_fill
-                              : CupertinoIcons.bookmark,
-                        ),
-                        title: Text(
-                          "Visualizar punição",
-                          style: TextStyle(
-                            color: ColorMode.setColor(
-                              context: context,
-                              light: Colors.black,
-                              dark: Colors.white,
+                        child: CupertinoListTile.notched(
+                          leading: Icon(
+                            punish.done
+                                ? CupertinoIcons.bookmark_fill
+                                : CupertinoIcons.bookmark,
+                          ),
+                          title: Text(
+                            "Visualizar punição",
+                            style: TextStyle(
+                              color: ColorMode.setColor(
+                                context: context,
+                                light: Colors.black,
+                                dark: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(punish.justifyPunish ?? ""),
-                            RichText(
-                              text: TextSpan(
-                                text: "Criado por: ",
-                                style: TextStyle(
-                                  color: Colors.grey.shade500,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: punish.createBy,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey.shade500,
-                                    ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(punish.justifyPunish ?? ""),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Criado por: ",
+                                  style: TextStyle(
+                                    color: Colors.grey.shade500,
                                   ),
-                                ],
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: "Pessoas punidas: ",
-                                style: TextStyle(
-                                  color: Colors.grey.shade500,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        "\n${punish.punish.map((e) => e.name)}"
-                                            .replaceAll("(", "")
-                                            .replaceAll(")", ""),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey.shade500,
+                                  children: [
+                                    TextSpan(
+                                      text: punish.createBy,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey.shade500,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: "Feito: ",
-                                style: TextStyle(
-                                  color: Colors.grey.shade500,
+                                  ],
                                 ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        punish.done ? "Feito" : "Não realizado",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey.shade500,
-                                    ),
-                                  ),
-                                ],
                               ),
-                            ),
-                          ],
+                              RichText(
+                                text: TextSpan(
+                                  text: "Pessoas punidas: ",
+                                  style: TextStyle(
+                                    color: Colors.grey.shade500,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          "\n${punish.punish.map((e) => e.name)}"
+                                              .replaceAll("(", "")
+                                              .replaceAll(")", ""),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey.shade500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Feito: ",
+                                  style: TextStyle(
+                                    color: Colors.grey.shade500,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: punish.done
+                                          ? "Feito"
+                                          : "Não realizado",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey.shade500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

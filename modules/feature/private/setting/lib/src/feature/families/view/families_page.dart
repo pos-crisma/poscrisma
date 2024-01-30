@@ -117,8 +117,8 @@ class _FamiliesPageState extends State<FamiliesPage> {
                             header: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                RichText(
-                                  text: TextSpan(
+                                SelectableText.rich(
+                                  TextSpan(
                                     text: "Padrinho: ",
                                     style: Theme.of(context)
                                         .textTheme
@@ -149,8 +149,8 @@ class _FamiliesPageState extends State<FamiliesPage> {
                                     ],
                                   ),
                                 ),
-                                RichText(
-                                  text: TextSpan(
+                                SelectableText.rich(
+                                  TextSpan(
                                     text: "Madrinha: ",
                                     style: Theme.of(context)
                                         .textTheme
@@ -177,7 +177,7 @@ class _FamiliesPageState extends State<FamiliesPage> {
                                                 dark: Colors.white,
                                               ),
                                             ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),

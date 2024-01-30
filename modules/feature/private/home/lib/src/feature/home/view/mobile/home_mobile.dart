@@ -778,7 +778,7 @@ class HomeMobile extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     child: Text(
-                                      'Punimentos',
+                                      'Castigos',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge! //
@@ -922,7 +922,7 @@ class HomeMobile extends StatelessWidget {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 16),
                                     child: Text(
-                                      "Você não tem permissão de ver os punimentos",
+                                      "Você não tem permissão de ver os castigos",
                                     ),
                                   )
                                 : Container(),
@@ -946,181 +946,225 @@ class HomeMobile extends StatelessWidget {
             ValueListenableBuilder(
               valueListenable: viewStore,
               builder: (context, value, child) {
-                if (value.user != null &&
-                    value.user!.permissions != null &&
-                    value.user!.permissions!.contains('view_camp')) {
-                  return SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          child: Text(
-                            'Acampamento',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge! //
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+                return value.user != null &&
+                        value.user!.permissions != null &&
+                        value.user!.permissions!.contains('view_camp')
+                    ? SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: Text(
+                                'Acampamento',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
 
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            badge: true,
-                            onPress: () => context.pushNamed('team'),
-                            text: "Gerenciar times",
-                            iconData: CupertinoIcons.sportscourt_fill,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                            showIsNew: false,
-                          ),
-                        ),
+                            const SizedBox(height: 8),
 
-                        const SizedBox(height: 8),
+                            // ? Events camp area
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!
+                                        .contains('view_team')
+                                ? Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      onPress: () => context.pushNamed('team'),
+                                      text: "Equipes",
+                                      iconData: CupertinoIcons.group_solid,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                      showIsNew: false,
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: const Text(
+                                        "Não possui o devido acesso"),
+                                  ),
 
-                        // ? Events camp area
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            onPress: () => context.pushNamed('team'),
-                            text: "Equipes",
-                            iconData: CupertinoIcons.group_solid,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                            showIsNew: false,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                          ),
-                          child: Text(
-                            'Jogos',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge! //
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            onPress: () => context.pushNamed('team'),
-                            text: "Pesquisar Jogos",
-                            iconData: CupertinoIcons.gamecontroller_alt_fill,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                            showIsNew: false,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            onPress: () => context.pushNamed('schedule'),
-                            text: "Tabela de jogos",
-                            iconData: CupertinoIcons.calendar,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                            showIsNew: false,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+                            // ? Events camp area
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!
+                                        .contains('view_result')
+                                ? Container(
+                                    margin: const EdgeInsets.only(top: 8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      onPress: () => context.pushNamed('team'),
+                                      text: "Resultados",
+                                      iconData: CupertinoIcons.doc_richtext,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                      showIsNew: false,
+                                    ),
+                                  )
+                                : Container(),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          child: Text(
-                            'Caça ao tesouros',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge! //
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                right: 16,
+                              ),
+                              child: Text(
+                                'Jogos',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
 
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            badge: true,
-                            onPress: () => context.pushNamed('team'),
-                            text: "Tendas",
-                            iconData: Icons.emoji_events,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          child: Text(
-                            'Show de talentos',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge! //
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!
+                                        .contains('view_game')
+                                ? Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      onPress: () =>
+                                          context.pushNamed('schedule'),
+                                      text: "Tabela de jogos",
+                                      iconData: CupertinoIcons.calendar,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                      showIsNew: false,
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: const Text(
+                                        "Não possui o devido acesso"),
+                                  ),
+                            const SizedBox(height: 8),
 
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: ComplexButton(
-                            badge: true,
-                            onPress: () => context.pushNamed('team'),
-                            text: "Talentos",
-                            iconData: CupertinoIcons.today,
-                            light: Colors.grey.shade300,
-                            dark: Colors.grey.shade800,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: Text(
+                                'Caça ao tesouros',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
 
-                        const CustomDivider(),
-                      ],
-                    ),
-                  );
-                } else {
-                  return const SliverToBoxAdapter();
-                }
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!
+                                        .contains('view_treasure')
+                                ? Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      badge: true,
+                                      onPress: () => context.pushNamed('team'),
+                                      text: "Tendas",
+                                      iconData: Icons.emoji_events,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: const Text(
+                                        "Não possui o devido acesso"),
+                                  ),
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: Text(
+                                'Show de talentos',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge! //
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!
+                                        .contains('view_talent')
+                                ? Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      badge: true,
+                                      onPress: () => context.pushNamed('team'),
+                                      text: "Talentos",
+                                      iconData: CupertinoIcons.today,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                    ),
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: const Text(
+                                        "Não possui o devido acesso"),
+                                  ),
+                            const SizedBox(height: 8),
+
+                            const CustomDivider(),
+                          ],
+                        ),
+                      )
+                    : const SliverToBoxAdapter();
               },
             ),
 
