@@ -64,25 +64,37 @@ class _MatchPageState extends State<MatchPage> {
                     child: ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
-                        return ScoreMatch(
-                          name: "${value.data?.teamInfoA?.name}",
-                          team: value.data != null &&
-                                  value.data?.scoreTeamA != null &&
-                                  value.data!.scoreTeamA! > 0
-                              ? HexColor.fromHex(
-                                  value.data?.teamInfoA?.color ?? "",
-                                )
-                              : ColorMode.setColor(
-                                  context: context,
-                                  light: Colors.black,
-                                  dark: Colors.white,
-                                ),
-                          minusButton: () => viewStore.send(
-                              const MatchAction.minusTapped("scoreTeamA")),
-                          plusButton: () => viewStore.send(
-                              const MatchAction.addedTapped("scoreTeamA")),
-                          score: value.data?.scoreTeamA ?? 0,
-                        );
+                        return value.data != null &&
+                                value.data!.gameScore != null &&
+                                value.data!.gameScore!.isNotEmpty
+                            ? ScoreMatch(
+                                name:
+                                    "${value.data?.gameScore!.first.teamName}",
+                                team: value.data != null &&
+                                        value.data!.gameScore != null &&
+                                        value.data!.gameScore!.isNotEmpty &&
+                                        value.data!.gameScore!.first.score !=
+                                            null &&
+                                        value.data!.gameScore!.first.score! > 0
+                                    ? HexColor.fromHex(
+                                        value.data?.teamInfoA?.color ?? "",
+                                      )
+                                    : ColorMode.setColor(
+                                        context: context,
+                                        light: Colors.black,
+                                        dark: Colors.white,
+                                      ),
+                                minusButton: () => viewStore.send(
+                                    MatchAction.minusTapped(
+                                        value.data!.gameScore!.first.teamId ??
+                                            "")),
+                                plusButton: () => viewStore.send(
+                                    MatchAction.addedTapped(
+                                        value.data!.gameScore!.first.teamId ??
+                                            "")),
+                                score: value.data?.gameScore!.first.score ?? 0,
+                              )
+                            : Container();
                       },
                     ),
                   )
@@ -100,25 +112,36 @@ class _MatchPageState extends State<MatchPage> {
                     child: ValueListenableBuilder(
                       valueListenable: viewStore,
                       builder: (context, value, child) {
-                        return ScoreMatch(
-                          name: "${value.data?.teamInfoB?.name}",
-                          team: value.data != null &&
-                                  value.data?.scoreTeamB != null &&
-                                  value.data!.scoreTeamB! > 0
-                              ? HexColor.fromHex(
-                                  value.data?.teamInfoB?.color ?? "",
-                                )
-                              : ColorMode.setColor(
-                                  context: context,
-                                  light: Colors.black,
-                                  dark: Colors.white,
-                                ),
-                          minusButton: () => viewStore.send(
-                              const MatchAction.minusTapped("scoreTeamB")),
-                          plusButton: () => viewStore.send(
-                              const MatchAction.addedTapped("scoreTeamB")),
-                          score: value.data?.scoreTeamB ?? 0,
-                        );
+                        return value.data != null &&
+                                value.data!.gameScore != null &&
+                                value.data!.gameScore!.isNotEmpty
+                            ? ScoreMatch(
+                                name: "${value.data?.gameScore!.last.teamName}",
+                                team: value.data != null &&
+                                        value.data!.gameScore != null &&
+                                        value.data!.gameScore!.isNotEmpty &&
+                                        value.data!.gameScore!.last.score !=
+                                            null &&
+                                        value.data!.gameScore!.last.score! > 0
+                                    ? HexColor.fromHex(
+                                        value.data?.teamInfoB?.color ?? "",
+                                      )
+                                    : ColorMode.setColor(
+                                        context: context,
+                                        light: Colors.black,
+                                        dark: Colors.white,
+                                      ),
+                                minusButton: () => viewStore.send(
+                                    MatchAction.minusTapped(
+                                        value.data!.gameScore!.last.teamId ??
+                                            "")),
+                                plusButton: () => viewStore.send(
+                                    MatchAction.addedTapped(
+                                        value.data!.gameScore!.last.teamId ??
+                                            "")),
+                                score: value.data?.gameScore!.last.score ?? 0,
+                              )
+                            : Container();
                       },
                     ),
                   )

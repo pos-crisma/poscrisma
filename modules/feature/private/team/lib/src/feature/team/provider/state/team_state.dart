@@ -2,11 +2,11 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/store.dart';
 
-interface class GameState {
+interface class TeamState {
   final BuildContext context;
 
-  List<Game>? games;
-  List<Game>? filterGames;
+  List<Team>? teams;
+  List<Team>? filterTeams;
   ErrorInfo? info;
 
   TextEditingController filterController = TextEditingController(text: "");
@@ -14,7 +14,7 @@ interface class GameState {
 
   bool isLoading = false;
 
-  GameState({
+  TeamState({
     required this.context,
   });
 }

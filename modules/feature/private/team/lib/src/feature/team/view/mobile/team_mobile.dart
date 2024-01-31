@@ -2,25 +2,25 @@ import 'package:design/color/color.dart';
 import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:game/src/provider/action/game_action.dart';
 
-import '../../provider/store/game_store.dart';
+import '../../provider/action/team_action.dart';
+import '../../provider/store/team_store.dart';
 
-class GameMobile extends StatefulWidget {
-  const GameMobile({super.key});
+class TeamMobile extends StatefulWidget {
+  const TeamMobile({super.key});
 
   @override
-  State<GameMobile> createState() => _GameMobileState();
+  State<TeamMobile> createState() => _TeamMobileState();
 }
 
-class _GameMobileState extends State<GameMobile> {
-  late final GameReducer viewStore;
+class _TeamMobileState extends State<TeamMobile> {
+  late final TeamReducer viewStore;
 
   @override
   void initState() {
     super.initState();
-    viewStore = GameReducer(context);
-    viewStore.send(const GameAction.onAppear());
+    viewStore = TeamReducer(context);
+    viewStore.send(const TeamAction.onAppear());
   }
 
   @override
@@ -60,7 +60,7 @@ class _GameMobileState extends State<GameMobile> {
                           ),
                       children: [
                         TextSpan(
-                          text: "Jogos",
+                          text: "Times",
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium! //
@@ -78,7 +78,7 @@ class _GameMobileState extends State<GameMobile> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Visualizar todos os jogos cadastrados.',
+                    'Visualizar todos os times cadastrados.',
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -109,6 +109,8 @@ class _GameMobileState extends State<GameMobile> {
             child: SizedBox(height: 8),
           ),
 
+          //*
+
           // *
           ValueListenableBuilder(
             valueListenable: viewStore,
@@ -124,99 +126,46 @@ class _GameMobileState extends State<GameMobile> {
                 );
               }
 
-              final games = value.filterGames;
-              if (games != null) {
+              final teams = value.filterTeams;
+              if (teams != null) {
                 return SliverList.builder(
-                  itemCount: games.length,
+                  itemCount: teams.length,
                   itemBuilder: (context, index) {
-                    final game = games[index];
+                    final team = teams[index];
 
-                    return CupertinoListTile.notched(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 4.0,
-                      ),
-                      title: Text(
-                        game.name?.toUpperCase() ?? "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ColorMode.setColor(
-                            context: context,
-                            light: Colors.black,
-                            dark: Colors.white,
+                    return InkWell(
+                      onTap: () =>
+                          viewStore.send(TeamAction.buttonTapped(team)),
+                      child: CupertinoListTile.notched(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 4.0,
+                        ),
+                        title: Text(
+                          team.teamName?.toUpperCase() ?? "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: ColorMode.setColor(
+                              context: context,
+                              light: Colors.black,
+                              dark: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              text: "Descrição: ",
-                              children: [
-                                TextSpan(
-                                  text: game.description ?? "",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                  ),
+                        subtitle: RichText(
+                          text: TextSpan(
+                            text: "Capitão: ",
+                            children: [
+                              TextSpan(
+                                text: team.captainName ?? "",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 4),
-                          RichText(
-                            text: TextSpan(
-                              text: "Regras: ",
-                              children: [
-                                TextSpan(
-                                  text: game.rules ?? "",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          RichText(
-                            text: TextSpan(
-                              text: "Regras mascotes: ",
-                              children: [
-                                TextSpan(
-                                  text: game.rules ?? "",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          RichText(
-                            text: TextSpan(
-                              text: "Materias: ",
-                              children: [
-                                TextSpan(
-                                  text: game.materials != null
-                                      ? game.materials!.isEmpty
-                                          ? "Sem materiais"
-                                          : game.materials
-                                              .toString()
-                                              .replaceAll("[", "")
-                                              .replaceAll("]", "")
-                                      : "Sem materiais",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     );
                   },
@@ -240,7 +189,7 @@ class _GameMobileState extends State<GameMobile> {
 }
 
 class _SliverSecondAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final GameReducer viewStore;
+  final TeamReducer viewStore;
 
   _SliverSecondAppBarDelegate({required this.viewStore});
 

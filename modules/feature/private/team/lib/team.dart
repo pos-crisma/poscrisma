@@ -1,3 +1,3 @@
 library team;
 
-export './src/feature/view/team_page.dart';
+export 'src/feature/team/view/team_page.dart';

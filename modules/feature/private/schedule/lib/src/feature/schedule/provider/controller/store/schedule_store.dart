@@ -47,10 +47,6 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
           user.permissions != null &&
           user.permissions!.contains('game_judge')) {
         send(const ScheduleAction.serviceByJudge());
-      } else if (user != null &&
-          user.permissions != null &&
-          user.permissions!.contains('game_view_day')) {
-        send(const ScheduleAction.serviceByDay());
       }
 
       state.controller.addListener(
@@ -84,7 +80,29 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       final profile = profileStore.user;
 
       if (profile != null) {
-        final result = ScheduleAPI.streamByJudge(judgeId: profile.userId);
+        final now = DateTime.now();
+
+        final String weekDay = now.weekday == DateTime.friday
+            ? "Sexta-Feira"
+            : now.weekday == DateTime.thursday
+                ? "Quinta-Feira"
+                : "Quarta-Feira";
+
+        String timeOfDay = "";
+        if (now.hour >= 8 && now.hour < 12) {
+          timeOfDay = "Manha";
+        }
+        if (now.hour >= 12 && now.hour < 19) {
+          timeOfDay = "Tarde";
+        } else {
+          timeOfDay = "Noite";
+        }
+
+        final result = ScheduleAPI.streamByJudge(
+          judgeId: profile.userId,
+          day: weekDay,
+          timeOfDay: timeOfDay,
+        );
 
         result.listen((event) {
           final events = event.docChanges;

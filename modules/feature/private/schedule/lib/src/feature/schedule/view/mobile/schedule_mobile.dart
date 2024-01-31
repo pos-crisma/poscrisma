@@ -199,49 +199,103 @@ class ScheduleMobile extends StatelessWidget {
                                     ),
                                   ),
 
-                                  // *
-                                  value.user != null &&
+                                  Builder(
+                                    builder: (context) {
+                                      if (value.user != null &&
                                           value.user!.permissions != null &&
                                           (value.user!.permissions!.contains(
                                                   "manager_schedule") ||
                                               value.user!.permissions!
-                                                  .contains("game_judge"))
-                                      ? Column(
-                                          children: [
-                                            TeamScore(
-                                              hexColor:
-                                                  data.teamInfoA?.color ?? "",
-                                              scoreTeam: data.scoreTeamA ?? 0,
-                                              teamName:
-                                                  data.teamInfoA?.name ?? "",
-                                              showBestTeam:
-                                                  (data.scoreTeamA != null &&
-                                                      data.scoreTeamB != null &&
-                                                      data.scoreTeamA! >
-                                                          data.scoreTeamB!),
-                                            ),
-                                            TeamScore(
-                                              hexColor:
-                                                  data.teamInfoB?.color ?? "",
-                                              scoreTeam: data.scoreTeamB ?? 0,
-                                              teamName:
-                                                  data.teamInfoB?.name ?? "",
-                                              showBestTeam:
-                                                  (data.scoreTeamA != null &&
-                                                      data.scoreTeamB != null &&
-                                                      data.scoreTeamB! >
-                                                          data.scoreTeamA!),
-                                            ),
-                                          ],
-                                        )
-                                      : TeamMatchup(
+                                                  .contains("game_judge"))) {
+                                        if (data.gameType ==
+                                                GameType.one_vs_one &&
+                                            data.gameScore != null &&
+                                            data.gameScore!.isNotEmpty) {
+                                          return Column(
+                                            children: [
+                                              TeamScore(
+                                                hexColor:
+                                                    data.teamInfoA?.color ?? "",
+                                                scoreTeam: data.gameScore!.first
+                                                        .score ??
+                                                    0,
+                                                teamName:
+                                                    data.teamInfoA?.name ?? "",
+                                                showBestTeam: (data.gameScore!
+                                                            .first.score !=
+                                                        null &&
+                                                    data.gameScore!.last
+                                                            .score !=
+                                                        null &&
+                                                    data.gameScore!.first
+                                                            .score! >
+                                                        data.gameScore!.last
+                                                            .score!),
+                                              ),
+                                              TeamScore(
+                                                hexColor:
+                                                    data.teamInfoB?.color ?? "",
+                                                scoreTeam: data.gameScore!.last
+                                                        .score ??
+                                                    0,
+                                                teamName:
+                                                    data.teamInfoB?.name ?? "",
+                                                showBestTeam: (data.gameScore!
+                                                            .first.score !=
+                                                        null &&
+                                                    data.gameScore!.last
+                                                            .score !=
+                                                        null &&
+                                                    data.gameScore!.last
+                                                            .score! >
+                                                        data.gameScore!.first
+                                                            .score!),
+                                              ),
+                                            ],
+                                          );
+                                        }
+
+                                        if (data.gameType ==
+                                                GameType.all_vs_all &&
+                                            data.gameScore != null &&
+                                            data.gameScore!.isNotEmpty) {
+                                          return Container();
+                                        }
+
+                                        if (data.gameType ==
+                                                GameType.challenge &&
+                                            data.gameScore != null &&
+                                            data.gameScore!.isNotEmpty) {
+                                          return Container();
+                                        }
+                                      }
+
+                                      if (data.gameType ==
+                                          GameType.one_vs_one) {
+                                        return TeamMatchup(
                                           hexColorA:
                                               data.teamInfoA?.color ?? "",
                                           hexColorB:
                                               data.teamInfoB?.color ?? "",
                                           teamNameA: data.teamInfoA?.name ?? "",
                                           teamNameB: data.teamInfoB?.name ?? "",
-                                        ),
+                                        );
+                                      }
+
+                                      if (data.gameType ==
+                                          GameType.all_vs_all) {
+                                        return Container();
+                                      }
+
+                                      if (data.gameType == GameType.challenge) {
+                                        return Container();
+                                      }
+
+                                      return Container();
+                                    },
+                                  ),
+
+                                  // *
                                 ],
                               ),
                             ),
@@ -251,7 +305,9 @@ class ScheduleMobile extends StatelessWidget {
                       );
                     }
 
-                    return Container();
+                    return const Text(
+                      "Sem acesso ou não tem nenhum jogo cadastrado",
+                    );
                   },
                 );
               }

@@ -1028,7 +1028,31 @@ class HomeMobile extends StatelessWidget {
                                       iconData: CupertinoIcons.doc_richtext,
                                       light: Colors.grey.shade300,
                                       dark: Colors.grey.shade800,
-                                      showIsNew: false,
+                                      showIsNew: true,
+                                    ),
+                                  )
+                                : Container(),
+
+                            // ? Events camp area
+                            value.user != null &&
+                                    value.user!.permissions != null &&
+                                    value.user!.permissions!
+                                        .contains('view_camp') &&
+                                    value.user!.permissions!.contains('audit')
+                                ? Container(
+                                    margin: const EdgeInsets.only(top: 8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ComplexButton(
+                                      onPress: () => context.pushNamed('team'),
+                                      text: "Auditoria",
+                                      iconData:
+                                          CupertinoIcons.shield_lefthalf_fill,
+                                      light: Colors.grey.shade300,
+                                      dark: Colors.grey.shade800,
+                                      showIsNew: true,
                                     ),
                                   )
                                 : Container(),

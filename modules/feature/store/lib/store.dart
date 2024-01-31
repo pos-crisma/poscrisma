@@ -69,4 +69,9 @@ export 'feature/game/model/game_material.dart';
 export 'feature/loding/api/loding_api.dart';
 export 'feature/loding/dto/loding_dto.dart';
 
+// * team
+
+export 'feature/team/api/team_api.dart';
+export 'feature/team/dto/team_response_dto.dart';
+
 export 'package:uuid/uuid.dart';

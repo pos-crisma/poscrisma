@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
 import '../action/match_action.dart';
@@ -30,58 +31,87 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
       },
       backButton: () {
         return Effect.run(() async {
+          HapticFeedback.heavyImpact();
           if (state.schedule.data() != null) {
             final compareData = state.schedule.data()!;
 
-            if (state.data != null) {
-              if (state.data!.scoreTeamA != compareData.scoreTeamA &&
-                  state.data!.scoreTeamB != compareData.scoreTeamB) {
-                if (state.data!.audit != null && state.data!.audit!.isEmpty) {
-                  state.data = state.data!.copyWith(audit: []);
+            if (state.data != null &&
+                state.data!.gameScore != null &&
+                state.data!.gameScore!.isNotEmpty) {
+              if (state.data!.gameScore!.first.score !=
+                      compareData.gameScore!.first.score &&
+                  state.data!.gameScore!.last.score !=
+                      compareData.gameScore!.last.score) {
+                if (state.data!.gameScore!.first.audit != null &&
+                    state.data!.gameScore!.first.audit!.isEmpty) {
+                  state.data!.gameScore!.first.audit = [];
                 }
-                state.data!.audit!.add(Audit(
-                  newScoreA: state.data!.scoreTeamA,
-                  newScoreB: state.data!.scoreTeamB,
-                  oldScoreA: compareData.scoreTeamA,
-                  oldScoreB: compareData.scoreTeamB,
+                if (state.data!.gameScore!.last.audit != null &&
+                    state.data!.gameScore!.last.audit!.isEmpty) {
+                  state.data!.gameScore!.last.audit = [];
+                }
+
+                state.data!.gameScore!.first.audit!.add(Audit(
+                  newScore: state.data!.gameScore!.first.score,
+                  oldScore: compareData.gameScore!.first.score,
+                  userId: state.user?.userId ?? "",
+                  userName: state.user?.name ?? "",
+                ));
+
+                state.data!.gameScore!.last.audit!.add(Audit(
+                  newScore: state.data!.gameScore!.last.score,
+                  oldScore: compareData.gameScore!.last.score,
                   userId: state.user?.userId ?? "",
                   userName: state.user?.name ?? "",
                 ));
 
                 state.schedule.reference.update({
-                  "scoreTeamA": state.data!.scoreTeamA,
-                  "scoreTeamB": state.data!.scoreTeamB,
-                  "audit": state.data!.audit!.map((x) => x.toJson())
+                  "gameScore": state.data!.gameScore,
                 });
-              } else if (state.data!.scoreTeamA != compareData.scoreTeamA) {
-                if (state.data!.audit != null && state.data!.audit!.isEmpty) {
-                  state.data = state.data!.copyWith(audit: []);
+              } else if (state.data!.gameScore!.first.score !=
+                  compareData.gameScore!.first.score) {
+                if (state.data!.gameScore!.first.audit != null &&
+                    state.data!.gameScore!.first.audit!.isEmpty) {
+                  state.data!.gameScore!.first.audit = [];
                 }
-                state.data!.audit!.add(Audit(
-                  newScoreA: state.data!.scoreTeamA,
-                  oldScoreA: compareData.scoreTeamA,
+
+                state.data!.gameScore!.first.audit!.add(Audit(
+                  newScore: state.data!.gameScore!.first.score,
+                  oldScore: compareData.gameScore!.first.score,
                   userId: state.user?.userId ?? "",
                   userName: state.user?.name ?? "",
                 ));
 
+                state.data!.gameScore!.first.score =
+                    state.data!.gameScore!.first.score;
+
                 state.schedule.reference.update({
-                  "scoreTeamA": state.data!.scoreTeamA,
-                  "audit": state.data!.audit!.map((x) => x.toJson())
+                  "gameScore": state.data!.gameScore,
                 });
-              } else if (state.data!.scoreTeamB != compareData.scoreTeamB) {
-                if (state.data!.audit != null && state.data!.audit!.isEmpty) {
-                  state.data = state.data!.copyWith(audit: []);
+
+                //
+              } else if (state.data!.gameScore!.last.score !=
+                  compareData.gameScore!.last.score) {
+                if (state.data!.gameScore!.last.audit != null &&
+                    state.data!.gameScore!.last.audit!.isEmpty) {
+                  state.data!.gameScore!.last.audit = [];
                 }
-                state.data!.audit!.add(Audit(
-                  newScoreB: state.data!.scoreTeamB,
-                  oldScoreB: compareData.scoreTeamB,
+
+                state.data!.gameScore!.last.audit!.add(Audit(
+                  newScore: state.data!.gameScore!.last.score,
+                  oldScore: compareData.gameScore!.last.score,
                   userId: state.user?.userId ?? "",
                   userName: state.user?.name ?? "",
                 ));
+
+                state.data!.gameScore!.last.score =
+                    state.data!.gameScore!.last.score;
+
                 state.schedule.reference.update({
-                  "scoreTeamB": state.data!.scoreTeamB,
-                  "audit": state.data!.audit!.map((x) => x.toJson())
+                  "gameScore": state.data!.gameScore,
                 });
+
+                //
               }
             }
           }
@@ -107,43 +137,27 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
         return Effect.emit();
       },
       addedTapped: (String team) {
-        if (team == "scoreTeamA") {
-          if (state.data != null &&
-              state.data!.scoreTeamA != null &&
-              state.data!.scoreTeamA! >= 0) {
-            state.data = state.data
-                ?.copyWith(scoreTeamA: (state.data?.scoreTeamA ?? 0) + 1);
+        state.data!.gameScore = state.data!.gameScore!.map((element) {
+          if (element.teamId == team) {
+            HapticFeedback.selectionClick();
+            element.score = element.score! + 1;
           }
-        }
 
-        if (team == "scoreTeamB") {
-          if (state.data != null &&
-              state.data!.scoreTeamB != null &&
-              state.data!.scoreTeamB! >= 0) {
-            state.data = state.data
-                ?.copyWith(scoreTeamB: (state.data?.scoreTeamB ?? 0) + 1);
-          }
-        }
+          return element;
+        }).toList();
+
         return Effect.emit();
       },
       minusTapped: (String team) {
-        if (team == "scoreTeamA") {
-          if (state.data != null &&
-              state.data!.scoreTeamA != null &&
-              state.data!.scoreTeamA! > 0) {
-            state.data = state.data
-                ?.copyWith(scoreTeamA: (state.data?.scoreTeamA ?? 0) - 1);
+        state.data!.gameScore = state.data!.gameScore!.map((element) {
+          if (element.teamId == team) {
+            HapticFeedback.selectionClick();
+            element.score = element.score! - 1;
           }
-        }
 
-        if (team == "scoreTeamB") {
-          if (state.data != null &&
-              state.data!.scoreTeamB != null &&
-              state.data!.scoreTeamB! > 0) {
-            state.data = state.data
-                ?.copyWith(scoreTeamB: (state.data?.scoreTeamB ?? 0) - 1);
-          }
-        }
+          return element;
+        }).toList();
+
         return Effect.emit();
       },
       serviceGame: () {

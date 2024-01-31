@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 enum GameStatus {
@@ -14,7 +16,7 @@ enum GameStatus {
 
 enum GameType {
   one_vs_one(text: "Um contra o outro"),
-  all(text: "Todos"),
+  all_vs_all(text: "Todos"),
   challenge(text: "Desafio");
 
   const GameType({
@@ -38,15 +40,13 @@ class Schedule {
   final String? gameName;
   final String? matchup;
   final int? numberRound;
-  final int? scoreTeamA;
-  final int? scoreTeamB;
   final bool? isActive;
   final GameStatus? gameStatus;
   final GameType? gameType;
   final List<Judge>? judge;
   final TeamSchedule? teamInfoA;
   final TeamSchedule? teamInfoB;
-  final List<Audit>? audit;
+  List<GameScore>? gameScore;
 
   Schedule({
     this.gameRoundId,
@@ -56,15 +56,13 @@ class Schedule {
     this.gameName,
     this.matchup,
     this.numberRound,
-    this.scoreTeamA,
-    this.scoreTeamB,
     this.judge,
     this.gameStatus,
     this.gameType,
     this.isActive,
     this.teamInfoA,
     this.teamInfoB,
-    this.audit,
+    this.gameScore,
   });
 
   Schedule copyWith({
@@ -83,7 +81,7 @@ class Schedule {
     List<Judge>? judge,
     TeamSchedule? teamInfoA,
     TeamSchedule? teamInfoB,
-    List<Audit>? audit,
+    List<GameScore>? gameScore,
   }) =>
       Schedule(
         gameRoundId: gameRoundId ?? this.gameRoundId,
@@ -93,15 +91,13 @@ class Schedule {
         matchup: matchup ?? this.matchup,
         numberRound: numberRound ?? this.numberRound,
         judge: judge ?? this.judge,
-        scoreTeamA: scoreTeamA ?? this.scoreTeamA,
-        scoreTeamB: scoreTeamB ?? this.scoreTeamB,
         day: day ?? this.day,
         gameStatus: gameStatus ?? this.gameStatus,
         gameType: gameType ?? this.gameType,
         isActive: isActive ?? this.isActive,
         teamInfoA: teamInfoA ?? this.teamInfoA,
         teamInfoB: teamInfoB ?? this.teamInfoB,
-        audit: audit ?? this.audit,
+        gameScore: gameScore ?? this.gameScore,
       );
 
   factory Schedule.fromRawJson(String str) =>
@@ -119,8 +115,6 @@ class Schedule {
         judge: json["judge"] == null
             ? []
             : List<Judge>.from(json["judge"]!.map((x) => x)),
-        scoreTeamA: json["scoreTeamA"],
-        scoreTeamB: json["scoreTeamB"],
         day: json["day"],
         isActive: json["isActive"],
         gameStatus: GameStatus.values.byName(json["gameStatus"]),
@@ -131,9 +125,10 @@ class Schedule {
         teamInfoB: json["teamInfoB"] != null
             ? TeamSchedule.fromJson(json["teamInfoB"])
             : null,
-        audit: json["audit"] == null
+        gameScore: json["gameScore"] == null
             ? []
-            : List<Audit>.from(json["audit"]!.map((x) => Audit.fromJson(x))),
+            : List<GameScore>.from(
+                json["gameScore"]!.map((x) => GameScore.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -144,81 +139,82 @@ class Schedule {
         "gameName": gameName,
         "matchup": matchup,
         "judge": judge,
-        "scoreTeamA": scoreTeamA,
-        "scoreTeamB": scoreTeamB,
         "day": day,
         "isActive": isActive,
         "gameStatus": gameStatus!.name,
         "gameType": gameType!.name,
         "teamInfoA": teamInfoA,
         "teamInfoB": teamInfoB,
-        "audit": audit == null
-            ? []
-            : List<Audit>.from(audit!.map((x) => x.toJson())),
+        "gameScore": gameScore,
       };
 }
 
-// import 'dart:convert';
+class GameScore {
+  String? teamId;
+  String? teamName;
+  int? score;
+  List<Audit>? audit;
 
-// class Audit {
-//     List<AuditElement>? audit;
+  GameScore({
+    this.teamId,
+    this.teamName,
+    this.score,
+    this.audit,
+  });
 
-//     Audit({
-//         this.audit,
-//     });
+  GameScore copyWith(
+          {String? teamId, String? teamName, int? score, List<Audit>? audit}) =>
+      GameScore(
+        teamId: teamId ?? this.teamId,
+        teamName: teamName ?? this.teamName,
+        score: score ?? this.score,
+        audit: audit ?? this.audit,
+      );
 
-//     Audit copyWith({
-//         List<AuditElement>? audit,
-//     }) =>
-//         Audit(
-//             audit: audit ?? this.audit,
-//         );
+  factory GameScore.fromRawJson(String str) =>
+      GameScore.fromJson(json.decode(str));
 
-//     factory Audit.fromRawJson(String str) => Audit.fromJson(json.decode(str));
+  String toRawJson() => json.encode(toJson());
 
-//     String toRawJson() => json.encode(toJson());
+  factory GameScore.fromJson(Map<String, dynamic> json) => GameScore(
+        teamId: json["teamId"],
+        teamName: json["teamName"],
+        score: json["score"],
+        audit: json["audit"],
+      );
 
-//     factory Audit.fromJson(Map<String, dynamic> json) => Audit(
-//         audit: json["audit"] == null ? [] : List<AuditElement>.from(json["audit"]!.map((x) => AuditElement.fromJson(x))),
-//     );
-
-//     Map<String, dynamic> toJson() => {
-//         "audit": audit == null ? [] : List<dynamic>.from(audit!.map((x) => x.toJson())),
-//     };
-// }
+  Map<String, dynamic> toJson() => {
+        "teamId": teamId,
+        "teamName": teamName,
+        "score": score,
+        "audit": audit,
+      };
+}
 
 class Audit {
   String? userId;
   String? userName;
-  int? oldScoreA;
-  int? oldScoreB;
-  int? newScoreA;
-  int? newScoreB;
+  int? oldScore;
+  int? newScore;
 
   Audit({
     this.userId,
     this.userName,
-    this.oldScoreA,
-    this.oldScoreB,
-    this.newScoreA,
-    this.newScoreB,
+    this.oldScore,
+    this.newScore,
   });
 
   Audit copyWith({
     String? userId,
     String? userName,
-    int? oldScoreA,
-    int? oldScoreB,
-    int? newScoreA,
-    int? newScoreB,
+    int? oldScore,
+    int? newScore,
   }) =>
       Audit(
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
-        oldScoreA: oldScoreA ?? this.oldScoreA,
-        oldScoreB: oldScoreB ?? this.oldScoreB,
-        newScoreA: newScoreA ?? this.newScoreA,
-        newScoreB: newScoreB ?? this.newScoreB,
+        oldScore: oldScore ?? this.oldScore,
+        newScore: newScore ?? this.newScore,
       );
 
   factory Audit.fromRawJson(String str) => Audit.fromJson(json.decode(str));
@@ -228,19 +224,15 @@ class Audit {
   factory Audit.fromJson(Map<String, dynamic> json) => Audit(
         userId: json["userId"],
         userName: json["userName"],
-        oldScoreA: json["oldScoreA"],
-        oldScoreB: json["oldScoreB"],
-        newScoreA: json["newScoreA"],
-        newScoreB: json["newScoreB"],
+        oldScore: json["oldScore"],
+        newScore: json["newScore"],
       );
 
   Map<String, dynamic> toJson() => {
         "userId": userId,
         "userName": userName,
-        "oldScoreA": oldScoreA,
-        "oldScoreB": oldScoreB,
-        "newScoreA": newScoreA,
-        "newScoreB": newScoreB,
+        "oldScore": oldScore,
+        "newScore": newScore,
       };
 }
 
