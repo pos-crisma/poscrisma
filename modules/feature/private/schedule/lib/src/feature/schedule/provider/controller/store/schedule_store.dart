@@ -42,7 +42,7 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       if (user != null &&
           user.permissions != null &&
           user.permissions!.contains('manager_schedule')) {
-        send(const ScheduleAction.service());
+        send(const ScheduleAction.serviceByDay());
       } else if (user != null &&
           user.permissions != null &&
           user.permissions!.contains('game_judge')) {
@@ -105,7 +105,15 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
   FutureOr<Effect> _serviceByDay() {
     return Effect.run(() async {
-      final result = ScheduleAPI.streamByDay(day: "");
+      final now = DateTime.now();
+
+      final String weekDay = now.weekday == DateTime.friday
+          ? "Sexta-Feira"
+          : now.weekday == DateTime.thursday
+              ? "Quinta-Feira"
+              : "Quarta-Feira";
+
+      final result = ScheduleAPI.streamByDay(day: weekDay);
 
       result.listen((event) {
         final events = event.docChanges;
@@ -125,9 +133,27 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
   FutureOr<Effect> _serviceByDayAndTimeOfDay() {
     return Effect.run(() async {
+      final now = DateTime.now();
+
+      final String weekDay = now.weekday == DateTime.friday
+          ? "Sexta-Feira"
+          : now.weekday == DateTime.thursday
+              ? "Quinta-Feira"
+              : "Quarta-Feira";
+
+      String timeOfDay = "";
+      if (now.hour >= 8 && now.hour < 12) {
+        timeOfDay = "Manha";
+      }
+      if (now.hour >= 12 && now.hour < 19) {
+        timeOfDay = "Tarde";
+      } else {
+        timeOfDay = "Noite";
+      }
+
       final result = ScheduleAPI.streamByDayAndTimeOfDay(
-        day: "",
-        timeOfDay: "",
+        day: weekDay,
+        timeOfDay: timeOfDay,
       );
 
       result.listen((event) {
@@ -153,7 +179,35 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
   FutureOr<Effect> _added(DocumentSnapshot<Schedule> dto) {
     state.listSchedule.add(dto);
 
-    // state.listSchedule.sort((a, b) => a.data()!.day!.compareTo(b.data()!.day!));
+    state.listSchedule.sort((a, b) {
+      int priorityA = _getGameStatusPriority(a.data()!.gameStatus!);
+      int priorityB = _getGameStatusPriority(b.data()!.gameStatus!);
+
+      if (priorityA != priorityB) {
+        return priorityA.compareTo(priorityB);
+      }
+
+      // Se os gameStatus são iguais, ordene pelo dia da semana
+      int dayPriorityA = _getDayOfWeekPriority(a.data()!.day!);
+      int dayPriorityB = _getDayOfWeekPriority(b.data()!.day!);
+
+      if (dayPriorityA != dayPriorityB) {
+        return dayPriorityA.compareTo(dayPriorityB);
+      }
+
+      // Se o dia da semana também é igual, ordene por manhã, tarde ou noite
+      int timePriorityA = _getTimeOfDayPriority(a.data()!.timeOfDay!.name);
+      int timePriorityB = _getTimeOfDayPriority(b.data()!.timeOfDay!.name);
+
+      int roundPriorityA = a.data()!.numberRound!;
+      int roundPriorityB = b.data()!.numberRound!;
+
+      if (roundPriorityA != roundPriorityB) {
+        return roundPriorityA.compareTo(roundPriorityB);
+      }
+
+      return timePriorityA.compareTo(timePriorityB);
+    });
 
     return Effect.emit();
   }
@@ -165,7 +219,35 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
     state.listSchedule.insert(index, dto);
 
-    // state.listSchedule.sort((a, b) => a.data()!.day!.compareTo(b.data()!.day!));
+    state.listSchedule.sort((a, b) {
+      int priorityA = _getGameStatusPriority(a.data()!.gameStatus!);
+      int priorityB = _getGameStatusPriority(b.data()!.gameStatus!);
+
+      if (priorityA != priorityB) {
+        return priorityA.compareTo(priorityB);
+      }
+
+      // Se os gameStatus são iguais, ordene pelo dia da semana
+      int dayPriorityA = _getDayOfWeekPriority(a.data()!.day!);
+      int dayPriorityB = _getDayOfWeekPriority(b.data()!.day!);
+
+      if (dayPriorityA != dayPriorityB) {
+        return dayPriorityA.compareTo(dayPriorityB);
+      }
+
+      // Se o dia da semana também é igual, ordene por manhã, tarde ou noite
+      int timePriorityA = _getTimeOfDayPriority(a.data()!.timeOfDay!.name);
+      int timePriorityB = _getTimeOfDayPriority(b.data()!.timeOfDay!.name);
+
+      int roundPriorityA = a.data()!.numberRound!;
+      int roundPriorityB = b.data()!.numberRound!;
+
+      if (roundPriorityA != roundPriorityB) {
+        return roundPriorityA.compareTo(roundPriorityB);
+      }
+
+      return timePriorityA.compareTo(timePriorityB);
+    });
 
     return Effect.emit();
   }
@@ -173,7 +255,35 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
   FutureOr<Effect> _remove(DocumentSnapshot<Schedule> dto) {
     state.listSchedule.removeWhere((element) => element.id == dto.id);
 
-    // state.listSchedule.sort((a, b) => a.data()!.day!.compareTo(b.data()!.day!));
+    state.listSchedule.sort((a, b) {
+      int priorityA = _getGameStatusPriority(a.data()!.gameStatus!);
+      int priorityB = _getGameStatusPriority(b.data()!.gameStatus!);
+
+      if (priorityA != priorityB) {
+        return priorityA.compareTo(priorityB);
+      }
+
+      // Se os gameStatus são iguais, ordene pelo dia da semana
+      int dayPriorityA = _getDayOfWeekPriority(a.data()!.day!);
+      int dayPriorityB = _getDayOfWeekPriority(b.data()!.day!);
+
+      if (dayPriorityA != dayPriorityB) {
+        return dayPriorityA.compareTo(dayPriorityB);
+      }
+
+      // Se o dia da semana também é igual, ordene por manhã, tarde ou noite
+      int timePriorityA = _getTimeOfDayPriority(a.data()!.timeOfDay!.name);
+      int timePriorityB = _getTimeOfDayPriority(b.data()!.timeOfDay!.name);
+
+      int roundPriorityA = a.data()!.numberRound!;
+      int roundPriorityB = b.data()!.numberRound!;
+
+      if (roundPriorityA != roundPriorityB) {
+        return roundPriorityA.compareTo(roundPriorityB);
+      }
+
+      return timePriorityA.compareTo(timePriorityB);
+    });
 
     return Effect.emit();
   }
@@ -194,23 +304,66 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
   FutureOr<Effect> _buttonTapped(DocumentSnapshot<Schedule> schedule) {
     return Effect.run(() async {
-      if (schedule != null) {
-        showModalBottomSheet(
-          context: state.context,
-          barrierColor: Colors.transparent,
-          useSafeArea: true,
-          isScrollControlled: true,
-          builder: (context) {
-            return ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              ),
-              child: MatchPage(schedule: schedule),
-            );
-          },
-        );
-      }
+      showModalBottomSheet(
+        context: state.context,
+        barrierColor: Colors.transparent,
+        useSafeArea: true,
+        isScrollControlled: true,
+        builder: (context) {
+          return ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            child: MatchPage(
+              schedule: schedule,
+              showScore: state.user != null &&
+                  state.user!.permissions != null &&
+                  (state.user!.permissions!.contains("manager_schedule") ||
+                      state.user!.permissions!.contains("game_judge")),
+            ),
+          );
+        },
+      );
     });
+  }
+
+  int _getGameStatusPriority(GameStatus gameStatus) {
+    switch (gameStatus) {
+      case GameStatus.live:
+        return 1;
+      case GameStatus.up_comming:
+        return 2;
+      case GameStatus.result:
+        return 3;
+    }
+  }
+
+  int _getDayOfWeekPriority(String dayOfWeek) {
+    switch (dayOfWeek) {
+      case 'Quarta-Feira':
+        return 1;
+      case 'Quinta-Feira':
+        return 2;
+      case 'Sexta-Feira':
+        return 3;
+
+      default:
+        return 0;
+    }
+  }
+
+  int _getTimeOfDayPriority(String timeOfDay) {
+    switch (timeOfDay) {
+      case 'Manha':
+        return 1;
+      case 'Tarde':
+        return 2;
+      case 'Noite':
+        return 3;
+
+      default:
+        return 0;
+    }
   }
 }

@@ -10,6 +10,8 @@ interface class MatchState {
   DocumentSnapshot<Schedule> schedule;
   Schedule? data;
 
+  Game? game;
+
   MatchState({
     required this.context,
     required this.schedule,

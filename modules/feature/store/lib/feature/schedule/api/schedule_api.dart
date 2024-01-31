@@ -30,7 +30,7 @@ mixin ScheduleAPI {
         .orderBy('numberRound', descending: false)
         .orderBy('gameName', descending: false)
         .where('judge', arrayContains: judgeId)
-        .snapshots();
+        .snapshots(includeMetadataChanges: true);
   }
 
   static Stream<QuerySnapshot<Schedule>> streamByDay({required String day}) {
@@ -45,7 +45,7 @@ mixin ScheduleAPI {
         .orderBy('numberRound', descending: false)
         .orderBy('gameName', descending: false)
         .where('day', isEqualTo: day)
-        .snapshots();
+        .snapshots(includeMetadataChanges: true);
   }
 
   static Stream<QuerySnapshot<Schedule>> streamByDayAndTimeOfDay(
@@ -62,6 +62,6 @@ mixin ScheduleAPI {
         .orderBy('gameName', descending: false)
         .where('day', isEqualTo: day)
         .where('timeOfDay', isEqualTo: timeOfDay)
-        .snapshots();
+        .snapshots(includeMetadataChanges: true);
   }
 }

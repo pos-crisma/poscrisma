@@ -22,6 +22,12 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    viewStore.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScheduleMobile(
       viewStore: viewStore,

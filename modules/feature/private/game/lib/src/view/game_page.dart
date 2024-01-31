@@ -1,9 +1,7 @@
-import 'package:design/design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'mobile/game_mobile.dart';
-import 'web/game_web.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({super.key});
@@ -16,9 +14,6 @@ class GamePage extends StatelessWidget {
       ),
     );
 
-    return Responsive(
-      mobile: GameMobile(),
-      desktop: const GameWeb(),
-    );
+    return GameMobile();
   }
 }

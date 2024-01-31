@@ -1,10 +1,10 @@
+import 'package:authenticator/authenticator.dart';
 import 'package:core/core.dart';
-import 'package:flutter/material.dart';
-
-import 'package:feed/feed.dart';
 import 'package:create_user/create_user.dart';
 import 'package:error/error.dart';
-import 'package:authenticator/authenticator.dart';
+import 'package:feed/feed.dart';
+import 'package:flutter/material.dart';
+import 'package:game/game.dart';
 import 'package:home/home.dart';
 import 'package:invite/invite.dart';
 import 'package:parish/parish.dart';
@@ -243,6 +243,13 @@ final GoRouter appRouter = GoRouter(
       path: '/schedule',
       builder: (BuildContext context, GoRouterState state) =>
           const SchedulePage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "game",
+      path: '/game',
+      builder: (BuildContext context, GoRouterState state) => const GamePage(),
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),

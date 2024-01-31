@@ -463,27 +463,36 @@ class HomeMobile extends StatelessWidget {
                                                     .bodyLarge!
                                                     .copyWith(),
                                               ),
-                                              RichText(
-                                                text: TextSpan(
-                                                  text:
-                                                      'Total de quartos usados: ',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge!
-                                                      .copyWith(),
-                                                  children: [
-                                                    TextSpan(
-                                                      text: '45',
+                                              ValueListenableBuilder(
+                                                valueListenable: viewStore,
+                                                builder:
+                                                    (context, value, child) {
+                                                  return RichText(
+                                                    text: TextSpan(
+                                                      text:
+                                                          'Total de quartos usados: ',
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyLarge!
-                                                          .copyWith(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
+                                                          .copyWith(),
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              '${value.lodging?.totalRoom ?? 0}',
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge!
+                                                                  .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
+                                                  );
+                                                },
                                               ),
                                             ],
                                           ),
@@ -1113,7 +1122,8 @@ class HomeMobile extends StatelessWidget {
                                       horizontal: 16,
                                     ),
                                     child: const Text(
-                                        "Não possui o devido acesso"),
+                                      "Não possui o devido acesso",
+                                    ),
                                   ),
                             const SizedBox(height: 8),
                             Padding(
@@ -1156,7 +1166,8 @@ class HomeMobile extends StatelessWidget {
                                       horizontal: 16,
                                     ),
                                     child: const Text(
-                                        "Não possui o devido acesso"),
+                                      "Não possui o devido acesso",
+                                    ),
                                   ),
                             const SizedBox(height: 8),
 
@@ -1186,7 +1197,7 @@ class HomeMobile extends StatelessWidget {
                         children: [
                           SizedBox(
                             child: Text(
-                              'Itens do acampamento',
+                              'Lista de jogos',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge! //
@@ -1199,9 +1210,9 @@ class HomeMobile extends StatelessWidget {
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: ComplexButton(
-                              onPress: () => context.pushNamed('warehouse'),
-                              text: "Almoxarifado",
-                              iconData: CupertinoIcons.cube_box_fill,
+                              onPress: () => context.pushNamed('game'),
+                              text: "Jogos",
+                              iconData: CupertinoIcons.game_controller_solid,
                               light: Colors.grey.shade300,
                               dark: Colors.grey.shade800,
                               showIsNew: false,

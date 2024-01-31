@@ -34,6 +34,20 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
       managerRoom: () => Effect.emit(),
       internetUpdate: _internetUpdate,
       pullToRefresh: _pullToRefresh,
+      lodgingService: () {
+        return Effect.run(() async {
+          await LodgingAPI.get().fold(
+            (success) => send(HomeAction.lodgingSuccess(success)),
+            (error) {},
+          );
+        });
+      },
+      lodgingSuccess: (success) {
+        if (success.lodgins != null) {
+          state.lodging = success.lodgins!.first;
+        }
+        return Effect.emit();
+      },
     );
   }
 
@@ -48,6 +62,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
 
       await send(HomeAction.internetChecker(resultStatus));
       await send(const HomeAction.userService());
+      await send(const HomeAction.lodgingService());
     });
   }
 
@@ -165,6 +180,7 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
           ConnectivityResult.none => false,
         };
 
+        // TODO: add pending
         await send(HomeAction.internetUpdate(resultStatus));
       });
     });

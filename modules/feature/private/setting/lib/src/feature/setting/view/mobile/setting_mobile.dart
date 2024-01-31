@@ -247,40 +247,51 @@ class _SettingMobileState extends State<SettingMobile> {
           ),
 
           // * Families
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                ItemButton(
-                  onPress: () => context.pushNamed('families'),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 24,
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          CupertinoIcons.person_3_fill,
-                          size: 30,
+          ValueListenableBuilder(
+            valueListenable: viewStore,
+            builder: (context, value, child) {
+              if (value.user != null &&
+                  value.user!.permissions != null &&
+                  value.user!.permissions!.contains('area_nursing')) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      ItemButton(
+                        onPress: () => context.pushNamed('families'),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 24,
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                CupertinoIcons.person_3_fill,
+                                size: 30,
+                              ),
+                              const SizedBox(width: 16),
+                              Text(
+                                "Familias",
+                                style: Theme.of(context)
+                                    .textTheme //
+                                    .bodyLarge,
+                              ),
+                              const Spacer(),
+                              const Icon(
+                                CupertinoIcons.chevron_forward,
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(width: 16),
-                        Text(
-                          "Familias",
-                          style: Theme.of(context)
-                              .textTheme //
-                              .bodyLarge,
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          CupertinoIcons.chevron_forward,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const CustomDivider(),
+                    ],
                   ),
-                ),
-                const CustomDivider(),
-              ],
-            ),
+                );
+              }
+
+              return const SliverToBoxAdapter();
+            },
           ),
 
           // * Settings

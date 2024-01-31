@@ -7,6 +7,7 @@ interface class HomeState {
 
   ProfileDTO? user;
   Version? version;
+  Lodgin? lodging;
 
   bool internetCheck;
 

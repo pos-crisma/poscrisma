@@ -30,6 +30,8 @@ mixin _$HomeAction {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +48,8 @@ mixin _$HomeAction {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +66,8 @@ mixin _$HomeAction {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +85,8 @@ mixin _$HomeAction {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +103,8 @@ mixin _$HomeAction {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +121,8 @@ mixin _$HomeAction {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -211,6 +223,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return onAppear(context);
   }
@@ -230,6 +244,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return onAppear?.call(context);
   }
@@ -249,6 +265,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -272,6 +290,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return onAppear(this);
   }
@@ -291,6 +311,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return onAppear?.call(this);
   }
@@ -310,6 +332,8 @@ class _$OnAppearTappedImpl implements _OnAppearTapped {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -379,6 +403,8 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return userService();
   }
@@ -398,6 +424,8 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return userService?.call();
   }
@@ -417,6 +445,8 @@ class _$UserServiceImpl implements _UserService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (userService != null) {
@@ -440,6 +470,8 @@ class _$UserServiceImpl implements _UserService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return userService(this);
   }
@@ -459,6 +491,8 @@ class _$UserServiceImpl implements _UserService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return userService?.call(this);
   }
@@ -478,6 +512,8 @@ class _$UserServiceImpl implements _UserService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (userService != null) {
@@ -541,6 +577,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return loadingUserService();
   }
@@ -560,6 +598,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return loadingUserService?.call();
   }
@@ -579,6 +619,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (loadingUserService != null) {
@@ -602,6 +644,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return loadingUserService(this);
   }
@@ -621,6 +665,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return loadingUserService?.call(this);
   }
@@ -640,6 +686,8 @@ class _$LoadingUserServiceImpl implements _LoadingUserService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (loadingUserService != null) {
@@ -730,6 +778,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return successUserService(user);
   }
@@ -749,6 +799,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return successUserService?.call(user);
   }
@@ -768,6 +820,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (successUserService != null) {
@@ -791,6 +845,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return successUserService(this);
   }
@@ -810,6 +866,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return successUserService?.call(this);
   }
@@ -829,6 +887,8 @@ class _$SuccessUserServiceImpl implements _SuccessUserService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (successUserService != null) {
@@ -925,6 +985,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return failureUserService(error);
   }
@@ -944,6 +1006,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return failureUserService?.call(error);
   }
@@ -963,6 +1027,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (failureUserService != null) {
@@ -986,6 +1052,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return failureUserService(this);
   }
@@ -1005,6 +1073,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return failureUserService?.call(this);
   }
@@ -1024,6 +1094,8 @@ class _$FailureUserServiceImpl implements _FailureUserService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (failureUserService != null) {
@@ -1093,6 +1165,8 @@ class _$VersionServiceImpl implements _VersionService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return versionService();
   }
@@ -1112,6 +1186,8 @@ class _$VersionServiceImpl implements _VersionService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return versionService?.call();
   }
@@ -1131,6 +1207,8 @@ class _$VersionServiceImpl implements _VersionService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (versionService != null) {
@@ -1154,6 +1232,8 @@ class _$VersionServiceImpl implements _VersionService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return versionService(this);
   }
@@ -1173,6 +1253,8 @@ class _$VersionServiceImpl implements _VersionService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return versionService?.call(this);
   }
@@ -1192,6 +1274,8 @@ class _$VersionServiceImpl implements _VersionService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (versionService != null) {
@@ -1281,6 +1365,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return versionUpdate(version);
   }
@@ -1300,6 +1386,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return versionUpdate?.call(version);
   }
@@ -1319,6 +1407,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (versionUpdate != null) {
@@ -1342,6 +1432,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return versionUpdate(this);
   }
@@ -1361,6 +1453,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return versionUpdate?.call(this);
   }
@@ -1380,6 +1474,8 @@ class _$VersionUpdateImpl implements _VersionUpdate {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (versionUpdate != null) {
@@ -1476,6 +1572,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return internetChecker(this.internetChecker);
   }
@@ -1495,6 +1593,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return internetChecker?.call(this.internetChecker);
   }
@@ -1514,6 +1614,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (internetChecker != null) {
@@ -1537,6 +1639,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return internetChecker(this);
   }
@@ -1556,6 +1660,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return internetChecker?.call(this);
   }
@@ -1575,6 +1681,8 @@ class _$InternetCheckerImpl implements _InternetChecker {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (internetChecker != null) {
@@ -1644,6 +1752,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return offlineService();
   }
@@ -1663,6 +1773,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return offlineService?.call();
   }
@@ -1682,6 +1794,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (offlineService != null) {
@@ -1705,6 +1819,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return offlineService(this);
   }
@@ -1724,6 +1840,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return offlineService?.call(this);
   }
@@ -1743,6 +1861,8 @@ class _$OfflineServiceImpl implements _OfflineService {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (offlineService != null) {
@@ -1806,6 +1926,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return managerRoom();
   }
@@ -1825,6 +1947,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return managerRoom?.call();
   }
@@ -1844,6 +1968,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (managerRoom != null) {
@@ -1867,6 +1993,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return managerRoom(this);
   }
@@ -1886,6 +2014,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return managerRoom?.call(this);
   }
@@ -1905,6 +2035,8 @@ class _$ManagerRoomTappedImpl implements _ManagerRoomTapped {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (managerRoom != null) {
@@ -1995,6 +2127,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return internetUpdate(status);
   }
@@ -2014,6 +2148,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return internetUpdate?.call(status);
   }
@@ -2033,6 +2169,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (internetUpdate != null) {
@@ -2056,6 +2194,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return internetUpdate(this);
   }
@@ -2075,6 +2215,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return internetUpdate?.call(this);
   }
@@ -2094,6 +2236,8 @@ class _$InternetStatusImpl implements _InternetStatus {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (internetUpdate != null) {
@@ -2162,6 +2306,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     required TResult Function() managerRoom,
     required TResult Function(bool status) internetUpdate,
     required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
   }) {
     return pullToRefresh();
   }
@@ -2181,6 +2327,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     TResult? Function()? managerRoom,
     TResult? Function(bool status)? internetUpdate,
     TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
   }) {
     return pullToRefresh?.call();
   }
@@ -2200,6 +2348,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     TResult Function()? managerRoom,
     TResult Function(bool status)? internetUpdate,
     TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (pullToRefresh != null) {
@@ -2223,6 +2373,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     required TResult Function(_ManagerRoomTapped value) managerRoom,
     required TResult Function(_InternetStatus value) internetUpdate,
     required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
   }) {
     return pullToRefresh(this);
   }
@@ -2242,6 +2394,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     TResult? Function(_ManagerRoomTapped value)? managerRoom,
     TResult? Function(_InternetStatus value)? internetUpdate,
     TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
   }) {
     return pullToRefresh?.call(this);
   }
@@ -2261,6 +2415,8 @@ class _$PullToRefreshImpl implements _PullToRefresh {
     TResult Function(_ManagerRoomTapped value)? managerRoom,
     TResult Function(_InternetStatus value)? internetUpdate,
     TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
     required TResult orElse(),
   }) {
     if (pullToRefresh != null) {
@@ -2272,4 +2428,385 @@ class _$PullToRefreshImpl implements _PullToRefresh {
 
 abstract class _PullToRefresh implements HomeAction {
   const factory _PullToRefresh() = _$PullToRefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$LodgingServiceImplCopyWith<$Res> {
+  factory _$$LodgingServiceImplCopyWith(_$LodgingServiceImpl value,
+          $Res Function(_$LodgingServiceImpl) then) =
+      __$$LodgingServiceImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LodgingServiceImplCopyWithImpl<$Res>
+    extends _$HomeActionCopyWithImpl<$Res, _$LodgingServiceImpl>
+    implements _$$LodgingServiceImplCopyWith<$Res> {
+  __$$LodgingServiceImplCopyWithImpl(
+      _$LodgingServiceImpl _value, $Res Function(_$LodgingServiceImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LodgingServiceImpl implements _LodgingService {
+  const _$LodgingServiceImpl();
+
+  @override
+  String toString() {
+    return 'HomeAction.lodgingService()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LodgingServiceImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() userService,
+    required TResult Function() loadingUserService,
+    required TResult Function(ProfileDTO user) successUserService,
+    required TResult Function(ErrorInfo error) failureUserService,
+    required TResult Function() versionService,
+    required TResult Function(Version version) versionUpdate,
+    required TResult Function(bool internetChecker) internetChecker,
+    required TResult Function() offlineService,
+    required TResult Function() managerRoom,
+    required TResult Function(bool status) internetUpdate,
+    required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
+  }) {
+    return lodgingService();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? userService,
+    TResult? Function()? loadingUserService,
+    TResult? Function(ProfileDTO user)? successUserService,
+    TResult? Function(ErrorInfo error)? failureUserService,
+    TResult? Function()? versionService,
+    TResult? Function(Version version)? versionUpdate,
+    TResult? Function(bool internetChecker)? internetChecker,
+    TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
+    TResult? Function(bool status)? internetUpdate,
+    TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
+  }) {
+    return lodgingService?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? userService,
+    TResult Function()? loadingUserService,
+    TResult Function(ProfileDTO user)? successUserService,
+    TResult Function(ErrorInfo error)? failureUserService,
+    TResult Function()? versionService,
+    TResult Function(Version version)? versionUpdate,
+    TResult Function(bool internetChecker)? internetChecker,
+    TResult Function()? offlineService,
+    TResult Function()? managerRoom,
+    TResult Function(bool status)? internetUpdate,
+    TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
+    required TResult orElse(),
+  }) {
+    if (lodgingService != null) {
+      return lodgingService();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_UserService value) userService,
+    required TResult Function(_LoadingUserService value) loadingUserService,
+    required TResult Function(_SuccessUserService value) successUserService,
+    required TResult Function(_FailureUserService value) failureUserService,
+    required TResult Function(_VersionService value) versionService,
+    required TResult Function(_VersionUpdate value) versionUpdate,
+    required TResult Function(_InternetChecker value) internetChecker,
+    required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
+    required TResult Function(_InternetStatus value) internetUpdate,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
+  }) {
+    return lodgingService(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_UserService value)? userService,
+    TResult? Function(_LoadingUserService value)? loadingUserService,
+    TResult? Function(_SuccessUserService value)? successUserService,
+    TResult? Function(_FailureUserService value)? failureUserService,
+    TResult? Function(_VersionService value)? versionService,
+    TResult? Function(_VersionUpdate value)? versionUpdate,
+    TResult? Function(_InternetChecker value)? internetChecker,
+    TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
+    TResult? Function(_InternetStatus value)? internetUpdate,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
+  }) {
+    return lodgingService?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_UserService value)? userService,
+    TResult Function(_LoadingUserService value)? loadingUserService,
+    TResult Function(_SuccessUserService value)? successUserService,
+    TResult Function(_FailureUserService value)? failureUserService,
+    TResult Function(_VersionService value)? versionService,
+    TResult Function(_VersionUpdate value)? versionUpdate,
+    TResult Function(_InternetChecker value)? internetChecker,
+    TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
+    TResult Function(_InternetStatus value)? internetUpdate,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
+    required TResult orElse(),
+  }) {
+    if (lodgingService != null) {
+      return lodgingService(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LodgingService implements HomeAction {
+  const factory _LodgingService() = _$LodgingServiceImpl;
+}
+
+/// @nodoc
+abstract class _$$LodgingSuccessImplCopyWith<$Res> {
+  factory _$$LodgingSuccessImplCopyWith(_$LodgingSuccessImpl value,
+          $Res Function(_$LodgingSuccessImpl) then) =
+      __$$LodgingSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LodingsResponseDTO success});
+}
+
+/// @nodoc
+class __$$LodgingSuccessImplCopyWithImpl<$Res>
+    extends _$HomeActionCopyWithImpl<$Res, _$LodgingSuccessImpl>
+    implements _$$LodgingSuccessImplCopyWith<$Res> {
+  __$$LodgingSuccessImplCopyWithImpl(
+      _$LodgingSuccessImpl _value, $Res Function(_$LodgingSuccessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = null,
+  }) {
+    return _then(_$LodgingSuccessImpl(
+      null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as LodingsResponseDTO,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LodgingSuccessImpl implements _LodgingSuccess {
+  const _$LodgingSuccessImpl(this.success);
+
+  @override
+  final LodingsResponseDTO success;
+
+  @override
+  String toString() {
+    return 'HomeAction.lodgingSuccess(success: $success)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LodgingSuccessImpl &&
+            (identical(other.success, success) || other.success == success));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, success);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LodgingSuccessImplCopyWith<_$LodgingSuccessImpl> get copyWith =>
+      __$$LodgingSuccessImplCopyWithImpl<_$LodgingSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) onAppear,
+    required TResult Function() userService,
+    required TResult Function() loadingUserService,
+    required TResult Function(ProfileDTO user) successUserService,
+    required TResult Function(ErrorInfo error) failureUserService,
+    required TResult Function() versionService,
+    required TResult Function(Version version) versionUpdate,
+    required TResult Function(bool internetChecker) internetChecker,
+    required TResult Function() offlineService,
+    required TResult Function() managerRoom,
+    required TResult Function(bool status) internetUpdate,
+    required TResult Function() pullToRefresh,
+    required TResult Function() lodgingService,
+    required TResult Function(LodingsResponseDTO success) lodgingSuccess,
+  }) {
+    return lodgingSuccess(success);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(BuildContext context)? onAppear,
+    TResult? Function()? userService,
+    TResult? Function()? loadingUserService,
+    TResult? Function(ProfileDTO user)? successUserService,
+    TResult? Function(ErrorInfo error)? failureUserService,
+    TResult? Function()? versionService,
+    TResult? Function(Version version)? versionUpdate,
+    TResult? Function(bool internetChecker)? internetChecker,
+    TResult? Function()? offlineService,
+    TResult? Function()? managerRoom,
+    TResult? Function(bool status)? internetUpdate,
+    TResult? Function()? pullToRefresh,
+    TResult? Function()? lodgingService,
+    TResult? Function(LodingsResponseDTO success)? lodgingSuccess,
+  }) {
+    return lodgingSuccess?.call(success);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? onAppear,
+    TResult Function()? userService,
+    TResult Function()? loadingUserService,
+    TResult Function(ProfileDTO user)? successUserService,
+    TResult Function(ErrorInfo error)? failureUserService,
+    TResult Function()? versionService,
+    TResult Function(Version version)? versionUpdate,
+    TResult Function(bool internetChecker)? internetChecker,
+    TResult Function()? offlineService,
+    TResult Function()? managerRoom,
+    TResult Function(bool status)? internetUpdate,
+    TResult Function()? pullToRefresh,
+    TResult Function()? lodgingService,
+    TResult Function(LodingsResponseDTO success)? lodgingSuccess,
+    required TResult orElse(),
+  }) {
+    if (lodgingSuccess != null) {
+      return lodgingSuccess(success);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppearTapped value) onAppear,
+    required TResult Function(_UserService value) userService,
+    required TResult Function(_LoadingUserService value) loadingUserService,
+    required TResult Function(_SuccessUserService value) successUserService,
+    required TResult Function(_FailureUserService value) failureUserService,
+    required TResult Function(_VersionService value) versionService,
+    required TResult Function(_VersionUpdate value) versionUpdate,
+    required TResult Function(_InternetChecker value) internetChecker,
+    required TResult Function(_OfflineService value) offlineService,
+    required TResult Function(_ManagerRoomTapped value) managerRoom,
+    required TResult Function(_InternetStatus value) internetUpdate,
+    required TResult Function(_PullToRefresh value) pullToRefresh,
+    required TResult Function(_LodgingService value) lodgingService,
+    required TResult Function(_LodgingSuccess value) lodgingSuccess,
+  }) {
+    return lodgingSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppearTapped value)? onAppear,
+    TResult? Function(_UserService value)? userService,
+    TResult? Function(_LoadingUserService value)? loadingUserService,
+    TResult? Function(_SuccessUserService value)? successUserService,
+    TResult? Function(_FailureUserService value)? failureUserService,
+    TResult? Function(_VersionService value)? versionService,
+    TResult? Function(_VersionUpdate value)? versionUpdate,
+    TResult? Function(_InternetChecker value)? internetChecker,
+    TResult? Function(_OfflineService value)? offlineService,
+    TResult? Function(_ManagerRoomTapped value)? managerRoom,
+    TResult? Function(_InternetStatus value)? internetUpdate,
+    TResult? Function(_PullToRefresh value)? pullToRefresh,
+    TResult? Function(_LodgingService value)? lodgingService,
+    TResult? Function(_LodgingSuccess value)? lodgingSuccess,
+  }) {
+    return lodgingSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppearTapped value)? onAppear,
+    TResult Function(_UserService value)? userService,
+    TResult Function(_LoadingUserService value)? loadingUserService,
+    TResult Function(_SuccessUserService value)? successUserService,
+    TResult Function(_FailureUserService value)? failureUserService,
+    TResult Function(_VersionService value)? versionService,
+    TResult Function(_VersionUpdate value)? versionUpdate,
+    TResult Function(_InternetChecker value)? internetChecker,
+    TResult Function(_OfflineService value)? offlineService,
+    TResult Function(_ManagerRoomTapped value)? managerRoom,
+    TResult Function(_InternetStatus value)? internetUpdate,
+    TResult Function(_PullToRefresh value)? pullToRefresh,
+    TResult Function(_LodgingService value)? lodgingService,
+    TResult Function(_LodgingSuccess value)? lodgingSuccess,
+    required TResult orElse(),
+  }) {
+    if (lodgingSuccess != null) {
+      return lodgingSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LodgingSuccess implements HomeAction {
+  const factory _LodgingSuccess(final LodingsResponseDTO success) =
+      _$LodgingSuccessImpl;
+
+  LodingsResponseDTO get success;
+  @JsonKey(ignore: true)
+  _$$LodgingSuccessImplCopyWith<_$LodgingSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -4,6 +4,7 @@ import 'package:design/design.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:store/store.dart';
 
 import '../../provider/controller/action/schedule_action.dart';
 import '../../provider/controller/store/schedule_store.dart';
@@ -12,6 +13,7 @@ import '../components/team_score.dart';
 
 class ScheduleMobile extends StatelessWidget {
   final ScheduleReducer viewStore;
+
   const ScheduleMobile({
     super.key,
     required this.viewStore,
@@ -153,7 +155,7 @@ class ScheduleMobile extends StatelessWidget {
                                               ),
                                               TextSpan(
                                                 text:
-                                                    " ${data.timeOfDay?.toUpperCase()} ",
+                                                    " ${data.timeOfDay?.name.toUpperCase()} ",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .labelSmall!
@@ -165,7 +167,9 @@ class ScheduleMobile extends StatelessWidget {
 
                                         const Spacer(),
 
-                                        data.isActive != null && data.isActive!
+                                        data.gameStatus != null &&
+                                                data.gameStatus ==
+                                                    GameStatus.live
                                             ? const LiveAnimation()
                                             : Container(),
                                         // const Spacer(),

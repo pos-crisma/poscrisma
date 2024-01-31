@@ -44,12 +44,29 @@ export 'feature/user/api/user_api.dart';
 export 'feature/user/dto/list_user_dto.dart';
 export 'feature/user/model/user.dart';
 
-// *
+// * Punish
 export 'feature/punish/api/punish_api.dart';
 export 'feature/punish/dto/punish_dto.dart';
 
-// *
+// * Schedule
 export 'feature/schedule/api/schedule_api.dart';
 export 'feature/schedule/model/schedule_model.dart';
+
+// * Game
+export 'feature/game/api/game_api.dart';
+export 'feature/game/api/game_material_api.dart';
+
+export 'feature/game/dto/creatae_game_request_dto.dart';
+export 'feature/game/dto/create_game_material_request_dto.dart';
+export 'feature/game/dto/game_material_response_dto.dart';
+export 'feature/game/dto/game_response_dto.dart';
+
+export 'feature/game/model/game.dart';
+export 'feature/game/model/game_material.dart';
+
+// * Lodging
+
+export 'feature/loding/api/loding_api.dart';
+export 'feature/loding/dto/loding_dto.dart';
 
 export 'package:uuid/uuid.dart';

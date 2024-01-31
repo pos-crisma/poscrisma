@@ -21,4 +21,8 @@ abstract class HomeAction with _$HomeAction {
   const factory HomeAction.managerRoom() = _ManagerRoomTapped;
   const factory HomeAction.internetUpdate(bool status) = _InternetStatus;
   const factory HomeAction.pullToRefresh() = _PullToRefresh;
+
+  const factory HomeAction.lodgingService() = _LodgingService;
+  const factory HomeAction.lodgingSuccess(LodingsResponseDTO success) =
+      _LodgingSuccess;
 }

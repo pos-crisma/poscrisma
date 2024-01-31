@@ -21,7 +21,7 @@ interface class RoomManagarDetailState {
   int selectorGender;
 
   bool isLoading = false;
-  bool roomSettingExpansion = false;
+  bool roomSettingExpansion = true;
 
   RoomManagarDetailState({
     required this.room,
