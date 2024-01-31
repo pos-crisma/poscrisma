@@ -180,14 +180,16 @@ class GameScore {
         teamId: json["teamId"],
         teamName: json["teamName"],
         score: json["score"],
-        audit: json["audit"],
+        audit: json["audit"] == null
+            ? []
+            : List<Audit>.from(json["audit"]!.map((x) => Audit.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "teamId": teamId,
         "teamName": teamName,
         "score": score,
-        "audit": audit,
+        "audit": audit != null ? audit!.map((e) => e.toJson()).toList() : [],
       };
 }
 

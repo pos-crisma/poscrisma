@@ -24,8 +24,8 @@ class ScoreMatch extends StatelessWidget {
       decoration: BoxDecoration(
         color: ColorMode.setColor(
           context: context,
-          light: lightCardBackground,
-          dark: darkCardBackground,
+          light: Colors.grey.shade100,
+          dark: Colors.grey.shade900,
         ),
       ),
       padding: const EdgeInsets.symmetric(

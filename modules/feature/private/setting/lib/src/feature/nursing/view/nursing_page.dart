@@ -148,6 +148,7 @@ class _NursingPageState extends State<NursingPage> {
                                           .bodyLarge!
                                           .copyWith(
                                             fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
                                           ),
                                     ),
                                   ),
@@ -166,6 +167,7 @@ class _NursingPageState extends State<NursingPage> {
                                                 .titleLarge!
                                                 .copyWith(
                                                   fontWeight: FontWeight.bold,
+                                                  color: Colors.grey,
                                                 ),
                                           ),
                                         ),
@@ -183,7 +185,9 @@ class _NursingPageState extends State<NursingPage> {
                                           child: RichText(
                                             text: TextSpan(
                                               text: "Genero: ",
-                                              style: const TextStyle(),
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
                                               children: [
                                                 TextSpan(
                                                   text: user.gender != null
@@ -191,6 +195,7 @@ class _NursingPageState extends State<NursingPage> {
                                                       : "",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
+                                                    color: Colors.grey,
                                                   ),
                                                 ),
                                               ],
@@ -211,7 +216,9 @@ class _NursingPageState extends State<NursingPage> {
                                           child: RichText(
                                             text: TextSpan(
                                               text: "Tipo: ",
-                                              style: const TextStyle(),
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
                                               children: [
                                                 TextSpan(
                                                   text: user.typeUser != null
@@ -219,6 +226,7 @@ class _NursingPageState extends State<NursingPage> {
                                                       : "",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
+                                                    color: Colors.grey,
                                                   ),
                                                 ),
                                               ],
@@ -239,12 +247,40 @@ class _NursingPageState extends State<NursingPage> {
                                           child: RichText(
                                             text: TextSpan(
                                               text: "Idade: ",
-                                              style: const TextStyle(),
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
                                               children: [
                                                 TextSpan(
                                                   text: user.age.toString(),
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      SliverToBoxAdapter(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0,
+                                          ),
+                                          child: RichText(
+                                            text: TextSpan(
+                                              text: "Madrinha: ",
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                              children: [
+                                                TextSpan(
+                                                  text: user.toString(),
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.grey,
                                                   ),
                                                 ),
                                               ],
@@ -265,14 +301,10 @@ class _NursingPageState extends State<NursingPage> {
                                           ),
                                           child: CupertinoListTile.notched(
                                             padding: EdgeInsets.zero,
-                                            title: Text(
+                                            title: const Text(
                                               "Problemas medicos:",
                                               style: TextStyle(
-                                                color: ColorMode.setColor(
-                                                  context: context,
-                                                  light: Colors.grey.shade400,
-                                                  dark: Colors.grey.shade300,
-                                                ),
+                                                color: Colors.grey,
                                               ),
                                             ),
                                             subtitle: Text(
@@ -285,9 +317,10 @@ class _NursingPageState extends State<NursingPage> {
                                                       : user.medicalRecord!,
                                               maxLines: 4,
                                               style: TextStyle(
+                                                fontWeight: FontWeight.bold,
                                                 color: ColorMode.setColor(
                                                   context: context,
-                                                  light: Colors.grey.shade400,
+                                                  light: Colors.grey.shade700,
                                                   dark: Colors.grey.shade300,
                                                 ),
                                               ),

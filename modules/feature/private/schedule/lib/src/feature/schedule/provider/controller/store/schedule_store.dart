@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:schedule/src/feature/match/view/match_page.dart';
 import 'package:store/store.dart';
 
+import '../../../../match_all/view/match_all_page.dart';
 import '../action/schedule_action.dart';
 import '../state/schedule_state.dart';
 
@@ -322,27 +323,55 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
   FutureOr<Effect> _buttonTapped(DocumentSnapshot<Schedule> schedule) {
     return Effect.run(() async {
-      showModalBottomSheet(
-        context: state.context,
-        barrierColor: Colors.transparent,
-        useSafeArea: true,
-        isScrollControlled: true,
-        builder: (context) {
-          return ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
-            ),
-            child: MatchPage(
-              schedule: schedule,
-              showScore: state.user != null &&
-                  state.user!.permissions != null &&
-                  (state.user!.permissions!.contains("manager_schedule") ||
-                      state.user!.permissions!.contains("game_judge")),
-            ),
+      final data = schedule.data();
+
+      if (data != null) {
+        if (data.gameType == GameType.one_vs_one) {
+          showModalBottomSheet(
+            context: state.context,
+            barrierColor: Colors.transparent,
+            useSafeArea: true,
+            isScrollControlled: true,
+            builder: (context) {
+              return ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+                child: MatchPage(
+                  schedule: schedule,
+                  showScore: state.user != null &&
+                      state.user!.permissions != null &&
+                      (state.user!.permissions!.contains("manager_schedule") ||
+                          state.user!.permissions!.contains("game_judge")),
+                ),
+              );
+            },
           );
-        },
-      );
+        } else {
+          showModalBottomSheet(
+            context: state.context,
+            barrierColor: Colors.transparent,
+            useSafeArea: true,
+            isScrollControlled: true,
+            builder: (context) {
+              return ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+                child: MatchAllPage(
+                  schedule: schedule,
+                  showScore: state.user != null &&
+                      state.user!.permissions != null &&
+                      (state.user!.permissions!.contains("manager_schedule") ||
+                          state.user!.permissions!.contains("game_judge")),
+                ),
+              );
+            },
+          );
+        }
+      }
     });
   }
 

@@ -756,6 +756,28 @@ class HomeMobile extends StatelessWidget {
                             )
                           : Container(),
 
+                      value.user != null &&
+                              value.user!.permissions != null &&
+                              value.user!.permissions!.contains('view_room') &&
+                              value.internetCheck
+                          ? Container(
+                              padding: const EdgeInsets.only(
+                                top: 8,
+                                left: 16,
+                                right: 16,
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              child: ComplexButton(
+                                onPress: () => context.pushNamed('room_finder'),
+                                text: "Pesquisar por nome",
+                                iconData: CupertinoIcons.search,
+                                light: Colors.grey.shade300,
+                                dark: Colors.grey.shade800,
+                                showIsNew: false,
+                              ),
+                            )
+                          : Container(),
+
                       const SizedBox(
                         height: 8,
                       ),

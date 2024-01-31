@@ -46,8 +46,7 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
                     state.data!.gameScore!.first.audit!.isEmpty) {
                   state.data!.gameScore!.first.audit = [];
                 }
-                if (state.data!.gameScore!.last.audit != null &&
-                    state.data!.gameScore!.last.audit!.isEmpty) {
+                if (state.data!.gameScore!.last.audit == null) {
                   state.data!.gameScore!.last.audit = [];
                 }
 
@@ -66,12 +65,12 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
                 ));
 
                 state.schedule.reference.update({
-                  "gameScore": state.data!.gameScore,
+                  "gameScore":
+                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
                 });
               } else if (state.data!.gameScore!.first.score !=
                   compareData.gameScore!.first.score) {
-                if (state.data!.gameScore!.first.audit != null &&
-                    state.data!.gameScore!.first.audit!.isEmpty) {
+                if (state.data!.gameScore!.first.audit == null) {
                   state.data!.gameScore!.first.audit = [];
                 }
 
@@ -86,13 +85,14 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
                     state.data!.gameScore!.first.score;
 
                 state.schedule.reference.update({
-                  "gameScore": state.data!.gameScore,
+                  "gameScore":
+                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
                 });
 
                 //
               } else if (state.data!.gameScore!.last.score !=
                   compareData.gameScore!.last.score) {
-                if (state.data!.gameScore!.last.audit != null &&
+                if (state.data!.gameScore!.last.audit == null &&
                     state.data!.gameScore!.last.audit!.isEmpty) {
                   state.data!.gameScore!.last.audit = [];
                 }
@@ -108,7 +108,8 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
                     state.data!.gameScore!.last.score;
 
                 state.schedule.reference.update({
-                  "gameScore": state.data!.gameScore,
+                  "gameScore":
+                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
                 });
 
                 //
@@ -152,7 +153,9 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
         state.data!.gameScore = state.data!.gameScore!.map((element) {
           if (element.teamId == team) {
             HapticFeedback.selectionClick();
-            element.score = element.score! - 1;
+            if (element.score! > 0) {
+              element.score = element.score! - 1;
+            }
           }
 
           return element;
