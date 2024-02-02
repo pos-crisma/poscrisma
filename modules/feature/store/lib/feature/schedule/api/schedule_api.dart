@@ -69,4 +69,5 @@ mixin ScheduleAPI {
         .where('timeOfDay', isEqualTo: timeOfDay)
         .snapshots(includeMetadataChanges: true);
   }
+
 }

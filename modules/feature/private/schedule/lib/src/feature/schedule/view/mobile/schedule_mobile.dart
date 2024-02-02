@@ -114,8 +114,10 @@ class ScheduleMobile extends StatelessWidget {
                                   text: "${data.gameName?.toUpperCase()}",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .labelSmall!
-                                      .copyWith(),
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                               ),
                             ),
@@ -212,47 +214,21 @@ class ScheduleMobile extends StatelessWidget {
                                             data.gameScore != null &&
                                             data.gameScore!.isNotEmpty) {
                                           return Column(
-                                            children: [
-                                              TeamScore(
-                                                hexColor:
-                                                    data.teamInfoA?.color ?? "",
-                                                scoreTeam: data.gameScore!.first
-                                                        .score ??
-                                                    0,
-                                                teamName:
-                                                    data.teamInfoA?.name ?? "",
-                                                showBestTeam: (data.gameScore!
-                                                            .first.score !=
-                                                        null &&
-                                                    data.gameScore!.last
-                                                            .score !=
-                                                        null &&
-                                                    data.gameScore!.first
-                                                            .score! >
-                                                        data.gameScore!.last
-                                                            .score!),
-                                              ),
-                                              TeamScore(
-                                                hexColor:
-                                                    data.teamInfoB?.color ?? "",
-                                                scoreTeam: data.gameScore!.last
-                                                        .score ??
-                                                    0,
-                                                teamName:
-                                                    data.teamInfoB?.name ?? "",
-                                                showBestTeam: (data.gameScore!
-                                                            .first.score !=
-                                                        null &&
-                                                    data.gameScore!.last
-                                                            .score !=
-                                                        null &&
-                                                    data.gameScore!.last
-                                                            .score! >
-                                                        data.gameScore!.first
-                                                            .score!),
-                                              ),
-                                            ],
-                                          );
+                                              children: data.gameScore!
+                                                  .map((e) => TeamScore(
+                                                        hexColor:
+                                                            e.teamColor ?? "",
+                                                        scoreTeam: e.score ?? 0,
+                                                        teamName:
+                                                            e.teamName ?? "",
+                                                        showBestTeam:
+                                                            (e.score != null &&
+                                                                e.score !=
+                                                                    null &&
+                                                                e.score! >
+                                                                    e.score!),
+                                                      ))
+                                                  .toList());
                                         }
 
                                         if (data.gameType ==

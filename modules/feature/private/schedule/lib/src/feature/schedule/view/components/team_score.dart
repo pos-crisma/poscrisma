@@ -42,6 +42,9 @@ class TeamScore extends StatelessWidget {
             decoration: BoxDecoration(
               color: HexColor.fromHex(hexColor),
               borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: Colors.grey,
+              ),
             ),
           ),
           const SizedBox(width: 4),

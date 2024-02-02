@@ -60,90 +60,48 @@ class _MatchPageState extends State<MatchPage> {
         body: CustomScrollView(
           slivers: [
             widget.showScore
-                ? SliverToBoxAdapter(
-                    child: ValueListenableBuilder(
-                      valueListenable: viewStore,
-                      builder: (context, value, child) {
-                        return value.data != null &&
-                                value.data!.gameScore != null &&
-                                value.data!.gameScore!.isNotEmpty
-                            ? ScoreMatch(
-                                name:
-                                    "${value.data?.gameScore!.first.teamName}",
-                                team: value.data != null &&
-                                        value.data!.gameScore != null &&
-                                        value.data!.gameScore!.isNotEmpty &&
-                                        value.data!.gameScore!.first.score !=
-                                            null &&
-                                        value.data!.gameScore!.first.score! > 0
-                                    ? HexColor.fromHex(
-                                        value.data?.teamInfoA?.color ?? "",
-                                      )
-                                    : ColorMode.setColor(
-                                        context: context,
-                                        light: Colors.black,
-                                        dark: Colors.white,
-                                      ),
-                                minusButton: () => viewStore.send(
+                ? ValueListenableBuilder(
+                    valueListenable: viewStore,
+                    builder: (context, value, child) {
+                      return value.data != null &&
+                              value.data!.gameScore != null &&
+                              value.data!.gameScore!.isNotEmpty
+                          ? SliverList.builder(
+                              itemCount: value.data!.gameScore!.length,
+                              itemBuilder: (context, index) {
+                                final data = value.data!.gameScore![index];
+                                return ScoreMatch(
+                                  name: "${data.teamName}",
+                                  team: data.score != null && data.score! > 0
+                                      ? HexColor.fromHex(
+                                          data.teamColor ?? "",
+                                        )
+                                      : ColorMode.setColor(
+                                          context: context,
+                                          light: Colors.black,
+                                          dark: Colors.white,
+                                        ),
+                                  minusButton: () => viewStore.send(
                                     MatchAction.minusTapped(
-                                        value.data!.gameScore!.first.teamId ??
-                                            "")),
-                                plusButton: () => viewStore.send(
+                                      data.teamId ?? "",
+                                    ),
+                                  ),
+                                  plusButton: () => viewStore.send(
                                     MatchAction.addedTapped(
-                                        value.data!.gameScore!.first.teamId ??
-                                            "")),
-                                score: value.data?.gameScore!.first.score ?? 0,
-                              )
-                            : Container();
-                      },
-                    ),
-                  )
+                                      data.teamId ?? "",
+                                    ),
+                                  ),
+                                  score: data.score ?? 0,
+                                );
+                              },
+                            )
+                          : const SliverToBoxAdapter();
+                    })
                 : const SliverToBoxAdapter(),
             //
             widget.showScore
                 ? const SliverToBoxAdapter(
                     child: SizedBox(height: 8),
-                  )
-                : const SliverToBoxAdapter(),
-
-            //
-            widget.showScore
-                ? SliverToBoxAdapter(
-                    child: ValueListenableBuilder(
-                      valueListenable: viewStore,
-                      builder: (context, value, child) {
-                        return value.data != null &&
-                                value.data!.gameScore != null &&
-                                value.data!.gameScore!.isNotEmpty
-                            ? ScoreMatch(
-                                name: "${value.data?.gameScore!.last.teamName}",
-                                team: value.data != null &&
-                                        value.data!.gameScore != null &&
-                                        value.data!.gameScore!.isNotEmpty &&
-                                        value.data!.gameScore!.last.score !=
-                                            null &&
-                                        value.data!.gameScore!.last.score! > 0
-                                    ? HexColor.fromHex(
-                                        value.data?.teamInfoB?.color ?? "",
-                                      )
-                                    : ColorMode.setColor(
-                                        context: context,
-                                        light: Colors.black,
-                                        dark: Colors.white,
-                                      ),
-                                minusButton: () => viewStore.send(
-                                    MatchAction.minusTapped(
-                                        value.data!.gameScore!.last.teamId ??
-                                            "")),
-                                plusButton: () => viewStore.send(
-                                    MatchAction.addedTapped(
-                                        value.data!.gameScore!.last.teamId ??
-                                            "")),
-                                score: value.data?.gameScore!.last.score ?? 0,
-                              )
-                            : Container();
-                      },
-                    ),
                   )
                 : const SliverToBoxAdapter(),
 

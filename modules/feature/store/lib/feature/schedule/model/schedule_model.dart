@@ -152,6 +152,7 @@ class Schedule {
 class GameScore {
   String? teamId;
   String? teamName;
+  String? teamColor;
   int? score;
   List<Audit>? audit;
 
@@ -160,15 +161,22 @@ class GameScore {
     this.teamName,
     this.score,
     this.audit,
+    this.teamColor,
   });
 
-  GameScore copyWith(
-          {String? teamId, String? teamName, int? score, List<Audit>? audit}) =>
+  GameScore copyWith({
+    String? teamId,
+    String? teamName,
+    int? score,
+    List<Audit>? audit,
+    String? teamColor,
+  }) =>
       GameScore(
         teamId: teamId ?? this.teamId,
         teamName: teamName ?? this.teamName,
         score: score ?? this.score,
         audit: audit ?? this.audit,
+        teamColor: teamColor ?? this.teamColor,
       );
 
   factory GameScore.fromRawJson(String str) =>
@@ -180,6 +188,7 @@ class GameScore {
         teamId: json["teamId"],
         teamName: json["teamName"],
         score: json["score"],
+        teamColor: json["teamColor"],
         audit: json["audit"] == null
             ? []
             : List<Audit>.from(json["audit"]!.map((x) => Audit.fromJson(x))),
@@ -189,6 +198,7 @@ class GameScore {
         "teamId": teamId,
         "teamName": teamName,
         "score": score,
+        "teamColor": teamColor,
         "audit": audit != null ? audit!.map((e) => e.toJson()).toList() : [],
       };
 }

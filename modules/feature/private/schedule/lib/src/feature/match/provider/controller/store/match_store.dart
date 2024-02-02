@@ -38,82 +38,35 @@ class MatchReducer extends Reducer<MatchAction, MatchState> {
             if (state.data != null &&
                 state.data!.gameScore != null &&
                 state.data!.gameScore!.isNotEmpty) {
-              if (state.data!.gameScore!.first.score !=
-                      compareData.gameScore!.first.score &&
-                  state.data!.gameScore!.last.score !=
-                      compareData.gameScore!.last.score) {
-                if (state.data!.gameScore!.first.audit != null &&
-                    state.data!.gameScore!.first.audit!.isEmpty) {
-                  state.data!.gameScore!.first.audit = [];
-                }
-                if (state.data!.gameScore!.last.audit == null) {
-                  state.data!.gameScore!.last.audit = [];
-                }
-
-                state.data!.gameScore!.first.audit!.add(Audit(
-                  newScore: state.data!.gameScore!.first.score,
-                  oldScore: compareData.gameScore!.first.score,
-                  userId: state.user?.userId ?? "",
-                  userName: state.user?.name ?? "",
-                ));
-
-                state.data!.gameScore!.last.audit!.add(Audit(
-                  newScore: state.data!.gameScore!.last.score,
-                  oldScore: compareData.gameScore!.last.score,
-                  userId: state.user?.userId ?? "",
-                  userName: state.user?.name ?? "",
-                ));
-
-                state.schedule.reference.update({
-                  "gameScore":
-                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
-                });
-              } else if (state.data!.gameScore!.first.score !=
-                  compareData.gameScore!.first.score) {
-                if (state.data!.gameScore!.first.audit == null) {
-                  state.data!.gameScore!.first.audit = [];
-                }
-
-                state.data!.gameScore!.first.audit!.add(Audit(
-                  newScore: state.data!.gameScore!.first.score,
-                  oldScore: compareData.gameScore!.first.score,
-                  userId: state.user?.userId ?? "",
-                  userName: state.user?.name ?? "",
-                ));
-
-                state.data!.gameScore!.first.score =
-                    state.data!.gameScore!.first.score;
-
-                state.schedule.reference.update({
-                  "gameScore":
-                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
-                });
-
-                //
-              } else if (state.data!.gameScore!.last.score !=
-                  compareData.gameScore!.last.score) {
-                if (state.data!.gameScore!.last.audit == null &&
-                    state.data!.gameScore!.last.audit!.isEmpty) {
-                  state.data!.gameScore!.last.audit = [];
-                }
-
-                state.data!.gameScore!.last.audit!.add(Audit(
-                  newScore: state.data!.gameScore!.last.score,
-                  oldScore: compareData.gameScore!.last.score,
-                  userId: state.user?.userId ?? "",
-                  userName: state.user?.name ?? "",
-                ));
-
-                state.data!.gameScore!.last.score =
-                    state.data!.gameScore!.last.score;
-
-                state.schedule.reference.update({
-                  "gameScore":
-                      state.data!.gameScore!.map((e) => e.toJson()).toList(),
-                });
-
-                //
+              //
+              if (state.data!.gameScore!.first.audit != null &&
+                  state.data!.gameScore!.first.audit!.isEmpty) {
+                state.data!.gameScore!.first.audit = [];
               }
+              if (state.data!.gameScore!.last.audit == null) {
+                state.data!.gameScore!.last.audit = [];
+              }
+
+              state.schedule.reference.update({
+                "gameScore": state.data!.gameScore!.map((e) {
+                  final auditScore = compareData.gameScore!
+                      .where((element) => element.teamId == e.teamId)
+                      .toList();
+
+                  if (auditScore.first.score != e.score) {
+                    e.audit!.add(
+                      Audit(
+                        newScore: e.score,
+                        oldScore: auditScore.first.score,
+                        userId: state.user?.userId ?? "",
+                        userName: state.user?.name ?? "",
+                      ),
+                    );
+                  }
+
+                  return e.toJson();
+                }).toList(),
+              });
             }
           }
         });

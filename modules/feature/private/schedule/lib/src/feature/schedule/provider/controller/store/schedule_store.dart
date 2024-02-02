@@ -37,18 +37,10 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
   }
 
   FutureOr<Effect> _onAppear() {
-    final user = profileStore.user;
+    // final user = profileStore.user;
     state.user = profileStore.user;
     return Effect.runAndEmit(() async {
-      if (user != null &&
-          user.permissions != null &&
-          user.permissions!.contains('manager_schedule')) {
-        send(const ScheduleAction.serviceByDay());
-      } else if (user != null &&
-          user.permissions != null &&
-          user.permissions!.contains('game_judge')) {
-        send(const ScheduleAction.serviceByJudge());
-      }
+      send(const ScheduleAction.serviceByDayAndTimeOfDay());
 
       state.controller.addListener(
         () => send(const ScheduleAction.scrollListener()),
@@ -83,14 +75,18 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       if (profile != null) {
         final now = DateTime.now();
 
+        print(now);
+
         final String weekDay = now.weekday == DateTime.friday
             ? "Sexta-Feira"
             : now.weekday == DateTime.thursday
                 ? "Quinta-Feira"
                 : "Quarta-Feira";
 
+        print("weekDay: $weekDay");
+
         String timeOfDay = "";
-        if (now.hour >= 8 && now.hour < 12) {
+        if (now.hour >= 0 && now.hour < 12) {
           timeOfDay = "Manha";
         }
         if (now.hour >= 12 && now.hour < 19) {
@@ -98,6 +94,9 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
         } else {
           timeOfDay = "Noite";
         }
+
+        print("hour: ${now.hour}");
+        print("weekDay: $timeOfDay");
 
         final result = ScheduleAPI.streamByJudge(
           judgeId: profile.userId,
@@ -161,10 +160,9 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
               : "Quarta-Feira";
 
       String timeOfDay = "";
-      if (now.hour >= 8 && now.hour < 12) {
+      if (now.hour >= 8 && now.hour < 14) {
         timeOfDay = "Manha";
-      }
-      if (now.hour >= 12 && now.hour < 19) {
+      } else if (now.hour >= 14 && now.hour < 19) {
         timeOfDay = "Tarde";
       } else {
         timeOfDay = "Noite";
