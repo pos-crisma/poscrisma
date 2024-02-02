@@ -277,7 +277,36 @@ class _NursingPageState extends State<NursingPage> {
                                               ),
                                               children: [
                                                 TextSpan(
-                                                  text: user.toString(),
+                                                  text: user.godParents
+                                                          ?.godMother ??
+                                                      "",
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      SliverToBoxAdapter(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0,
+                                          ),
+                                          child: RichText(
+                                            text: TextSpan(
+                                              text: "Padrinho: ",
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                              children: [
+                                                TextSpan(
+                                                  text: user.godParents
+                                                          ?.godFather ??
+                                                      "",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.grey,

@@ -32,10 +32,10 @@ class GodParents {
   String toRawJson() => json.encode(toJson());
 
   factory GodParents.fromJson(Map<String, dynamic> json) => GodParents(
-        godFatherId: json["godFatherId"],
-        godFather: json["godFather"],
-        godMotherId: json["godMotherId"],
-        godMother: json["godMother"],
+        godFatherId: json["godFatherId"] ?? json["fatherId"],
+        godFather: json["godFather"] ?? json["father"],
+        godMotherId: json["godMotherId"] ?? json["motherId"],
+        godMother: json["godMother"] ?? json["mother"],
       );
 
   Map<String, dynamic> toJson() => {

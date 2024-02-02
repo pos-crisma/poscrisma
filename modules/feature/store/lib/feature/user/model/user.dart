@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import '../../invite/enum/invite_type.dart';
+import 'package:store/store.dart';
 
 enum UserGender {
   Male(text: "Masculino"),
@@ -30,6 +30,7 @@ class User {
   String? phone;
   String? medicalRecord;
   bool? isActive;
+  GodParents? godParents;
 
   User({
     this.userId,
@@ -46,6 +47,7 @@ class User {
     this.phone,
     this.medicalRecord,
     this.isActive,
+    this.godParents,
   });
 
   User copyWith({
@@ -63,6 +65,7 @@ class User {
     String? phone,
     String? medicalRecord,
     bool? isActive,
+    GodParents? godParents,
   }) =>
       User(
         userId: userId ?? this.userId,
@@ -78,6 +81,7 @@ class User {
         email: email ?? this.email,
         phone: phone ?? this.phone,
         medicalRecord: medicalRecord ?? this.medicalRecord,
+        godParents: godParents ?? this.godParents,
         isActive: isActive ?? this.isActive,
       );
 
@@ -100,6 +104,9 @@ class User {
         phone: json["phone"],
         medicalRecord: json["medicalRecord"],
         isActive: json["isActive"],
+        godParents: json["family"] == null
+            ? null
+            : GodParents.fromJson(json["family"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -117,5 +124,6 @@ class User {
         "phone": phone,
         "medicalRecord": medicalRecord,
         "isActive": isActive,
+        "godParents": godParents?.toJson(),
       };
 }

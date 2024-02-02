@@ -47,7 +47,7 @@ class TeamDetail extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: "${team.captainName ?? "Sem capitão"}",
+                      text: team.captainName ?? "Sem capitão",
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: ColorMode.setColor(

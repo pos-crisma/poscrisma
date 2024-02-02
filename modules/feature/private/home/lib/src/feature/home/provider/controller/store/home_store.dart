@@ -12,12 +12,7 @@ import '../action/home_action.dart';
 import '../state/home_state.dart';
 
 class HomeReducer extends Reducer<HomeAction, HomeState> {
-  HomeReducer()
-      : super(
-          HomeState(
-            status: HomeServiceStatus.idle,
-          ),
-        );
+  HomeReducer() : super(HomeState(status: HomeServiceStatus.idle));
 
   @override
   Future<Effect> reduce(HomeAction action) async {
@@ -180,7 +175,6 @@ class HomeReducer extends Reducer<HomeAction, HomeState> {
           ConnectivityResult.none => false,
         };
 
-        // TODO: add pending
         await send(HomeAction.internetUpdate(resultStatus));
       });
     });

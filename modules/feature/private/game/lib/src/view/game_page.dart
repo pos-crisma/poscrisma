@@ -14,6 +14,6 @@ class GamePage extends StatelessWidget {
       ),
     );
 
-    return GameMobile();
+    return const GameMobile();
   }
 }

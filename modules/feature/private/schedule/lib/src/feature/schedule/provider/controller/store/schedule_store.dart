@@ -75,15 +75,11 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       if (profile != null) {
         final now = DateTime.now();
 
-        print(now);
-
         final String weekDay = now.weekday == DateTime.friday
             ? "Sexta-Feira"
             : now.weekday == DateTime.thursday
                 ? "Quinta-Feira"
                 : "Quarta-Feira";
-
-        print("weekDay: $weekDay");
 
         String timeOfDay = "";
         if (now.hour >= 0 && now.hour < 12) {
@@ -94,9 +90,6 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
         } else {
           timeOfDay = "Noite";
         }
-
-        print("hour: ${now.hour}");
-        print("weekDay: $timeOfDay");
 
         final result = ScheduleAPI.streamByJudge(
           judgeId: profile.userId,
