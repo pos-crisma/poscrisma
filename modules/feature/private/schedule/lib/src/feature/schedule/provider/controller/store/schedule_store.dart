@@ -33,6 +33,22 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       failure: _failure,
       scrollListener: _scrollListener,
       buttonTapped: _buttonTapped,
+      filterByText: (text) {
+        if (text.isNotEmpty) {
+          state.filterSchedule = state.listSchedule
+              .where(
+                (element) =>
+                    element.data()!.gameName != null &&
+                    removeDiacritics(element.data()!.gameName!.toLowerCase())
+                        .contains(removeDiacritics(text.toLowerCase())),
+              )
+              .toList();
+        } else {
+          state.filterSchedule = state.listSchedule;
+        }
+
+        return Effect.emit();
+      },
     );
   }
 
@@ -40,11 +56,17 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
     // final user = profileStore.user;
     state.user = profileStore.user;
     return Effect.runAndEmit(() async {
-      send(const ScheduleAction.serviceByDayAndTimeOfDay());
+      send(const ScheduleAction.service());
 
       state.controller.addListener(
         () => send(const ScheduleAction.scrollListener()),
       );
+
+      state.filterController.addListener(() {
+        final text = state.filterController.text;
+
+        send(ScheduleAction.filterByText(text));
+      });
     });
   }
 
@@ -219,6 +241,8 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       return timePriorityA.compareTo(timePriorityB);
     });
 
+    state.filterSchedule = state.listSchedule;
+
     return Effect.emit();
   }
 
@@ -259,6 +283,8 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
       return timePriorityA.compareTo(timePriorityB);
     });
 
+    state.filterSchedule = state.listSchedule;
+
     return Effect.emit();
   }
 
@@ -294,6 +320,8 @@ class ScheduleReducer extends Reducer<ScheduleAction, ScheduleState> {
 
       return timePriorityA.compareTo(timePriorityB);
     });
+
+    state.filterSchedule = state.listSchedule;
 
     return Effect.emit();
   }

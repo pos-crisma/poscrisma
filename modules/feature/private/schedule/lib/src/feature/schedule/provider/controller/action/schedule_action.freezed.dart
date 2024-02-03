@@ -30,6 +30,7 @@ mixin _$ScheduleAction {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +47,7 @@ mixin _$ScheduleAction {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +64,7 @@ mixin _$ScheduleAction {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ mixin _$ScheduleAction {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +101,7 @@ mixin _$ScheduleAction {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -113,6 +118,7 @@ mixin _$ScheduleAction {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -186,6 +192,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return onAppear();
   }
@@ -205,6 +212,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return onAppear?.call();
   }
@@ -224,6 +232,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -248,6 +257,7 @@ class _$OnAppearImpl implements _OnAppear {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return onAppear(this);
   }
@@ -268,6 +278,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return onAppear?.call(this);
   }
@@ -287,6 +298,7 @@ class _$OnAppearImpl implements _OnAppear {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (onAppear != null) {
@@ -350,6 +362,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return service();
   }
@@ -369,6 +382,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return service?.call();
   }
@@ -388,6 +402,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -412,6 +427,7 @@ class _$ServiceImpl implements _Service {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return service(this);
   }
@@ -432,6 +448,7 @@ class _$ServiceImpl implements _Service {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return service?.call(this);
   }
@@ -451,6 +468,7 @@ class _$ServiceImpl implements _Service {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (service != null) {
@@ -514,6 +532,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return serviceByJudge();
   }
@@ -533,6 +552,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return serviceByJudge?.call();
   }
@@ -552,6 +572,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByJudge != null) {
@@ -576,6 +597,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return serviceByJudge(this);
   }
@@ -596,6 +618,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return serviceByJudge?.call(this);
   }
@@ -615,6 +638,7 @@ class _$ServiceByJudgeImpl implements _ServiceByJudge {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByJudge != null) {
@@ -678,6 +702,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return serviceByDay();
   }
@@ -697,6 +722,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return serviceByDay?.call();
   }
@@ -716,6 +742,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByDay != null) {
@@ -740,6 +767,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return serviceByDay(this);
   }
@@ -760,6 +788,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return serviceByDay?.call(this);
   }
@@ -779,6 +808,7 @@ class _$ServiceByDayImpl implements _ServiceByDay {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByDay != null) {
@@ -845,6 +875,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return serviceByDayAndTimeOfDay();
   }
@@ -864,6 +895,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return serviceByDayAndTimeOfDay?.call();
   }
@@ -883,6 +915,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByDayAndTimeOfDay != null) {
@@ -907,6 +940,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return serviceByDayAndTimeOfDay(this);
   }
@@ -927,6 +961,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return serviceByDayAndTimeOfDay?.call(this);
   }
@@ -946,6 +981,7 @@ class _$ServiceByDayAndTimeOfDayImpl implements _ServiceByDayAndTimeOfDay {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (serviceByDayAndTimeOfDay != null) {
@@ -1036,6 +1072,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return loading(isLoading);
   }
@@ -1055,6 +1092,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return loading?.call(isLoading);
   }
@@ -1074,6 +1112,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1098,6 +1137,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return loading(this);
   }
@@ -1118,6 +1158,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return loading?.call(this);
   }
@@ -1137,6 +1178,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1232,6 +1274,7 @@ class _$AddedImpl implements _Added {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return added(schedule);
   }
@@ -1251,6 +1294,7 @@ class _$AddedImpl implements _Added {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return added?.call(schedule);
   }
@@ -1270,6 +1314,7 @@ class _$AddedImpl implements _Added {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (added != null) {
@@ -1294,6 +1339,7 @@ class _$AddedImpl implements _Added {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return added(this);
   }
@@ -1314,6 +1360,7 @@ class _$AddedImpl implements _Added {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return added?.call(this);
   }
@@ -1333,6 +1380,7 @@ class _$AddedImpl implements _Added {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (added != null) {
@@ -1428,6 +1476,7 @@ class _$ModifierImpl implements _Modifier {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return modifier(schedule);
   }
@@ -1447,6 +1496,7 @@ class _$ModifierImpl implements _Modifier {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return modifier?.call(schedule);
   }
@@ -1466,6 +1516,7 @@ class _$ModifierImpl implements _Modifier {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (modifier != null) {
@@ -1490,6 +1541,7 @@ class _$ModifierImpl implements _Modifier {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return modifier(this);
   }
@@ -1510,6 +1562,7 @@ class _$ModifierImpl implements _Modifier {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return modifier?.call(this);
   }
@@ -1529,6 +1582,7 @@ class _$ModifierImpl implements _Modifier {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (modifier != null) {
@@ -1625,6 +1679,7 @@ class _$RemoveImpl implements _Remove {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return remove(schedule);
   }
@@ -1644,6 +1699,7 @@ class _$RemoveImpl implements _Remove {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return remove?.call(schedule);
   }
@@ -1663,6 +1719,7 @@ class _$RemoveImpl implements _Remove {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (remove != null) {
@@ -1687,6 +1744,7 @@ class _$RemoveImpl implements _Remove {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return remove(this);
   }
@@ -1707,6 +1765,7 @@ class _$RemoveImpl implements _Remove {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return remove?.call(this);
   }
@@ -1726,6 +1785,7 @@ class _$RemoveImpl implements _Remove {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (remove != null) {
@@ -1821,6 +1881,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return failure(error);
   }
@@ -1840,6 +1901,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return failure?.call(error);
   }
@@ -1859,6 +1921,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1883,6 +1946,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return failure(this);
   }
@@ -1903,6 +1967,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return failure?.call(this);
   }
@@ -1922,6 +1987,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1990,6 +2056,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return scrollListener();
   }
@@ -2009,6 +2076,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return scrollListener?.call();
   }
@@ -2028,6 +2096,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (scrollListener != null) {
@@ -2052,6 +2121,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return scrollListener(this);
   }
@@ -2072,6 +2142,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return scrollListener?.call(this);
   }
@@ -2091,6 +2162,7 @@ class _$ScrollListenerImpl implements _ScrollListener {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (scrollListener != null) {
@@ -2181,6 +2253,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(ErrorInfo error) failure,
     required TResult Function() scrollListener,
     required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
   }) {
     return buttonTapped(schedule);
   }
@@ -2200,6 +2273,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(ErrorInfo error)? failure,
     TResult? Function()? scrollListener,
     TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
   }) {
     return buttonTapped?.call(schedule);
   }
@@ -2219,6 +2293,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(ErrorInfo error)? failure,
     TResult Function()? scrollListener,
     TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -2243,6 +2318,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     required TResult Function(_Failure value) failure,
     required TResult Function(_ScrollListener value) scrollListener,
     required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
   }) {
     return buttonTapped(this);
   }
@@ -2263,6 +2339,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_ScrollListener value)? scrollListener,
     TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
   }) {
     return buttonTapped?.call(this);
   }
@@ -2282,6 +2359,7 @@ class _$ButtonTappedImpl implements _ButtonTapped {
     TResult Function(_Failure value)? failure,
     TResult Function(_ScrollListener value)? scrollListener,
     TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
     required TResult orElse(),
   }) {
     if (buttonTapped != null) {
@@ -2298,5 +2376,206 @@ abstract class _ButtonTapped implements ScheduleAction {
   DocumentSnapshot<Schedule> get schedule;
   @JsonKey(ignore: true)
   _$$ButtonTappedImplCopyWith<_$ButtonTappedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterByTextImplCopyWith<$Res> {
+  factory _$$FilterByTextImplCopyWith(
+          _$FilterByTextImpl value, $Res Function(_$FilterByTextImpl) then) =
+      __$$FilterByTextImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String text});
+}
+
+/// @nodoc
+class __$$FilterByTextImplCopyWithImpl<$Res>
+    extends _$ScheduleActionCopyWithImpl<$Res, _$FilterByTextImpl>
+    implements _$$FilterByTextImplCopyWith<$Res> {
+  __$$FilterByTextImplCopyWithImpl(
+      _$FilterByTextImpl _value, $Res Function(_$FilterByTextImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = null,
+  }) {
+    return _then(_$FilterByTextImpl(
+      null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterByTextImpl implements _FilterByText {
+  const _$FilterByTextImpl(this.text);
+
+  @override
+  final String text;
+
+  @override
+  String toString() {
+    return 'ScheduleAction.filterByText(text: $text)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterByTextImpl &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterByTextImplCopyWith<_$FilterByTextImpl> get copyWith =>
+      __$$FilterByTextImplCopyWithImpl<_$FilterByTextImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppear,
+    required TResult Function() service,
+    required TResult Function() serviceByJudge,
+    required TResult Function() serviceByDay,
+    required TResult Function() serviceByDayAndTimeOfDay,
+    required TResult Function(bool isLoading) loading,
+    required TResult Function(DocumentSnapshot<Schedule> schedule) added,
+    required TResult Function(DocumentSnapshot<Schedule> schedule) modifier,
+    required TResult Function(DocumentSnapshot<Schedule> schedule) remove,
+    required TResult Function(ErrorInfo error) failure,
+    required TResult Function() scrollListener,
+    required TResult Function(DocumentSnapshot<Schedule> schedule) buttonTapped,
+    required TResult Function(String text) filterByText,
+  }) {
+    return filterByText(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppear,
+    TResult? Function()? service,
+    TResult? Function()? serviceByJudge,
+    TResult? Function()? serviceByDay,
+    TResult? Function()? serviceByDayAndTimeOfDay,
+    TResult? Function(bool isLoading)? loading,
+    TResult? Function(DocumentSnapshot<Schedule> schedule)? added,
+    TResult? Function(DocumentSnapshot<Schedule> schedule)? modifier,
+    TResult? Function(DocumentSnapshot<Schedule> schedule)? remove,
+    TResult? Function(ErrorInfo error)? failure,
+    TResult? Function()? scrollListener,
+    TResult? Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult? Function(String text)? filterByText,
+  }) {
+    return filterByText?.call(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppear,
+    TResult Function()? service,
+    TResult Function()? serviceByJudge,
+    TResult Function()? serviceByDay,
+    TResult Function()? serviceByDayAndTimeOfDay,
+    TResult Function(bool isLoading)? loading,
+    TResult Function(DocumentSnapshot<Schedule> schedule)? added,
+    TResult Function(DocumentSnapshot<Schedule> schedule)? modifier,
+    TResult Function(DocumentSnapshot<Schedule> schedule)? remove,
+    TResult Function(ErrorInfo error)? failure,
+    TResult Function()? scrollListener,
+    TResult Function(DocumentSnapshot<Schedule> schedule)? buttonTapped,
+    TResult Function(String text)? filterByText,
+    required TResult orElse(),
+  }) {
+    if (filterByText != null) {
+      return filterByText(text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnAppear value) onAppear,
+    required TResult Function(_Service value) service,
+    required TResult Function(_ServiceByJudge value) serviceByJudge,
+    required TResult Function(_ServiceByDay value) serviceByDay,
+    required TResult Function(_ServiceByDayAndTimeOfDay value)
+        serviceByDayAndTimeOfDay,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Added value) added,
+    required TResult Function(_Modifier value) modifier,
+    required TResult Function(_Remove value) remove,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ScrollListener value) scrollListener,
+    required TResult Function(_ButtonTapped value) buttonTapped,
+    required TResult Function(_FilterByText value) filterByText,
+  }) {
+    return filterByText(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OnAppear value)? onAppear,
+    TResult? Function(_Service value)? service,
+    TResult? Function(_ServiceByJudge value)? serviceByJudge,
+    TResult? Function(_ServiceByDay value)? serviceByDay,
+    TResult? Function(_ServiceByDayAndTimeOfDay value)?
+        serviceByDayAndTimeOfDay,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Added value)? added,
+    TResult? Function(_Modifier value)? modifier,
+    TResult? Function(_Remove value)? remove,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_ScrollListener value)? scrollListener,
+    TResult? Function(_ButtonTapped value)? buttonTapped,
+    TResult? Function(_FilterByText value)? filterByText,
+  }) {
+    return filterByText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnAppear value)? onAppear,
+    TResult Function(_Service value)? service,
+    TResult Function(_ServiceByJudge value)? serviceByJudge,
+    TResult Function(_ServiceByDay value)? serviceByDay,
+    TResult Function(_ServiceByDayAndTimeOfDay value)? serviceByDayAndTimeOfDay,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Added value)? added,
+    TResult Function(_Modifier value)? modifier,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ScrollListener value)? scrollListener,
+    TResult Function(_ButtonTapped value)? buttonTapped,
+    TResult Function(_FilterByText value)? filterByText,
+    required TResult orElse(),
+  }) {
+    if (filterByText != null) {
+      return filterByText(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterByText implements ScheduleAction {
+  const factory _FilterByText(final String text) = _$FilterByTextImpl;
+
+  String get text;
+  @JsonKey(ignore: true)
+  _$$FilterByTextImplCopyWith<_$FilterByTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

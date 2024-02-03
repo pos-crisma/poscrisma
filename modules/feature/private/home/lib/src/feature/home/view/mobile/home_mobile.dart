@@ -1156,7 +1156,7 @@ class HomeMobile extends StatelessWidget {
                                     width: MediaQuery.of(context).size.width,
                                     child: ComplexButton(
                                       badge: true,
-                                      onPress: () => context.pushNamed('team'),
+                                      onPress: () => context.pushNamed('treasure'),
                                       text: "Tendas",
                                       iconData: Icons.emoji_events,
                                       light: Colors.grey.shade300,
@@ -1200,7 +1200,8 @@ class HomeMobile extends StatelessWidget {
                                     width: MediaQuery.of(context).size.width,
                                     child: ComplexButton(
                                       badge: true,
-                                      onPress: () => context.pushNamed('team'),
+                                      onPress: () =>
+                                          context.pushNamed('talent'),
                                       text: "Talentos",
                                       iconData: CupertinoIcons.today,
                                       light: Colors.grey.shade300,

@@ -23,4 +23,6 @@ abstract class ScheduleAction with _$ScheduleAction {
   const factory ScheduleAction.scrollListener() = _ScrollListener;
   const factory ScheduleAction.buttonTapped(
       DocumentSnapshot<Schedule> schedule) = _ButtonTapped;
+
+  const factory ScheduleAction.filterByText(String text) = _FilterByText;
 }

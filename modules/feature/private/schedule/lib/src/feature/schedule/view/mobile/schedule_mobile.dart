@@ -85,11 +85,30 @@ class ScheduleMobile extends StatelessWidget {
           ),
 
           // *
+          SliverToBoxAdapter(
+            child: CustomTextFormField(
+              controller: viewStore.state.filterController,
+              focusNote: viewStore.state.filterFocus,
+              labelText: "Pesquisar pelo nome do jogo",
+              boxDecorationColor: ColorMode.setColor(
+                context: context,
+                light: Colors.grey.shade200,
+                dark: Colors.black,
+              ),
+            ),
+          ),
+
+          // *
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 8),
+          ),
+
+          // *
           ValueListenableBuilder(
             valueListenable: viewStore,
             builder: (context, value, child) {
               if (value.listSchedule.isNotEmpty) {
-                final schedules = value.listSchedule;
+                final schedules = value.filterSchedule;
 
                 return SliverList.builder(
                   itemCount: schedules.length,

@@ -10,7 +10,11 @@ interface class ScheduleState {
 
   ProfileDTO? user;
 
+  TextEditingController filterController = TextEditingController(text: "");
+  FocusNode filterFocus = FocusNode();
+
   List<DocumentSnapshot<Schedule>> listSchedule = [];
+  List<DocumentSnapshot<Schedule>> filterSchedule = [];
 
   ScheduleState({
     this.isCenterTitle = false,

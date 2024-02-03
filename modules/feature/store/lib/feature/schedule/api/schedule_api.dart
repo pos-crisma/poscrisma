@@ -70,4 +70,12 @@ mixin ScheduleAPI {
         .snapshots(includeMetadataChanges: true);
   }
 
+  static Future<DocumentSnapshot<Schedule>> getTalent() async {
+    final scheduleRef = schedule.withConverter<Schedule>(
+      fromFirestore: (snapshot, _) => Schedule.fromJson(snapshot.data()!),
+      toFirestore: (schedule, _) => schedule.toJson(),
+    );
+
+    return await scheduleRef.doc("5a043188-cb7d-461a-9b94-ef7f97ef56e3").get();
+  }
 }

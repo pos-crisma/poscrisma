@@ -253,6 +253,22 @@ final GoRouter appRouter = GoRouter(
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),
+    GoRoute(
+      name: "talent",
+      path: '/talent',
+      builder: (BuildContext context, GoRouterState state) =>
+          const MatchTalent(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
+    GoRoute(
+      name: "treasure",
+      path: '/treasure',
+      builder: (BuildContext context, GoRouterState state) =>
+          const MatchTreasure(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
   ],
 );
 
