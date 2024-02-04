@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/score_match.dart';
-import '../provider/action/match_treasure.dart';
+import '../provider/action/match_treasure_action.dart';
 import '../provider/store/match_treasure.dart';
 
 class MatchTreasure extends StatefulWidget {

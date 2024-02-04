@@ -13,6 +13,7 @@ DocumentReference version =
     FirebaseFirestore.instance.collection('setting').doc("version");
 DocumentReference environment =
     FirebaseFirestore.instance.collection('setting').doc("environment");
+CollectionReference result = FirebaseFirestore.instance.collection('result');
 CollectionReference schedule =
     FirebaseFirestore.instance.collection('schedule');
 CollectionReference punish = FirebaseFirestore.instance.collection('punish');

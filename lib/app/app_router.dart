@@ -269,6 +269,14 @@ final GoRouter appRouter = GoRouter(
       redirect: (BuildContext context, GoRouterState state) async =>
           await PrivateGuard.canActivate(state),
     ),
+    GoRoute(
+      name: "result",
+      path: '/result',
+      builder: (BuildContext context, GoRouterState state) =>
+          const ResultPage(),
+      redirect: (BuildContext context, GoRouterState state) async =>
+          await PrivateGuard.canActivate(state),
+    ),
   ],
 );
 

@@ -74,4 +74,9 @@ export 'feature/loding/dto/loding_dto.dart';
 export 'feature/team/api/team_api.dart';
 export 'feature/team/dto/team_response_dto.dart';
 
+// * result
+
+export 'feature/result/api/result_api.dart';
+export 'feature/result/model/result_model.dart';
+
 export 'package:uuid/uuid.dart';

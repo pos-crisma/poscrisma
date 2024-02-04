@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:store/store.dart';
 
-part 'match_treasure.freezed.dart';
+part 'match_treasure_action.freezed.dart';
 
 @freezed
 abstract class MatchTreasureAction with _$MatchTreasureAction {
@@ -13,8 +13,8 @@ abstract class MatchTreasureAction with _$MatchTreasureAction {
 
   const factory MatchTreasureAction.successGame(Game game) = _SuccessGame;
 
-  const factory MatchTreasureAction.update(
-      DocumentSnapshot<Schedule> schedule) = _Added;
+  const factory MatchTreasureAction.update(DocumentSnapshot<Schedule> schedule) =
+      _Added;
 
   const factory MatchTreasureAction.offline() = _Offline;
 

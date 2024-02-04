@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:store/store.dart';
 
-import '../action/match_treasure.dart';
+import '../action/match_treasure_action.dart';
 import '../state/match_treasure.dart';
 
 class MatchTreasureReducer extends Reducer<MatchTreasureAction, MatchTreasureState> {
