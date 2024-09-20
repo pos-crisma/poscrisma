@@ -1,0 +1,4 @@
+bricks:
+  module:
+    path: templates/module
+
