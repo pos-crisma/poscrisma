@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poscrisma/module/shared/design/assets/app_assets.dart';
 
 class CampingAnimation extends StatelessWidget {
   const CampingAnimation({super.key});
@@ -7,7 +8,7 @@ class CampingAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Lottie.asset(
-      'lib/module/shared/design/assets/animation/camping.json',
+      AppAssets.campingAnimation,
       width: 200,
       height: 200,
       fit: BoxFit.cover,
