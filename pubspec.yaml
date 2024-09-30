@@ -27,6 +27,13 @@ dependencies:
   sheet: ^1.0.0
   brasil_fields: ^1.15.0
   lottie: ^3.1.2
+  #loginAnimation:
+  flame: ^1.19.0
+  flame_forge2d: ^0.18.2
+  forge2d: ^0.13.1
+  equatable: ^2.0.5
+  #modal
+  modal_bottom_sheet: ^3.0.0
 
 dev_dependencies:
   flutter_test:
