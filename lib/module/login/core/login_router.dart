@@ -1,4 +1,5 @@
 import 'package:poscrisma/index.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginRouter {
@@ -7,8 +8,16 @@ class LoginRouter {
   static GoRoute routes() {
     return GoRoute(
       path: root,
-      builder: (context, state) {
-        return const LoginPage();
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          child: const LoginPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
       },
     );
   }
