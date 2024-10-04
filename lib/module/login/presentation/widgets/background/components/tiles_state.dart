@@ -9,18 +9,21 @@ class TilesState extends ChangeNotifier {
   /// O número total de tiles
   final int count;
 
-  /// Gerando uma lista de dados para cada tile com base no índice
+  /// Lista de todos os acampamentos disponíveis
+  final List<CampData> allCamps = AcampsDataGenerator.getAllCamps();
+
   late final List<CampData> _data = List.generate(
     count,
     (index) {
-      return AcampsDataGenerator.generate();
+      // Se a lista de acampamentos for menor que o número de tiles, ele repete os acampamentos.
+      return allCamps[index % allCamps.length];
     },
   );
 
   /// Um mapa para armazenar as configurações de cada tile
   final Map<int, TileConfig> _config = {};
 
-  /// Para verificar se houve uma mudança
+  /// Verifica se houve uma mudança
   bool _hasChange = false;
 
   /// Verifica se todos os tiles foram configurados

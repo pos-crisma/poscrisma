@@ -32,11 +32,8 @@ class Foreground extends StatelessWidget {
             id: _ForegroundPart.termsAndConditionsText,
             child: const IgnorePointer(
               child: Text(
-                'By clicking “Continue with Google”, you acknowledge that you '
-                "have read and understood, and agree to Amie's Terms & "
-                'Conditions and Privacy Policy.',
+                '''Ao clicar em 'Continuar', você aceita os termos de uso do aplicativo''',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                   fontSize: 8,
                   height: 10 / 8,
@@ -49,7 +46,10 @@ class Foreground extends StatelessWidget {
           ),
           LayoutId(
             id: _ForegroundPart.button,
-            child: const GoogleSignInButton(),
+            child: const CustomButton(
+              text: 'Continuar com Google',
+              iconPath: 'assets/images/google.png',
+            ),
           ),
           LayoutId(
             id: _ForegroundPart.promoText,
@@ -57,7 +57,6 @@ class Foreground extends StatelessWidget {
               child: Text(
                 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                   height: 31 / 25,
@@ -73,7 +72,6 @@ class Foreground extends StatelessWidget {
               child: Text(
                 'Pós-Crisma',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                   fontSize: 25,
                   height: 30 / 25,
@@ -147,9 +145,7 @@ class _ForegroundPartsLayoutDelegate extends MultiChildLayoutDelegate {
       constraints,
     );
     final termsAndConditionsTextOffset = Offset(
-      termsAndConditionsTextSize.width == maxWidth
-          ? padding.left
-          : size.width / 2 - termsAndConditionsTextSize.width / 2,
+      padding.left,
       size.height - termsAndConditionsTextSize.height - padding.bottom,
     );
     final termsAndConditionsTextRect =

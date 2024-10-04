@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
-class GoogleSignInButton extends StatefulWidget {
-  const GoogleSignInButton({super.key});
+class CustomButton extends StatefulWidget {
+  final String text;
+  final String? iconPath; 
+
+  const CustomButton({
+    super.key,
+    required this.text, 
+    this.iconPath, 
+  });
 
   @override
-  State<GoogleSignInButton> createState() => _GoogleSignInButtonState();
+  CustomButtonState createState() => CustomButtonState();
 }
 
-class _GoogleSignInButtonState extends State<GoogleSignInButton>
+class CustomButtonState extends State<CustomButton>
     with SingleTickerProviderStateMixin {
   late final _controller = AnimationController(
     duration: const Duration(milliseconds: 150),
@@ -55,29 +62,24 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ListenableBuilder(
-                  listenable: _color,
-                  builder: (context, _) {
-                    return Image.asset(
-                      'assets/images/google.png',
+                if (widget.iconPath != null) 
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Image.asset(
+                      widget.iconPath!,
                       height: 18,
                       width: 18,
-                      color: _color.value,
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                
                 Flexible(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8,
-                      bottom: 8,
-                      left: 8,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: ListenableBuilder(
                       listenable: _color,
                       builder: (context, _) {
                         return Text(
-                          'Continuar com Google',
+                          widget.text, // Exibe o texto passado como parâmetro
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

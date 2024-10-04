@@ -16,8 +16,9 @@ class Background extends StatefulWidget {
 }
 
 class _BackgroundState extends State<Background> {
-  // Criação do estado dos tiles com uma quantidade específica (15)
-  final _tilesState = TilesState(count: 15);
+  final _tilesState = TilesState(
+    count: AcampsDataGenerator.getAllCamps().length,
+  );
 
   // Criação do FlowDelegate que controla a disposição e animação dos tiles
   late final _flowDelegate = _BackgroundFlowDelegate(
@@ -107,7 +108,8 @@ class _BackgroundFlowDelegate extends FlowDelegate {
 
         context.paintChild(
           id,
-          transform: _computeTransformation(config), // Aplica a transformação (posição e rotação)
+          transform: _computeTransformation(
+              config), // Aplica a transformação (posição e rotação)
         );
       }
     } else {
@@ -121,18 +123,22 @@ class _BackgroundFlowDelegate extends FlowDelegate {
 
         final Offset childPosition;
 
-        final maxX = id < half ? size.width / 2 : size.width; // Define a área onde o tile será posicionado
+        final maxX = id < half
+            ? size.width / 2
+            : size.width; // Define a área onde o tile será posicionado
 
         // Gera uma posição aleatória para o tile no eixo X
         var dx = _random.nextDouble() * maxX;
         if (dx + childSize.width > size.width) {
-          dx = size.width - childSize.width; // Ajusta para que o tile não ultrapasse o limite
+          dx = size.width -
+              childSize.width; // Ajusta para que o tile não ultrapasse o limite
         }
 
         // Gera uma posição aleatória para o tile no eixo Y
         var dy = _random.nextDouble() * maxY;
         if (dy + childSize.height > maxY) {
-          dy = maxY - childSize.height; // Ajusta para que o tile não ultrapasse a tela
+          dy = maxY -
+              childSize.height; // Ajusta para que o tile não ultrapasse a tela
         }
 
         // Define a posição final do tile
@@ -200,7 +206,8 @@ class _BackgroundSimulation extends Forge2DGame {
 
   final Map<int, Body> _bodies = {};
 
-  late final Body _groundBody; // Corpo físico usado como referência para o joint do mouse
+  late final Body
+      _groundBody; // Corpo físico usado como referência para o joint do mouse
 
   MouseJoint? _mouseJoint; // Joint usado para arrastar os tiles
 

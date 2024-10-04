@@ -48,6 +48,22 @@ class Tile extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Hero(
+                tag: data.imageUrl,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        data.imageUrl,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const SizedBox.square(dimension: 30),
+                ),
+              ),
+              const SizedBox(width: 8),
               // Para garantir que o conteúdo do texto se ajuste adequadamente
               Flexible(
                 child: Column(
@@ -85,7 +101,6 @@ class Tile extends StatelessWidget {
     return Text(
       data.title,
       style: const TextStyle(
-        fontFamily: 'Inter',
         fontWeight: FontWeight.w600,
         fontSize: 16,
         height: 20 / 16,
@@ -98,10 +113,9 @@ class Tile extends StatelessWidget {
   }
 
   Widget _buildLocation() {
-    return const Text(
-      "Location", // Irei adicionar o data.location
-      style: TextStyle(
-        fontFamily: 'Inter',
+    return Text(
+      data.location,
+      style: const TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 12,
         height: 14 / 12,

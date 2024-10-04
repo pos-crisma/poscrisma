@@ -23,8 +23,6 @@ class _ArrowPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // This following code is generated from SVG by:
-    // https://fluttershapemaker.com.
 
     final path = Path()
       ..moveTo(size.width * 0.6833268, size.height * 0.1401889)

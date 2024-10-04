@@ -1,14 +1,18 @@
-import 'dart:math';
-
 class CampData {
   final String title;
-  final String description;
-  final String year;
+  final String imageUrl;
+  final String location;
+  final String tema;
+  final String show;
+  final String equipe;
 
   CampData({
     required this.title,
-    required this.description,
-    required this.year,
+    required this.imageUrl,
+    required this.location,
+    required this.tema,
+    required this.show,
+    required this.equipe,
   });
 }
 
@@ -16,45 +20,61 @@ class AcampsDataGenerator {
   static final campData = [
     CampData(
       title: 'Acampamento 2013',
-      description: 'Descrição do Acampamento 2013',
-      year: '2013',
+      imageUrl: 'assets/images/fotonula2013.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
     CampData(
       title: 'Acampamento 2014',
-      description: 'Descrição do Acampamento 2014',
-      year: '2014',
+      imageUrl: 'assets/images/fotonula2014.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
     CampData(
       title: 'Acampamento 2015',
-      description: 'Descrição do Acampamento 2015',
-      year: '2015',
+      imageUrl: 'assets/images/fotonula2015.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
     CampData(
       title: 'Acampamento 2016',
-      description: 'Descrição do Acampamento 2016',
-      year: '2016',
+      imageUrl: 'assets/images/fotonula2016.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
     CampData(
       title: 'Acampamento 2017',
-      description: 'Descrição do Acampamento 2017',
-      year: '2017',
+      imageUrl: 'assets/images/fotonula2017.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
     CampData(
       title: 'Acampamento 2018',
-      description: 'Descrição do Acampamento 2018',
-      year: '2018',
-    ),
-    CampData(
-      title: 'Acampamento 2019',
-      description: 'Descrição do Acampamento 2019',
-      year: '2019',
+      imageUrl: 'assets/images/fotonula2018.jpg',
+      location: 'Location',
+      tema: 'Tema',
+      show: 'Tema',
+      equipe: 'Nome',
     ),
   ];
 
-  static final _random = Random();
+  // Função para retornar uma lista de todos os acampamentos
+  static List<CampData> getAllCamps() {
+    return campData;
+  }
 
-  // Retorna um CampData aleatório da lista campData
-  static CampData generate() {
-    return campData[_random.nextInt(campData.length)];
+  // Função para pegar um acampamento específico pelo índice
+  static CampData getCampByIndex(int index) {
+    return campData[index];
   }
 }
