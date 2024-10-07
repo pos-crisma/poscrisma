@@ -12,17 +12,19 @@ class Foreground extends StatelessWidget {
         children: [
           LayoutId(
             id: _ForegroundPart.gradient,
-            child: const IgnorePointer(
+            child: IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0x00FBFAFA),
-                      Color(0xCCFBFAFA),
+                      const Color(0xFFFFFFFF).withOpacity(0.00),
+                      const Color(0xFFFFFFFF).withOpacity(0.25),
+                      const Color(0xFFFFFFFF).withOpacity(0.57),
+                      const Color(0xFFFFFFFF).withOpacity(0.70),
+                      const Color(0xFFFFFFFF).withOpacity(0.85),
                     ],
-                    stops: [0.2, 0.3],
                   ),
                 ),
               ),
@@ -32,10 +34,10 @@ class Foreground extends StatelessWidget {
             id: _ForegroundPart.termsAndConditionsText,
             child: const IgnorePointer(
               child: Text(
-                '''Ao clicar em 'Continuar', você aceita os termos de uso do aplicativo''',
+                '''Ao clicar em "Continuar", você aceita os termos de uso do aplicativo e politicas de privacidade''',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 8,
+                  fontSize: 12,
                   height: 10 / 8,
                   letterSpacing: 0.20,
                   color: Color(0xFF737374),
@@ -55,10 +57,10 @@ class Foreground extends StatelessWidget {
             id: _ForegroundPart.promoText,
             child: const IgnorePointer(
               child: Text(
-                'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia',
+                'Facilidade na gestão do acampamento',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 12,
+                  fontSize: 22,
                   height: 31 / 25,
                   letterSpacing: -0.40,
                   color: Color(0xFF737374),
@@ -70,7 +72,7 @@ class Foreground extends StatelessWidget {
             id: _ForegroundPart.meetAmieText,
             child: const IgnorePointer(
               child: Text(
-                'Pós-Crisma',
+                'Conheça Acamps',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 25,

@@ -100,20 +100,18 @@ class _MessageBubbleState extends State<MessageBubble>
                       Text(
                         'Ei você,',
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
-                          fontSize: 15,
+                          fontSize: 16,
                           height: 22 / 15,
                           letterSpacing: -0.3,
                           color: Color(0xFF64C387),
                         ),
                       ),
                       Text(
-                        "Convite para o acampamento #2024",
+                        "Convite para o acamps",
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
-                          fontSize: 15,
+                          fontSize: 16,
                           height: 22 / 15,
                           letterSpacing: -0.10,
                           color: Color(0xFF16A34A),
