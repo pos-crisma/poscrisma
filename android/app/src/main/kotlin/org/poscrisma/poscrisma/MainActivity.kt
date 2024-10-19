@@ -1,4 +1,4 @@
-package com.example.poscrisma
+package org.poscrisma.poscrisma
 
 import io.flutter.embedding.android.FlutterActivity
 

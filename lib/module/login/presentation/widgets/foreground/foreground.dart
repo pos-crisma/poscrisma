@@ -57,7 +57,7 @@ class Foreground extends StatelessWidget {
             id: _ForegroundPart.promoText,
             child: const IgnorePointer(
               child: Text(
-                'Facilidade na gestão do acampamento',
+                'Facilidade na gestão de acampamentos',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 22,
