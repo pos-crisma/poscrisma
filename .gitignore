@@ -1,4 +1,5 @@
 # Miscellaneous
+.env
 *.class
 *.log
 *.pyc
@@ -13,7 +14,10 @@ migrate_working_dir/
 # Only for testing
 ios/ 
 
+.mason/
+
 # Ignore arquivos do Mason
+.mason/
 mason-lock.json
 bricks.json
 

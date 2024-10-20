@@ -2,7 +2,9 @@ import 'package:poscrisma/index.dart';
 import 'package:flutter/material.dart';
 
 class Foreground extends StatelessWidget {
-  const Foreground({super.key});
+  const Foreground({super.key, required this.action});
+
+  final VoidCallback action;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,8 @@ class Foreground extends StatelessWidget {
           ),
           LayoutId(
             id: _ForegroundPart.button,
-            child: const CustomButton(
+            child: ScaleButton(
+              handler: action,
               text: 'Continuar com Google',
               iconPath: 'assets/images/google.png',
             ),
