@@ -1,3 +1,4 @@
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:poscrisma/index.dart';
 import 'package:flutter/material.dart';
 
@@ -25,14 +26,30 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Background(),
-          Foreground(),
+          Background(
+            handler: showModal,
+          ),
+          Foreground(
+            action: goToGoogleAuth,
+          ),
         ],
       ),
     );
+  }
+
+  void showModal(CampData data) {
+    showBarModalBottomSheet(
+      context: context,
+      expand: true,
+      builder: (context) => AcampsPage(campData: data),
+    );
+  }
+
+  void goToGoogleAuth() {
+    _controller.handleGoogleSignIn(context);
   }
 }

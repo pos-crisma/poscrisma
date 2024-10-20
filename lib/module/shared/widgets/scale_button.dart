@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class CustomButton extends StatefulWidget {
+class ScaleButton extends StatefulWidget {
   final String text;
-  final String? iconPath; 
+  final String? iconPath;
+  final VoidCallback handler;
 
-  const CustomButton({
+  const ScaleButton({
     super.key,
-    required this.text, 
-    this.iconPath, 
+    required this.text,
+    this.iconPath,
+    required this.handler,
   });
 
   @override
-  CustomButtonState createState() => CustomButtonState();
+  ScaleButtonState createState() => ScaleButtonState();
 }
 
-class CustomButtonState extends State<CustomButton>
+class ScaleButtonState extends State<ScaleButton>
     with SingleTickerProviderStateMixin {
   late final _controller = AnimationController(
     duration: const Duration(milliseconds: 150),
@@ -35,6 +38,9 @@ class CustomButtonState extends State<CustomButton>
   }
 
   void _onTapDown() {
+    HapticFeedback.selectionClick();
+    
+    widget.handler();
     _controller.forward();
   }
 
@@ -62,7 +68,7 @@ class CustomButtonState extends State<CustomButton>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (widget.iconPath != null) 
+                if (widget.iconPath != null)
                   Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: Image.asset(
@@ -71,7 +77,6 @@ class CustomButtonState extends State<CustomButton>
                       width: 18,
                     ),
                   ),
-                
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),

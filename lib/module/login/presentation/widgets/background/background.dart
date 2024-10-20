@@ -9,7 +9,12 @@ import 'package:flutter/material.dart';
 
 // Classe Background que cria o widget de fundo animado
 class Background extends StatefulWidget {
-  const Background({super.key});
+  const Background({
+    super.key,
+    required this.handler,
+  });
+
+  final Function(CampData campData) handler;
 
   @override
   State<Background> createState() => _BackgroundState();
@@ -61,6 +66,7 @@ class _BackgroundState extends State<Background> {
                     onDragEnd: () {
                       _simulation.onDragEnd();
                     },
+                    handler: () => widget.handler(_tilesState.getData(id)),
                   ),
               ],
             ),

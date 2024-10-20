@@ -11,7 +11,7 @@ class SplashController {
     Timer(
       const Duration(seconds: 3),
       () {
-        context.go("/login");
+        context.go(AppRouter.login);
       },
     );
   }

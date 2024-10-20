@@ -6,5 +6,6 @@ class AppDependencies {
 
     SplashDependencies.register();
     LoginDependencies.register();
+    HomeDependencies.register();
   }
 }

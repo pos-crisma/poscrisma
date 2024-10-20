@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:poscrisma/index.dart';
 
 // Definem callbacks que serão usados para arrastar os tiles
@@ -11,11 +10,12 @@ typedef TileDragEndCallback = void Function(); // Callback para fim do arraste
 
 class Tile extends StatelessWidget {
   const Tile({
+    super.key,
     required this.data,
     required this.onDragStart,
     required this.onDragUpdate,
     required this.onDragEnd,
-    super.key,
+    required this.handler,
   });
 
   // Dados do acampamento que serão mostrados no tile
@@ -24,17 +24,13 @@ class Tile extends StatelessWidget {
   final TileDragUpdateCallback onDragUpdate;
   final TileDragEndCallback onDragEnd;
 
+  final VoidCallback handler;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       // Ação ao clicar no tile, abrindo um modal expandido com detalhes do acampamento
-      onTap: () {
-        showBarModalBottomSheet(
-          context: context,
-          expand: true,
-          builder: (context) => AcampsPage(campData: data),
-        );
-      },
+      onTap: handler,
       // Funções de arraste
       onPanStart: (details) => onDragStart(details.globalPosition),
       onPanUpdate: (details) => onDragUpdate(details.globalPosition),
