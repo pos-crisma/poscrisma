@@ -64,12 +64,23 @@ class LoginController extends LoadableController {
       if (!context.mounted) return;
       context.go(AppRouter.home);
     } catch (error) {
-      print("Error: ${error}");
-      // Dialogs.showErrorDialog(
-      //   context,
-      //   "Erro ao fazer login",
-      //   "Não foi possível fazer login com o Google",
-      // );
+      showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Scaffold(
+            body: Column(
+              children: [
+                const Text(
+                  "Oops,",
+                ),
+                Text(
+                  "Error: ${error}",
+                ),
+              ],
+            ),
+          );
+        },
+      );
     } finally {
       isLoading.value = false;
     }
