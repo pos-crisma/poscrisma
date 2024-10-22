@@ -2,28 +2,36 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:poscrisma/index.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:logger/logger.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final logger = Logger(
-  printer: PrettyPrinter(),
-  // printer: SimplePrinter(),
-  level: Level.debug,
+  printer: PrettyPrinter(), // Para um logger formatado
+  // printer: SimplePrinter(), // Para um logger simples
+  level: Level.debug, // Nível de logging desejado
 );
 
 class HttpProvider {
-  final memoryProvider = GetIt.instance.get<MemoryProvider>();
+  final String baseUrl = 'localhost:3300';
+  final String fallbackUrl = '192.168.1.2:3300';
+  late final HttpInterceptors interceptors;
 
-  final String baseUrl = 'imaculada-backend-prod.up.railway.app';
-  late final _HttpInterceptors interceptors;
+  HttpProvider() : interceptors = HttpInterceptors();
 
-  HttpProvider() : interceptors = _HttpInterceptors();
-
-  String get bearerToken => memoryProvider.getMemory().accessToken ?? '';
+  String get bearerToken =>
+      AppDependencies.getIt
+          .get<SupabaseClient>()
+          .auth
+          .currentSession
+          ?.accessToken ??
+      '';
 
   Future<dynamic> get({
     required String path,
@@ -42,15 +50,9 @@ class HttpProvider {
     required String path,
     required Map<String, dynamic> body,
     Map<String, dynamic>? queryParameters,
-    Map<String, String>? optionParameters,
   }) async {
-    return _makeRequest(
-      'POST',
-      path,
-      body: body,
-      optionParameters: optionParameters,
-      queryParameters: queryParameters,
-    );
+    return _makeRequest('POST', path,
+        body: body, queryParameters: queryParameters);
   }
 
   Future<dynamic> put({
@@ -58,12 +60,8 @@ class HttpProvider {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) async {
-    return _makeRequest(
-      'PUT',
-      path,
-      body: body,
-      queryParameters: queryParameters,
-    );
+    return _makeRequest('PUT', path,
+        body: body, queryParameters: queryParameters);
   }
 
   Future<dynamic> delete({
@@ -71,26 +69,15 @@ class HttpProvider {
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) async {
-    return _makeRequest(
-      'DELETE',
-      path,
-      body: body,
-      queryParameters: queryParameters,
-    );
+    return _makeRequest('DELETE', path,
+        body: body, queryParameters: queryParameters);
   }
 
-  Future<dynamic> _makeRequest(
-    String method,
-    String path, {
-    Map<String, dynamic>? body,
-    Map<String, dynamic>? queryParameters,
-    Map<String, String>? optionParameters,
-  }) async {
-    final uri = Uri.https(
-      baseUrl,
-      path,
-      queryParameters,
-    );
+  Future<dynamic> _makeRequest(String method, String path,
+      {Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters}) async {
+    final uri = Uri.http(baseUrl, path, queryParameters);
+    final fallbackUri = Uri.http(fallbackUrl, path, queryParameters);
 
     try {
       final modifiedRequest = http.Request(method, uri);
@@ -100,13 +87,8 @@ class HttpProvider {
         'Authorization': 'Bearer $bearerToken',
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'isDevelopment': 'true',
       };
       modifiedRequest.headers.addAll(headers);
-
-      if (optionParameters != null) {
-        modifiedRequest.headers.addAll(optionParameters);
-      }
 
       if (body != null) {
         modifiedRequest.body = jsonEncode(body);
@@ -122,14 +104,50 @@ class HttpProvider {
       await interceptors.interceptResponse(response);
 
       return _handleResponse(response);
+    } on SocketException catch (_) {
+      return await _sendHttpRequest(method, fallbackUri, body);
+    } on TimeoutException catch (_) {
+      return await _sendHttpRequest(method, fallbackUri, body);
     } catch (e) {
       rethrow;
     }
   }
 
-  dynamic _handleResponse(
-    http.Response response,
-  ) {
+  Future<dynamic> _sendHttpRequest(
+      String method, Uri uri, Map<String, dynamic>? body) async {
+    final headers = {
+      'Authorization': 'Bearer $bearerToken',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    late http.Response response;
+
+    switch (method) {
+      case 'GET':
+        response = await http.get(uri, headers: headers);
+        break;
+      case 'POST':
+        response =
+            await http.post(uri, headers: headers, body: jsonEncode(body));
+        break;
+      case 'PUT':
+        response =
+            await http.put(uri, headers: headers, body: jsonEncode(body));
+        break;
+      case 'DELETE':
+        response = await http.delete(uri, headers: headers);
+        break;
+      default:
+        throw Exception('HTTP method not supported');
+    }
+
+    await interceptors.interceptResponse(response);
+
+    return _handleResponse(response);
+  }
+
+  dynamic _handleResponse(http.Response response) {
     final jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200 ||
@@ -137,9 +155,12 @@ class HttpProvider {
         response.statusCode == 204) {
       // return HttpResponseModel.fromJson(jsonResponse).payload;
       return jsonResponse;
+    } else if (response.statusCode == 403) {
+      throw Exception('Forbidden: ${response.statusCode}');
     } else if (response.statusCode == 400 ||
+        response.statusCode == 401 ||
         response.statusCode == 404 ||
-        response.statusCode == 403) {
+        response.statusCode == 500) {
       throw ServiceException.fromJson(jsonResponse);
     } else {
       throw Exception('Failed to load data: ${response.statusCode}');
@@ -147,21 +168,21 @@ class HttpProvider {
   }
 }
 
-class _HttpInterceptors {
+class HttpInterceptors {
   final _recentRequests = <String, DateTime>{};
 
-  _HttpInterceptors();
+  HttpInterceptors();
 
   FutureOr<http.Request> interceptRequest(http.Request request) async {
     final key = _generateRequestKey(request);
     final now = DateTime.now();
 
-    // logger.d('Intercepting request: ${request.url}');
+    logger.d('Intercepting request: ${request.url}');
 
     if (_recentRequests.containsKey(key)) {
       final lastRequestTime = _recentRequests[key]!;
       if (now.difference(lastRequestTime).inSeconds < 3) {
-        // logger.d('Request throttled, skipping: ${request.url}');
+        logger.d('Request throttled, skipping: ${request.url}');
         return request;
       }
     }
@@ -174,13 +195,15 @@ class _HttpInterceptors {
     _recentRequests.removeWhere(
         (key, timestamp) => DateTime.now().difference(timestamp).inSeconds > 3);
 
-    // logger.d(
-    //     'Intercepting response: ${response.statusCode} ${response.request?.url}');
+    logger.d(
+        'Intercepting response: ${response.statusCode} ${response.request?.url}');
 
     // Log the response body if needed
-    // if (kDebugMode) {
-    //   CustomPrettyPrinter.prettyPrintJson(response.body);
-    // }
+    if (kDebugMode) {
+      print('Response body: ${response.body}');
+
+      CustomPrettyPrinter.prettyPrintJson(response.body);
+    }
   }
 
   FutureOr<http.Response> interceptError(dynamic error) {
@@ -197,59 +220,64 @@ class _HttpInterceptors {
   }
 }
 
-class ServiceException implements Exception {
-  final int code;
-  final String response;
-  final ErrorData error;
+class HttpResponseModel {
+  final dynamic payload;
+  final String version;
 
-  ServiceException({
-    required this.code,
-    required this.response,
-    required this.error,
+  HttpResponseModel({
+    required this.payload,
+    required this.version,
   });
 
-  ServiceException.fromJson(Map<String, dynamic> json)
-      : code = json['code'],
-        response = json['response'],
-        error = ErrorData.fromJson(json["error"]);
+  factory HttpResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return HttpResponseModel(
+      payload: json['payload'],
+      version: json['version'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'payload': payload,
+      'version': version,
+    };
+  }
 }
 
-class ErrorData {
-  ErrorData({
-    required this.type,
-    required this.statusCode,
-    required this.message,
+class ServiceException implements Exception {
+  final String brief;
+  final String cause;
+  final int code;
+  final String detail;
+  final String name;
+
+  ServiceException({
+    required this.brief,
+    required this.cause,
+    required this.code,
+    required this.detail,
+    required this.name,
   });
 
-  final String type;
-  final int statusCode;
-  final String message;
+  factory ServiceException.fromJson(Map<String, dynamic> json) {
+    return ServiceException(
+      brief: json['brief'] as String,
+      cause: json['cause'] as String,
+      code: json['code'] as int,
+      detail: json['detail'] as String,
+      name: json['name'] as String,
+    );
+  }
 
-  ErrorData copyWith({
-    String? type,
-    int? statusCode,
-    String? message,
-  }) =>
-      ErrorData(
-        type: type ?? this.type,
-        statusCode: statusCode ?? this.statusCode,
-        message: message ?? this.message,
-      );
-
-  factory ErrorData.fromRawJson(String str) =>
-      ErrorData.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory ErrorData.fromJson(Map<String, dynamic> json) => ErrorData(
-        type: json["type"],
-        statusCode: json["statusCode"],
-        message: json["message"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "type": type,
-        "statusCode": statusCode,
-        "message": message,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'brief': brief,
+      'cause': cause,
+      'code': code,
+      'detail': detail,
+      'name': name,
+    };
+  }
 }

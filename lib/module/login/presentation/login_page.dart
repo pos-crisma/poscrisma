@@ -1,6 +1,7 @@
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:poscrisma/index.dart';
 import 'package:flutter/material.dart';
+import 'package:signals/signals_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        fit: StackFit.expand,
+        // fit: StackFit.expand,
         children: [
           Background(
             handler: showModal,
@@ -36,6 +37,39 @@ class _LoginPageState extends State<LoginPage> {
           Foreground(
             action: goToGoogleAuth,
           ),
+          Watch.builder(
+            builder: (context) {
+              return Visibility(
+                visible: _controller.isLoading.value,
+                child: Positioned.fill(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 64),
+                    alignment: Alignment.center,
+                    color: Colors.white,
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          height: 44,
+                          width: 44,
+                          child: CircularProgressIndicator(),
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Text(
+                          "Estamos preparando seu ambiente da gestão do seu acampamento",
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
